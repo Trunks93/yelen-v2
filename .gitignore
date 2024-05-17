@@ -11,3 +11,6 @@ src/web/sites/*/services*.yml
 src/web/sites/*/files
 src/web/sites/*/private
 src/web/sites/simpletest
+
+# Ignore IntelliJ Files
+.idea

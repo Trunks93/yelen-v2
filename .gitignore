@@ -4,8 +4,6 @@ src/vendor/
 # tmp content
 src/web/tmp/*
 
-node_modules/
-/node_modules/*
 src/web/sites/*/settings*.php
 src/web/sites/*/services*.yml
 src/web/sites/*/files

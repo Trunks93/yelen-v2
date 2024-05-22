@@ -23,7 +23,9 @@
         "drupal/login_security": "^2.0",
         "drupal/pathauto": "^1.12",
         "drupal/slick": "^3.0",
-        "drupal/twig_tweak": "^3.3"
+        "drupal/twig_tweak": "^3.3",
+        "drupal/webform": "^6.2",
+        "drupal/webform_quiz": "^2.1"
     },
     "conflict": {
         "drupal/drupal": "*"

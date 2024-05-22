@@ -5,6 +5,7 @@ src/vendor/
 src/web/tmp/*
 
 src/web/sites/*/settings*.php
+src/web/sites/settings.local.php
 src/web/sites/*/services*.yml
 src/web/sites/*/files
 src/web/sites/*/private

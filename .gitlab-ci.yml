@@ -1,0 +1,11 @@
+---
+variables:
+  SRC_ARCHIVE_FILE: ${CI_PROJECT_NAME}.tar.gz
+  ARCHIVE_PATH: ${CI_PROJECT_PATH}/${SRC_ARCHIVE_FILE}
+  BIN_ARCHIVE_FILE: ${CI_PROJECT_NAME}-delivery-bin.tar.gz
+  CUSTOM_MODULES_JS_DIR: "web/modules/_custom"
+  SRC_DIR: "src"
+
+include:
+  - project: 'template/pipelines/php'
+    file: '/.gitlab-ci.yml'

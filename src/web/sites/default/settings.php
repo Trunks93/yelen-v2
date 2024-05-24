@@ -88,8 +88,16 @@
  * ];
  * @endcode
  */
-$databases = [];
-
+  $databases['default']['default'] = [
+    'database' => 'yelen2',
+    'username' => 'yelen2',
+    'password' => ')AQ=4W+Hd7O0QO&8',
+    'host' => '192.168.2.34',
+    'port' => '3306',
+    'driver' => 'mysql',
+    'prefix' => '',
+    'collation' => 'utf8mb4_general_ci',
+  ];
 /**
  * Customizing database settings.
  *
@@ -878,19 +886,6 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
  * Keep this code block at the end of this file to take full effect.
  */
 
-if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
- include $app_root . '/' . $site_path . '/settings.local.php';
-}
-$databases['default']['default'] = array (
-  'database' => 'yelen_v2',
-  'username' => 'yelen',
-  'password' => 'yelen2024',
-  'prefix' => '',
-  'host' => '127.0.0.1',
-  'port' => '40000',
-  'isolation_level' => 'READ COMMITTED',
-  'driver' => 'mysql',
-  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
-  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
-);
-$settings['config_sync_directory'] = 'sites/default/files/config_K6Si52dtrcbbNiv_x2KOdhq6FV5PUVc4J6hnm1oHqay8RrhZaCdsMSQNZHLtoABe5ymwK-uzvQ/sync';
+// if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+//  include $app_root . '/' . $site_path . '/settings.local.php';
+// }

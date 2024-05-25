@@ -902,3 +902,6 @@ $databases['default']['default'] = array (
 //  }
  
 $settings['config_sync_directory'] = 'sites/default/files/config_e7sfg_0vMZIQqDDs2haPlIfWAbkjd5mMLmtoTE9Luk-EGo6nHQm_SqNAaMMK856oOvTHWCuCZA/sync';
+
+$settings['redis.connection']['interface'] = 'Predis';
+$settings['cache']['default'] = 'cache.backend.redis';

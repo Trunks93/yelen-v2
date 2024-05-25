@@ -150,15 +150,15 @@ $settings['skip_permissions_hardening'] = TRUE;
  */
 # $settings['config_exclude_modules'] = ['devel', 'stage_file_proxy'];
 
-$databases['default']['default'] = array (
-  'database' => 'yelen_v2',
-  'username' => 'yelen',
-  'password' => 'yelen2024',
-  'prefix' => '',
-  'host' => '127.0.0.1',
-  'port' => '40000',
-  'isolation_level' => 'READ COMMITTED',
-  'driver' => 'mysql',
-  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
-  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
-);
+// $databases['default']['default'] = array (
+//   'database' => 'yelen_v2',
+//   'username' => 'yelen',
+//   'password' => 'yelen2024',
+//   'prefix' => '',
+//   'host' => '127.0.0.1',
+//   'port' => '40000',
+//   'isolation_level' => 'READ COMMITTED',
+//   'driver' => 'mysql',
+//   'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
+//   'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
+// );

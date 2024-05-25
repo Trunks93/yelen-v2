@@ -4,7 +4,7 @@ src/vendor/
 # tmp content
 src/web/tmp/*
 
-#src/web/sites/*/settings*.php
+src/web/sites/*/settings*.php
 src/web/sites/default/settings.local.php
 src/web/sites/*/services*.yml
 src/web/sites/*/files

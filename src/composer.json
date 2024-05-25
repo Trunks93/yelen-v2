@@ -28,6 +28,7 @@
         "drupal/slick": "^3.0",
         "drupal/webform": "^6.2",
         "drupal/webform_quiz": "^2.1",
+        "drush/drush": "^12.5",
         "predis/predis": "^2.2"
     },
     "conflict": {

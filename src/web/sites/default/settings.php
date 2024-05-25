@@ -88,16 +88,16 @@
  * ];
  * @endcode
  */
-  $databases['default']['default'] = [
-    'database' => 'yelen2',
-    'username' => 'yelen2',
-    'password' => ')AQ=4W+Hd7O0QO&8',
-    'host' => '192.168.2.34',
-    'port' => '3306',
-    'driver' => 'mysql',
-    'prefix' => '',
-    'collation' => 'utf8mb4_general_ci',
-  ];
+  // $databases['default']['default'] = [
+  //   'database' => 'yelen2',
+  //   'username' => 'yelen2',
+  //   'password' => ')AQ=4W+Hd7O0QO&8',
+  //   'host' => '192.168.2.34',
+  //   'port' => '3306',
+  //   'driver' => 'mysql',
+  //   'prefix' => '',
+  //   'collation' => 'utf8mb4_general_ci',
+  // ];
 /**
  * Customizing database settings.
  *
@@ -294,7 +294,7 @@
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = 'lw60zwEbDnqZavVE-wefzdWCuq-MQNoNnxOMjYIGgJRZDr6s4VOtMdmdCoihV5OY8P2iUbaVkw';
+$settings['hash_salt'] = 'shkmvDFW-z1v6U2-1MiNEoZ4T4dXQpy84FDRR06R-LHzAneKg_p911e43qfCApiAh8Pig6rAEA';
 
 /**
  * Deployment identifier.
@@ -885,7 +885,8 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
  *
  * Keep this code block at the end of this file to take full effect.
  */
-
-// if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
-//  include $app_root . '/' . $site_path . '/settings.local.php';
-// }
+if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+  include $app_root . '/' . $site_path . '/settings.local.php';
+ }
+ 
+$settings['config_sync_directory'] = 'sites/default/files/config_e7sfg_0vMZIQqDDs2haPlIfWAbkjd5mMLmtoTE9Luk-EGo6nHQm_SqNAaMMK856oOvTHWCuCZA/sync';

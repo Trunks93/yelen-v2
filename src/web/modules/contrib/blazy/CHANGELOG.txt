@@ -1,0 +1,26 @@
+
+Blazy 3.0.x-dev, 2024-05-14
+---------------------------
+- Issue #3446991 by gausarts: Remove some once compat methods for core/once.
+
+Blazy 3.0.x-dev, 2024-05-12
+---------------------------
+- Supports triggering events with extra arguments ala jQuery.
+
+Blazy 3.0.x-dev, 2024-05-04
+---------------------------
+- Added link to entity option for Blazy Title formatter.
+
+Blazy 3.0.x-dev, 2024-04-22
+---------------------------
+- Upped Drupal requirement to 9.4 to avoid PHP7 issues.
+
+Blazy 3.0.x-dev, 2024-04-16
+---------------------------
+- Fixed for by_delta option count.
+- Added Blazy Layout sub-module for Layout Builder.
+- Added flexbox layout.
+
+Blazy 3.0.x-dev, 2023-09-18
+---------------------------
+- Initial 3.x.

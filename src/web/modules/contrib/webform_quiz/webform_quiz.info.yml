@@ -1,0 +1,13 @@
+name: 'Webform Quiz'
+type: module
+description: 'Build awesome quizzes using the webform module.'
+core_version_requirement: ^8.8 || ^9 || ^10
+package: 'Webform'
+dependencies:
+  - 'drupal:webform'
+  - 'drupal:webform_ui'
+
+# Information added by Drupal.org packaging script on 2023-07-19
+version: '8.x-2.1'
+project: 'webform_quiz'
+datestamp: 1689799461

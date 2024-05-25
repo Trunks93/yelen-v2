@@ -16,8 +16,19 @@
     ],
     "require": {
         "composer/installers": "^2.0",
+        "drupal/autologout": "^1.4",
         "drupal/core-composer-scaffold": "^10.2",
-        "drupal/core-recommended": "^10.2"
+        "drupal/core-recommended": "^10.2",
+        "drupal/devel": "^5.0",
+        "drupal/gin": "^3.0@rc",
+        "drupal/gin_toolbar": "^1.0@rc",
+        "drupal/login_security": "^2.0",
+        "drupal/pathauto": "^1.12",
+        "drupal/redis": "^1.7",
+        "drupal/slick": "^3.0",
+        "drupal/webform": "^6.2",
+        "drupal/webform_quiz": "^2.1",
+        "predis/predis": "^2.2"
     },
     "conflict": {
         "drupal/drupal": "*"

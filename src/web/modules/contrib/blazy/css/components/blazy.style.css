@@ -1,0 +1,50 @@
+/**
+ * @file
+ * Provides shared CSS rules for Blazy layout.
+ *
+ * This is just dummy to avoid collapsed images with blazy layout backgrounds.
+ * To have a multi-breakpoint height, override this file and add revelant media
+ * queries and change each rule height based on the media widths.
+ */
+
+.blazy.b-mh > [data-b-h="xxs"],
+.blazy.b-mh > [data-b-h="x2s"] {
+  min-height: 80px;
+}
+
+.blazy.b-mh > [data-b-h="xs"] {
+  min-height: 120px;
+}
+
+.blazy.b-mh > [data-b-h="sm"] {
+  min-height: 240px;
+}
+
+.blazy.b-mh > [data-b-h="md"] {
+  min-height: 320px;
+}
+
+.blazy.b-mh > [data-b-h="lg"] {
+  min-height: 480px;
+}
+
+.blazy.b-mh > [data-b-h="xl"] {
+  min-height: 560px;
+}
+
+.blazy.b-mh > [data-b-h="xxl"],
+.blazy.b-mh > [data-b-h="x2l"] {
+  min-height: 640px;
+}
+
+.blazy.b-mh > [data-b-h="x3l"] {
+  min-height: 720px;
+}
+
+.blazy.b-mh > [data-b-h="x4l"] {
+  min-height: 820px;
+}
+
+.blazy.b-mh > [data-b-h="x5l"] {
+  min-height: 920px;
+}

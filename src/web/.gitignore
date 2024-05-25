@@ -15,18 +15,19 @@
 # Generally you should only ignore the root vendor directory. It's important
 # that core/assets/vendor and any other vendor directories within contrib or
 # custom module, theme, etc., are not ignored unless you purposely do so.
-/src/vendor/
+vendor/
 
 # Ignore configuration files that may contain sensitive information.
-/src/sites/*/settings*.php
-/src/sites/*/services*.yml
+sites/*/settings*.php
+sites/*/services*.yml
+sites/settings.local.php
 
 # Ignore paths that contain user-generated content.
-/src/sites/*/files
-/src/sites/*/private
+sites/*/files
+sites/*/private
 
 # Ignore multi-site test environment.
-/src/sites/simpletest
+sites/simpletest
 
 # If you prefer to store your .gitignore file in the sites/ folder, comment
 # or delete the previous settings and uncomment the following ones, instead.
@@ -40,9 +41,6 @@
 
 # Ignore multi-site test environment.
 # simpletest
-
-/src/web/tmp/*
-/src/web/sites/simpletest
 
 # Ignore IntelliJ Files
 .idea

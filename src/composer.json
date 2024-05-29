@@ -23,6 +23,7 @@
         "drupal/gin": "^3.0@rc",
         "drupal/gin_login": "^2.0",
         "drupal/gin_toolbar": "^1.0@rc",
+        "drupal/ldap": "^4.10",
         "drupal/login_security": "^2.0",
         "drupal/paragraphs": "^1.17",
         "drupal/pathauto": "^1.12",

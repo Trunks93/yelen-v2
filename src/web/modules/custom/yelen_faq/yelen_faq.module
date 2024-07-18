@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * @implements hook_theme()
+ */
+function yelen_faq_theme($existing, $type, $theme, $path)
+{
+
+  return [
+    'yelen_faq_page' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+      'template'=>'yelen_faq_homepage'
+    ],
+
+  ];
+
+}

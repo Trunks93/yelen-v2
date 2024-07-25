@@ -10,6 +10,7 @@ src/web/sites/*/services*.yml
 src/web/sites/*/files
 src/web/sites/*/private
 src/web/sites/simpletest
+src/web/modules/contrib/*
 
 # Ignore IntelliJ Files
 .idea

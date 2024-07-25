@@ -7,5 +7,5 @@
 }
 
 .menu-item-title{
-  display: none;
+  display: none !important;
 }

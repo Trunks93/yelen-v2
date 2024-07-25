@@ -1,0 +1,23 @@
+/*
+GIN LOGIN
+*/
+
+body.gin-login .user-form-page__user-form{
+  flex-basis: 45% !important;
+}
+
+body.gin-login .user-form-page .content-header{
+  align-items: center;
+  display: flex;
+}
+
+body.gin-login .user-form-page .content-header a{
+  justify-content: center;
+  align-items: center;
+}
+
+body.gin-login .user-form-page__user-form img{
+  max-height: 100px;
+}
+
+/* END GIN LOGIN */

@@ -1,15 +1,15 @@
-<h2>Foire aux questions</h2>
+<h3>Foire aux questions</h3>
 
 {% if content.faqs|length > 0 %}
   <div class="accordion" id="accordionExample">
     {% for faq in content.faqs %}
       <div class="accordion-item">
-        <h2 class="accordion-header">
+        <h3 class="accordion-header">
           <button class="accordion-button p-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.nid.value  }}"
                   aria-expanded="true" aria-controls="collapse{{ faq.nid.value  }}">
             {{ faq.title.value }}
           </button>
-        </h2>
+        </h3>
         <div id="collapse{{ faq.nid.value  }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
           <div class="accordion-body">
             {{ faq.body.value|raw }}

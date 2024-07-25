@@ -3,10 +3,17 @@
 /**
  * @implements hook_theme()
  */
-function yelen_faq_theme($existing, $type, $theme, $path)
+function yelen_faq_theme($existing, $type, $theme, $path):array
 {
 
   return [
+    'yelen_faq_block' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+      'template'=>'yelen_faq_block'
+    ],
+
     'yelen_faq_page' => [
       'variables' => [
         'content' => NULL,

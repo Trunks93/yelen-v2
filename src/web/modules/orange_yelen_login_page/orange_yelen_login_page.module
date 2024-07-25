@@ -6,16 +6,28 @@
  */
 
  function orange_yelen_login_page_form_alter(&$form, $formState, $form_id) {
-
     if ($form_id == 'user_login_form'){
         //Retire le lien "Vous avez perdu votre mot de passe ?" sur le formulaire d'authentification
+        $request = \Drupal::request();
+        $route_match = \Drupal::routeMatch();
+        $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+        //dump($title);
         unset($form['more-links']);
     }
  }
 
  function orange_yelen_login_page_page_attachments_alter(array &$attachments) {
    // Ajout de fichier css à la page d'authentification
-   if (\Drupal::routeMatch()->getRouteName() == 'user.login') {
+   $route_name = \Drupal::routeMatch()->getRouteName();
+   if ($route_name == 'user.login') {
      $attachments['#attached']['library'][] = 'orange_yelen_login_page/orange_yelen_login_page_css';
    }
  }
+
+function orange_yelen_login_page_page_title(&$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name === 'user.login') {
+    dump($variables);
+    // $variables['title'] = 'Edit My Account';
+  }
+}

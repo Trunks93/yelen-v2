@@ -1,0 +1,10 @@
+entity.broadcast_list.edit_form:
+  route_name: entity.broadcast_list.edit_form
+  group: broadcast_list
+  title: 'Edit'
+
+entity.broadcast_list.delete_form:
+  route_name: entity.broadcast_list.delete_form
+  group: broadcast_list
+  title: 'Delete'
+  weight: 10

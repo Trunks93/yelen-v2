@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Orange Yelen Login Page module.
+ */
+
+ function orange_yelen_login_page_form_alter(&$form, $formState, $form_id) {
+
+    if ($form_id == 'user_login_form'){
+        //Retire le lien "Vous avez perdu votre mot de passe ?" sur le formulaire d'authentification
+        unset($form['more-links']);
+    }
+ }
+
+ function orange_yelen_login_page_page_attachments_alter(array &$attachments) {
+   // Ajout de fichier css à la page d'authentification
+   if (\Drupal::routeMatch()->getRouteName() == 'user.login') {
+     $attachments['#attached']['library'][] = 'orange_yelen_login_form/orange_yelen_login_form_css';
+   }
+ }

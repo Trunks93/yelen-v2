@@ -1,0 +1,5 @@
+name: 'Orange Yelen Login Page'
+type: module
+description: 'OCI Yelen Login page'
+package: Custom
+core_version_requirement: ^10 || ^11

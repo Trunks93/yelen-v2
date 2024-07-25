@@ -1,1 +1,5 @@
-orange_yelen_login_form_css:
+orange_yelen_login_page_css:
+  version: 1.x
+  css:
+    theme:
+      css/main.css: {}

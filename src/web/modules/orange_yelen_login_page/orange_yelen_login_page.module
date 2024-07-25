@@ -16,6 +16,6 @@
  function orange_yelen_login_page_page_attachments_alter(array &$attachments) {
    // Ajout de fichier css à la page d'authentification
    if (\Drupal::routeMatch()->getRouteName() == 'user.login') {
-     $attachments['#attached']['library'][] = 'orange_yelen_login_form/orange_yelen_login_form_css';
+     $attachments['#attached']['library'][] = 'orange_yelen_login_page/orange_yelen_login_page_css';
    }
  }

@@ -13,3 +13,6 @@ src/web/sites/simpletest
 
 # Ignore IntelliJ Files
 .idea
+
+#Gin Theme
+src/web/themes/contrib/gin

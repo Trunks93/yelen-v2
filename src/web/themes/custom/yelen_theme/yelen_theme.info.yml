@@ -1,0 +1,20 @@
+name: Yelen theme
+description: Yelen theme est le theme utilisé pour la V2 du projet Yelen
+type: theme
+core_version_requirement: ^10
+package: Custom
+base theme: claro
+screenshot: orange.png
+regions:
+  header: 'Header'
+  menu: 'Menu'
+  breadcrumb: Breadcrumb
+  highlighted: Highlighted
+  help: Help
+  content: Content
+  page_top: 'Page top'
+  page_footer: 'Page footer'
+  sidebar: 'Sidebar'
+
+libraries:
+  - yelen_theme/global

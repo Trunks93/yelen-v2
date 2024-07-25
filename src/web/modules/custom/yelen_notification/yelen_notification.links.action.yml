@@ -1,0 +1,11 @@
+broadcast_list.type_add:
+  title: 'Add liste diffusion type'
+  route_name: entity.broadcast_list_type.add_form
+  appears_on:
+    - entity.broadcast_list_type.collection
+
+broadcast_list.add_page:
+  title: 'Add liste diffusion'
+  route_name: entity.broadcast_list.add_page
+  appears_on:
+    - entity.broadcast_list.collection

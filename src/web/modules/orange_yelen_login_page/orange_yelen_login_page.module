@@ -10,8 +10,6 @@
         //Retire le lien "Vous avez perdu votre mot de passe ?" sur le formulaire d'authentification
         $request = \Drupal::request();
         $route_match = \Drupal::routeMatch();
-        $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
-        //dump($title);
         unset($form['more-links']);
     }
  }
@@ -24,10 +22,9 @@
    }
  }
 
-function orange_yelen_login_page_page_title(&$variables) {
+function orange_yelen_login_page_preprocess_html(&$variables): void {
   $route_name = \Drupal::routeMatch()->getRouteName();
-  if ($route_name === 'user.login') {
-    dump($variables);
-    // $variables['title'] = 'Edit My Account';
+  if($route_name === 'user.login'){
+    $variables['page']['#title'] = t('Connexion');
   }
 }

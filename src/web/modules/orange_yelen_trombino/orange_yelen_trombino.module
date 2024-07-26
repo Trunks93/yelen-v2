@@ -4,3 +4,16 @@
  * @file
  * Primary module hooks for Orange Yelen Trombino module.
  */
+
+
+/**
+ * @return array[]
+ * @Implement hook_theme()
+ */
+function orange_yelen_trombino_theme(){
+  return [
+    'orange_yelen_trombino_index' => [
+      'variables' => [],
+    ],
+  ];
+}

@@ -12,7 +12,12 @@ class OrangeYelenTrombinoController extends ControllerBase{
   public function index()
   {
     return [
-      '#markup' => $this->t('Trombino'),
+      '#theme' => 'orange_yelen_trombino_index',
+      '#attached' => [
+        'library' => [
+          'orange_yelen_trombino/orange-yelen-trombino',
+        ],
+      ],
     ];
   }
 }

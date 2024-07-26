@@ -2,9 +2,7 @@
 </script>
 
 <template>
-  <div>
-    <h1>Yelen Trombino App </h1>
-  </div>
+    <RouterView />
 </template>
 
 <style scoped>

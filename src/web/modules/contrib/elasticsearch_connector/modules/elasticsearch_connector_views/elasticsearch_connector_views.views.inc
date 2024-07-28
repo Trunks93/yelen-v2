@@ -23,6 +23,11 @@ function elasticsearch_connector_views_views_data() {
       // TODO: Handle aliases also, not only indices.
       if (!empty($indices['indices'])) {
         foreach ($indices['indices'] as $index_name => $index_info) {
+          // Ignore system indices
+          if (strpos($index_name, '.') === 0) {
+            continue;
+          }
+
           $name = new FormattableMarkup(
             '@cluster (@index_name)', array(
               '@cluster' => $cluster->name,

@@ -16,6 +16,7 @@
     ],
     "require": {
         "composer/installers": "^2.0",
+        "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.4",
         "drupal/autologout": "^1.4",
         "drupal/core-composer-scaffold": "^10.2",
@@ -32,6 +33,7 @@
         "drupal/pathauto": "^1.12",
         "drupal/quiz": "^6.0@alpha",
         "drupal/redis": "^1.7",
+        "drupal/search_api": "^1.35",
         "drupal/slick": "^3.0",
         "drupal/twig_tweak": "^3.3",
         "drupal/webform": "^6.2",
@@ -50,11 +52,17 @@
             "drupal/core-composer-scaffold": true,
             "phpstan/extension-installer": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "cweagans/composer-patches": true
         },
         "sort-packages": true
     },
     "extra": {
+        "patches": {
+            "drupal/elasticsearch_connector": {
+                "Issue #3455006 - Declaration of _sleep must be compatible": "https://www.drupal.org/files/issues/2024-06-18/elasticsearch_connector-fix_sleep_method_compatibility-3455006-7.patch"
+            }
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"

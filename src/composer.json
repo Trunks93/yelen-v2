@@ -122,5 +122,16 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@drush:cache-clear"
+        ],
+        "post-update-cmd": [
+            "@drush:cache-clear"
+        ],
+        "drush:cache-clear": [
+            "./vendor/bin/drush cr"
+        ]
     }
 }

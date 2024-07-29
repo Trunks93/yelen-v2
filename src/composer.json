@@ -34,6 +34,7 @@
         "drupal/quiz": "^6.0@alpha",
         "drupal/redis": "^1.7",
         "drupal/search_api": "^1.35",
+        "drupal/search_api_autocomplete": "^1.9",
         "drupal/slick": "^3.0",
         "drupal/twig_tweak": "^3.3",
         "drupal/webform": "^6.2",

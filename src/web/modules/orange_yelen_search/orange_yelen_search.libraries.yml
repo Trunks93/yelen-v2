@@ -1,0 +1,4 @@
+result_page:
+  css:
+    component:
+      css/orange-yelen-search.css: { minified: false }

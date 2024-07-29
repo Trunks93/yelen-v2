@@ -23,7 +23,6 @@ final class RechercheYelenCustomBlock extends BlockBase {
     $build['content'] = [
       '#markup' => $this->t('It works!'),
     ];
-    // $form = \Drupal::formBuilder()->getForm(SearchApiAutocompleteForm::class, 'votre_nom_de_configuration_d_autocomplétion');
     return $build;
   }
 

@@ -1,0 +1,47 @@
+/**
+BOOSTED OVERRIDE
+*/
+.text-primary{
+  color: #ff7900;
+}
+.card-body{
+  padding: 0.9375rem 1.25rem;
+}
+
+.d-flex{
+  display: flex;
+}
+.justify-content-between{
+  justify-content: space-between;
+}
+.align-center{
+  align-items: center;
+}
+/**
+END BOOSTED OVERRIDE
+*/
+.yelen-search-result__list .search-result-item{
+  margin-bottom: 1rem;
+}
+
+.yelen-search-result__list .search-result-item .card{
+  border-radius: 1rem;
+  border-color: transparent;
+}
+
+.yelen-search-result__list .search-result-item .media{
+  margin-right: 1rem;
+}
+
+.yelen-search-result__list .search-result-item .media img{
+  width: 100px;
+}
+
+.yelen-search-result__list .search-result-item .action{
+  margin-left: auto;
+}
+
+.yelen-search-result__list .search-result-item .card-title > a{
+  text-decoration: none;
+  color: #000;
+}

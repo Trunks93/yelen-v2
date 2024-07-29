@@ -40,5 +40,5 @@ function _orange_yelen_search__check_path()
   // Get path from Route.
   $route = \Drupal::routeMatch()->getRouteName();
 
-  return $route === 'view.elasticsearch_content_index_view.page_1';
+  return $route === 'view.yelen_search.page_1';
 }

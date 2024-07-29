@@ -3,6 +3,7 @@
 namespace Drupal\typed_data\Plugin\TypedDataFormWidget;
 
 use Drupal\Core\Form\SubformStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\TypedData\DataDefinition;
 use Drupal\Core\TypedData\DataDefinitionInterface;
 use Drupal\Core\TypedData\Plugin\DataType\Email;
@@ -11,6 +12,7 @@ use Drupal\Core\TypedData\Type\DurationInterface;
 use Drupal\Core\TypedData\Type\StringInterface;
 use Drupal\Core\TypedData\Type\UriInterface;
 use Drupal\Core\TypedData\TypedDataInterface;
+use Drupal\typed_data\Attribute\TypedDataFormWidget;
 use Drupal\typed_data\Form\SubformState;
 use Drupal\typed_data\Widget\FormWidgetBase;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -24,12 +26,17 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  *   description = @Translation("A multi-line text input widget."),
  * )
  */
+#[TypedDataFormWidget(
+  id: "textarea",
+  label: new TranslatableMarkup("Textarea"),
+  description: new TranslatableMarkup("A multi-line text input widget.")
+)]
 class TextareaWidget extends FormWidgetBase {
 
   /**
    * {@inheritdoc}
    */
-  public function defaultConfiguration() {
+  public function defaultConfiguration(): array {
     return parent::defaultConfiguration() + [
       'label' => NULL,
       'description' => NULL,
@@ -43,10 +50,10 @@ class TextareaWidget extends FormWidgetBase {
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(DataDefinitionInterface $definition) {
+  public function isApplicable(DataDefinitionInterface $definition): bool {
     if (is_subclass_of($definition->getClass(), StringInterface::class)) {
       $result = TRUE;
-      // Never use textarea for editing dates, durations, e-mail or URIs.
+      // Never use textarea for editing dates, durations, emails or URIs.
       $classes = [
         DateTimeInterface::class,
         DurationInterface::class,

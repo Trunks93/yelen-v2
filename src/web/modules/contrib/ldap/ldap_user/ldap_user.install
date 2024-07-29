@@ -405,7 +405,6 @@ function ldap_user_update_8408() {
     'field-mail',
     'field-name',
     'field-pass',
-    'field-roles',
     'field-status',
   ];
   foreach ($old_fields as $old_field) {

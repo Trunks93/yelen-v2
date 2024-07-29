@@ -22,7 +22,7 @@ trait PlaceholderResolverTrait {
    *
    * @return $this
    */
-  public function setPlaceholderResolver(PlaceholderResolverInterface $placeholder_resolver) {
+  public function setPlaceholderResolver(PlaceholderResolverInterface $placeholder_resolver): static {
     $this->placeholderResolver = $placeholder_resolver;
     return $this;
   }
@@ -33,7 +33,7 @@ trait PlaceholderResolverTrait {
    * @return \Drupal\typed_data\PlaceholderResolverInterface
    *   The placeholder resolver.
    */
-  public function getPlaceholderResolver() {
+  public function getPlaceholderResolver(): PlaceholderResolverInterface {
     if (empty($this->placeholderResolver)) {
       $this->placeholderResolver = \Drupal::service('typed_data.placeholder_resolver');
     }

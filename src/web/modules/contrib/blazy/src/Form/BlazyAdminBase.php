@@ -182,9 +182,9 @@ abstract class BlazyAdminBase implements BlazyAdminInterface {
    * {@inheritdoc}
    */
   public function gridForm(array &$form, array $definition): void {
-    $scopes = $this->toScopes($definition);
-    $required = $scopes->is('grid_required');
-    $lb = $this->isAdminLb();
+    $scopes    = $this->toScopes($definition);
+    $required  = $scopes->is('grid_required');
+    $multigrid = $this->isMultiBreakpoint($definition);
 
     if (!$scopes->is('no_grid_header')) {
       $header  = $this->t('Group individual items as block grid?');
@@ -201,7 +201,7 @@ abstract class BlazyAdminBase implements BlazyAdminInterface {
     }
 
     $form['grid'] = [
-      '#type'     => $lb ? 'textarea' : 'textfield',
+      '#type'     => 'textarea',
       '#title'    => $this->t('Grid large'),
       '#enforced' => TRUE,
       '#required' => $required,
@@ -210,7 +210,7 @@ abstract class BlazyAdminBase implements BlazyAdminInterface {
     ];
 
     $form['grid_medium'] = [
-      '#type'  => 'textfield',
+      '#type'  => $multigrid ? 'textarea' : 'textfield',
       '#title' => $this->t('Grid medium'),
     ];
 
@@ -245,9 +245,10 @@ abstract class BlazyAdminBase implements BlazyAdminInterface {
       if (isset($form[$key])) {
         $form[$key]['#enforced'] = TRUE;
         $form[$key]['#weight'] = $key == 'grid_header' ? 50 : 61;
+
         $form[$key]['#states'] = [
           'visible' => [
-            'input[name$="[grid]"]' => ['!value' => ''],
+            '[name$="[grid]"]' => ['!value' => ''],
           ],
         ];
       }
@@ -495,6 +496,7 @@ abstract class BlazyAdminBase implements BlazyAdminInterface {
     $fullwidth = $scopes->data('fullwidth', []);
     $descs     = $scopes->data('additional_descriptions', []);
     $repdescs  = $scopes->data('replaced_descriptions', []);
+    $multigrid = $this->isMultiBreakpoint($definition);
 
     $this->blazyManager->moduleHandler()->alter('blazy_form_element', $form, $definition, $scopes);
 
@@ -592,6 +594,11 @@ abstract class BlazyAdminBase implements BlazyAdminInterface {
 
         $wide = in_array($key, ['grid', 'box_caption_custom'])
           || ($scopes->is('grid_required') && $key == 'style');
+
+        if ($multigrid && $key == 'grid_medium') {
+          $wide = TRUE;
+        }
+
         if ($wide || ($fullwidth && in_array($key, $fullwidth))) {
           $wrapper_attrs['data-b-w'] = 12;
         }
@@ -632,7 +639,8 @@ abstract class BlazyAdminBase implements BlazyAdminInterface {
       }
 
       // Don't store values babysitters.
-      if (!empty($form[$key]['#unset']) || ($form[$key]['#access'] ?? 'x') == FALSE) {
+      if (!empty($form[$key]['#unset'])
+        || ($form[$key]['#access'] ?? 'x') == FALSE) {
         unset($form[$key]['#default_value']);
       }
 

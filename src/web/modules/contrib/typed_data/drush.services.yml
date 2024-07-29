@@ -1,5 +1,5 @@
 services:
   typed_data.commands:
-    class: \Drupal\typed_data\Commands\TypedDataCommands
+    class: \Drupal\typed_data\Drush\Commands\TypedDataDrushCommands
     tags:
       - { name: drush.command }

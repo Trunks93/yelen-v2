@@ -6,13 +6,10 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Datetime\Entity\DateFormat;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form\SubformStateInterface;
-use Drupal\Core\TypedData\DataDefinition;
-use Drupal\Core\TypedData\DataDefinitionInterface;
-use Drupal\Core\TypedData\Type\DateTimeInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\TypedData\TypedDataInterface;
+use Drupal\typed_data\Attribute\TypedDataFormWidget;
 use Drupal\typed_data\Form\SubformState;
-use Drupal\typed_data\Widget\FormWidgetBase;
-use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 /**
  * Plugin implementation of the 'datetime_range' widget.
@@ -23,24 +20,12 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  *   description = @Translation("A datetime range input widget, containing two datetime values, for the start and end of the range."),
  * )
  */
-class DatetimeRangeWidget extends FormWidgetBase {
-
-  /**
-   * {@inheritdoc}
-   */
-  public function defaultConfiguration() {
-    return parent::defaultConfiguration() + [
-      'label' => NULL,
-      'description' => NULL,
-    ];
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isApplicable(DataDefinitionInterface $definition) {
-    return is_subclass_of($definition->getClass(), DateTimeInterface::class);
-  }
+#[TypedDataFormWidget(
+  id: "datetime_range",
+  label: new TranslatableMarkup("Datetime Range"),
+  description: new TranslatableMarkup("A datetime range input widget, containing two datetime values, for the start and end of the range.")
+)]
+class DatetimeRangeWidget extends DatetimeWidgetBase {
 
   /**
    * {@inheritdoc}
@@ -53,11 +38,10 @@ class DatetimeRangeWidget extends FormWidgetBase {
 
     $form['#title'] = $this->configuration['label'] ?: $data->getDataDefinition()->getLabel();
 
-    $now = \Drupal::time()->getRequestTime();
-    $date_formatter = \Drupal::service('date.formatter');
+    $now = $this->dateTime->getRequestTime();
     $params = [
-      '%timezone' => $date_formatter->format($now, 'custom', 'T (e) \U\T\CP'),
-      '%daylight_saving' => $date_formatter->format($now, 'custom', 'I') ? $this->t('currently in daylight saving mode') : $this->t('not in daylight saving mode'),
+      '%timezone' => $this->dateFormatter->format($now, 'custom', 'T (e) \U\T\CP'),
+      '%daylight_saving' => $this->dateFormatter->format($now, 'custom', 'I') ? $this->t('currently in daylight saving mode') : $this->t('not in daylight saving mode'),
     ];
     $timezone_info = $this->t('Timezone : %timezone %daylight_saving.', $params);
     $form['#description'] = ($this->configuration['description'] ?: $data->getDataDefinition()->getDescription()) . '<br>' . $timezone_info;
@@ -96,28 +80,6 @@ class DatetimeRangeWidget extends FormWidgetBase {
       'value' => $value,
       'end_value' => $end_value,
     ]);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function flagViolations(TypedDataInterface $data, ConstraintViolationListInterface $violations, SubformStateInterface $formState) {
-    foreach ($violations as $violation) {
-      /** @var \Symfony\Component\Validator\ConstraintViolationInterface $violation */
-      $formState->setErrorByName('value', $violation->getMessage());
-    }
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getConfigurationDefinitions(DataDefinitionInterface $definition) {
-    return [
-      'label' => DataDefinition::create('string')
-        ->setLabel($this->t('Label')),
-      'description' => DataDefinition::create('string')
-        ->setLabel($this->t('Description')),
-    ];
   }
 
   /**

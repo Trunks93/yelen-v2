@@ -3,11 +3,13 @@
 namespace Drupal\typed_data\Plugin\TypedDataFormWidget;
 
 use Drupal\Core\Form\SubformStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\TypedData\DataDefinitionInterface;
 use Drupal\Core\TypedData\ListInterface;
 use Drupal\Core\TypedData\OptionsProviderInterface;
 use Drupal\Core\TypedData\TypedDataInterface;
-use Drupal\typed_data\Context\ContextDefinition;
+use Drupal\Core\Plugin\Context\ContextDefinition;
+use Drupal\typed_data\Attribute\TypedDataFormWidget;
 use Drupal\typed_data\Form\SubformState;
 use Drupal\typed_data\Widget\FormWidgetBase;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -21,12 +23,17 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  *   description = @Translation("A simple select box."),
  * )
  */
+#[TypedDataFormWidget(
+  id: "select",
+  label: new TranslatableMarkup("Select"),
+  description: new TranslatableMarkup("A simple select box.")
+)]
 class SelectWidget extends FormWidgetBase {
 
   /**
    * {@inheritdoc}
    */
-  public function defaultConfiguration() {
+  public function defaultConfiguration(): array {
     return parent::defaultConfiguration() + [
       'label' => NULL,
       'description' => NULL,
@@ -37,7 +44,7 @@ class SelectWidget extends FormWidgetBase {
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(DataDefinitionInterface $definition) {
+  public function isApplicable(DataDefinitionInterface $definition): bool {
     return is_subclass_of($definition->getClass(), OptionsProviderInterface::class);
   }
 

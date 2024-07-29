@@ -257,7 +257,6 @@ class InstallTest extends KernelTestBase {
     $this->assertArrayNotHasKey('field-name', $mapping);
     $this->assertArrayNotHasKey('field-mail', $mapping);
     $this->assertArrayNotHasKey('field-pass', $mapping);
-    $this->assertArrayNotHasKey('field-roles', $mapping);
     $this->assertArrayNotHasKey('field-status', $mapping);
   }
 

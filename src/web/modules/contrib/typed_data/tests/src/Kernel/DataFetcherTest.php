@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\typed_data\Kernel;
 
 use Drupal\Core\Entity\TypedData\EntityDataDefinition;
@@ -68,7 +70,6 @@ class DataFetcherTest extends KernelTestBase {
 
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
-    $this->installSchema('system', ['sequences']);
 
     $this->typedDataManager = $this->container->get('typed_data_manager');
     $this->dataFetcher = $this->container->get('typed_data.data_fetcher');

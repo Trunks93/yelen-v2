@@ -22,7 +22,7 @@ trait DataFetcherTrait {
    *
    * @return $this
    */
-  public function setDataFetcher(DataFetcherInterface $data_fetcher) {
+  public function setDataFetcher(DataFetcherInterface $data_fetcher): static {
     $this->dataFetcher = $data_fetcher;
     return $this;
   }
@@ -33,7 +33,7 @@ trait DataFetcherTrait {
    * @return \Drupal\typed_data\DataFetcherInterface
    *   The data fetcher.
    */
-  public function getDataFetcher() {
+  public function getDataFetcher(): DataFetcherInterface {
     if (empty($this->dataFetcher)) {
       $this->dataFetcher = \Drupal::service('typed_data.data_fetcher');
     }

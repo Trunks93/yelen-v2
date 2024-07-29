@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\typed_data\Kernel;
 
 use Drupal\Component\Render\HtmlEscapedText;
@@ -77,7 +79,6 @@ class PlaceholderResolverTest extends KernelTestBase {
 
     $this->installEntitySchema('user');
     $this->installEntitySchema('node');
-    $this->installSchema('system', ['sequences']);
 
     // Make sure default date formats are there for testing the format_date
     // filter.

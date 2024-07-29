@@ -45,7 +45,6 @@ class LdapUserMappingToDrupalForm extends LdapUserMappingBaseForm {
     '[field.mail]',
     '[field.name]',
     '[field.pass]',
-    '[field.roles]',
     '[field.status]',
     '[field.uid]',
     '[field.user_picture]',

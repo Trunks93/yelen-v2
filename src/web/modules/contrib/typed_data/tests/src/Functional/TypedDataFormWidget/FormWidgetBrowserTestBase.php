@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Drupal\Tests\typed_data\Functional\TypedDataFormWidget;
 
 use Drupal\Core\TypedData\TypedDataTrait;
@@ -58,7 +60,7 @@ abstract class FormWidgetBrowserTestBase extends BrowserTestBase {
   public function testIsApplicable(): void {
     // Force any tests that extend this class to implement their own version
     // of this function and give a helpful explanation if it is missed.
-    $this->fail('There is no implementation of the mandatory test function: ' . $this->getName());
+    $this->fail('There is no implementation of the mandatory test function: ' . __METHOD__);
   }
 
   /**
@@ -66,7 +68,7 @@ abstract class FormWidgetBrowserTestBase extends BrowserTestBase {
    * @covers ::extractFormValues
    */
   public function testFormEditing(): void {
-    $this->fail('There is no implementation of the mandatory test function: ' . $this->getName());
+    $this->fail('There is no implementation of the mandatory test function: ' . __METHOD__);
   }
 
   /**
@@ -74,7 +76,7 @@ abstract class FormWidgetBrowserTestBase extends BrowserTestBase {
    * @covers ::flagViolations
    */
   public function testValidation(): void {
-    $this->fail('There is no implementation of the mandatory test function: ' . $this->getName());
+    $this->fail('There is no implementation of the mandatory test function: ' . __METHOD__);
   }
 
 }

@@ -3,9 +3,11 @@
 namespace Drupal\typed_data\Plugin\TypedDataFormWidget;
 
 use Drupal\Core\Form\SubformStateInterface;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
 use Drupal\Core\TypedData\DataDefinition;
 use Drupal\Core\TypedData\DataDefinitionInterface;
 use Drupal\Core\TypedData\TypedDataInterface;
+use Drupal\typed_data\Attribute\TypedDataFormWidget;
 use Drupal\typed_data\Form\SubformState;
 use Drupal\typed_data\Widget\FormWidgetBase;
 use Symfony\Component\Validator\ConstraintViolationListInterface;
@@ -19,19 +21,24 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
  *   description = @Translation("A widget for everything that cannot be input or if a widget for a data type is not yet implemented."),
  * )
  */
+#[TypedDataFormWidget(
+  id: "broken",
+  label: new TranslatableMarkup("Broken widget"),
+  description: new TranslatableMarkup("A widget for everything that cannot be input or if a widget for a data type is not yet implemented.")
+)]
 class BrokenWidget extends FormWidgetBase {
 
   /**
    * {@inheritdoc}
    */
-  public function defaultConfiguration() {
+  public function defaultConfiguration(): array {
     return parent::defaultConfiguration() + ['label' => NULL];
   }
 
   /**
    * {@inheritdoc}
    */
-  public function isApplicable(DataDefinitionInterface $definition) {
+  public function isApplicable(DataDefinitionInterface $definition): bool {
     return TRUE;
   }
 

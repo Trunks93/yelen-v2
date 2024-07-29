@@ -9,7 +9,7 @@
         "source": "https://git.drupalcode.org/project/typed_data"
     },
     "require": {
-        "drupal/core": "^9.1 || ^10"
+        "drupal/core": "^10.3 | ^11"
     },
     "extra": {
         "drush": {

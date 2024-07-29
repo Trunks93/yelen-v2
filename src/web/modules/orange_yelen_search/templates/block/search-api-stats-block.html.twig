@@ -1,0 +1,15 @@
+{#
+/**
+ * @ingroup themeable
+ */
+#}
+
+<ul class="most-popular__terms">
+  {% for keyword, num in stats %}
+    <li class="term">
+      <a href="{{ path }}?{{ param_name }}={{ keyword }}">
+        {{ keyword }} ({{ num }})
+      </a>
+    </li>
+  {% endfor %}
+</ul>

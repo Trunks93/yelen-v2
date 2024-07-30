@@ -5,3 +5,4 @@ description: Ce module permet de notifier les utilisateurs à la création de co
 package: custom
 dependencies:
   - node:node
+  - smtp:smtp

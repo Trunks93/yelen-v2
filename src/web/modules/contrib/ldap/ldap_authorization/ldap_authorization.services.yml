@@ -1,5 +1,0 @@
-services:
-  logger.channel.ldap_authorization:
-    parent: logger.channel_base
-    arguments:
-      - 'ldap_authorization'

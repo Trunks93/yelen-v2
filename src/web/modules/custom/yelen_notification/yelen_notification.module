@@ -84,8 +84,8 @@ function yelen_notification_mail($key, &$message, $params)
   switch ($key) {
     case 'content_create':
       $message['headers'] += $params['headers'];
-      //$message['from'] = \Drupal::config('system.site')->get('mail');
-      $message['from'] = 'admin@synelia.tech';
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      //$message['from'] = 'admin@synelia.tech';
       $message['subject'] = t('Création de contenu: @content_type', array('@content_type' => strtoupper($params['content_type'])), $options);
       $message['body'][] = $params['message'];
       break;

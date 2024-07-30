@@ -9,3 +9,18 @@
 .menu-item-title{
   display: none !important;
 }
+
+.orange-yelen-title{
+  position: relative;
+  padding-bottom: 1rem;
+
+  &::after{
+    content: "";
+    position: absolute;
+    top: 2rem;
+    width: 7%;
+    background-color: #ff7900;
+    height: 10px;
+    left: 0;
+  }
+}

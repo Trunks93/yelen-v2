@@ -3,13 +3,14 @@
  * @ingroup themeable
  */
 #}
-
-<ul class="most-popular__terms">
+<div class="most-popular-terms__list">
   {% for keyword, num in stats %}
-    <li class="term">
-      <a href="{{ path }}?{{ param_name }}={{ keyword }}">
+  <a class="term card" href="{{ path }}?{{ param_name }}={{ keyword }}">
+    <div class="card-body">
+      <span >
         {{ keyword }} ({{ num }})
-      </a>
-    </li>
+      </span>
+    </div>
+  </a>
   {% endfor %}
-</ul>
+</div>

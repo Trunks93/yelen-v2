@@ -33,6 +33,7 @@
         "drupal/login_tracker": "^2.0",
         "drupal/paragraphs": "^1.17",
         "drupal/pathauto": "^1.12",
+        "drupal/quiz": "^6.0@alpha",
         "drupal/redis": "^1.7",
         "drupal/search_api": "^1.35",
         "drupal/search_api_autocomplete": "^1.9",

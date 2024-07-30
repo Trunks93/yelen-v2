@@ -1,0 +1,10 @@
+services:
+    yelen_notification.notificate:
+        class: \Drupal\yelen_notification\EventSubscriber\NotificationSubscriber
+        #arguments: ['@current_user']
+        tags:
+          - { name: event_subscriber }
+
+    yelen_notification.extract.mail:
+        class: \Drupal\yelen_notification\Services\ExtractMailer
+

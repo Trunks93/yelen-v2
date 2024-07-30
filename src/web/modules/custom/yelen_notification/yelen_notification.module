@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use Drupal\node\Entity\Node;
+use Drupal\yelen_notification\Event\NotificationEvent;
+
 /**
  * @file
  * Provides a liste diffusion entity type.
@@ -16,6 +19,12 @@ function yelen_notification_theme(): array
 {
   return [
     'broadcast_list' => ['render element' => 'elements'],
+    'mailer'=>[
+      'render element'=> 'elements',
+      'variables'=>[
+        'content'=>NULL
+      ]
+    ]
   ];
 }
 
@@ -38,16 +47,47 @@ function template_preprocess_broadcast_list(array &$variables): void
   }
 }
 
-function yelen_notification_node_insert($node)
+function yelen_notification_node_insert(Node $node)
 {
   $content_type = $node->getType();
-  switch ($content_type) {
+
+  if ($content_type == "faq") {
+    $event = new NotificationEvent();
+
+    $event->setNodeId($node->id());
+    $event->setNodeTitle($node->getTitle());
+    $event->setNodeContentType($node->getType());
+    $mails = \Drupal::service('yelen_notification.extract.mail')->extractMailFromBroadcastList($node);
+    $event->setEmailAddress($mails);
+    $event_dispatcher = \Drupal::service('event_dispatcher');
+    $event_dispatcher->dispatch($event, NotificationEvent::CREATION_CONTENT_PUBLIC);
+  }
+
+  /*switch ($content_type) {
     case 'article':
 
       break;
     case 'faq':
       break;
     default:
+      break;
+  }*/
+}
+
+/**
+ * Implements hook_mail()
+ */
+function yelen_notification_mail($key, &$message, $params)
+{
+  $options = array('langcode' => $message['langcode']);
+
+  switch ($key) {
+    case 'content_create':
+      $message['headers'] += $params['headers'];
+      //$message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['from'] = 'admin@synelia.tech';
+      $message['subject'] = t('Création de contenu: @content_type', array('@content_type' => strtoupper($params['content_type'])), $options);
+      $message['body'][] = $params['message'];
       break;
   }
 }

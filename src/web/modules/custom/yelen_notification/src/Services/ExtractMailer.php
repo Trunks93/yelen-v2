@@ -16,10 +16,10 @@ class ExtractMailer
    * @param $node
    * @return array
    */
-  public function extractMailFromBroadcastList(Node $node): array
+  public function extractMailFromBroadcastList(Node $node,string $field): array
   {
     $emailIds = [];
-    $mailingLists = $node->get('field_liste_de_diffusion')->getValue();
+    $mailingLists = $node->get($field)->getValue();
 
     foreach ($mailingLists as $mailingList) {
       $emailEntity = BroadcastList::load($mailingList['target_id']);

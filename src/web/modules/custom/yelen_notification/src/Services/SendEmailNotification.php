@@ -31,7 +31,7 @@ class SendEmailNotification
         $params['headers']['Cc'] = $cc;
       }
       if ($templateHtml != null) {
-        $params['message'] = \Drupal::service('renderer')->render($templateHtml);
+        $params['message'] = \Drupal::service('renderer')->renderRoot($templateHtml);
       }
       $params['subject'] = $subject;
 

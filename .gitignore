@@ -16,4 +16,6 @@ src/web/modules/contrib/*
 .idea
 
 #Gin Theme
-src/web/themes/contrib/gin
+src/web/themes/contrib
+src/web/modules/contrib
+src/web/modules/*/node_modules

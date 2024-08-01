@@ -1,0 +1,11 @@
+entity.orange_yelen_trombino_point_de_service.settings:
+  title: 'Point de service'
+  description: 'Configure a Point de service entity type.'
+  route_name:  entity.orange_yelen_trombino_point_de_service.settings
+  parent: system.admin_structure
+
+entity.orange_yelen_trombino_point_de_service.collection:
+  title: 'Point de services'
+  description: 'List of point de services.'
+  route_name: entity.orange_yelen_trombino_point_de_service.collection
+  parent: system.admin_content

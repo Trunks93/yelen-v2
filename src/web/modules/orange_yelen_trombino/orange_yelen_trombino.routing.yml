@@ -5,3 +5,11 @@ orange_yelen_trombino.index:
     _title: 'Trombino'
   requirements:
     _permission: 'access content'
+
+entity.orange_yelen_trombino_point_de_service.settings:
+  path: 'admin/structure/orange-yelen-trombino-point-de-service'
+  defaults:
+    _form: '\Drupal\orange_yelen_trombino\Form\PointDeServiceSettingsForm'
+    _title: 'Point de service'
+  requirements:
+    _permission: 'administer orange_yelen_trombino_point_de_service'

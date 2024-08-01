@@ -1,0 +1,3 @@
+administer orange_yelen_trombino_point_de_service:
+  title: 'Administer point de services'
+  restrict access: true

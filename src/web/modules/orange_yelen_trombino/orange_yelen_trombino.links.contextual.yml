@@ -1,0 +1,10 @@
+entity.orange_yelen_trombino_point_de_service.edit_form:
+  route_name: entity.orange_yelen_trombino_point_de_service.edit_form
+  group: orange_yelen_trombino_point_de_service
+  title: 'Edit'
+
+entity.orange_yelen_trombino_point_de_service.delete_form:
+  route_name: entity.orange_yelen_trombino_point_de_service.delete_form
+  group: orange_yelen_trombino_point_de_service
+  title: 'Delete'
+  weight: 10

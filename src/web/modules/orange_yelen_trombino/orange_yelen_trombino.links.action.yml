@@ -1,0 +1,5 @@
+orange_yelen_trombino_point_de_service.add_form:
+  title: 'Add point de service'
+  route_name: entity.orange_yelen_trombino_point_de_service.add_form
+  appears_on:
+    - entity.orange_yelen_trombino_point_de_service.collection

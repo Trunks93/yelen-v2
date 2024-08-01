@@ -15,5 +15,6 @@ src/web/modules/contrib/*
 # Ignore IntelliJ Files
 .idea
 
-#Gin Theme
-src/web/themes/contrib/gin
+#Contrib Files
+src/web/themes/contrib
+src/web/modules/contrib

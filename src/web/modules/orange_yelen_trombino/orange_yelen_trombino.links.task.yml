@@ -1,22 +1,22 @@
-entity.orange_yelen_trombino_point_de_service.settings:
+entity.trombino_point_service.settings:
   title: 'Settings'
-  route_name: entity.orange_yelen_trombino_point_de_service.settings
-  base_route: entity.orange_yelen_trombino_point_de_service.settings
-entity.orange_yelen_trombino_point_de_service.view:
+  route_name: entity.trombino_point_service.settings
+  base_route: entity.trombino_point_service.settings
+entity.trombino_point_service.view:
   title: 'View'
-  route_name: entity.orange_yelen_trombino_point_de_service.canonical
-  base_route: entity.orange_yelen_trombino_point_de_service.canonical
-entity.orange_yelen_trombino_point_de_service.edit_form:
+  route_name: entity.trombino_point_service.canonical
+  base_route: entity.trombino_point_service.canonical
+entity.trombino_point_service.edit_form:
   title: 'Edit'
-  route_name: entity.orange_yelen_trombino_point_de_service.edit_form
-  base_route: entity.orange_yelen_trombino_point_de_service.canonical
-entity.orange_yelen_trombino_point_de_service.delete_form:
+  route_name: entity.trombino_point_service.edit_form
+  base_route: entity.trombino_point_service.canonical
+entity.trombino_point_service.delete_form:
   title: 'Delete'
-  route_name: entity.orange_yelen_trombino_point_de_service.delete_form
-  base_route: entity.orange_yelen_trombino_point_de_service.canonical
+  route_name: entity.trombino_point_service.delete_form
+  base_route: entity.trombino_point_service.canonical
   weight: 10
-entity.orange_yelen_trombino_point_de_service.collection:
-  title: 'Point de services'
-  route_name: entity.orange_yelen_trombino_point_de_service.collection
+entity.trombino_point_service.collection:
+  title: 'Trombino Point Service'
+  route_name: entity.trombino_point_service.collection
   base_route: system.admin_content
   weight: 10

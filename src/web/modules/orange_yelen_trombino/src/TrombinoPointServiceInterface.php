@@ -9,8 +9,8 @@ use Drupal\Core\Entity\EntityChangedInterface;
 use Drupal\user\EntityOwnerInterface;
 
 /**
- * Provides an interface defining a point de service entity type.
+ * Provides an interface defining a trombino point service entity type.
  */
-interface PointDeServiceInterface extends ContentEntityInterface, EntityOwnerInterface, EntityChangedInterface {
+interface TrombinoPointServiceInterface extends ContentEntityInterface, EntityOwnerInterface, EntityChangedInterface {
 
 }

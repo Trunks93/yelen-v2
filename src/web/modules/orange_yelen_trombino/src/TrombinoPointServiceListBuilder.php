@@ -8,18 +8,17 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
 
 /**
- * Provides a list controller for the point de service entity type.
+ * Provides a list controller for the trombino point service entity type.
  */
-final class PointDeServiceListBuilder extends EntityListBuilder {
+final class TrombinoPointServiceListBuilder extends EntityListBuilder {
 
   /**
    * {@inheritdoc}
    */
   public function buildHeader(): array {
     $header['id'] = $this->t('ID');
-    $header['label'] = $this->t('Label');
+    $header['name'] = $this->t('Nom');
     $header['status'] = $this->t('Status');
-    $header['uid'] = $this->t('Author');
     $header['created'] = $this->t('Created');
     $header['changed'] = $this->t('Updated');
     return $header + parent::buildHeader();
@@ -29,15 +28,15 @@ final class PointDeServiceListBuilder extends EntityListBuilder {
    * {@inheritdoc}
    */
   public function buildRow(EntityInterface $entity): array {
-    /** @var \Drupal\orange_yelen_trombino\PointDeServiceInterface $entity */
+    /** @var \Drupal\orange_yelen_trombino\TrombinoPointServiceInterface $entity */
     $row['id'] = $entity->id();
-    $row['label'] = $entity->toLink();
+    $row['name'] = $entity->toLink();
     $row['status'] = $entity->get('status')->value ? $this->t('Enabled') : $this->t('Disabled');
-    $username_options = [
+    /*$username_options = [
       'label' => 'hidden',
       'settings' => ['link' => $entity->get('uid')->entity->isAuthenticated()],
     ];
-    $row['uid']['data'] = $entity->get('uid')->view($username_options);
+    $row['uid']['data'] = $entity->get('uid')->view($username_options);*/
     $row['created']['data'] = $entity->get('created')->view(['label' => 'hidden']);
     $row['changed']['data'] = $entity->get('changed')->view(['label' => 'hidden']);
     return $row + parent::buildRow($entity);

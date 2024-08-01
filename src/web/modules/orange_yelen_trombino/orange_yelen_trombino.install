@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Orange Yelen Trombino module.
+ */
+
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\taxonomy\Entity\Vocabulary;
+
+/**
+  * Implements hook_install().
+  */
+ function orange_yelen_trombino_install() {
+   // Create vocabularies for Types and Regions.
+   $vocabularies = [
+     'trombino_point_service_types' => 'Types de point service',
+     'regions' => 'Régions',
+     'trombino_point_service_concept' => 'Concept des points service',
+     'trombino_point_service_services' => 'Services offerts par les points service',
+     'trombino_point_service_partners' => 'Partenaires des Points Service',
+   ];
+
+   foreach ($vocabularies as $vid => $name) {
+     if (Vocabulary::load($vid) === NULL) {
+       Vocabulary::create([
+         'vid' => $vid,
+         'name' => $name,
+       ])->save();
+     }
+   }
+
+   // Add sample terms to Types and Regions.
+   $terms = [
+     'trombino_point_service_types' => ['Agence', 'Franchise', 'Mini Franchise'],
+     'regions' => ['Lagunes', 'Lagunes 1','Lagunes 2', 'Est', 'Ouest'],
+     'trombino_point_service_concept' => ['Smartstore', 'One Design', 'Smart Store Light'],
+     'trombino_point_service_services' => ['Produits & Services FMI', 'Orange Money', 'Paiement de factures', 'Corner SAV'],
+     'trombino_point_service_partners' => ['Produits & Services FMI', 'Orange Money', 'Paiement de factures', 'Corner SAV'],
+   ];
+
+   foreach ($terms as $vid => $values) {
+     foreach ($values as $value) {
+       if (Term::load($vid) === NULL) {
+         Term::create([
+           'vid' => $vid,
+           'name' => $value,
+         ])->save();
+       }
+     }
+   }
+ }
+ /**
+  * Implements hook_uninstall().
+  */
+ function orange_yelen_trombino_uninstall() {
+   // Remove the vocabularies created.
+   $vocabularies = ['trombino_point_service_types', 'regions', 'trombino_point_service_concept', 'trombino_point_service_services', 'trombino_point_service_partners'];
+
+   foreach ($vocabularies as $vid) {
+     if ($vocabulary = Vocabulary::load($vid)) {
+       $vocabulary->delete();
+     }
+   }
+ }

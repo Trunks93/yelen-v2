@@ -8,15 +8,15 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Configuration form for a point de service entity type.
+ * Configuration form for a trombino point service entity type.
  */
-final class PointDeServiceSettingsForm extends FormBase {
+final class TrombinoPointServiceSettingsForm extends FormBase {
 
   /**
    * {@inheritdoc}
    */
   public function getFormId(): string {
-    return 'orange_yelen_trombino_point_de_service_settings';
+    return 'trombino_point_service_settings';
   }
 
   /**
@@ -25,7 +25,7 @@ final class PointDeServiceSettingsForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state): array {
 
     $form['settings'] = [
-      '#markup' => $this->t('Settings form for a point de service entity type.'),
+      '#markup' => $this->t('Settings form for a point service entity type.'),
     ];
 
     $form['actions'] = [

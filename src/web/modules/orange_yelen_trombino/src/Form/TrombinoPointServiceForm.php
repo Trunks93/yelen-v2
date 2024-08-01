@@ -8,9 +8,9 @@ use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Form controller for the point de service entity edit forms.
+ * Form controller for the point service entity edit forms.
  */
-final class PointDeServiceForm extends ContentEntityForm {
+final class TrombinoPointServiceForm extends ContentEntityForm {
 
   /**
    * {@inheritdoc}
@@ -26,13 +26,13 @@ final class PointDeServiceForm extends ContentEntityForm {
 
     switch ($result) {
       case SAVED_NEW:
-        $this->messenger()->addStatus($this->t('New point de service %label has been created.', $message_args));
-        $this->logger('orange_yelen_trombino')->notice('New point de service %label has been created.', $logger_args);
+        $this->messenger()->addStatus($this->t('New point service %label has been created.', $message_args));
+        $this->logger('orange_yelen_trombino')->notice('New point service %label has been created.', $logger_args);
         break;
 
       case SAVED_UPDATED:
-        $this->messenger()->addStatus($this->t('The point de service %label has been updated.', $message_args));
-        $this->logger('orange_yelen_trombino')->notice('The point de service %label has been updated.', $logger_args);
+        $this->messenger()->addStatus($this->t('The point service %label has been updated.', $message_args));
+        $this->logger('orange_yelen_trombino')->notice('The point service %label has been updated.', $logger_args);
         break;
 
       default:

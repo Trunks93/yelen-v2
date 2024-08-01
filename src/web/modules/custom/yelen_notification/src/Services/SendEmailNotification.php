@@ -37,7 +37,7 @@ class SendEmailNotification
       $this->logSendNotification([],$subject,$e->getMessage());
       $result = false;
     }
-    return $result;
+    return $result['result'];
   }
 
   /**

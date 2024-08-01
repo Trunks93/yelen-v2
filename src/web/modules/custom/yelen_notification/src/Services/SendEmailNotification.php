@@ -23,7 +23,7 @@ class SendEmailNotification
       $langcode = \Drupal::currentUser()->getPreferredLangcode();
       $params = [];
       $params['headers'] = [
-        'Content-Type' => 'text/html; charset=UTF-8;',
+        'Content-Type' => 'text/html; charset=UTF-8',
         'Content-Transfer-Encoding' => '8Bit',
       ];
       $params['id'] ='mail';

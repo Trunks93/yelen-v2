@@ -45,6 +45,5 @@ sites/simpletest
 # Ignore IntelliJ Files
 .idea
 
-
 #Gin Theme
 themes/contrib/gin

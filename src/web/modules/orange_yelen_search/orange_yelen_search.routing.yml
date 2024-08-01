@@ -1,0 +1,7 @@
+orange_yelen_search.example:
+  path: '/orange-yelen-search/example'
+  defaults:
+    _title: 'Example'
+    _controller: '\Drupal\orange_yelen_search\Controller\OrangeYelenSearchController'
+  requirements:
+    _permission: 'access content'

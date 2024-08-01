@@ -1,0 +1,11 @@
+.content-header{
+  background-color: #fff !important;
+}
+
+.body{
+  min-height: 1000px;
+}
+
+.menu-item-title{
+  display: none !important;
+}

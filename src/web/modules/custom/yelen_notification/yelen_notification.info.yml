@@ -1,0 +1,5 @@
+name: Yelen notification module
+type: module
+core_version_requirement: ^10
+description: Ce module permet de notifier les utilisateurs à la création de contenue ou autres
+package: custom

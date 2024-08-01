@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - yelen_notification
+id: broadcast_list_save_action
+label: 'Save liste diffusions'
+type: broadcast_list
+plugin: entity:save_action:broadcast_list
+configuration: {  }

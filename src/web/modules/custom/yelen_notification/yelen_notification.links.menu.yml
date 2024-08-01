@@ -1,0 +1,11 @@
+entity.broadcast_list_type.collection:
+  title: 'Liste diffusion types'
+  description: 'Manage and CRUD actions on Liste diffusion type.'
+  parent: system.admin_structure
+  route_name: entity.broadcast_list_type.collection
+
+entity.broadcast_list.collection:
+  title: 'Liste diffusions'
+  description: 'List of liste diffusions.'
+  route_name: entity.broadcast_list.collection
+  parent: system.admin_content

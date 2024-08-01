@@ -1,0 +1,7 @@
+faq-page:
+  path: '/faq'
+  defaults:
+    #_title: 'Foire aux questions'
+    _controller: 'Drupal\yelen_faq\Controller\DefaultController::index'
+  requirements:
+    _permission: 'access content'

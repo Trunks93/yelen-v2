@@ -11,5 +11,4 @@ class NotificationSubjectPrefix
   const SEARCH_NOT_FOUND = 'Yelen - Recherche infructueuse';
   const INVITE_QUIZ = 'Yelen - Repondez à ce Quiz';
 
-
 }

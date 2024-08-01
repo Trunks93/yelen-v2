@@ -22,7 +22,10 @@ class SendEmailNotification
       $mailManager = \Drupal::service('plugin.manager.mail');
       $langcode = \Drupal::currentUser()->getPreferredLangcode();
       $params = [];
-      $params['headers']['content-type'] = 'text/html';
+      $params['headers'] = [
+        'Content-Type' => 'text/html; charset=UTF-8;',
+        'Content-Transfer-Encoding' => '8Bit',
+      ];
       if ($cc !== null) {
         $params['headers']['Cc'] = $cc;
       }

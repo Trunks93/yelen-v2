@@ -64,11 +64,6 @@
         "sort-packages": true
     },
     "extra": {
-        "patches": {
-            "drupal/elasticsearch_connector": {
-                "Issue #3455006 - Declaration of _sleep must be compatible": "https://www.drupal.org/files/issues/2024-06-18/elasticsearch_connector-fix_sleep_method_compatibility-3455006-7.patch"
-            }
-        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"

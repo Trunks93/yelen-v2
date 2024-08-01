@@ -26,6 +26,7 @@ class SendEmailNotification
         'Content-Type' => 'text/html; charset=UTF-8;',
         'Content-Transfer-Encoding' => '8Bit',
       ];
+      $params['id'] ='mail';
       if ($cc !== null) {
         $params['headers']['Cc'] = $cc;
       }

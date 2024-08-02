@@ -31,6 +31,7 @@ END BOOSTED OVERRIDE
 
 .yelen-search-result__list .search-result-item .media{
   margin-right: 1rem;
+  flex: 0 0 auto;
 }
 
 .yelen-search-result__list .search-result-item .media img{
@@ -39,9 +40,38 @@ END BOOSTED OVERRIDE
 
 .yelen-search-result__list .search-result-item .action{
   margin-left: auto;
+  flex: 0 0 auto;
 }
 
 .yelen-search-result__list .search-result-item .card-title > a{
   text-decoration: none;
   color: #000;
+}
+
+.orange-yelen-top-search__block{
+  background-color: #f1f1f1;
+  padding: 1rem;
+
+  .block__title{
+    background-color: #4bb4e4;
+    padding: .85rem 1rem;
+    border-radius: .85rem;
+    color: #FFF;
+    font-size: 1.5rem;
+  }
+
+  .most-popular-terms__list{
+    .term{
+      cursor: pointer;
+      margin-bottom: 1rem;
+      border-color: transparent;
+      border-radius: .5rem;
+      text-decoration: none;
+
+      &:hover{
+        background-color: #ff7900;
+        color: #FFFFFF;
+      }
+    }
+  }
 }

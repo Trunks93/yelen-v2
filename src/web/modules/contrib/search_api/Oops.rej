@@ -1,9 +1,0 @@
-@@ -1234,7 +1234,7 @@
-    *
-    * Prevents closure serialization error on search_api server add form.
-    */
--  public function __sleep() {
-+  public function __sleep(): array {
-     return [];
-   }
- 

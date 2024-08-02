@@ -20,6 +20,7 @@
         "drupal/admin_toolbar": "^3.4",
         "drupal/autologout": "^1.4",
         "drupal/chat_livehelperchat": "^1.4",
+        "drupal/coffee": "^1.4",
         "drupal/core-composer-scaffold": "^10.2",
         "drupal/core-recommended": "^10.2",
         "drupal/devel": "^5.0",
@@ -40,6 +41,7 @@
         "drupal/search_api_autocomplete": "^1.9",
         "drupal/search_api_stats": "^1.0",
         "drupal/slick": "^3.0",
+        "drupal/smtp": "^1.4",
         "drupal/twig_tweak": "^3.3",
         "drupal/webform": "^6.2",
         "drupal/webform_quiz": "^2.1",
@@ -119,5 +121,16 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@drush:cache-clear"
+        ],
+        "post-update-cmd": [
+            "@drush:cache-clear"
+        ],
+        "drush:cache-clear": [
+            "./vendor/bin/drush cr"
+        ]
     }
 }

@@ -18,5 +18,8 @@
       </div>
     {% endfor %}
   </div>
+  {% if content.more == true %}
+    <a class="btn btn-primary text-align-center mt-2" href="{{ path('faq-page') }}">Voir +</a>
+  {% endif %}
 {% else %}
 {% endif %}

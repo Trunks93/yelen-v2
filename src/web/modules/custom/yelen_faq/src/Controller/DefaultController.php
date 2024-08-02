@@ -10,7 +10,7 @@ use Drupal\yelen_faq\Service\FaqService;
 
 class DefaultController extends ControllerBase
 {
-  /*protected $faqService;
+  protected $faqService;
 
   public function __construct(FaqService $service)
   {
@@ -23,13 +23,12 @@ class DefaultController extends ControllerBase
     return new static(
       $container->get('yelen_faq.service'),
     );
-  }*/
+  }
 
 
   public function index(): array
   {
-    //$faqs = $this->faqService->getAllFaq();
-    $faqs = $this->entityTypeManager()->getStorage('node')->loadByProperties(["type"=>'faq','status'=>true]);
+    $faqs = $this->faqService->getAllFaq();
     return [
       '#theme' => 'yelen_faq_page',
       '#content'=> [

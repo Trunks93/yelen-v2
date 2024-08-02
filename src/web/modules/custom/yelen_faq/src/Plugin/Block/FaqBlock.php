@@ -47,10 +47,17 @@ class FaqBlock extends BlockBase implements ContainerFactoryPluginInterface {
     $faqs = $this->entityTypeManager->getStorage('node')
       ->loadByProperties(["type"=>'faq','status'=>true]);
 
+    $more = false;
+    if(count($faqs)>5){
+      $more = true;
+      $faqs = array_slice($faqs,0,5);
+    }
+
     $build['content'] = [
       '#theme' => "yelen_faq_block",
       '#content'=>[
-        'faqs'=>$faqs
+        'faqs'=>$faqs,
+        'more'=>$more
       ],
     ];
     return $build;

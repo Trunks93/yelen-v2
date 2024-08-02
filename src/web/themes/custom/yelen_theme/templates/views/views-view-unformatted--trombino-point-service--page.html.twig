@@ -1,0 +1,104 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a view of unformatted rows.
+ *
+ * Available variables:
+ * - title: The title of this group of rows. May be empty.
+ * - rows: A list of the view's row items.
+ *   - attributes: The row's HTML attributes.
+ *   - content: The row's content.
+ * - view: The view object.
+ * - default_row_class: A flag indicating whether default classes should be
+ *   used on rows.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+{#
+{% if orange_yelen_search_term %}
+<h3 class="orange-yelen-title">Résultats de recherche pour: <strong class="text-primary">"{{ orange_yelen_search_term }}"</strong></h3>
+{% endif %}
+#}
+<section class="trombino-service-point__list">
+  {% for row in rows %}
+    {%
+      set row_classes = [
+      default_row_class ? 'views-row',
+      'search-result-item'
+    ]
+    %}
+    <div{{ row.attributes.addClass(row_classes) }}>
+      <article class="store-item">
+        <div class="inner-content">
+          <h4 class="name">{{ row.content['#row']._field_type_label }} - {{ row.content['#row'].trombino_point_service_name }}</h4>
+          {#
+          <div class="opening mb-2" v-if="openingAreDefined">
+            <span class="fw-bold">{{ isOpen ? 'Ouvert' : 'Fermé' }}</span>
+            <span v-if="isOpen">Ferme à {{ openingCloseHour }}</span>
+            <span v-else>Ouvre à {{ openingStartHour }}</span>
+          </div>
+          #}
+          <div class="opening mb-2">
+            {{ row.content['#row']._field_opening_days_hours }}
+          </div>
+          <address class="mb-2">
+            {{ row.content['#row']._field_localisation_label | raw | t }}
+          </address>
+          <div class="services">
+            <h6>Services</h6>
+            <ul class="list-unstyled list-inline">
+              {% for service in row.content['#row']._field_services %}
+              <li
+                class="list-inline-item service-list__item is-checked"
+              >
+                <span
+                  class="service-list__item__icon"
+                  data-svg="/src/assets/icons/icon-check.svg" width="30" height="30" viewbox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" data-attributes-set="width,height,viewBox,xmlns" data-rendered="true">
+                    <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M27 7c0-1.105-.888-2-1.983-2-.524 0-1 .206-1.355.541L11.93 17l-3.865-4.319a1.968 1.968 0 0 0-2.692.104l-.793.8C4.22 13.949 4 14.449 4 15c0 .473.163.907.435 1.25l6.344 8a1.972 1.972 0 0 0 3.097 0l12.69-16A2.02 2.02 0 0 0 27 7" fill-rule="evenodd"></path>
+                    </svg>
+                </span>
+                {{ service }}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <button class="btn btn-primary mt-3">Plus d'informations</button>
+        </div>
+      </article>
+      {#
+      <div class="card">
+        <div class="card-body">
+          <div class="d-flex align-center">
+            <div class="media">
+              {% set image_path = row.content['#row']._entity.field_image ? row.content['#row']._entity.field_image[0].entity.uri.value : 'modules/orange_yelen_search' ~ '/img/search-img.png' %}
+              {% set image_url = file_url(image_path) %}
+              {% set image_alt = row.content['#row']._entity.field_image ? row.content['#row']._entity.field_image[0].alt : 'Orange Search' %}
+              <img
+                class="img-fluid"
+                src="{{ image_url }}"
+                alt="{{ image_alt }}"
+              >
+            </div>
+            <div class="text">
+              <h5 class="card-title">
+                <a href="{{ row.content['#row'].search_api_url[0] }}"> {{ row.content['#row'].title[0] }}</a>
+              </h5>
+              {{row.content['#row'].body[0] | raw | t}}
+            </div>
+            <div class="action">
+              <a class="btn btn-primary" href={{ row.content['#row'].search_api_url[0] }}>Voir plus</a>
+            </div>
+          </div>
+        </div>
+      </div> #}
+    </div>
+  {% endfor %}
+</section>
+

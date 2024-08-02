@@ -45,7 +45,8 @@ use Drupal\user\EntityOwnerTrait;
  *   entity_keys = {
  *     "id" = "id",
  *     "name" = "name",
- *     "uuid" = "uuid"
+ *     "uuid" = "uuid",
+ *     "uid" = "uid"
  *   },
  *   links = {
  *     "collection" = "/admin/content/trombino-point-service",
@@ -68,9 +69,6 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
    */
   public function preSave(EntityStorageInterface $storage): void {
     parent::preSave($storage);
-    if (!$this->getOwnerId()) {
-      $this->setOwnerId(\Drupal::currentUser()->id());
-    }
   }
 
   /**
@@ -79,6 +77,25 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
 
     $fields = parent::baseFieldDefinitions($entity_type);
+
+    $fields['uid'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Owner'))
+      ->setDescription(t('The user ID of the point de service owner.'))
+      ->setSetting('target_type', 'user')
+      ->setDefaultValueCallback(TrombinoPointService::class . '::getCurrentUserId')
+      ->setTranslatable(TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'author',
+        'weight' => 0,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 5,
+      ])
+      ->setRequired(TRUE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Nom du point service'))
@@ -134,7 +151,9 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
       ->setDisplayOptions('form', [
         'type' => 'options_select',
         'weight' => -3
-      ]);
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['regions'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Regions'))
@@ -152,7 +171,9 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
       ->setDisplayOptions('form', [
         'type' => 'options_select',
         'weight' => -2
-      ]);
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['situation_geographique'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Situation Géographique'))
@@ -164,20 +185,28 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
       ->setDisplayOptions('form', [
         'type' => 'text_textarea',
         'weight' => 1,
-      ]);
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
-    $fields['opening_days_hours'] = BaseFieldDefinition::create('string')
+    $fields['opening_days_hours'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Jours et heures d\'ouverture'))
-      ->setSetting('max_length', 100)
+      ->setRequired(TRUE)
+      ->setSettings([
+        'max_length' => 1000,
+        'text_processing' => 0,
+      ])
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'text_default',
+        'type' => 'string_textarea',
         'weight' => 2,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'string_textfield',
+        'type' => 'string_textarea',
         'weight' => 2,
-      ]);
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['phone'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Contact téléphonique'))
@@ -193,7 +222,9 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
       ->setDisplayOptions('form', [
         'type' => 'string_textfield',
         'weight' => 3,
-      ]);
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['email'] = BaseFieldDefinition::create('email')
       ->setLabel(t('Adresse email'))
@@ -205,10 +236,13 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
       ->setDisplayOptions('form', [
         'type' => 'email_default',
         'weight' => 4,
-      ]);
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['services'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Services proposés'))
+      ->setRequired(TRUE)
       ->setSetting('target_type', 'taxonomy_term')
       ->setSetting('handler', 'default')
       ->setSetting('handler_settings', [
@@ -221,15 +255,11 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
         'weight' => 5,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 5,
-        'settings' => [
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ],
-      ]);
+        'type' => 'options_buttons',
+        'weight' => 5
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['partner'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Partenaire'))
@@ -247,7 +277,9 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
         'type' => 'options_select',
         'weight' => -2
       ])
-      ->setRequired(FALSE);
+      ->setRequired(FALSE)
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['concept'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Concept'))
@@ -264,7 +296,9 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
       ->setDisplayOptions('form', [
         'type' => 'options_select',
         'weight' => -2
-      ]);
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))
@@ -279,13 +313,23 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
         'type' => 'datetime_timestamp',
         'weight' => 20,
       ])
-      ->setDisplayConfigurable('view', TRUE);
+      ->setDisplayConfigurable('view', TRUE)
+      ->setReadOnly(TRUE)
+      ->setRequired(TRUE);
 
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the trombino point service was last edited.'));
 
     return $fields;
+  }
+
+
+  /**
+   * Gets the current user ID.
+   */
+  public static function getCurrentUserId(): string {
+    return (string) \Drupal::currentUser()->id();
   }
 
 }

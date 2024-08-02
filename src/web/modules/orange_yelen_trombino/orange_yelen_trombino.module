@@ -7,6 +7,10 @@
 
 use Drupal\Core\Render\Element;
 use Drupal\user\UserInterface;
+
+const TROMBINO_VIEW_ID = 'trombino_point_service';
+const TROMBINO_VIEW_CURRENT_DISPLAY = 'page_1';
+const TROMBINO_VIEW_PAGE_NAME = 'view.'.TROMBINO_VIEW_ID.'.'.TROMBINO_VIEW_CURRENT_DISPLAY;
 /**
  * @return array[]
  * @Implement hook_theme()
@@ -83,4 +87,75 @@ function orange_yelen_trombino_user_predelete(UserInterface $account): void {
   $storage->delete(
     $storage->loadMultiple($trombino_point_service_ids)
   );
+}
+
+/**
+ * Implements hook_preprocess_views_view_unformatted_HOOK() for page templates.
+ */
+function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variables){
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if (_orange_yelen_search__check_path()) {
+    $search_term = \Drupal::request()->query->get('search_api_fulltext');
+    $variables['orange_yelen_search_term'] = $search_term;
+  }
+}
+
+/**
+ * Page_attachments_alter()
+ */
+function orange_yelen_trombino_page_attachments_alter(&$page) {
+  if(_orange_yelen_trombino__check_path()){
+    $page['#attached']['library'][] = 'orange_yelen_trombino/orange-yelen-trombino';
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function orange_yelen_trombino_views_pre_render($view) {
+  if($view->id() === TROMBINO_VIEW_ID && $view->current_display === 'page_1'){
+    foreach ($view->result as &$row) {
+      // Récupérer l'entité de chaque ligne de résultat.
+      $entity = $row->_entity;
+      //dump($entity->getFields());
+      // Récupérer les données des champs référencés.
+      if ($entity->hasField('type')) {
+        $type_term = $entity->get('type')->entity;
+        $row->_field_type_label = $type_term ? $type_term->label() : 'N/A';
+      }
+      if ($entity->hasField('regions')) {
+        $region_term = $entity->get('regions')->entity;
+        $row->_field_region_label = $region_term ? $region_term->label() : 'N/A';
+      }
+      if ($entity->hasField('services')) {
+        $service_terms = $entity->get('services')->referencedEntities();
+        $row->_field_services = array_map(function ($term) {
+          return $term->label();
+        }, $service_terms);
+      }
+      if ($entity->hasField('situation_geographique')) {
+        $localisation_term = $entity->get('situation_geographique')->value;
+        $row->_field_localisation_label = $localisation_term ?: 'N/A';
+      }
+      if ($entity->hasField('email')) {
+        $email = $entity->get('email')->value;
+        $row->_field_email = $email ?: 'N/A';
+      }
+      if ($entity->hasField('phone')) {
+        $phone = $entity->get('phone')->value;
+        $row->_field_phone = $phone ?: 'N/A';
+      }
+      if ($entity->hasField('opening_days_hours')) {
+        $opening_days_hours = $entity->get('opening_days_hours')->value;
+        $row->_field_opening_days_hours = $opening_days_hours ?: 'N/A';
+      }
+    }
+  }
+}
+
+function _orange_yelen_trombino__check_path()
+{
+  // Get path from Route.
+  $route = \Drupal::routeMatch()->getRouteName();
+  return $route === TROMBINO_VIEW_PAGE_NAME;
 }

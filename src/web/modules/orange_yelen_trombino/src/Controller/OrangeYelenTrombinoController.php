@@ -9,7 +9,7 @@ class OrangeYelenTrombinoController extends ControllerBase{
    * Page d'accueil Trombino
    * @return array
    */
-  public function index()
+  /*public function index()
   {
     return [
       '#theme' => 'orange_yelen_trombino_index',
@@ -19,5 +19,5 @@ class OrangeYelenTrombinoController extends ControllerBase{
         ],
       ],
     ];
-  }
+  }*/
 }

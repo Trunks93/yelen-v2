@@ -1,11 +1,3 @@
-orange_yelen_trombino.index:
-  path: '/trombino'
-  defaults:
-    _controller: Drupal\orange_yelen_trombino\Controller\OrangeYelenTrombinoController::index
-    _title: 'Trombino'
-  requirements:
-    _permission: 'access content'
-
 entity.trombino_point_service.settings:
   path: 'admin/structure/trombino-point-service'
   defaults:

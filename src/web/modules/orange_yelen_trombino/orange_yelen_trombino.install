@@ -14,7 +14,6 @@ use Drupal\taxonomy\Entity\Vocabulary;
   * Implements hook_install().
   */
  function orange_yelen_trombino_install() {
-   // Create vocabularies for Types and Regions.
    $vocabularies = [
      'trombino_point_service_types' => 'Types de point service',
      'regions' => 'Régions',
@@ -32,7 +31,6 @@ use Drupal\taxonomy\Entity\Vocabulary;
      }
    }
 
-   // Add sample terms to Types and Regions.
    $terms = [
      'trombino_point_service_types' => ['Agence', 'Franchise', 'Mini Franchise'],
      'regions' => ['Lagunes', 'Lagunes 1','Lagunes 2', 'Est', 'Ouest'],
@@ -56,9 +54,7 @@ use Drupal\taxonomy\Entity\Vocabulary;
   * Implements hook_uninstall().
   */
  function orange_yelen_trombino_uninstall() {
-   // Remove the vocabularies created.
    $vocabularies = ['trombino_point_service_types', 'regions', 'trombino_point_service_concept', 'trombino_point_service_services', 'trombino_point_service_partners'];
-
    foreach ($vocabularies as $vid) {
      if ($vocabulary = Vocabulary::load($vid)) {
        $vocabulary->delete();

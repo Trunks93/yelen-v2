@@ -24,7 +24,7 @@ final class TrombinoPointServiceSettingsForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state): array {
 
-    $form['settings'] = [
+    /*$form['settings'] = [
       '#markup' => $this->t('Settings form for a point service entity type.'),
     ];
 
@@ -34,7 +34,7 @@ final class TrombinoPointServiceSettingsForm extends FormBase {
         '#type' => 'submit',
         '#value' => $this->t('Save'),
       ],
-    ];
+    ];*/
 
     return $form;
   }

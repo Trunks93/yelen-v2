@@ -38,7 +38,7 @@ use Drupal\taxonomy\Entity\Vocabulary;
      'regions' => ['Lagunes', 'Lagunes 1','Lagunes 2', 'Est', 'Ouest'],
      'trombino_point_service_concept' => ['Smartstore', 'One Design', 'Smart Store Light'],
      'trombino_point_service_services' => ['Produits & Services FMI', 'Orange Money', 'Paiement de factures', 'Corner SAV'],
-     'trombino_point_service_partners' => ['Produits & Services FMI', 'Orange Money', 'Paiement de factures', 'Corner SAV'],
+     'trombino_point_service_partners' => ['MAGIC B', 'TKGS ABIDJAN', 'SUITE COM', 'KTC', 'MOSAIK TELECOM'],
    ];
 
    foreach ($terms as $vid => $values) {

@@ -7,10 +7,12 @@
 
 use Drupal\Core\Render\Element;
 use Drupal\user\UserInterface;
+use Drupal\views\ViewExecutable;
 
 const TROMBINO_VIEW_ID = 'trombino_point_service';
 const TROMBINO_VIEW_CURRENT_DISPLAY = 'page_1';
 const TROMBINO_VIEW_PAGE_NAME = 'view.'.TROMBINO_VIEW_ID.'.'.TROMBINO_VIEW_CURRENT_DISPLAY;
+const TROMBINO_CANONICAL = 'entity.trombino_point_service.canonical';
 /**
  * @return array[]
  * @Implement hook_theme()
@@ -94,7 +96,7 @@ function orange_yelen_trombino_user_predelete(UserInterface $account): void {
  */
 function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variables){
   $route_name = \Drupal::routeMatch()->getRouteName();
-  if (_orange_yelen_search__check_path()) {
+  if (_orange_yelen_trombino__check_path()) {
     $search_term = \Drupal::request()->query->get('search_api_fulltext');
     $variables['orange_yelen_search_term'] = $search_term;
   }
@@ -112,20 +114,30 @@ function orange_yelen_trombino_page_attachments_alter(&$page) {
 /**
  * Implements hook_views_pre_render().
  */
-function orange_yelen_trombino_views_pre_render($view) {
+function orange_yelen_trombino_views_pre_render(ViewExecutable $view): void {
   if($view->id() === TROMBINO_VIEW_ID && $view->current_display === 'page_1'){
     foreach ($view->result as &$row) {
-      // Récupérer l'entité de chaque ligne de résultat.
       $entity = $row->_entity;
-      //dump($entity->getFields());
       // Récupérer les données des champs référencés.
+      if ($entity->hasField('name')) {
+        $field_name = $entity->get('name')->value;
+        $row->_field_name = $field_name ?: 'N/A';
+      }
       if ($entity->hasField('type')) {
         $type_term = $entity->get('type')->entity;
         $row->_field_type_label = $type_term ? $type_term->label() : 'N/A';
       }
-      if ($entity->hasField('regions')) {
-        $region_term = $entity->get('regions')->entity;
+      if ($entity->hasField('region')) {
+        $region_term = $entity->get('region')->entity;
         $row->_field_region_label = $region_term ? $region_term->label() : 'N/A';
+      }
+      if ($entity->hasField('partner')) {
+        $partner_term = $entity->get('partner')->entity;
+        $row->_field_partner_label = $partner_term ? $partner_term->label() : 'N/A';
+      }
+      if ($entity->hasField('concept')) {
+        $concept_term = $entity->get('concept')->entity;
+        $row->_field_concept_label = $concept_term ? $concept_term->label() : 'N/A';
       }
       if ($entity->hasField('services')) {
         $service_terms = $entity->get('services')->referencedEntities();
@@ -147,15 +159,78 @@ function orange_yelen_trombino_views_pre_render($view) {
       }
       if ($entity->hasField('opening_days_hours')) {
         $opening_days_hours = $entity->get('opening_days_hours')->value;
-        $row->_field_opening_days_hours = $opening_days_hours ?: 'N/A';
+        $row->_field_opening_days_hours = _orange_yelen_trombino__is_point_open($opening_days_hours);
       }
     }
   }
 }
 
-function _orange_yelen_trombino__check_path()
+/**
+ * @param array $variables
+ * @return void
+ */
+function orange_yelen_trombino_preprocess_trombino_point_service(array &$variables){
+  $field_images = $variables['elements']['#trombino_point_service']->get('images');
+  $images = [];
+  foreach ($field_images as $field_image) {
+    $file = $field_image->entity;
+    $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    if ($image_url) {
+      $images[] = [
+        'url' => $image_url,
+        'alt' => $field_image->alt,
+      ];
+    }
+  }
+  $variables['trombino_point_service_images'] = $images;
+}
+
+function _orange_yelen_trombino__check_path(): bool
 {
   // Get path from Route.
   $route = \Drupal::routeMatch()->getRouteName();
-  return $route === TROMBINO_VIEW_PAGE_NAME;
+  return $route === TROMBINO_VIEW_PAGE_NAME || $route === TROMBINO_CANONICAL;
+}
+
+function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) {
+  $days_of_week = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+  $current_time = $current_time ?: new DateTime();
+  $current_day = $days_of_week[(int) $current_time->format('w')];
+  $current_hour = (int) $current_time->format('G');
+  $current_minute = (int) $current_time->format('i');
+
+  // $next_day_time = $days_of_week[(int)$current_time->modify('+1 day')->format('w')];
+
+  if (preg_match('/(\w+) au (\w+) (\d+)H-(\d+)H/', $schedule, $matches)) {
+    list(, $start_day, $end_day, $start_hour, $end_hour) = $matches;
+    $start_hour = (int) $start_hour;
+    $end_hour = (int) $end_hour;
+
+    // Convertir les jours en index numériques
+    $start_day_index = array_search($start_day, $days_of_week);
+    $end_day_index = array_search($end_day, $days_of_week);
+
+    // Vérifier si le jour actuel est dans la plage d'ouverture
+    $current_day_index = array_search($current_day, $days_of_week);
+    $is_within_days = $start_day_index <= $current_day_index && $current_day_index <= $end_day_index;
+
+    // Vérifier si l'heure actuelle est dans la plage d'ouverture
+    if ($is_within_days && $current_hour >= $start_hour && $current_hour < $end_hour) {
+      // Point ouvert
+      $minutes_until_close = (($end_hour - $current_hour - 1) * 60) + (60 - $current_minute);
+      return (object) ['is_open' => true, 'minutes_remaining' => $minutes_until_close, 'next_hour' => $end_hour];
+    } else {
+      // Point fermé
+      $minutes_until_open = (($current_hour - $start_hour - 1) * 60) + (60 - $current_minute);
+      if ($current_hour < $start_hour) {
+        $minutes_until_open = (($start_hour - $current_hour - 1) * 60) + (60 - $current_minute);
+      }
+
+      $valid_remaining_time = $start_hour <= 4 ? $minutes_until_open : 0;
+
+      return (object) ['is_open' => false, 'minutes_remaining' => $valid_remaining_time, 'next_hour' => $start_hour];
+
+    }
+  }
+  return (object) ['is_open' => false, 'minutes_remaining' => -1, 'next_hour' => 0];
 }

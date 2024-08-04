@@ -34,7 +34,7 @@ final class TrombinoPointServiceListBuilder extends EntityListBuilder {
     $row['id'] = $entity->id();
     $row['name'] = $entity->get('name')->value;
     $row['type']['data'] = $entity->get('type')->view(['label' => 'hidden']);
-    $row['region']['data'] = $entity->get('regions')->view(['label' => 'hidden']);
+    $row['region']['data'] = $entity->get('region')->view(['label' => 'hidden']);
     $row['status'] = $entity->get('status')->value ? $this->t('Published') : $this->t('Pending');
     $username_options = [
       'label' => 'hidden',

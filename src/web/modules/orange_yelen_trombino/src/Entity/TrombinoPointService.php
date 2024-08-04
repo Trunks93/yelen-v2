@@ -155,7 +155,7 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['regions'] = BaseFieldDefinition::create('entity_reference')
+    $fields['region'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Regions'))
       ->setRequired(TRUE)
       ->setSetting('target_type', 'taxonomy_term')
@@ -299,6 +299,27 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
       ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
+
+    $fields['images'] = BaseFieldDefinition::create('image')
+      ->setLabel(t('Images'))
+      ->setSettings([
+        'file_extensions' => 'png jpg jpeg',
+        'alt_field' => TRUE,
+        'alt_field_required' => TRUE,
+        'file_directory' => 'images/trombino_point_service',
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'image',
+        'weight' => 0,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'image_image',
+        'weight' => 0,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE)
+      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))

@@ -13,12 +13,96 @@
  * @see template_preprocess_trombino_agences()
  */
 #}
-<article{{ attributes }}>
+{% set trombinoPointServiceClasses = ['trombino-point-service'] %}
+<article{{ attributes.addClass(trombinoPointServiceClasses) }}>
   {% if view_mode != 'full' %}
     {{ title_prefix }}
     {{ title_suffix }}
   {% endif %}
   {% if content %}
-    {{- content -}}
+    <div class="row">
+      <div class="{{ trombino_point_service_images|length > 0 ? 'col-md-6 col-12' : 'col-12' }}">
+        <h3 class="orange-yelen-title">{{ content.type[0]['#title'] }} {{ content.name[0]['#context']['value'] }}</h3>
+        <ul class="list-unstyled ms-0">
+          <li class="mb-3">
+            <span>Type de point de vente:</span>
+            <strong class="text-primary">{{ content.type[0]['#title'] }}</strong>
+          </li>
+          {% if(content.partner['#items']) %}
+          <li class="mb-3">
+            <span>Partenaire:</span>
+            <strong class="text-primary">{{ content.partner[0]['#title'] }}</strong>
+          </li>
+          {% endif %}
+          <li class="mb-3">
+            <span>Région:</span>
+            <strong class="text-primary">{{ content.region[0]['#title'] }}</strong>
+          </li>
+          <li class="mb-3">
+            <span>Jours et heures d'ouverture:</span>
+            <strong class="text-primary">{{ content.opening_days_hours[0]['#context']['value'] }}</strong>
+          </li>
+          <li class="mb-3">
+            <span>Situation Géographique:</span>
+            <div class="text-primary">{{ content.situation_geographique[0]['#text'] | raw |t }}</div>
+          </li>
+          <li class="mb-3">
+            <span>Concept:</span>
+            <strong class="text-primary">{{ content.concept[0]['#title'] }}</strong>
+          </li>
+          <li class="services mb-3">
+            <span>Services:</span>
+            <ul class="list-unstyled list-inline ms-0">
+              {% for key in content.services['#items']|keys %}
+                <li
+                  class="list-inline-item service-list__item is-checked"
+                >
+                <span
+                  class="service-list__item__icon"
+                  data-svg="/src/assets/icons/icon-check.svg" width="30" height="30" viewbox="0 0 30 30" xmlns="http://www.w3.org/2000/svg" data-attributes-set="width,height,viewBox,xmlns" data-rendered="true">
+                    <svg width="30" height="30" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M27 7c0-1.105-.888-2-1.983-2-.524 0-1 .206-1.355.541L11.93 17l-3.865-4.319a1.968 1.968 0 0 0-2.692.104l-.793.8C4.22 13.949 4 14.449 4 15c0 .473.163.907.435 1.25l6.344 8a1.972 1.972 0 0 0 3.097 0l12.69-16A2.02 2.02 0 0 0 27 7" fill-rule="evenodd"></path>
+                    </svg>
+                </span>
+                  {{ content.services[key]['#title'] }}
+                </li>
+              {% endfor %}
+            </ul>
+          </li>
+          <li class="mb-3">
+            <span>Contacts:</span>
+            <div class="text-primary">Tel: {{ content.phone[0]['#context']['value'] }} Email: {{ content.email['#items'] ? content.email[0]['#context']['value'] : 'N/A' }}</div>
+          </li>
+        </ul>
+      </div>
+      {% if(trombino_point_service_images|length > 0) %}
+      <div class="col-md-6 col-12">
+        <div id="trombinoPointServiceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
+          <div class="carousel-action-bar">
+            <div class="carousel-indicators">
+              {% for image in trombino_point_service_images %}
+              <button type="button" class="{{ loop.first ? 'active' : '' }}" data-bs-target="#trombinoPointServiceCarousel" data-bs-slide-to="{{ loop.index0 }}" aria-label="{{ image['alt'] }}"></button>
+              {% endfor %}
+            </div>
+          </div>
+          <div class="carousel-inner">
+            {% for image in trombino_point_service_images %}
+            <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+              <img src="{{ image['url'] }}" class="img-fluid" alt="{{ image['alt'] }}">
+            </div>
+            {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#trombinoPointServiceCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Précédent</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#trombinoPointServiceCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+          </button>
+        </div>
+      </div>
+      {% endif %}
+    </div>
   {% endif %}
 </article>

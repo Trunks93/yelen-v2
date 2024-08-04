@@ -2,8 +2,8 @@ orange-yelen-trombino:
   version: 1.x
   css:
     theme:
-      trombino-app/dist/style.css: {}
+      #trombino-app/dist/style.css: {}
       css/main.css: {}
   js:
     js/main.js: {}
-    trombino-app/dist/trombino-app.umd.js: {}
+    #trombino-app/dist/trombino-app.umd.js: {}

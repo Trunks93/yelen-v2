@@ -1,0 +1,3 @@
+administer trombino_point_service:
+  title: 'Administer trombino point service'
+  restrict access: true

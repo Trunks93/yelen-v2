@@ -1,0 +1,227 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Orange Yelen Trombino module.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\user\UserInterface;
+use Drupal\views\ViewExecutable;
+
+const TROMBINO_VIEW_ID = 'trombino_point_service';
+const TROMBINO_VIEW_CURRENT_DISPLAY = 'page_1';
+const TROMBINO_VIEW_PAGE_NAME = 'view.'.TROMBINO_VIEW_ID.'.'.TROMBINO_VIEW_CURRENT_DISPLAY;
+const TROMBINO_CANONICAL = 'entity.trombino_point_service.canonical';
+/**
+ * @return array[]
+ * @Implement hook_theme()
+ */
+function orange_yelen_trombino_theme(): array{
+  return [
+    'orange_yelen_trombino_index' => [
+      'variables' => [],
+    ],
+    'trombino_point_service' => ['render element' => 'elements'],
+  ];
+}
+
+/**
+ * Prepares variables for trombino point service templates.
+ *
+ * Default template: trombino-point-service.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the trombino point service information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_trombino_point_service(array &$variables): void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function orange_yelen_trombino_user_cancel($edit, UserInterface $account, $method): void {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish trombino point service.
+      $storage = \Drupal::entityTypeManager()->getStorage('trombino_point_service');
+      $trombino_point_service_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($trombino_point_service_ids) as $trombino_point_service) {
+        $trombino_point_service->set('status', FALSE)->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize trombino point service.
+      $storage = \Drupal::entityTypeManager()->getStorage('trombino_point_service');
+      $trombino_point_service_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($trombino_point_service_ids) as $trombino_point_service) {
+        $trombino_point_service->setOwnerId(0)->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function orange_yelen_trombino_user_predelete(UserInterface $account): void {
+  // Delete trombino point service that belong to this account.
+  $storage = \Drupal::entityTypeManager()->getStorage('trombino_point_service');
+  $trombino_point_service_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->accessCheck(FALSE)
+    ->execute();
+  $storage->delete(
+    $storage->loadMultiple($trombino_point_service_ids)
+  );
+}
+
+/**
+ * Implements hook_preprocess_views_view_unformatted_HOOK() for page templates.
+ */
+function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variables){
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if (_orange_yelen_trombino__check_path()) {
+    $search_term = \Drupal::request()->query->get('search_api_fulltext');
+    $variables['orange_yelen_search_term'] = $search_term;
+  }
+}
+
+/**
+ * Page_attachments_alter()
+ */
+function orange_yelen_trombino_page_attachments_alter(&$page) {
+  if(_orange_yelen_trombino__check_path()){
+    $page['#attached']['library'][] = 'orange_yelen_trombino/orange-yelen-trombino';
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function orange_yelen_trombino_views_pre_render(ViewExecutable $view): void {
+  if($view->id() === TROMBINO_VIEW_ID && $view->current_display === 'page_1'){
+    foreach ($view->result as &$row) {
+      $entity = $row->_entity;
+      if ($entity->hasField('name')) {
+        $field_name = $entity->get('name')->value;
+        $row->_field_name = $field_name ?: 'N/A';
+      }
+      if ($entity->hasField('type')) {
+        $type_term = $entity->get('type')->entity;
+        $row->_field_type_label = $type_term ? $type_term->label() : 'N/A';
+      }
+      if ($entity->hasField('region')) {
+        $region_term = $entity->get('region')->entity;
+        $row->_field_region_label = $region_term ? $region_term->label() : 'N/A';
+      }
+      if ($entity->hasField('partner')) {
+        $partner_term = $entity->get('partner')->entity;
+        $row->_field_partner_label = $partner_term ? $partner_term->label() : 'N/A';
+      }
+      if ($entity->hasField('concept')) {
+        $concept_term = $entity->get('concept')->entity;
+        $row->_field_concept_label = $concept_term ? $concept_term->label() : 'N/A';
+      }
+      if ($entity->hasField('services')) {
+        $service_terms = $entity->get('services')->referencedEntities();
+        $row->_field_services = array_map(function ($term) {
+          return $term->label();
+        }, $service_terms);
+      }
+      if ($entity->hasField('situation_geographique')) {
+        $localisation_term = $entity->get('situation_geographique')->value;
+        $row->_field_localisation_label = $localisation_term ?: 'N/A';
+      }
+      if ($entity->hasField('email')) {
+        $email = $entity->get('email')->value;
+        $row->_field_email = $email ?: 'N/A';
+      }
+      if ($entity->hasField('phone')) {
+        $phone = $entity->get('phone')->value;
+        $row->_field_phone = $phone ?: 'N/A';
+      }
+      if ($entity->hasField('opening_days_hours')) {
+        $opening_days_hours = $entity->get('opening_days_hours')->value;
+        $row->_field_opening_days_hours = _orange_yelen_trombino__is_point_open($opening_days_hours);
+      }
+    }
+  }
+}
+
+/**
+ * @param array $variables
+ * @return void
+ */
+function orange_yelen_trombino_preprocess_trombino_point_service(array &$variables){
+  $field_images = $variables['elements']['#trombino_point_service']->get('images');
+  $images = [];
+  foreach ($field_images as $field_image) {
+    $file = $field_image->entity;
+    $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+    if ($image_url) {
+      $images[] = [
+        'url' => $image_url,
+        'alt' => $field_image->alt,
+      ];
+    }
+  }
+  $variables['trombino_point_service_images'] = $images;
+}
+
+function _orange_yelen_trombino__check_path(): bool
+{
+  $route = \Drupal::routeMatch()->getRouteName();
+  return $route === TROMBINO_VIEW_PAGE_NAME || $route === TROMBINO_CANONICAL;
+}
+
+function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) {
+  $days_of_week = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+  $current_time = $current_time ?: new DateTime();
+  $current_day = $days_of_week[(int) $current_time->format('w')];
+  $current_hour = (int) $current_time->format('G');
+  $current_minute = (int) $current_time->format('i');
+
+  if (preg_match('/(\w+) au (\w+) (\d+)H-(\d+)H/', $schedule, $matches)) {
+    list(, $start_day, $end_day, $start_hour, $end_hour) = $matches;
+    $start_hour = (int) $start_hour;
+    $end_hour = (int) $end_hour;
+
+    $start_day_index = array_search($start_day, $days_of_week);
+    $end_day_index = array_search($end_day, $days_of_week);
+
+    $current_day_index = array_search($current_day, $days_of_week);
+    $is_within_days = $start_day_index <= $current_day_index && $current_day_index <= $end_day_index;
+
+    if ($is_within_days && $current_hour >= $start_hour && $current_hour < $end_hour) {
+      $minutes_until_close = (($end_hour - $current_hour - 1) * 60) + (60 - $current_minute);
+      return (object) ['is_open' => true, 'minutes_remaining' => $minutes_until_close, 'next_hour' => $end_hour];
+    } else {
+      $minutes_until_open = (($current_hour - $start_hour - 1) * 60) + (60 - $current_minute);
+      if ($current_hour < $start_hour) {
+        $minutes_until_open = (($start_hour - $current_hour - 1) * 60) + (60 - $current_minute);
+      }
+
+      $valid_remaining_time = $start_hour <= 4 ? $minutes_until_open : 0;
+
+      return (object) ['is_open' => false, 'minutes_remaining' => $valid_remaining_time, 'next_hour' => $start_hour];
+
+    }
+  }
+  return (object) ['is_open' => false, 'minutes_remaining' => -1, 'next_hour' => 0];
+}

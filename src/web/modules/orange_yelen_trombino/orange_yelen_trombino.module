@@ -191,37 +191,60 @@ function _orange_yelen_trombino__check_path(): bool
 }
 
 function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) {
+  $schedule = "Lundi au Vendredi  08H-17H\r\n Samedi de 08H-12H";
+  $schedule_cleaned = trim(preg_replace('/\s+/', ' ', $schedule));
   $days_of_week = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
   $current_time = $current_time ?: new DateTime();
   $current_day = $days_of_week[(int) $current_time->format('w')];
   $current_hour = (int) $current_time->format('G');
   $current_minute = (int) $current_time->format('i');
+  $schedules = explode(' \n', $schedule_cleaned);
 
-  if (preg_match('/(\w+) au (\w+) (\d+)H-(\d+)H/', $schedule, $matches)) {
-    list(, $start_day, $end_day, $start_hour, $end_hour) = $matches;
-    $start_hour = (int) $start_hour;
-    $end_hour = (int) $end_hour;
+  if(count($schedules) == 1){
+    $schedules[] = '';
+  }
+  $parsed_schedules = [];
+  // Parse the schedules
+  for ($i = 0; $i < count($schedules); $i++) {
+    if (preg_match('/(\w+)\s+au\s+(\w+)\s+(\d+)H-(\d+)H/', $schedules[$i] . ' ' . $schedules[$i + 1], $matches)) {
+      list(, $start_day, $end_day, $start_hour, $end_hour) = $matches;
+      $start_hour = (int) $start_hour;
+      $end_hour = (int) $end_hour;
+      $parsed_schedules[] = compact('start_day', 'end_day', 'start_hour', 'end_hour');
+      $i++;
+    } elseif (preg_match('/(\w+)\s+de\s+(\d+)H-(\d+)H/', $schedules[$i] . ' ' . $schedules[$i + 1], $matches)) {
+      list(, $start_day, $start_hour, $end_hour) = $matches;
+      $start_hour = (int) $start_hour;
+      $end_hour = (int) $end_hour;
+      $parsed_schedules[] = compact('start_day', 'start_hour', 'end_hour');
+      $i++;
+    }
 
-    $start_day_index = array_search($start_day, $days_of_week);
-    $end_day_index = array_search($end_day, $days_of_week);
+  }
 
+  // Check if the current time falls within any of the parsed schedules
+  foreach ($parsed_schedules as $parsed_schedule) {
+    $start_day_index = array_search($parsed_schedule['start_day'], $days_of_week);
+    $end_day_index = array_search($parsed_schedule['end_day'] ?? $parsed_schedule['start_day'], $days_of_week);
     $current_day_index = array_search($current_day, $days_of_week);
     $is_within_days = $start_day_index <= $current_day_index && $current_day_index <= $end_day_index;
 
-    if ($is_within_days && $current_hour >= $start_hour && $current_hour < $end_hour) {
-      $minutes_until_close = (($end_hour - $current_hour - 1) * 60) + (60 - $current_minute);
-      return (object) ['is_open' => true, 'minutes_remaining' => $minutes_until_close, 'next_hour' => $end_hour];
-    } else {
-      $minutes_until_open = (($current_hour - $start_hour - 1) * 60) + (60 - $current_minute);
-      if ($current_hour < $start_hour) {
-        $minutes_until_open = (($start_hour - $current_hour - 1) * 60) + (60 - $current_minute);
+    if ($is_within_days) {
+      if ($current_hour >= $parsed_schedule['start_hour'] && $current_hour < $parsed_schedule['end_hour']) {
+        $minutes_until_close = (($parsed_schedule['end_hour'] - $current_hour - 1) * 60) + (60 - $current_minute);
+        return (object) ['is_open' => true, 'minutes_remaining' => $minutes_until_close, 'next_hour' => $parsed_schedule['end_hour']];
+      } else {
+        $minutes_until_open = (($parsed_schedule['start_hour'] - $current_hour - 1) * 60) + (60 - $current_minute);
+        if ($current_hour < $parsed_schedule['start_hour']) {
+          $minutes_until_open = (($parsed_schedule['start_hour'] - $current_hour - 1) * 60) + (60 - $current_minute);
+        }
+
+        $valid_remaining_time = $parsed_schedule['start_hour'] <= 4 ? $minutes_until_open : 0;
+
+        return (object) ['is_open' => false, 'minutes_remaining' => $valid_remaining_time, 'next_hour' => $parsed_schedule['start_hour']];
       }
-
-      $valid_remaining_time = $start_hour <= 4 ? $minutes_until_open : 0;
-
-      return (object) ['is_open' => false, 'minutes_remaining' => $valid_remaining_time, 'next_hour' => $start_hour];
-
     }
   }
+
   return (object) ['is_open' => false, 'minutes_remaining' => -1, 'next_hour' => 0];
 }

@@ -18,7 +18,6 @@ function orange_yelen_search_preprocess_page(array &$variables) {
  * Implements hook_preprocess_views_view_unformatted_HOOK() for page templates.
  */
 function orange_yelen_search_preprocess_views_view_unformatted(array &$variables){
-  $route_name = \Drupal::routeMatch()->getRouteName();
   if (_orange_yelen_search__check_path()) {
     $search_term = \Drupal::request()->query->get('search_api_fulltext');
     $variables['orange_yelen_search_term'] = $search_term;

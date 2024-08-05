@@ -191,7 +191,6 @@ function _orange_yelen_trombino__check_path(): bool
 }
 
 function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) {
-  $schedule = "Lundi au Vendredi  08H-17H\r\n Samedi de 08H-12H";
   $schedule_cleaned = trim(preg_replace('/\s+/', ' ', $schedule));
   $days_of_week = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
   $current_time = $current_time ?: new DateTime();

@@ -48,7 +48,8 @@ END BOOSTED OVERRIDE
   color: #000;
 }
 
-.orange-yelen-top-search__block{
+.orange-yelen-top-search__block,
+.block-search-api-stats-blockyelen-search-content{
   background-color: #f1f1f1;
   padding: 1rem;
 

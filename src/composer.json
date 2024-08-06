@@ -43,6 +43,7 @@
         "drupal/select2": "^1.15",
         "drupal/slick": "^3.0",
         "drupal/smtp": "^1.4",
+        "drupal/term_csv_export_import": "^4.0",
         "drupal/twig_tweak": "^3.3",
         "drupal/webform": "^6.2",
         "drupal/webform_quiz": "^2.1",

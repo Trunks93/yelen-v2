@@ -50,6 +50,7 @@
         "drupal/webform_quiz": "^2.1",
         "drupal/workbench_moderation": "^1.8",
         "drush/drush": "^12.5",
+        "nodespark/des-connector": "7.x-dev",
         "predis/predis": "^2.2"
     },
     "conflict": {

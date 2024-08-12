@@ -49,7 +49,7 @@
 {% endif %}
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
   {% for item in items %}
-    {% set truncated_text = item.content['body']['#object'].body.value|slice(0, 100) ~ '...' %}
+    {% set truncated_text = item.content['body']['#object'].body.value|raw|slice(0, 100) ~ '...' %}
     <div class="card views-view-responsive-grid__item">
       {{ item.content['field_image'] }}
       <div class="card-body views-view-responsive-grid__item-inner">

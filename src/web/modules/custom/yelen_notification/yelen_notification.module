@@ -52,7 +52,7 @@ function yelen_notification_node_insert(Node $node)
 {
   $content_type = $node->getType();
 
-  if ($content_type == "faq") {
+  if ($content_type != "article" && $content_type != "page") {
     $event = new NotificationEvent();
     $event->setNodeId($node->id());
     $event->setNodeTitle($node->getTitle());
@@ -63,16 +63,6 @@ function yelen_notification_node_insert(Node $node)
     $event_dispatcher = \Drupal::service('event_dispatcher');
     $event_dispatcher->dispatch($event, NotificationEvent::CREATION_CONTENT_PUBLIC);
   }
-
-  /*switch ($content_type) {
-    case 'article':
-
-      break;
-    case 'faq':
-      break;
-    default:
-      break;
-  }*/
 }
 
 /**

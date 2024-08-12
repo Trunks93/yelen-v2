@@ -158,3 +158,80 @@ dans le HTML
     margin-left: 0;
   }
 }
+
+
+
+.icon-orange::after {
+  color: #f16e20 !important;
+}
+
+.card-custom-width {
+  margin-right: 3.5rem;
+}
+
+.card-body {
+  background-color: black;
+  color: white;
+}
+
+.card-title {
+  color: #f16e20;
+  font-size: 30px;
+}
+
+.btn-voir-plus {
+  border: 1px solid white;
+}
+
+.bloc-quiz {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 460px) {
+  .card-custom-width {
+    margin-right: 26px;
+    width: 100%;
+  }
+
+  .bloc-quiz {
+    margin-top: 20px;
+  }
+
+  .card-body {
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 24px;
+  }
+
+  .btn-voir-plus {
+    padding: 5px 10px;
+  }
+}
+
+.barre-haut {
+  border: none;
+}
+
+
+.texte-phone {
+  text-decoration: none;
+  color: white;
+}
+
+.texte-phone:hover {
+  color: #f16e20;
+}
+
+.txt_collapse {
+  font-weight: normal;
+  font-size: 20px;
+}
+
+/*begin wisdom styling*/
+
+a.hover-orange:hover{
+  color:orange
+}

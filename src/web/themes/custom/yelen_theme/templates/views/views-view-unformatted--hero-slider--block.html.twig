@@ -43,8 +43,9 @@
             <div class="col-md-6  back-texte-carousel">
               <div class="promo-vacances p-4 ">
                 <h2>{{ row.content['field_titre']["#object"].field_titre.value }}</h2>
-                <h3>Promo Vacances <br> EasyBox du <br> <span class="texte-orange"> 01 </span> au <span
-                    class="texte-orange">09 Août 2024</span></h3>
+                {{ row.content['field_titre']["#object"].body.value|raw }}
+                <!--h3>Promo Vacances <br> EasyBox du <br> <span class="texte-orange"> 01 </span> au <span
+                    class="texte-orange">09 Août 2024</span></h3-->
                 <div>
                   {% set uri = row.content['field_lien']["#object"].field_lien.value[0]['uri'] %}
                   {% set linkTitle = row.content['field_lien']["#object"].field_lien.value[0]['title'] %}

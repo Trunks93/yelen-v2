@@ -6,13 +6,13 @@ package: Custom
 base theme: claro
 screenshot: orange.png
 regions:
-  header: 'Header'
+  hero_header: 'Hero Header'
+  hero_sidebar: 'Hero Sidebar'
   menu: 'Menu'
   breadcrumb: Breadcrumb
   highlighted: Highlighted
   help: Help
   content: Content
-  page_top: 'Page top'
   page_footer: 'Page footer'
   sidebar: 'Sidebar'
 

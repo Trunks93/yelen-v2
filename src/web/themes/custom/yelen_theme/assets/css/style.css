@@ -234,3 +234,24 @@ dans le HTML
 a.hover-orange:hover{
   color:orange
 }
+.orange-color-link a{
+  color:black;
+  text-decoration: none;
+}
+.orange-color-link a:hover{
+  color:orange;
+  text-decoration: none;
+}
+
+.orange-yelen-title-block {
+  position:relative;
+  &::after {
+     content: "";
+     position: absolute;
+     top: 2rem;
+     width: 25%;
+     background-color: #ff7900;
+     height: 10px;
+     left: 0;
+ }
+}

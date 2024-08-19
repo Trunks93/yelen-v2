@@ -13,8 +13,8 @@ regions:
   highlighted: Highlighted
   help: Help
   content: Content
-  page_footer: 'Page footer'
   sidebar: 'Sidebar'
+  page_footer: 'Page footer'
 
 libraries:
   - yelen_theme/global

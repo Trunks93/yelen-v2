@@ -69,7 +69,7 @@
     </div>
   </nav>
 </header>
-{% set layout_hero= page.hero_sidebar ? 'col-8' :'col-12'%}
+{% set layout_hero = page.hero_sidebar ? 'col-8' :'col-12'%}
 <div class="container body">
   <div class="content-header clearfix">
     <div class="layout-container">
@@ -87,7 +87,7 @@
 
     </div>
   </div>
-  {% set layout= page.sidebar ? 'col-8' :'col-12'%}
+
 
   <div class="layout-container">
     {{ page.pre_content }}
@@ -99,12 +99,15 @@
           {{ page.help }}
         </div>
       {% endif %}
+
+      {% set mainLayout = page.sidebar ? 'col-9': 'col-12'%}
+
       <div class="row">
-        <div {{ attributes.addClass(layout) }} >
+        <div class="{{ mainLayout }}">
           {{ page.content }}
         </div>
         {% if page.sidebar %}
-          <div class="col-4">
+          <div class="col-3">
             {{ page.sidebar }}
           </div>
         {% endif %}

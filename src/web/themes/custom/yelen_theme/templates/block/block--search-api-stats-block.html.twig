@@ -33,7 +33,7 @@
   'block-' ~ plugin_id|clean_class,
   ]
 %}
-{% set blockTitleClass = 'block__title' %}
+{% set blockTitleClass = ['block__title', 'bg-primary', 'fw-bold'] %}
 <section class="orange-yelen-top-search__block">
   <div{{ attributes.addClass(classes) }}>
     {{ title_prefix }}
@@ -41,8 +41,10 @@
       <h2 {{ attributes.addClass(blockTitleClass) }} {{ title_attributes }}>{{ label }}</h2>
     {% endif %}
     {{ title_suffix }}
-    {% block content %}
-      {{ content }}
-    {% endblock %}
+    <div class="inner-content">
+      {% block content %}
+        {{ content }}
+      {% endblock %}
+    </div>
   </div>
 </section>

@@ -62,29 +62,37 @@ END BOOSTED OVERRIDE
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  color: #979797;
 }
 
 .orange-yelen-top-search__block,
 .block-search-api-stats-blockyelen-search-content{
   background-color: #f1f1f1;
-  padding: 1rem;
+  .inner-content{
+  }
 
   .block__title{
-    background-color: #4bb4e4;
     padding: .85rem 1rem;
-    border-radius: .85rem;
-    color: #FFF;
     font-size: 1.5rem;
+    margin-bottom: 0;
   }
 
   .most-popular-terms__list{
     .term{
       cursor: pointer;
-      margin-bottom: 1rem;
-      border-color: transparent;
-      border-radius: .5rem;
+      border-bottom: 1px solid #b5b5b5;
       text-decoration: none;
       color: #000;
+      display: block;
+      padding: 2rem 1.5rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+
+      &:last-child{
+        border-bottom: none;
+      }
 
       .card-body {
         background-color: transparent;

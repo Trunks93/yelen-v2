@@ -98,7 +98,7 @@ function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variabl
   $route_name = \Drupal::routeMatch()->getRouteName();
   if (_orange_yelen_trombino__check_path()) {
     $search_term = \Drupal::request()->query->get('search_api_fulltext');
-    $variables['orange_yelen_search_term'] = $search_term;
+    $variables['orange_trombino_service_term'] = $search_term;
   }
 }
 

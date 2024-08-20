@@ -61,5 +61,9 @@
       </div>
     </div>
   {% endfor %}
+
+  {% if rows is empty %}
+    <h3>Aucun résultat trouvé pour votre recherche</h3>
+  {% endif %}
 </section>
 

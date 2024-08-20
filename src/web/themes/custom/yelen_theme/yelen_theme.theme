@@ -1,1 +1,7 @@
 <?php
+
+function yelen_theme_preprocess_views_view_unformatted(&$variables) {
+  if ($variables['view']->id() == 'yelen_search') {
+    $variables['search_rating_form'] = \Drupal::formBuilder()->getForm('Drupal\orange_yelen_search\Form\SearchRatingForm');
+  }
+}

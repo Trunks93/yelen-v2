@@ -50,7 +50,9 @@
                 <a href="{{ row.content['#row'].search_api_url[0] }}"> {{ row.content['#row'].title[0] }}</a>
               </h5>
               {% if(row.content['#row'].body) %}
-              {{row.content['#row'].body[0] | raw | t}}
+              <div class="short-description">
+                {{row.content['#row'].body[0] | raw | t}}
+              </div>
               {% endif %}
             </div>
             <div class="action">
@@ -61,9 +63,5 @@
       </div>
     </div>
   {% endfor %}
-
-  {% if rows is empty %}
-    <h3>Aucun résultat trouvé pour votre recherche</h3>
-  {% endif %}
 </section>
 

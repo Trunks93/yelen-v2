@@ -50,9 +50,17 @@ END BOOSTED OVERRIDE
 
 .yelen-search-result__list .search-result-item .card-body{
   background-color: transparent;
+  color: inherit;
 }
 .yelen-search-result__list .search-result-item .card-title{
   font-size: 1.25rem;
+}
+
+.yelen-search-result__list .search-result-item .text .short-description{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .orange-yelen-top-search__block,

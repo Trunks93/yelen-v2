@@ -25,8 +25,8 @@ END BOOSTED OVERRIDE
 }
 
 .yelen-search-result__list .search-result-item .card{
-  border-radius: 1rem;
-  border-color: transparent;
+  /*border-radius: 1rem;
+  border-color: transparent;*/
 }
 
 .yelen-search-result__list .search-result-item .media{
@@ -46,6 +46,13 @@ END BOOSTED OVERRIDE
 .yelen-search-result__list .search-result-item .card-title > a{
   text-decoration: none;
   color: #000;
+}
+
+.yelen-search-result__list .search-result-item .card-body{
+  background-color: transparent;
+}
+.yelen-search-result__list .search-result-item .card-title{
+  font-size: 1.25rem;
 }
 
 .orange-yelen-top-search__block,
@@ -68,6 +75,12 @@ END BOOSTED OVERRIDE
       border-color: transparent;
       border-radius: .5rem;
       text-decoration: none;
+      color: #000;
+
+      .card-body {
+        background-color: transparent;
+        color: inherit;
+      }
 
       &:hover{
         background-color: #ff7900;

@@ -6,6 +6,7 @@ package: Custom
 base theme: claro
 screenshot: orange.png
 regions:
+  search_bar: 'Search bar'
   hero_header: 'Hero Header'
   hero_sidebar: 'Hero Sidebar'
   menu: 'Menu'

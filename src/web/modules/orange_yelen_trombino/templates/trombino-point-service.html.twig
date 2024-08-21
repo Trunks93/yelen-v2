@@ -44,7 +44,7 @@
           </li>
           <li class="mb-3">
             <span>Situation Géographique:</span>
-            <div class="text-primary">{{ content.situation_geographique[0]['#text'] | raw |t }}</div>
+            <div class="text-primary">{{ content.situation_geographique ? content.situation_geographique[0]['#text'] : '' | raw |t }}</div>
           </li>
           <li class="mb-3">
             <span>Concept:</span>

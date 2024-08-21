@@ -17,6 +17,8 @@ final class TrombinoPointServiceForm extends ContentEntityForm {
    */
   public function save(array $form, FormStateInterface $form_state): int {
     $result = parent::save($form, $form_state);
+    dump('Form state', $form_state);
+    dump('Entity', $this->entity);
 
     $message_args = ['%label' => $this->entity->toLink()->toString()];
     $logger_args = [
@@ -26,17 +28,17 @@ final class TrombinoPointServiceForm extends ContentEntityForm {
 
     switch ($result) {
       case SAVED_NEW:
-        $this->messenger()->addStatus($this->t('New point service %label has been created.', $message_args));
-        $this->logger('orange_yelen_trombino')->notice('New point service %label has been created.', $logger_args);
+        $this->messenger()->addStatus($this->t('Point service %label ajouté avec succès.', $message_args));
+        $this->logger('orange_yelen_trombino')->notice('Point service %label ajouté avec succès.', $logger_args);
         break;
 
       case SAVED_UPDATED:
-        $this->messenger()->addStatus($this->t('The point service %label has been updated.', $message_args));
-        $this->logger('orange_yelen_trombino')->notice('The point service %label has been updated.', $logger_args);
+        $this->messenger()->addStatus($this->t('Le point service %label a été mis à jour avec succès.', $message_args));
+        $this->logger('orange_yelen_trombino')->notice('Le point service %label a été mis à jour avec succès.', $logger_args);
         break;
 
       default:
-        throw new \LogicException('Could not save the entity.');
+        throw new \LogicException('Désolé, une erreur est survenue.');
     }
 
     $form_state->setRedirectUrl($this->entity->toUrl());

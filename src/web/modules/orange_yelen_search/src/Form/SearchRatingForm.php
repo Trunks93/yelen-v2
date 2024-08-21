@@ -57,7 +57,7 @@ final class SearchRatingForm extends FormBase {
     $form['actions']['close'] = [
       '#type' => 'button',
       '#value' => $this->t('Fermer'),
-      '#attributes' => ['class' => ['btn', 'btn-outline-secondary'], 'data-bs-dismiss' => 'modal'],
+      '#attributes' => ['class' => ['btn', 'btn-outline-secondary', 'me-2'], 'data-bs-dismiss' => 'modal'],
       '#theme' => 'boosted_button'
     ];
     $form['actions']['submit'] = [

@@ -135,5 +135,9 @@ END BOOSTED OVERRIDE
     }
   }
 
+  input[type="submit"]{
+    display: none;
+  }
+
 
 }

@@ -28,16 +28,16 @@ final class SearchRatingForm extends FormBase {
       '#type' => 'radios',
       '#title' => $this->t('Votre note'),
       '#options' => [
-        5 => '<label for="star5">&#9733;</label>',
-        4 => '<label for="star4">&#9733;</label>',
-        3 => '<label for="star3">&#9733;</label>',
-        2 => '<label for="star2">&#9733;</label>',
-        1 => '<label for="star1">&#9733;</label>',
+        5 => '5',
+        4 => '4',
+        3 => '3',
+        2 => '2',
+        1 => '1',
       ],
+      '#theme' => 'rating_star',
       '#prefix' => '<div class="rating">',
       '#suffix' => '</div>',
-      '#attributes' => ['class' => ['form-control']],
-      '#default_value' => '5',
+      '#default_value' => '1',
       '#required' => TRUE,
     ];
 
@@ -49,22 +49,23 @@ final class SearchRatingForm extends FormBase {
       '#required' => TRUE,
     ];
 
-    // Boutons de soumission et de fermeture
     $form['actions'] = [
       '#type' => 'actions',
+      '#prefix' => '<div class="mb-3">',
+      '#suffix' => '</div>',
     ];
     $form['actions']['close'] = [
       '#type' => 'button',
       '#value' => $this->t('Fermer'),
       '#attributes' => ['class' => ['btn', 'btn-outline-secondary'], 'data-bs-dismiss' => 'modal'],
+      '#theme' => 'boosted_button'
     ];
     $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Soumettre'),
       '#attributes' => ['class' => ['btn', 'btn-primary']],
+      '#theme' => 'boosted_button'
     ];
-
-    // $form['#theme'] = 'orange_yelen_search_search_rating_form';
 
     return $form;
   }
@@ -91,11 +92,30 @@ final class SearchRatingForm extends FormBase {
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $rating = $form_state->getValue('rating');
     $comment = $form_state->getValue('comment');
-
+    $current_user = \Drupal::currentUser();
+    $current_user_name = $current_user->getAccountName();
     $search_term = \Drupal::request()->query->get('search_api_fulltext');
+    $notificationService = \Drupal::service('yelen_notification.sendmail');
 
-    dump($rating, $comment, $search_term);
-    die('Ok');
+    $subject = 'Evaluation de Recherche';
+    $receiver = 'saintcyrwin@gmail.com, julius.konan@synelia.tech';
+    $cc = null;
+    $notificationTemplate = [
+        '#theme' => 'rating_notification',
+        '#content' => [
+            'username' => $current_user_name,
+            'search_term' => $search_term,
+            'comment' => $comment,
+            'rating' => $rating,
+        ],
+    ];
+
+    try {
+        $notificationService->sendNotification($subject, $receiver, $cc, $notificationTemplate);
+        $this->messenger()->addStatus($this->t('Votre évaluation a bien été prise en compte. Merci !'));
+    } catch (\Exception $e){
+        $this->messenger()->addError($this->t('Désolé,  nous ne sommes pas parvenus à enregistrer votre évaluation'));
+    }
 
     // Enregistrement de l'évaluation
     /* $node = \Drupal\node\Entity\Node::create([
@@ -105,7 +125,7 @@ final class SearchRatingForm extends FormBase {
       'field_comment' => $comment,
     ]);
     $node->save(); */
-    $this->messenger()->addStatus($this->t('The message has been sent.'));
+
     // $form_state->setRedirect('<front>');
   }
 

@@ -6,6 +6,29 @@
  */
 
 /**
+ * Implements hook_theme_HOOK()
+ */
+function orange_yelen_search_theme() {
+  return [
+    'rating_star' => [
+      'render element' => 'element',
+      'template' => 'form/rating-star'
+    ],
+    'boosted_button' => [
+      'render element' => 'element',
+      'template' => 'form/boosted-button'
+    ],
+    'rating_notification' => [
+      'render element' => 'elements',
+      'template' => 'notification/rating',
+      'variables' => [
+        'content' => NULL
+      ]
+    ],
+  ];
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page templates.
  */
 

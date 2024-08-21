@@ -108,29 +108,32 @@ END BOOSTED OVERRIDE
 }
 
 .orange-yelen-search-search-rating{
-  .form-radios {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: row-reverse; /* this is the magic */
-    justify-content: flex-end;
+  .rating{
+    .form-radios {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: row-reverse; /* this is the magic */
+      justify-content: flex-end;
+    }
+
+    .form-radios input {
+      display: none;
+    }
+
+    .form-radios label {
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .form-radios label:hover,
+    .form-radios label:hover ~ label { /* reason why the stars are in reverse order in the html */
+      color: orange;
+    }
+
+    .form-radios input:checked ~ label {
+      color: orange;
+    }
   }
 
-  .form-radios input {
-    display: none;
-  }
-
-  .form-radios label {
-    font-size: 24px;
-    cursor: pointer;
-  }
-
-  .form-radios label:hover,
-  .form-radios label:hover ~ label { /* reason why the stars are in reverse order in the html */
-    color: orange;
-  }
-
-  .form-radios input:checked ~ label {
-    color: orange;
-  }
 
 }

@@ -34,7 +34,7 @@ class SendEmailNotification
         $params['message'] = \Drupal::service('renderer')->renderRoot($templateHtml);
       }
       $params['subject'] = $subject;
-
+      dd($params);
       $result =  $mailManager->mail(self::MODULE_NAME, self::MODULE_NAME, $to, $langcode, $params, NULL, true);
       $this->logSendNotification($result,$subject);
     }catch (\Exception $e){

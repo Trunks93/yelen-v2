@@ -98,7 +98,7 @@ final class SearchRatingForm extends FormBase {
     $notificationService = \Drupal::service('yelen_notification.sendmail');
 
     $subject = 'Evaluation de Recherche';
-    $receiver = 'saintcyrwin@gmail.com,julius.konan@synelia.tech';
+    $receiver = 'saintcyrwin@gmail.com,julius.konan@synelia.tech,wisdom.houede@synelia.tech';
     $cc = null;
     $notificationTemplate = [
         '#theme' => 'rating_notification',

@@ -40,7 +40,7 @@ class SendEmailNotification
     }catch (\Exception $e){
       $this->logSendNotification([],$subject,$e);
       $result = false;
-
+      throw new \Exception($e->getMessage());
     }
 
     return $result['result'];

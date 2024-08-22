@@ -47,7 +47,8 @@
       <!-- Orange brand logo -->
       <div class="navbar-brand me-auto me-lg-4">
         <a class="stretched-link" href="#">
-          <img src="/{{ directory }}/assets/images/orange.png" width="50" height="50" alt="Boosted - Back to Home" loading="lazy">
+          <img src="/{{ directory }}/assets/images/orange.png" width="50" height="50" alt="Boosted - Back to Home"
+               loading="lazy">
         </a>
       </div>
       <!--links-->
@@ -69,51 +70,47 @@
     </div>
   </nav>
 </header>
-{% set layout_hero = page.hero_sidebar ? 'col-8' :'col-12'%}
+{% set layout_hero = page.hero_sidebar ? 'col-8' :'col-12' %}
 <div class="container body">
   <div class="content-header clearfix">
-    <div class="layout-container">
-      {{ page.search_bar }}
-      <div class="row">
-        <div {{ attributes.addClass(layout_hero) }} >
-          {{ page.hero_header }}
-        </div>
-        {% if page.hero_sidebar %}
-          <div class="col-4">
-            {{ page.hero_sidebar }}
-          </div>
-        {% endif %}
+    {{ page.search_bar }}
+    <div class="row">
+      <div {{ attributes.addClass(layout_hero) }} >
+        {{ page.hero_header }}
       </div>
-      {{ page.breadcrumb }}
-    </div>
-  </div>
-
-
-  <div class="layout-container">
-    {{ page.pre_content }}
-    <main class="page-content clearfix" role="main">
-      <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
-      {{ page.highlighted }}
-      {% if page.help %}
-        <div class="help">
-          {{ page.help }}
+      {% if page.hero_sidebar %}
+        <div class="col-4">
+          {{ page.hero_sidebar }}
         </div>
       {% endif %}
-
-      {% set mainLayout = page.sidebar ? 'col-9': 'col-12'%}
-
-      <div class="row">
-        <div class="{{ mainLayout }}">
-          {{ page.content }}
-        </div>
-        {% if page.sidebar %}
-          <div class="col-3">
-            {{ page.sidebar }}
-          </div>
-        {% endif %}
-      </div>
-    </main>
+    </div>
+    {{ page.breadcrumb }}
   </div>
+
+
+  {{ page.pre_content }}
+  <main class="page-content clearfix" role="main">
+    <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
+    {{ page.highlighted }}
+    {% if page.help %}
+      <div class="help">
+        {{ page.help }}
+      </div>
+    {% endif %}
+
+    {% set mainLayout = page.sidebar ? 'col-9': 'col-12' %}
+
+    <div class="row">
+      <div class="{{ mainLayout }}">
+        {{ page.content }}
+      </div>
+      {% if page.sidebar %}
+        <div class="col-3">
+          {{ page.sidebar }}
+        </div>
+      {% endif %}
+    </div>
+  </main>
 </div>
 <footer class="footer navbar" data-bs-theme="dark">
   <h2 class="visually-hidden">Sitemap & information</h2>

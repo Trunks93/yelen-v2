@@ -163,30 +163,39 @@ END BOOSTED OVERRIDE
       margin-top: 0;
     }
 
+    .form-actions.views-exposed-form__item{
+      flex: auto;
+    }
+
     input[type="submit"].form-submit.button{
       background-color: var(--bs-primary);
       color: #000;
-    }
-  }
-
-  .form-type--search-api-autocomplete{
-    flex: 0 0 80%;
-
-    .form-item__label{
-      display: none;
-    }
-
-    & > div, .form-element--api-search-api-autocomplete{
       width: 100%;
     }
 
-    .form-element--api-search-api-autocomplete{
-      margin-top: 0;
+    .form-type--search-api-autocomplete{
+      flex: 0 0 80%;
 
-      &.form-element:hover:focus {
-        box-shadow: none;
+      .form-item__label{
+        display: none;
+      }
+
+      & > div, .form-element--api-search-api-autocomplete{
+        width: 100%;
+      }
+
+      .form-element--api-search-api-autocomplete{
+        margin-top: 0;
+
+        &.form-element:hover:focus {
+          box-shadow: none;
+        }
       }
     }
+
+
   }
+
+
 
 }

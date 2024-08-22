@@ -177,13 +177,14 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
 
     $fields['situation_geographique'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Situation Géographique'))
+      ->setRequired(TRUE)
       ->setDisplayOptions('view', [
         'label' => 'above',
         'type' => 'text_default',
         'weight' => 1,
       ])
       ->setDisplayOptions('form', [
-        'type' => 'text_textarea',
+        'type' => 'string_textarea',
         'weight' => 1,
       ])
       ->setDisplayConfigurable('form', TRUE)
@@ -210,6 +211,7 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
 
     $fields['phone'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Contact téléphonique'))
+      ->setRequired(TRUE)
       ->setSettings([
         'max_length' => 50,
         'text_processing' => 0,

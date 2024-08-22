@@ -17,8 +17,7 @@ final class TrombinoPointServiceForm extends ContentEntityForm {
    */
   public function save(array $form, FormStateInterface $form_state): int {
     $result = parent::save($form, $form_state);
-    dump('Form state', $form_state);
-    dump('Entity', $this->entity);
+    $this->logger('orange_yelen_trombino')->info('Enregistrement d\'un point service.', [$this->entity, $form_state]);
 
     $message_args = ['%label' => $this->entity->toLink()->toString()];
     $logger_args = [

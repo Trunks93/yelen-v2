@@ -20,6 +20,8 @@
     {{ title_suffix }}
   {% endif %}
   {% if content %}
+    {% set situation_geographique = content.situation_geographique ? content.situation_geographique[0]['#text'] : 'N/A' %}
+    {% set concept = content.concept ? content.concept[0]['#title'] : 'N/A' %}
     <div class="row">
       <div class="{{ trombino_point_service_images|length > 0 ? 'col-md-6 col-12' : 'col-12' }}">
         <h3 class="orange-yelen-title">{{ content.type[0]['#title'] }} {{ content.name[0]['#context']['value'] }}</h3>
@@ -44,11 +46,11 @@
           </li>
           <li class="mb-3">
             <span>Situation Géographique:</span>
-            <div class="text-primary">{{ content.situation_geographique ? content.situation_geographique[0]['#text'] : '' | raw |t }}</div>
+            <div class="text-primary">{{ situation_geographique | raw |t }}</div>
           </li>
           <li class="mb-3">
             <span>Concept:</span>
-            <strong class="text-primary">{{ content.concept[0]['#title'] }}</strong>
+            <strong class="text-primary">{{ concept }}</strong>
           </li>
           <li class="services mb-3">
             <span>Services:</span>

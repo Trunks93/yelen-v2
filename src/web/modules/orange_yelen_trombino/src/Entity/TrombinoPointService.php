@@ -175,12 +175,16 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['situation_geographique'] = BaseFieldDefinition::create('text_long')
+    $fields['situation_geographique'] = BaseFieldDefinition::create('string_long')
       ->setLabel(t('Situation Géographique'))
       ->setRequired(TRUE)
+      ->setSettings([
+        'max_length' => 255,
+        'text_processing' => 0,
+      ])
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'text_default',
+        'type' => 'string_textarea',
         'weight' => 1,
       ])
       ->setDisplayOptions('form', [
@@ -194,7 +198,7 @@ final class TrombinoPointService extends ContentEntityBase implements TrombinoPo
       ->setLabel(t('Jours et heures d\'ouverture'))
       ->setRequired(TRUE)
       ->setSettings([
-        'max_length' => 1000,
+        'max_length' => 255,
         'text_processing' => 0,
       ])
       ->setDisplayOptions('view', [

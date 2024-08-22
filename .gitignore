@@ -25,3 +25,5 @@ src/web/modules/**/node_modules
 .DS_Store
 src/web/.DS_Store
 node_modules/
+
+src/.scannerwork

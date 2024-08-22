@@ -140,13 +140,14 @@ END BOOSTED OVERRIDE
   }
 }
 
-.content-search-form-block{
+.content-search-form-block.block.views-exposed-form{
   background-color: #000;
   margin-top: -1.5rem;
   border: none;
   box-shadow: none;
   margin-bottom: 0;
   padding-bottom: .5rem;
+  border-radius: 0;
 
   & > * {
     margin-top: 0;
@@ -156,6 +157,16 @@ END BOOSTED OVERRIDE
     display: flex;
     align-items: center;
     width: 100%;
+    padding-top: 1rem;
+
+    & > div{
+      margin-top: 0;
+    }
+
+    input[type="submit"].form-submit.button{
+      background-color: var(--bs-primary);
+      color: #000;
+    }
   }
 
   .form-type--search-api-autocomplete{

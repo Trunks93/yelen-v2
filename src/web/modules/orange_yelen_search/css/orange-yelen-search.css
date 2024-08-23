@@ -84,7 +84,7 @@ END BOOSTED OVERRIDE
       text-decoration: none;
       color: #000;
       display: block;
-      padding: 2rem 1.5rem;
+      padding: 1.5rem;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -138,6 +138,64 @@ END BOOSTED OVERRIDE
   input[type="submit"]{
     display: none;
   }
+}
+
+.content-search-form-block.block.views-exposed-form{
+  background-color: #000;
+  margin-top: -1.5rem;
+  border: none;
+  box-shadow: none;
+  margin-bottom: 0;
+  padding-bottom: .5rem;
+  border-radius: 0;
+
+  & > * {
+    margin-top: 0;
+  }
+
+  form#views-exposed-form-yelen-search-page-1{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: 1rem;
+
+    & > div{
+      margin-top: 0;
+    }
+
+    .form-actions.views-exposed-form__item{
+      flex: auto;
+    }
+
+    input[type="submit"].form-submit.button{
+      background-color: var(--bs-primary);
+      color: #000;
+      width: 100%;
+    }
+
+    .form-type--search-api-autocomplete{
+      flex: 0 0 80%;
+
+      .form-item__label{
+        display: none;
+      }
+
+      & > div, .form-element--api-search-api-autocomplete{
+        width: 100%;
+      }
+
+      .form-element--api-search-api-autocomplete{
+        margin-top: 0;
+
+        &.form-element:hover:focus {
+          box-shadow: none;
+        }
+      }
+    }
+
+
+  }
+
 
 
 }

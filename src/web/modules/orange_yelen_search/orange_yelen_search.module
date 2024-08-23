@@ -51,10 +51,12 @@ function orange_yelen_search_preprocess_views_view_unformatted(array &$variables
  * Page_attachments_alter()
  */
 function orange_yelen_search_page_attachments_alter(&$page) {
-  if(_orange_yelen_search__check_path()){
+  // $route = \Drupal::routeMatch()->getRouteName();
+  $page['#attached']['library'][] = 'orange_yelen_search/result_page';
+  /*if(_orange_yelen_search__check_path()){
     // Add login library.
     $page['#attached']['library'][] = 'orange_yelen_search/result_page';
-  }
+  }*/
 }
 
 function _orange_yelen_search__check_path()

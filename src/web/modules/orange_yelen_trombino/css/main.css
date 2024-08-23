@@ -117,25 +117,54 @@ body{
 }
 .trombino-service-point-search-form-block.block.views-exposed-form{
   --space-size: 20px;
-  background-color: #000;
   box-shadow: none;
   border: none;
   border-radius: 0;
-  margin: 0 0 0 calc(0 - var(--space-size));
+  margin: 0 0 0 calc(-1 * var(--space-size));
+  display: block;
+  position: relative;
   height: calc(100% - var(--space-size));
+  background-color: #000;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 150px;
 
   & > * {
     margin-top: 0;
+  }
+
+  .block-title-wrapper{
+    background-color: #333;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+
+    .block__title{
+      margin-bottom: 0;
+    }
   }
 
   form#views-exposed-form-trombino-point-service-page-1{
     display: flex;
     align-items: center;
     width: 100%;
-    padding-top: 1rem;
+    padding: var(--space-xs) var(--space-l) var(--space-l) var(--space-l);
+    position: absolute;
+    left: 0;
+    bottom: 5%;
+
+    .form-item--search-api-fulltext.views-exposed-form__item{
+      width: 100%;
+      margin: 0;
+
+      & > div, .form-element--api-search-api-autocomplete{
+        width: 100%;
+      }
+    }
 
     .form-actions.views-exposed-form__item{
       flex: auto;
+      display: none;
     }
 
     input[type="submit"].form-submit.button{

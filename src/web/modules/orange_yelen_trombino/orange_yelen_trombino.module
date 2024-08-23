@@ -169,7 +169,7 @@ function orange_yelen_trombino_views_pre_render(ViewExecutable $view): void {
  * @param array $variables
  * @return void
  */
-function orange_yelen_trombino_preprocess_trombino_point_service(array &$variables){
+function orange_yelen_trombino_preprocess_trombino_point_service(array &$variables): void{
   $field_images = $variables['elements']['#trombino_point_service']->get('images');
   $images = [];
   foreach ($field_images as $field_image) {

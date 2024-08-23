@@ -4,7 +4,7 @@ dependencies:
   module:
     - orange_yelen_trombino
 id: trombino_point_service_save_action
-label: 'Save trombino point service'
+label: 'Enregistrer Trombino Point Service'
 type: trombino_point_service
 plugin: entity:save_action:trombino_point_service
 configuration: {  }

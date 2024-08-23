@@ -5,3 +5,28 @@ function yelen_theme_preprocess_views_view_unformatted(&$variables) {
     $variables['search_rating_form'] = \Drupal::formBuilder()->getForm('Drupal\orange_yelen_search\Form\SearchRatingForm');
   }
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function yelen_theme_preprocess_block(&$variables) {
+  if ($variables['elements']['#id'] == 'yelen_theme_trombino_point_service_page_1_search_form') {
+    $config = \Drupal::config('orange_yelen_trombino.trombino_point_service_settings');
+    $image_fid = $config->get('background_image');
+    $image_url = '';
+
+    if (!empty($image_fid)) {
+      $file = \Drupal\file\Entity\File::load($image_fid[0]);
+      if ($file) {
+        $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+      }
+    }
+
+    if (empty($image_url)) {
+      $module_path = \Drupal::service('extension.path.resolver')->getPath('module', 'orange_yelen_trombino');
+      $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($module_path . '/images/search-form-bg.jpeg');
+    }
+
+    $variables['background_image_url'] = $image_url;
+  }
+}

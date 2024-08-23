@@ -1,7 +1,0 @@
-
-
-function yelen_faq_uninstall(){
-  $locked = Drupal::state()->get('node.type.locked');
-  unset($locked['faq']);
-  Drupal::state()->set('node.type.locked', $locked);
-}

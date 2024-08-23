@@ -20,7 +20,7 @@
     {{ title_suffix }}
   {% endif %}
   {% if content %}
-    {% set situation_geographique = content.situation_geographique ? content.situation_geographique[0]['#text'] : 'N/A' %}
+    {% set situation_geographique = content.situation_geographique ? content.situation_geographique[0]['#context']['value'] : 'N/A' %}
     {% set concept = content.concept ? content.concept[0]['#title'] : 'N/A' %}
     <div class="row">
       <div class="{{ trombino_point_service_images|length > 0 ? 'col-md-6 col-12' : 'col-12' }}">
@@ -31,10 +31,10 @@
             <strong class="text-primary">{{ content.type[0]['#title'] }}</strong>
           </li>
           {% if(content.partner['#items']) %}
-          <li class="mb-3">
-            <span>Partenaire:</span>
-            <strong class="text-primary">{{ content.partner[0]['#title'] }}</strong>
-          </li>
+            <li class="mb-3">
+              <span>Partenaire:</span>
+              <strong class="text-primary">{{ content.partner[0]['#title'] }}</strong>
+            </li>
           {% endif %}
           <li class="mb-3">
             <span>Région:</span>
@@ -78,32 +78,32 @@
         </ul>
       </div>
       {% if(trombino_point_service_images|length > 0) %}
-      <div class="col-md-6 col-12">
-        <div id="trombinoPointServiceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
-          <div class="carousel-action-bar">
-            <div class="carousel-indicators">
+        <div class="col-md-6 col-12">
+          <div id="trombinoPointServiceCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-pause="false">
+            <div class="carousel-action-bar">
+              <div class="carousel-indicators">
+                {% for image in trombino_point_service_images %}
+                  <button type="button" class="{{ loop.first ? 'active' : '' }}" data-bs-target="#trombinoPointServiceCarousel" data-bs-slide-to="{{ loop.index0 }}" aria-label="{{ image['alt'] }}"></button>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="carousel-inner">
               {% for image in trombino_point_service_images %}
-              <button type="button" class="{{ loop.first ? 'active' : '' }}" data-bs-target="#trombinoPointServiceCarousel" data-bs-slide-to="{{ loop.index0 }}" aria-label="{{ image['alt'] }}"></button>
+                <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+                  <img src="{{ image['url'] }}" class="img-fluid" alt="{{ image['alt'] }}">
+                </div>
               {% endfor %}
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#trombinoPointServiceCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#trombinoPointServiceCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Suivant</span>
+            </button>
           </div>
-          <div class="carousel-inner">
-            {% for image in trombino_point_service_images %}
-            <div class="carousel-item {{ loop.first ? 'active' : '' }}">
-              <img src="{{ image['url'] }}" class="img-fluid" alt="{{ image['alt'] }}">
-            </div>
-            {% endfor %}
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#trombinoPointServiceCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Précédent</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#trombinoPointServiceCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Suivant</span>
-          </button>
         </div>
-      </div>
       {% endif %}
     </div>
   {% endif %}

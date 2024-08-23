@@ -13,6 +13,9 @@ const TROMBINO_VIEW_ID = 'trombino_point_service';
 const TROMBINO_VIEW_CURRENT_DISPLAY = 'page_1';
 const TROMBINO_VIEW_PAGE_NAME = 'view.'.TROMBINO_VIEW_ID.'.'.TROMBINO_VIEW_CURRENT_DISPLAY;
 const TROMBINO_CANONICAL = 'entity.trombino_point_service.canonical';
+
+CONST OPENING_DAYS_PATTERN_1 = '/(\w+)\s+au\s+(\w+)\s+(\d+)H-(\d+)H/'; //Teste le patterne => Lundi au Vendredi 8H-17H
+CONST OPENING_DAYS_PATTERN_2 = '/(\w+)\s+de\s+(\d+)H-(\d+)H/'; // Teste le patterne => Samedi de 08H-14H
 /**
  * @return array[]
  * @Implement hook_theme()
@@ -199,30 +202,30 @@ function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) 
   $current_hour = (int) $current_time->format('G');
   $current_minute = (int) $current_time->format('i');
   $schedules = explode(' \n', $schedule_cleaned);
-
-  if(count($schedules) == 1){
-    $schedules[] = '';
-  }
   $parsed_schedules = [];
-  // Parse the schedules
-  for ($i = 0; $i < count($schedules); $i++) {
-    if (preg_match('/(\w+)\s+au\s+(\w+)\s+(\d+)H-(\d+)H/', $schedules[$i] . ' ' . $schedules[$i + 1], $matches)) {
-      list(, $start_day, $end_day, $start_hour, $end_hour) = $matches;
-      $start_hour = (int) $start_hour;
-      $end_hour = (int) $end_hour;
-      $parsed_schedules[] = compact('start_day', 'end_day', 'start_hour', 'end_hour');
-      $i++;
-    } elseif (preg_match('/(\w+)\s+de\s+(\d+)H-(\d+)H/', $schedules[$i] . ' ' . $schedules[$i + 1], $matches)) {
-      list(, $start_day, $start_hour, $end_hour) = $matches;
-      $start_hour = (int) $start_hour;
-      $end_hour = (int) $end_hour;
-      $parsed_schedules[] = compact('start_day', 'start_hour', 'end_hour');
-      $i++;
-    }
 
+  if(_opening_days_is_valid($schedule_cleaned)){
+    if(count($schedules) === 1){
+      $schedules[] = '';
+    }
+    for ($i = 0; $i < count($schedules); $i++) {
+      if (preg_match(OPENING_DAYS_PATTERN_1, $schedules[$i] . ' ' . $schedules[$i + 1], $matches)) {
+        list(, $start_day, $end_day, $start_hour, $end_hour) = $matches;
+        $start_hour = (int) $start_hour;
+        $end_hour = (int) $end_hour;
+        $parsed_schedules[] = compact('start_day', 'end_day', 'start_hour', 'end_hour');
+        $i++;
+      } elseif (preg_match(OPENING_DAYS_PATTERN_2, $schedules[$i] . ' ' . $schedules[$i + 1], $matches)) {
+        list(, $start_day, $start_hour, $end_hour) = $matches;
+        $start_hour = (int) $start_hour;
+        $end_hour = (int) $end_hour;
+        $parsed_schedules[] = compact('start_day', 'start_hour', 'end_hour');
+        $i++;
+      }
+
+    }
   }
 
-  // Check if the current time falls within any of the parsed schedules
   foreach ($parsed_schedules as $parsed_schedule) {
     $start_day_index = array_search($parsed_schedule['start_day'], $days_of_week);
     $end_day_index = array_search($parsed_schedule['end_day'] ?? $parsed_schedule['start_day'], $days_of_week);
@@ -247,4 +250,9 @@ function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) 
   }
 
   return (object) ['is_open' => false, 'minutes_remaining' => -1, 'next_hour' => 0];
+}
+
+function _opening_days_is_valid($opening_days): bool {
+
+  return preg_match(OPENING_DAYS_PATTERN_1, $opening_days) || preg_match(OPENING_DAYS_PATTERN_2, $opening_days);
 }

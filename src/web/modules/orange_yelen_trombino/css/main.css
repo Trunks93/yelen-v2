@@ -115,8 +115,7 @@ body{
     }
   }
 }
-
-{
+.trombino-service-point-search-form-block.block.views-exposed-form{
   --space-size: 20px;
   background-color: #000;
   box-shadow: none;
@@ -124,4 +123,45 @@ body{
   border-radius: 0;
   margin: 0 0 0 calc(0 - var(--space-size));
   height: calc(100% - var(--space-size));
+
+  & > * {
+    margin-top: 0;
+  }
+
+  form#views-exposed-form-trombino-point-service-page-1{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-top: 1rem;
+
+    .form-actions.views-exposed-form__item{
+      flex: auto;
+    }
+
+    input[type="submit"].form-submit.button{
+      background-color: var(--bs-primary);
+      color: #000;
+      width: 100%;
+    }
+
+    /*.form-type--search-api-autocomplete{
+      flex: 0 0 80%;
+
+      .form-item__label{
+        display: none;
+      }
+
+      & > div, .form-element--api-search-api-autocomplete{
+        width: 100%;
+      }
+
+      .form-element--api-search-api-autocomplete{
+        margin-top: 0;
+
+        &.form-element:hover:focus {
+          box-shadow: none;
+        }
+      }
+    }*/
+  }
 }

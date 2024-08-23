@@ -97,7 +97,7 @@ function orange_yelen_trombino_user_predelete(UserInterface $account): void {
 function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variables){
   $route_name = \Drupal::routeMatch()->getRouteName();
   if (_orange_yelen_trombino__check_path()) {
-    $search_term = \Drupal::request()->query->get('search_api_fulltext');
+    $search_term = \Drupal::request()->query->get('service_point');
     $variables['orange_trombino_service_term'] = $search_term;
   }
 }
@@ -106,9 +106,10 @@ function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variabl
  * Page_attachments_alter()
  */
 function orange_yelen_trombino_page_attachments_alter(&$page) {
-  if(_orange_yelen_trombino__check_path()){
+  $page['#attached']['library'][] = 'orange_yelen_trombino/orange-yelen-trombino';
+  /*if(_orange_yelen_trombino__check_path()){
     $page['#attached']['library'][] = 'orange_yelen_trombino/orange-yelen-trombino';
-  }
+  }*/
 }
 
 /**

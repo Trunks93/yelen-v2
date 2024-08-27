@@ -26,6 +26,7 @@
         "drupal/devel": "^5.0",
         "drupal/devel_entity_updates": "^4.1",
         "drupal/elasticsearch_connector": "^7.0@alpha",
+        "drupal/faq": "^1.2",
         "drupal/forum": "^1.0",
         "drupal/gin": "^3.0@rc",
         "drupal/gin_login": "^2.0",

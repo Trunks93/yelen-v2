@@ -52,7 +52,7 @@ function yelen_notification_node_insert(Node $node)
 {
   $content_type = $node->getType();
 
-  if ($content_type != "article" && $content_type != "page") {
+  if ($content_type != "article" && $content_type != "page" && $content_type != "forum" && $content_type != "sujet") {
     $event = new NotificationEvent();
     $event->setNodeId($node->id());
     $event->setNodeTitle($node->getTitle());

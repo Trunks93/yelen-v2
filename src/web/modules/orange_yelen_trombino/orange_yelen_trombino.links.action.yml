@@ -1,5 +1,5 @@
 trombino_point_service.add_form:
-  title: 'Add trombino - Point service'
+  title: 'Ajouter un Point service - Trombino'
   route_name: entity.trombino_point_service.add_form
   appears_on:
     - entity.trombino_point_service.collection

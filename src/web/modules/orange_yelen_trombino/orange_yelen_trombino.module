@@ -97,7 +97,7 @@ function orange_yelen_trombino_user_predelete(UserInterface $account): void {
 /**
  * Implements hook_preprocess_views_view_unformatted_HOOK() for page templates.
  */
-function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variables){
+function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variables): void{
   $route_name = \Drupal::routeMatch()->getRouteName();
   if (_orange_yelen_trombino__check_path()) {
     $search_term = \Drupal::request()->query->get('service_point');
@@ -108,7 +108,7 @@ function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variabl
 /**
  * Page_attachments_alter()
  */
-function orange_yelen_trombino_page_attachments_alter(&$page) {
+function orange_yelen_trombino_page_attachments_alter(&$page): void {
   $page['#attached']['library'][] = 'orange_yelen_trombino/orange-yelen-trombino';
   /*if(_orange_yelen_trombino__check_path()){
     $page['#attached']['library'][] = 'orange_yelen_trombino/orange-yelen-trombino';
@@ -194,7 +194,7 @@ function _orange_yelen_trombino__check_path(): bool
   return $route === TROMBINO_VIEW_PAGE_NAME || $route === TROMBINO_CANONICAL;
 }
 
-function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) {
+function _orange_yelen_trombino__is_point_open($schedule, $current_time = null): object {
   $schedule_cleaned = trim(preg_replace('/\s+/', ' ', $schedule));
   $days_of_week = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
   $current_time = $current_time ?: new DateTime();

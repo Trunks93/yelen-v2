@@ -8,14 +8,3 @@ entity.trombino_point_service.delete_form:
   group: trombino_point_service
   title: 'Delete'
   weight: 10
-
-entity.orange_yelen_trombino_demo.edit_form:
-  route_name: entity.orange_yelen_trombino_demo.edit_form
-  group: orange_yelen_trombino_demo
-  title: 'Edit'
-
-entity.orange_yelen_trombino_demo.delete_form:
-  route_name: entity.orange_yelen_trombino_demo.delete_form
-  group: orange_yelen_trombino_demo
-  title: 'Delete'
-  weight: 10

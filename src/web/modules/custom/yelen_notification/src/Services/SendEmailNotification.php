@@ -36,6 +36,7 @@ class SendEmailNotification
         //$params['message'] = $templateHtml;
       }
       $params['formatter'] = "phpmailer_smtp";
+      $params['subject'] = $subject;
 
       $message = $mailManager->mail(self::MODULE_NAME, self::MODULE_NAME, $to, $langcode, $params, NULL, false);
       $message['body'] = $params['message'];

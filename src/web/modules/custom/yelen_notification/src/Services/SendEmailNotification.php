@@ -37,6 +37,7 @@ class SendEmailNotification
       }
       $params['formatter'] = "phpmailer_smtp";
       $params['subject'] = $subject;
+      $params['from'] = \Drupal::config('system.site')->get('mail');
 
       $message = $mailManager->mail(self::MODULE_NAME, self::MODULE_NAME, $to, $langcode, $params, NULL, false);
       $message['body'] = $params['message'];

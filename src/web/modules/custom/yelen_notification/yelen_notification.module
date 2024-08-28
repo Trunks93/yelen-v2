@@ -72,7 +72,7 @@ function yelen_notification_mail($key, &$message, $params)
 {
   $options = array('langcode' => $message['langcode']);
   if ($key == SendEmailNotification::MODULE_NAME) {
-    $message['headers'] += $params['headers'];
+    $message['headers'] = $params['headers'];
     $message['from'] = \Drupal::config('system.site')->get('mail');
     //$message['from'] = 'admin@synelia.tech';
     $message['subject'] = $params['subject'];

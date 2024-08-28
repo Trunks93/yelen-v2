@@ -23,7 +23,7 @@ class SendEmailNotification
       $langcode = \Drupal::currentUser()->getPreferredLangcode();
       $params = [];
       $params['headers'] = [
-        'Content-Type' => 'text/html; charset=UTF-8',
+        'Content-Type' => 'text/html; charset=UTF-8;',
         'Content-Transfer-Encoding' => '8Bit',
       ];
       $params['id'] ='mail';
@@ -31,11 +31,16 @@ class SendEmailNotification
         $params['headers']['Cc'] = $cc;
       }
       if ($templateHtml != null) {
-        $params['message'] = \Drupal::service('renderer')->renderRoot($templateHtml);
+        $params['message'] = \Drupal::service('renderer')->render($templateHtml);
       }
       $params['subject'] = $subject;
 
-      $result =  $mailManager->mail(self::MODULE_NAME, self::MODULE_NAME, $to, $langcode, $params, NULL, true);
+      $message =  $mailManager->mail(self::MODULE_NAME, self::MODULE_NAME, $to, $langcode, $params, NULL, false);
+
+      $phpMailerSmtp = $mailManager->createInstance('phpmailer_smtp');
+
+      $result['result'] = $phpMailerSmtp->mail($message);
+
       $this->logSendNotification($result,$subject);
     }catch (\Exception $e){
       $this->logSendNotification([],$subject,$e);

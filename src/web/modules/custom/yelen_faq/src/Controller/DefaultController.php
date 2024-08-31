@@ -28,11 +28,27 @@ class DefaultController extends ControllerBase
 
   public function index(): array
   {
-    $faqs = $this->faqService->getAllFaq();
+    $parents = $this->faqService->getParentCategory();
+    //dd($parents);
     return [
       '#theme' => 'yelen_faq_page',
       '#content'=> [
-        'faqs'=> $faqs
+        'parents'=>$parents
+      ],
+    ];
+  }
+
+  public function getFaqGroupBy(string $category, string $sousCategory=null): array
+  {
+    $faqs = $this->faqService->getFaqsByCategory($category,$sousCategory);
+    $parents = $this->faqService->getParentCategory();
+    return [
+      '#theme' => 'yelen_faq_page',
+      '#content'=> [
+        'faqs'=> $faqs,
+        'parents'=>$parents,
+        'category'=>$category,
+        'sous_category'=>$sousCategory
       ],
     ];
   }

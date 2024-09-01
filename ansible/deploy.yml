@@ -35,6 +35,8 @@
     - name: composer install
       command: "sudo /usr/local/sbin/install-composer"
       register: output
+      ignore_errors: yes
+
 
 
     - name: Execute after deploy script (Output)

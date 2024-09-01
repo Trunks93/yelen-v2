@@ -158,7 +158,8 @@ build-php:
   script:
     - export
     - printenv | grep proxy
-    - apk add git
+    - apk add --no-cache --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/main --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/community --allow-untrusted git
+#    - apk add git
     - cd ${SRC_DIR}
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
     - composer self-update $COMPOSER_VERSION

@@ -1,0 +1,86 @@
+<div class="bloc-offre">
+  <h2 class="orange-yelen-title">Foire aux Questions</h2>
+</div>
+
+<h3 class="mb-2">Vos Questions sur les réseaux</h3>
+<p>Choisissez la catégorie qui vous concerne à la maison, en déplacement, les équipements ou le glossaire </p>
+
+<div style="overflow-x: scroll; margin-bottom: 70px;">
+  <div class="col-lg-12 col-md-12 col-12">
+    <div class="d-flex justify-content-between ">
+      {% if content.parents is defined and content.parents|length > 0 %}
+        {% for parent in content.parents %}
+          {% if parent.parents[0] == 0 %}
+            {# Affichage des termes existants #}
+            <div class="div-img-baisses col-lg-4 col-md-6 col-sm-6 orange-color-link me-3">
+              <a href="{{  path('faq-page-criteria', {'category': parent.name}) }}">
+                <img src="/{{ directory }}/assets/images/z60pehrl.png" alt="" srcset="" class="img-fluid mes-images">
+                <div class="d-flex flex-column">
+                  <strong>{{ parent.name | capitalize }}</strong>
+                  <p class="">{{ parent.description__value|raw }}</p>
+                </div>
+              </a>
+            </div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% if content.category or content.sous_category %}
+  {% if content.faqs|length > 0 %}
+    <div class="row" style="background-color: #ebe9e9">
+      <div class="col-3">
+        {% if content.parents is defined and content.parents|length > 0 %}
+          <div class="row col-lg-10">
+            {% for term in content.parents %}
+              {% if term.parents[0] == 0 %}
+                <p class="orange-color-link">
+                  <a class="text-decoration-none" href="{{  path('faq-page-criteria', {'category': term.name}) }}">
+                    <b>{{ term.name| capitalize }}</b>
+                  </a>
+                </p>
+              {% else %}
+                {% set parent_name = content.parents|filter(t=>t.tid == term.parents[0]) %}
+                {% set key = parent_name|keys %}
+                <p class="orange-color-link ms-2">
+                  <a class="text-decoration-none"
+                     href="{{  path('faq-page-criteria', {'category': parent_name[key[0]].name,'sousCategory':  term.name}) }}">
+                    {{ term.name| capitalize }}
+                  </a>
+                </p>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% else %}
+          <p>Aucune catégorie disponible.</p>
+        {% endif %}
+      </div>
+      <div class="col-9">
+        <div class="accordion" id="accordionExample">
+          {% for faq in content.faqs %}
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button p-1" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse{{ faq.nid }}"
+                        aria-expanded="true" aria-controls="collapse{{ faq.nid }}">
+                  {{ faq.title }}
+                </button>
+              </h2>
+              <div id="collapse{{ faq.nid }}" class="accordion-collapse collapse"
+                   data-bs-parent="#accordionExample">
+                <div class="accordion-body p-2">
+                  {{ faq.reponse|raw }}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  {% else %}
+    <h3>no faqs</h3>
+  {% endif %}
+{% endif %}

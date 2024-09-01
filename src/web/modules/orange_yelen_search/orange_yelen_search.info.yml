@@ -1,0 +1,7 @@
+name: 'Orange Yelen Search'
+type: module
+description: 'Module pour la gestion de la recherche'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:views

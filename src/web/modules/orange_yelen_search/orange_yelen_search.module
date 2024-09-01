@@ -1,0 +1,67 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Orange Yelen Search module.
+ */
+
+/**
+ * Implements hook_theme_HOOK()
+ */
+function orange_yelen_search_theme() {
+  return [
+    'rating_star' => [
+      'render element' => 'element',
+      'template' => 'form/rating-star'
+    ],
+    'boosted_button' => [
+      'render element' => 'element',
+      'template' => 'form/boosted-button'
+    ],
+    'rating_notification' => [
+      'render element' => 'elements',
+      'template' => 'notification/rating',
+      'variables' => [
+        'content' => NULL
+      ]
+    ],
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+
+//TODO: REMOVE THIS IF NOT NECESSARY
+function orange_yelen_search_preprocess_page(array &$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+}
+
+/**
+ * Implements hook_preprocess_views_view_unformatted_HOOK() for page templates.
+ */
+function orange_yelen_search_preprocess_views_view_unformatted(array &$variables){
+  if (_orange_yelen_search__check_path()) {
+    $search_term = \Drupal::request()->query->get('search_api_fulltext');
+    $variables['orange_yelen_search_term'] = $search_term;
+  }
+}
+
+/**
+ * Page_attachments_alter()
+ */
+function orange_yelen_search_page_attachments_alter(&$page) {
+  // $route = \Drupal::routeMatch()->getRouteName();
+  $page['#attached']['library'][] = 'orange_yelen_search/result_page';
+  /*if(_orange_yelen_search__check_path()){
+    // Add login library.
+    $page['#attached']['library'][] = 'orange_yelen_search/result_page';
+  }*/
+}
+
+function _orange_yelen_search__check_path()
+{
+  // Get path from Route.
+  $route = \Drupal::routeMatch()->getRouteName();
+  return $route === 'view.yelen_search.page_1';
+}

@@ -1,6 +1,0 @@
-webform-quiz:
-  js:
-    js/webform-quiz.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal

@@ -1,0 +1,81 @@
+<?php
+
+declare(strict_types=1);
+
+use Drupal\node\Entity\Node;
+use Drupal\yelen_notification\Event\NotificationEvent;
+
+/**
+ * @file
+ * Provides a liste diffusion entity type.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\yelen_notification\Services\SendEmailNotification;
+
+/**
+ * Implements hook_theme().
+ */
+function yelen_notification_theme(): array
+{
+  return [
+    'broadcast_list' => ['render element' => 'elements'],
+    'mailer' => [
+      'render element' => 'elements',
+      'variables' => [
+        'content' => NULL
+      ]
+    ]
+  ];
+}
+
+/**
+ * Prepares variables for liste diffusion templates.
+ *
+ * Default template: broadcast-list.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the liste diffusion information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_broadcast_list(array &$variables): void
+{
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+function yelen_notification_node_insert(Node $node)
+{
+  $content_type = $node->getType();
+
+  if ($content_type != "article" && $content_type != "page" && $content_type != "forum" && $content_type != "sujet") {
+    $event = new NotificationEvent();
+    $event->setNodeId($node->id());
+    $event->setNodeTitle($node->getTitle());
+    $event->setNodeContentType($node->getType());
+    $emailExtractorService = \Drupal::service('yelen_notification.extract.mail');
+    $emails = $emailExtractorService->extractMailFromBroadcastList($node, 'field_liste_de_diffusion');
+    $event->setEmailAddress($emails);
+    $event_dispatcher = \Drupal::service('event_dispatcher');
+    $event_dispatcher->dispatch($event, NotificationEvent::CREATION_CONTENT_PUBLIC);
+  }
+}
+
+/**
+ * Implements hook_mail()
+ */
+function yelen_notification_mail($key, &$message, $params)
+{
+  $options = array('langcode' => $message['langcode']);
+  if ($key == SendEmailNotification::MODULE_NAME) {
+    $message['headers'] = $params['headers'];
+    //$message['from'] = $params['from'];
+    //$message['from'] = 'admin@synelia.tech';
+    $message['subject'] = $params['subject'];
+    $message['body'][] = $params['message'];
+  }
+}

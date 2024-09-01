@@ -1,0 +1,4 @@
+administer broadcast_list types:
+  title: 'Administer liste diffusion types'
+  description: 'Maintain the types of broadcast list entity.'
+  restrict access: true

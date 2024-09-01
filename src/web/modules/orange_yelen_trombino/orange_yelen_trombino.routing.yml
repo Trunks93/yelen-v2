@@ -1,0 +1,7 @@
+entity.trombino_point_service.settings:
+  path: 'admin/structure/trombino-point-service'
+  defaults:
+    _form: '\Drupal\orange_yelen_trombino\Form\TrombinoPointServiceSettingsForm'
+    _title: 'Trombino Point Service'
+  requirements:
+    _permission: 'administer trombino_point_service'

@@ -1,0 +1,4 @@
+services:
+  yelen_faq.service:
+    class: 'Drupal\yelen_faq\Service\FaqService'
+    arguments: ['@entity_type.manager']

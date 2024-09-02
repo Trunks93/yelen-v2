@@ -35,7 +35,7 @@ class FaqService
           'name'=>$parent->label(),
           'description'=>$parent->getDescription(),
           'parent'=>$parent->parent->getValue(),
-          'image'=>
+          //'image'=>
         ]
       }*/
       return $parentTerms;

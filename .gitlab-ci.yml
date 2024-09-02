@@ -93,7 +93,6 @@ stages:
 build-assets:
   stage: build
   tags:
-    - nodejs
     - oci-simswp-prod
   image:
     name: node:${NODEJS_VERSION}
@@ -146,7 +145,6 @@ build-assets:
 build-php:
   stage: build
   tags:
-    - apache
     - oci-simswp-prod
   image:
     name: php:${PHP_VERSION}-alpine
@@ -199,7 +197,6 @@ build-php:
 .deploy:
   stage: deploy
   tags:
-    - ansible
     - oci-simswp-prod
   image: fs0ci3ty/centos7-ansible-new
   variables:

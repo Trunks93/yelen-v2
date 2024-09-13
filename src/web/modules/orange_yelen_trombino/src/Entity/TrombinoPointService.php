@@ -30,6 +30,7 @@ use Drupal\user\EntityOwnerTrait;
  *   handlers = {
  *     "list_builder" = "Drupal\orange_yelen_trombino\TrombinoPointServiceListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
+ *      "access" = "Drupal\orange_yelen_trombino\Access\TrombinoServiceAccessControlHandler",
  *     "form" = {
  *       "add" = "Drupal\orange_yelen_trombino\Form\TrombinoPointServiceForm",
  *       "edit" = "Drupal\orange_yelen_trombino\Form\TrombinoPointServiceForm",

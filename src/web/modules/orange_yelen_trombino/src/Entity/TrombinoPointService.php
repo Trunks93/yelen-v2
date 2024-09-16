@@ -46,6 +46,7 @@ use Drupal\user\EntityOwnerTrait;
  *   entity_keys = {
  *     "id" = "id",
  *     "name" = "name",
+ *     "label" = "name",
  *     "uuid" = "uuid",
  *     "uid" = "uid"
  *   },

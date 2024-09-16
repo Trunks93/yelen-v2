@@ -56,14 +56,16 @@
         {{ page.menu }}
       </div>
       {% if logged_in %}
+      {% set user_avatar = user_small_image|length == 0 ? '/' ~ directory ~ '/assets/images/user.png' : user_small_image %}
       <div id="global-header-1.2" class="navbar-collapse collapse d-sm-flex global-header-1">
         <div class="dropdown">
           <button class="btn btn-dropdown dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="/{{ directory }}/assets/images/user.png" width="25" height="25" role="img" alt="User" loading="lazy">
+            <img src="{{ user_avatar }}" width="36" height="36" class="img-fluid img-thumbnail rounded-circle" role="img" alt="User" loading="lazy">
             <span>&nbsp;</span> <span class="username">{{ user.displayname }}</span>
             <span class="visually-hidden">Mon compte</span>
           </button>
           <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ path('user.edit') }}">{{ 'Modifier mes informations'|t }}</a></li>
             <li><a class="dropdown-item" href="{{ path('user.logout') }}">{{ 'Se déconnecter'|t }}</a></li>
           </ul>
         </div>

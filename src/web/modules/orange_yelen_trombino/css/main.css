@@ -153,9 +153,10 @@ body{
     position: absolute;
     left: 0;
     bottom: 5%;
-
-    .form-item--search-api-fulltext.views-exposed-form__item{
-      flex: 0 0 80%;
+    gap: 5px;
+    .form-item--search-api-fulltext.views-exposed-form__item,
+    .form-item--service-point.views-exposed-form__item{
+      flex: 0 0 70%;
       margin: 0;
       align-self: stretch;
       & > div, .form-element--api-search-api-autocomplete{
@@ -179,6 +180,8 @@ body{
       background-color: var(--bs-primary);
       color: #000;
       width: 100%;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     /*.form-type--search-api-autocomplete{

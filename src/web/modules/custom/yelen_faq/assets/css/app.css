@@ -1,0 +1,16 @@
+.slicker{
+
+}
+.slick-prev::before, .slick-next::before{
+  z-index: 200;
+  width: 40px;
+  display: block;
+  height: 40px;
+  background-color: #ff7a00;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: black;
+  font-weight: bold;
+
+}

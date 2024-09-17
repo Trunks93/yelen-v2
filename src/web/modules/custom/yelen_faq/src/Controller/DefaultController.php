@@ -29,7 +29,6 @@ class DefaultController extends ControllerBase
   public function index(): array
   {
     $parents = $this->faqService->getParentCategory();
-    //dd($parents);
     return [
       '#theme' => 'yelen_faq_page',
       '#content'=> [
@@ -38,15 +37,29 @@ class DefaultController extends ControllerBase
     ];
   }
 
+
   public function getFaqGroupBy(string $category, string $sousCategory=null): array
   {
     $faqs = $this->faqService->getFaqsByCategory($category,$sousCategory);
     $parents = $this->faqService->getParentCategory();
+    $childOrdered=[];
+    foreach ($parents as $k => $parent){
+      if($parent['parent']==0){
+        $childOrdered[$k] = $parent;
+      }
+    }
+    foreach ($parents as $k => $parent){
+      if($parent['parent']!=0){
+        $childOrdered[$parent['parent']]['children'][]=$parent;
+      }
+    }
+
     return [
       '#theme' => 'yelen_faq_page',
       '#content'=> [
         'faqs'=> $faqs,
         'parents'=>$parents,
+        'childOrdered'=>$childOrdered,
         'category'=>$category,
         'sous_category'=>$sousCategory
       ],

@@ -1,3 +1,5 @@
+{{ attach_library('yelen_faq/faq_yelen_librairies') }}
+
 <div class="bloc-offre">
   <h2 class="orange-yelen-title">Foire aux Questions</h2>
 </div>
@@ -5,59 +7,57 @@
 <h3 class="mb-2">Vos Questions sur les réseaux</h3>
 <p>Choisissez la catégorie qui vous concerne à la maison, en déplacement, les équipements ou le glossaire </p>
 
-<div style="overflow-x: scroll; margin-bottom: 70px;">
-  <div class="col-lg-12 col-md-12 col-12">
-    <div class="d-flex justify-content-between ">
-      {% if content.parents is defined and content.parents|length > 0 %}
-        {% for parent in content.parents %}
-          {% if parent.parents[0] == 0 %}
-            {# Affichage des termes existants #}
-            <div class="div-img-baisses col-lg-4 col-md-6 col-sm-6 orange-color-link me-3">
-              <a href="{{  path('faq-page-criteria', {'category': parent.name}) }}">
-                <img src="/{{ directory }}/assets/images/z60pehrl.png" alt="" srcset="" class="img-fluid mes-images">
-                <div class="d-flex flex-column">
-                  <strong>{{ parent.name | capitalize }}</strong>
-                  <p class="">{{ parent.description__value|raw }}</p>
-                </div>
-              </a>
-            </div>
-          {% endif %}
-        {% endfor %}
-      {% endif %}
-    </div>
+<div class="container">
+  <div class="row slicker mb-3">
+    {% if content.parents is defined and content.parents|length > 0 %}
+      {% for parent in content.parents %}
+        {% if parent.parent == 0 %}
+          {# Affichage des termes existants #}
+          <div class="col-lg-4 col-md-6 col-sm-6 orange-color-link me-3">
+            <a href="{{ path('faq-page-criteria', {'category': parent.name}) }}">
+              <img src="{{ parent.image }}" alt="" srcset="" class="img-fluid mes-images"
+                   style="width: 350px; height: 200px">
+              <div class="d-flex flex-column">
+                <strong>{{ parent.name | capitalize }}</strong>
+                <p class="">{{ parent.description|raw }}</p>
+              </div>
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    {% endif %}
   </div>
 </div>
 
 {% if content.category or content.sous_category %}
-  {% if content.faqs|length > 0 %}
-    <div class="row" style="background-color: #ebe9e9">
-      <div class="col-3">
-        {% if content.parents is defined and content.parents|length > 0 %}
-          <div class="row col-lg-10">
-            {% for term in content.parents %}
-              {% if term.parents[0] == 0 %}
-                <p class="orange-color-link">
-                  <a class="text-decoration-none" href="{{  path('faq-page-criteria', {'category': term.name}) }}">
-                    <b>{{ term.name| capitalize }}</b>
-                  </a>
-                </p>
-              {% else %}
-                {% set parent_name = content.parents|filter(t=>t.tid == term.parents[0]) %}
-                {% set key = parent_name|keys %}
+  <div class="row pt-3" style="background-color: #ebe9e9;">
+    <div class="col-3">
+      {% if content.childOrdered is defined and content.childOrdered|length > 0 %}
+        <div class="row col-lg-10">
+          {% for parent in content.childOrdered %}
+            <p class="orange-color-link">
+              <a class="text-decoration-none" href="{{ path('faq-page-criteria', {'category':  parent.name}) }}">
+                <b>{{ parent.name| capitalize }}</b>
+              </a>
+            </p>
+            {% if parent.children is defined and content.childOrdered|length > 0 %}
+              {% for child in parent.children %}
                 <p class="orange-color-link ms-2">
                   <a class="text-decoration-none"
-                     href="{{  path('faq-page-criteria', {'category': parent_name[key[0]].name,'sousCategory':  term.name}) }}">
-                    {{ term.name| capitalize }}
+                     href="{{ path('faq-page-criteria', {'category':parent.name ,'sousCategory':  child.name}) }}">
+                    {{ child.name| capitalize }}
                   </a>
                 </p>
-              {% endif %}
-            {% endfor %}
-          </div>
-        {% else %}
-          <p>Aucune catégorie disponible.</p>
-        {% endif %}
-      </div>
-      <div class="col-9">
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>Aucune catégorie disponible.</p>
+      {% endif %}
+    </div>
+    <div class="col-9">
+      {% if content.faqs|length>0 %}
         <div class="accordion" id="accordionExample">
           {% for faq in content.faqs %}
             <div class="accordion-item">
@@ -77,10 +77,13 @@
             </div>
           {% endfor %}
         </div>
-      </div>
+      {% else %}
+        {% if content.category and content.sous_category %}
+          <h3>Aucune FAQ dans cette sous catégorie</h3>
+        {% else %}
+          <h3>Aucune FAQ dans cette catégorie</h3>
+        {% endif %}
+      {% endif %}
     </div>
-
-  {% else %}
-    <h3>no faqs</h3>
-  {% endif %}
+  </div>
 {% endif %}

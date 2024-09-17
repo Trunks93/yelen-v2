@@ -25,7 +25,19 @@ class FaqService
   public function getParentCategory(){
       $parentTerms = $this->em
         ->getStorage('taxonomy_term')
-        ->loadTree(self::FAQ_CATEGORIE_MACHINE_NAME, 0, 2);
+        ->loadByProperties(['vid' => self::FAQ_CATEGORIE_MACHINE_NAME]);
+        //->loadTree(self::FAQ_CATEGORIE_MACHINE_NAME, 0, 2)
+
+    $parentUniques=[];
+    foreach ($parentTerms as $parent){
+      $parentUniques[$parent->id()]=[
+        'tid'=>$parent->id(),
+        'name'=>$parent->label(),
+        'description'=>$parent->description->value,
+        'image'=> $this->getUri($parent->field_image->entity),
+        'parent'=>$parent->parent->getValue()[0]['target_id']
+      ];
+    }
      /* $parents = [];
       foreach ($parentTerms as $term){
         $parent = Term::load($term->tid);
@@ -38,7 +50,7 @@ class FaqService
           //'image'=>
         ]
       }*/
-      return $parentTerms;
+      return $parentUniques;
   }
 
   public function getFaqsByCategory($category, ?string $sousCategory = null): array {
@@ -99,6 +111,17 @@ class FaqService
     }
 
     return $preparedFaqs;
+  }
+
+
+  public static function getUri($field_image)
+  {
+    $request = \Drupal::Request();
+
+    //permet de generer l'url qui mêne à un fichier
+    return  $field_image !== null ? \Drupal::service('file_url_generator')->generateAbsoluteString($field_image->getFileUri()) : null;
+    //$path = explode('sites', $chemin);
+    //return (Settings::get('external_host') !== null && isset($path[1]) && $path[1]!== "" ) ? sprintf("%s/sites%s", substr(Settings::get('external_host'), 0, -1), $path[1]) : null;
   }
 
 }

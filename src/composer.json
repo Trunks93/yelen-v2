@@ -40,7 +40,6 @@
         "drupal/phpmailer_smtp": "^2.2",
         "drupal/poll": "^2.0@alpha",
         "drupal/queue_mail": "^1.6",
-        "drupal/quiz": "^6.0@alpha",
         "drupal/redis": "^1.7",
         "drupal/search_api": "^1.35",
         "drupal/search_api_autocomplete": "^1.9",
@@ -55,6 +54,7 @@
         "drupal/webform": "^6.2",
         "drupal/webform_quiz": "^2.1",
         "drupal/workbench_moderation": "^1.8",
+        "drupal/xls_views_data_export": "^3.0",
         "drush/drush": "^12.5",
         "predis/predis": "^2.2"
     },

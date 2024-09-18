@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "af0511cd90b870e81eeb283384bb2251",
+    "content-hash": "0bc2f9faf312b1e75394a16936298562",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2709,6 +2709,62 @@
             "homepage": "http://drupal.org/project/faq",
             "support": {
                 "source": "https://git.drupalcode.org/project/faq"
+            }
+        },
+        {
+            "name": "drupal/filelog",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/filelog.git",
+                "reference": "3.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/filelog-3.0.0.zip",
+                "reference": "3.0.0",
+                "shasum": "76b66ad0b9920e782a3d289500827e6a5cc8ea44"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10",
+                "ext-zlib": "*",
+                "php": "^8"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.0",
+                    "datestamp": "1721989445",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Burschka",
+                    "homepage": "https://github.com/cburschka",
+                    "email": "christoph@burschka.de",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "cburschka",
+                    "homepage": "https://www.drupal.org/user/28680"
+                }
+            ],
+            "description": "Logs system events to a file.",
+            "homepage": "https://www.drupal.org/project/filelog",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "https://cgit.drupalcode.org/filelog",
+                "issues": "https://www.drupal.org/project/issues/filelog"
             }
         },
         {

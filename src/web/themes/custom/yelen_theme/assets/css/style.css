@@ -243,14 +243,14 @@ dans le HTML
 /*begin wisdom styling*/
 
 a.hover-orange:hover{
-  color:orange
+  color:#f16e20
 }
 .orange-color-link a{
   color:black;
   text-decoration: none;
 }
 .orange-color-link a:hover{
-  color:orange;
+  color:#f16e20;
   text-decoration: none;
 }
 

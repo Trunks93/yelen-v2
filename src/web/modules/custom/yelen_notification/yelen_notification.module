@@ -52,7 +52,7 @@ function yelen_notification_node_insert(Node $node)
 {
   $content_type = $node->getType();
 
-  if ($content_type != "article" && $content_type != "page") {
+  if ($content_type != "article" && $content_type != "page" && $content_type != "forum" && $content_type != "sujet") {
     $event = new NotificationEvent();
     $event->setNodeId($node->id());
     $event->setNodeTitle($node->getTitle());
@@ -72,8 +72,8 @@ function yelen_notification_mail($key, &$message, $params)
 {
   $options = array('langcode' => $message['langcode']);
   if ($key == SendEmailNotification::MODULE_NAME) {
-    $message['headers'] += $params['headers'];
-    $message['from'] = \Drupal::config('system.site')->get('mail');
+    $message['headers'] = $params['headers'];
+    //$message['from'] = $params['from'];
     //$message['from'] = 'admin@synelia.tech';
     $message['subject'] = $params['subject'];
     $message['body'][] = $params['message'];

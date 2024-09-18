@@ -147,30 +147,41 @@ body{
   form#views-exposed-form-trombino-point-service-page-1{
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     width: 100%;
     padding: var(--space-xs) var(--space-l) var(--space-l) var(--space-l);
     position: absolute;
     left: 0;
     bottom: 5%;
-
-    .form-item--search-api-fulltext.views-exposed-form__item{
-      width: 100%;
+    gap: 5px;
+    .form-item--search-api-fulltext.views-exposed-form__item,
+    .form-item--service-point.views-exposed-form__item{
+      flex: 0 0 70%;
       margin: 0;
-
+      align-self: stretch;
       & > div, .form-element--api-search-api-autocomplete{
         width: 100%;
+        margin-top: 0;
+        height: 100%;
+        :focus,
+        :hover{
+          box-shadow: none;
+        }
       }
     }
 
     .form-actions.views-exposed-form__item{
       flex: auto;
-      display: none;
+      margin: 0;
+      align-self: stretch;
     }
 
     input[type="submit"].form-submit.button{
       background-color: var(--bs-primary);
       color: #000;
       width: 100%;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     /*.form-type--search-api-autocomplete{

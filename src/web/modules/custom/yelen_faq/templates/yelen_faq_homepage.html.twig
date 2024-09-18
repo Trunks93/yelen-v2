@@ -1,23 +1,89 @@
-<h2>Foire aux questions</h2>
+{{ attach_library('yelen_faq/faq_yelen_librairies') }}
 
-{% if content.faqs|length > 0 %}
-  <div class="accordion" id="accordionExample">
-    {% for faq in content.faqs %}
-      <div class="accordion-item">
-        <h2 class="accordion-header">
-          <button class="accordion-button p-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ faq.nid.value  }}"
-                  aria-expanded="true" aria-controls="collapse{{ faq.nid.value  }}">
-            {{ faq.title.value }}
-          </button>
-        </h2>
-        <div id="collapse{{ faq.nid.value  }}" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-          <div class="accordion-body">
-            {{ faq.body.value|raw }}
+<div class="bloc-offre">
+  <h2 class="orange-yelen-title">Foire aux Questions</h2>
+</div>
+
+<h3 class="mb-2">Vos Questions sur les réseaux</h3>
+<p>Choisissez la catégorie qui vous concerne à la maison, en déplacement, les équipements ou le glossaire </p>
+
+<div class="container">
+  <div class="row slicker mb-3">
+    {% if content.parents is defined and content.parents|length > 0 %}
+      {% for parent in content.parents %}
+        {% if parent.parent == 0 %}
+          {# Affichage des termes existants #}
+          <div class="col-lg-4 col-md-6 col-sm-6 orange-color-link me-3">
+            <a href="{{ path('faq-page-criteria', {'category': parent.name}) }}">
+              <img src="{{ parent.image }}" alt="" srcset="" class="img-fluid mes-images"
+                   style="width: 350px; height: 200px">
+              <div class="d-flex flex-column">
+                <strong>{{ parent.name | capitalize }}</strong>
+                <p class="">{{ parent.description|raw }}</p>
+              </div>
+            </a>
           </div>
-        </div>
-      </div>
-    {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
   </div>
-{% else %}
-  <h3>no faqs</h3>
+</div>
+
+{% if content.category or content.sous_category %}
+  <div class="row pt-3" style="background-color: #ebe9e9;">
+    <div class="col-3">
+      {% if content.childOrdered is defined and content.childOrdered|length > 0 %}
+        <div class="row col-lg-10">
+          {% for parent in content.childOrdered %}
+            <p class="orange-color-link">
+              <a class="text-decoration-none" href="{{ path('faq-page-criteria', {'category':  parent.name}) }}">
+                <b>{{ parent.name| capitalize }}</b>
+              </a>
+            </p>
+            {% if parent.children is defined and content.childOrdered|length > 0 %}
+              {% for child in parent.children %}
+                <p class="orange-color-link ms-2">
+                  <a class="text-decoration-none"
+                     href="{{ path('faq-page-criteria', {'category':parent.name ,'sousCategory':  child.name}) }}">
+                    {{ child.name| capitalize }}
+                  </a>
+                </p>
+              {% endfor %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <p>Aucune catégorie disponible.</p>
+      {% endif %}
+    </div>
+    <div class="col-9">
+      {% if content.faqs|length>0 %}
+        <div class="accordion" id="accordionExample">
+          {% for faq in content.faqs %}
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button p-1" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapse{{ faq.nid }}"
+                        aria-expanded="true" aria-controls="collapse{{ faq.nid }}">
+                  {{ faq.title }}
+                </button>
+              </h2>
+              <div id="collapse{{ faq.nid }}" class="accordion-collapse collapse"
+                   data-bs-parent="#accordionExample">
+                <div class="accordion-body p-2">
+                  {{ faq.reponse|raw }}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        {% if content.category and content.sous_category %}
+          <h3>Aucune FAQ dans cette sous catégorie</h3>
+        {% else %}
+          <h3>Aucune FAQ dans cette catégorie</h3>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
 {% endif %}

@@ -1,0 +1,7 @@
+name: 'Orange Yelen Forum'
+type: module
+description: 'Orange Yelen Forum'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - forum:forum

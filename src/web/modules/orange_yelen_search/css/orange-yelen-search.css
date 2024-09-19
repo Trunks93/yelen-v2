@@ -127,11 +127,11 @@ END BOOSTED OVERRIDE
 
     .form-radios label:hover,
     .form-radios label:hover ~ label { /* reason why the stars are in reverse order in the html */
-      color: orange;
+      color: #ff7900;
     }
 
     .form-radios input:checked ~ label {
-      color: orange;
+      color: #ff7900;
     }
   }
 

@@ -1,0 +1,7 @@
+name: 'yelen content evaluation'
+type: module
+description: "Permet d'evaluer l'utilité et attribuer une note à un contenu"
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:node

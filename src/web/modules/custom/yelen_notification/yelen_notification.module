@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Drupal\node\Entity\Node;
+use Drupal\yelen_notification\Constante\UnAuthContentType;
 use Drupal\yelen_notification\Event\NotificationEvent;
 
 use Drupal\Core\Site\Settings;
@@ -53,7 +54,7 @@ function template_preprocess_broadcast_list(array &$variables): void
 function yelen_notification_node_insert(Node $node)
 {
   $content_type = $node->getType();
-  $unauthorized_node = Settings::get('unauthorized_node');
+  $unauthorized_node = UnAuthContentType::UNAUTHORIZED_NODES;
   //$content_type != "article" && $content_type != "page" && $content_type != "forum" && $content_type != "sujet"
   if (!in_array($content_type,$unauthorized_node)) {
     $event = new NotificationEvent();

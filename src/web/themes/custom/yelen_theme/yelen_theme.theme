@@ -1,6 +1,6 @@
 <?php
 
-use \Drupal\Core\Site\Settings;
+use \Drupal\yelen_notification\Constante\UnAuthContentType;
 
 function yelen_theme_preprocess_views_view_unformatted(&$variables) {
   if ($variables['view']->id() == 'yelen_search') {
@@ -60,7 +60,7 @@ function yelen_theme_preprocess_page(&$variables) {
 
 function yelen_theme_preprocess_node(&$variables) {
   $content_type = $variables['node']->type->getValue()[0]['target_id'];
-  if (\Drupal::moduleHandler()->moduleExists('yelen_content_evaluation') && !in_array($content_type,Settings::get('unauthorized_node'))) {
+  if (\Drupal::moduleHandler()->moduleExists('yelen_content_evaluation') && !in_array($content_type,UnAuthContentType::UNAUTHORIZED_NODES)) {
     $variables['is_module_yelen_content_evaluation_active'] = true;
     if(isset($variables['node']) && $variables['node']  instanceof \Drupal\node\Entity\Node){
       $nid = $variables['node']->id();

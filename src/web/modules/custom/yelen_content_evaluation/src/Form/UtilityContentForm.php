@@ -97,7 +97,7 @@ final class UtilityContentForm extends FormBase
         break;
     }
     $evaluation =\Drupal::service('evaluation.service')->getEvaluationOfUser($userid,$nodeId);
-    //dd($nodeId,$userid,$title,$utility,$evaluation);
+   // dd($nodeId,$userid,$title,$utility,$evaluation);
     if(empty($evaluation)){
       $utilite = Evaluation::create(['bundle'=>'simple','label'=>'#'.$title,
         'field_contenu'=>$content,'utility'=>$utility]);
@@ -110,7 +110,7 @@ final class UtilityContentForm extends FormBase
 
 
     $this->messenger()->addStatus($this->t("Merci pour votre participation"));
-    $form_state->setRedirect('faq-page');
+    $form_state->setRedirect('entity.node.canonical',['node'=>$nodeId]);
   }
 
 }

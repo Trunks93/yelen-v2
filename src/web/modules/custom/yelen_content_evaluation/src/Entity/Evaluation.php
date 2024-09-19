@@ -139,6 +139,7 @@ final class Evaluation extends ContentEntityBase implements EvaluationInterface 
       ->setLabel(t('Utilité de contenue'))
       ->setSettings([
         'allowed_values' => [
+          'none'=> t('Aucun'),
           'oui' => t('Oui'),
           'non' => t('Non'),
         ],

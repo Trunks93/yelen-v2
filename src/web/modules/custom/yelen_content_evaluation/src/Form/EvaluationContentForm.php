@@ -115,6 +115,7 @@ final class EvaluationContentForm extends FormBase
       $eval = Evaluation::create(['bundle'=>'simple','label'=>'#'.$title,
         'evaluation'=>$note,
         'field_contenu'=>$content,
+        'utility'=>"none",
         'description'=>$description]);
       $eval->save();
     }else{
@@ -126,7 +127,8 @@ final class EvaluationContentForm extends FormBase
 
 
     $this->messenger()->addStatus($this->t("Merci pour votre participation"));
-    $form_state->setRedirect('faq-page');
+
+    $form_state->setRedirect('entity.node.canonical',['node'=>$nodeId]);
   }
 
 }

@@ -1,0 +1,96 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for yelen_content_evaluation module.
+ */
+
+use Drupal\Core\Render\Element;
+use Drupal\user\UserInterface;
+
+/**
+ * Implements hook_theme().
+ */
+function yelen_content_evaluation_theme(): array {
+  return [
+    'evaluation' => ['render element' => 'elements'],
+    'evaluation_star' => [
+      'render element' => 'element',
+      'template' => 'forms/evaluation-star'
+    ],
+    'utility_button' => [
+      'render element' => 'element',
+      'template' => 'forms/utility-button'
+    ],
+  ];
+}
+
+/**
+ * Implements hook_theme_HOOK()
+ */
+
+
+/**
+ * Prepares variables for evaluation templates.
+ *
+ * Default template: evaluation.html.twig.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - elements: An associative array containing the evaluation information and any
+ *     fields attached to the entity.
+ *   - attributes: HTML attributes for the containing element.
+ */
+function template_preprocess_evaluation(array &$variables): void {
+  $variables['view_mode'] = $variables['elements']['#view_mode'];
+  foreach (Element::children($variables['elements']) as $key) {
+    $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_user_cancel().
+ */
+function yelen_content_evaluation_user_cancel($edit, UserInterface $account, $method): void {
+  switch ($method) {
+    case 'user_cancel_block_unpublish':
+      // Unpublish evaluations.
+      $storage = \Drupal::entityTypeManager()->getStorage('evaluation');
+      $evaluation_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->condition('status', 1)
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($evaluation_ids) as $evaluation) {
+        $evaluation->set('status', FALSE)->save();
+      }
+      break;
+
+    case 'user_cancel_reassign':
+      // Anonymize evaluations.
+      $storage = \Drupal::entityTypeManager()->getStorage('evaluation');
+      $evaluation_ids = $storage->getQuery()
+        ->condition('uid', $account->id())
+        ->accessCheck(FALSE)
+        ->execute();
+      foreach ($storage->loadMultiple($evaluation_ids) as $evaluation) {
+        $evaluation->setOwnerId(0)->save();
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_predelete() for user entities.
+ */
+function yelen_content_evaluation_user_predelete(UserInterface $account): void {
+  // Delete evaluations that belong to this account.
+  $storage = \Drupal::entityTypeManager()->getStorage('evaluation');
+  $evaluation_ids = $storage->getQuery()
+    ->condition('uid', $account->id())
+    ->accessCheck(FALSE)
+    ->execute();
+  $storage->delete(
+    $storage->loadMultiple($evaluation_ids)
+  );
+}

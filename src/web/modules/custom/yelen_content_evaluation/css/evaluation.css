@@ -27,6 +27,6 @@
 
 }
 
-.soumettre, .fermer{
+input.soumettre, input.fermer,input.yes,input.no{
   display: none;
 }

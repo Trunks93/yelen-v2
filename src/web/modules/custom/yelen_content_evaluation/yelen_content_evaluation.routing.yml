@@ -1,0 +1,16 @@
+yelen_content_evaluation.utility_content:
+  path: '/yelen-content-evaluation/utility-content'
+  defaults:
+    _title: 'Utility Content'
+    _form: 'Drupal\yelen_content_evaluation\Form\UtilityContentForm'
+  requirements:
+    _permission: 'access content'
+
+
+yelen_content_evaluation.evaluation_content:
+  path: '/yelen-content-evaluation/evaluation-content'
+  defaults:
+    _title: 'Utility Content'
+    _form: 'Drupal\yelen_content_evaluation\Form\EvaluationContentForm'
+  requirements:
+    _permission: 'access content'

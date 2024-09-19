@@ -102,4 +102,16 @@
     {{ content }}
   </div>
 
+  {% if is_module_yelen_content_evaluation_active is defined %}
+    {% if utility == null %}
+      <div class="utility_form mt-3">
+        {{ drupal_form('Drupal\\yelen_content_evaluation\\Form\\UtilityContentForm',node.id) }}
+      </div>
+    {% endif %}
+    {% if evaluation == null %}
+      <div class="mt-3">
+        {{ drupal_form('Drupal\\yelen_content_evaluation\\Form\\EvaluationContentForm',node.id) }}
+      </div>
+    {% endif %}
+  {% endif %}
 </article>

@@ -1,0 +1,5 @@
+content_management:
+  version: 1.x
+  css:
+    theme:
+      css/yelen_content_management.css: {}

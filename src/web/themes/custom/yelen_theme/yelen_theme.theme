@@ -1,1 +1,83 @@
 <?php
+
+use \Drupal\yelen_notification\Constante\UnAuthContentType;
+
+function yelen_theme_preprocess_views_view_unformatted(&$variables) {
+  if ($variables['view']->id() == 'yelen_search') {
+    $variables['search_rating_form'] = \Drupal::formBuilder()->getForm('Drupal\orange_yelen_search\Form\SearchRatingForm');
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block templates.
+ */
+function yelen_theme_preprocess_block(&$variables) {
+  if ($variables['elements']['#id'] == 'yelen_theme_trombino_point_service_page_1_search_form') {
+    $config = \Drupal::config('orange_yelen_trombino.trombino_point_service_settings');
+    $image_fid = $config->get('background_image');
+    $image_url = '';
+
+    if (!empty($image_fid)) {
+      $file = \Drupal\file\Entity\File::load($image_fid[0]);
+      if ($file) {
+        $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+      }
+    }
+
+    if (empty($image_url)) {
+      $module_path = \Drupal::service('extension.path.resolver')->getPath('module', 'orange_yelen_trombino');
+      $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($module_path . '/images/search-form-bg.jpeg');
+    }
+
+    $variables['background_image_url'] = $image_url;
+  }
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+function yelen_theme_preprocess_page(&$variables) {
+  $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  if ($user && !$user->user_picture->isEmpty()) {
+     $uri = $user->user_picture->entity->getFileUri();
+     $user_display_image = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
+     $style = \Drupal\image\Entity\ImageStyle::load('thumbnail');
+     $image_uri = $style->buildUri($uri);
+     $user_small_image = \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri);
+  } else {
+    $user_display_image = '';
+    $user_small_image = '';
+  }
+  $variables['user_display_image'] = $user_display_image;
+  $variables['user_small_image'] = $user_small_image;
+
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+
+function yelen_theme_preprocess_node(&$variables) {
+  $content_type = $variables['node']->type->getValue()[0]['target_id'];
+  if (\Drupal::moduleHandler()->moduleExists('yelen_content_evaluation') && !in_array($content_type,UnAuthContentType::UNAUTHORIZED_NODES)) {
+    $variables['is_module_yelen_content_evaluation_active'] = true;
+    if(isset($variables['node']) && $variables['node']  instanceof \Drupal\node\Entity\Node){
+      $nid = $variables['node']->id();
+      $userId = \Drupal::currentUser()->id();
+      $evaluations = \Drupal::service('evaluation.service')->getEvaluationOfUser($userId,$nid);
+      //dump($evaluations);
+      if(empty($evaluations)){
+        $variables['evaluation']=null;
+        $variables['utility']=null;
+      }else{
+        $evaluation = current($evaluations);
+        $variables['utility']= $evaluation->utility->value;
+        $variables['evaluation']= $evaluation->evaluation->value;
+      }
+    }
+  }
+
+}
+
+

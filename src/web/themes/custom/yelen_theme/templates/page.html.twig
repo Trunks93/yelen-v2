@@ -47,18 +47,30 @@
       <!-- Orange brand logo -->
       <div class="navbar-brand me-auto me-lg-4">
         <a class="stretched-link" href="#">
-          <img src="/{{ directory }}/assets/images/orange.png" width="50" height="50" alt="Boosted - Back to Home" loading="lazy">
+          <img src="/{{ directory }}/assets/images/orange.png" width="50" height="50" alt="Boosted - Back to Home"
+               loading="lazy">
         </a>
       </div>
       <!--links-->
       <div id="global-header-1.1" class="navbar-collapse collapse me-lg-auto global-header-1">
         {{ page.menu }}
-        <!--ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link active" href="#" aria-current="page">Discover</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
-        </ul-->
       </div>
-
+      {% if logged_in %}
+      {% set user_avatar = user_small_image|length == 0 ? '/' ~ directory ~ '/assets/images/user.png' : user_small_image %}
+      <div id="global-header-1.2" class="navbar-collapse collapse d-sm-flex global-header-1">
+        <div class="dropdown">
+          <button class="btn btn-dropdown dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{{ user_avatar }}" width="36" height="36" class="img-fluid img-thumbnail rounded-circle" role="img" alt="User" loading="lazy">
+            <span>&nbsp;</span> <span class="username">{{ user.displayname }}</span>
+            <span class="visually-hidden">Mon compte</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{ path('user.edit') }}">{{ 'Modifier mes informations'|t }}</a></li>
+            <li><a class="dropdown-item" href="{{ path('user.logout') }}">{{ 'Se déconnecter'|t }}</a></li>
+          </ul>
+        </div>
+      </div>
+      {% endif %}
 
       <!-- Burger menu (visible on small screens) -->
       <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target=".global-header-1"
@@ -69,38 +81,47 @@
     </div>
   </nav>
 </header>
-
+{% set layout_hero = page.hero_sidebar ? 'col-8' :'col-12' %}
 <div class="container body">
   <div class="content-header clearfix">
-    <div class="layout-container">
-      {{ page.breadcrumb }}
-      {{ page.header }}
-    </div>
-  </div>
-  {% set layout= page.sidebar ? 'col-8' :'col-12'%}
-
-  <div class="layout-container">
-    {{ page.pre_content }}
-    <main class="page-content clearfix" role="main">
-      <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
-      {{ page.highlighted }}
-      {% if page.help %}
-        <div class="help">
-          {{ page.help }}
+    {{ page.search_bar }}
+    <div class="row">
+      <div {{ attributes.addClass(layout_hero) }} >
+        {{ page.hero_header }}
+      </div>
+      {% if page.hero_sidebar %}
+        <div class="col-4">
+          {{ page.hero_sidebar }}
         </div>
       {% endif %}
-      <div class="row">
-        <div {{ attributes.addClass(layout) }} >
-          {{ page.content }}
-        </div>
-        {% if page.sidebar %}
-          <div class="col-4">
-            {{ page.sidebar }}
-          </div>
-        {% endif %}
-      </div>
-    </main>
+    </div>
+    {{ page.breadcrumb }}
   </div>
+
+
+  {{ page.pre_content }}
+  <main class="page-content clearfix" role="main">
+    <div class="visually-hidden"><a id="main-content" tabindex="-1"></a></div>
+    {{ page.highlighted }}
+    {% if page.help %}
+      <div class="help">
+        {{ page.help }}
+      </div>
+    {% endif %}
+
+    {% set mainLayout = page.sidebar ? 'col-9': 'col-12' %}
+
+    <div class="row">
+      <div class="{{ mainLayout }}">
+        {{ page.content }}
+      </div>
+      {% if page.sidebar %}
+        <div class="col-3">
+          {{ page.sidebar }}
+        </div>
+      {% endif %}
+    </div>
+  </main>
 </div>
 <footer class="footer navbar" data-bs-theme="dark">
   <h2 class="visually-hidden">Sitemap & information</h2>

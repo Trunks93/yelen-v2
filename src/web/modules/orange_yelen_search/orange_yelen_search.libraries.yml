@@ -2,3 +2,6 @@ result_page:
   css:
     component:
       css/orange-yelen-search.css: { minified: false }
+
+  js:
+    js/yelen-search.js: { minified: true }

@@ -3,7 +3,10 @@
 declare(strict_types=1);
 
 use Drupal\node\Entity\Node;
+use Drupal\yelen_notification\Constante\UnAuthContentType;
 use Drupal\yelen_notification\Event\NotificationEvent;
+
+use Drupal\Core\Site\Settings;
 
 /**
  * @file
@@ -51,8 +54,9 @@ function template_preprocess_broadcast_list(array &$variables): void
 function yelen_notification_node_insert(Node $node)
 {
   $content_type = $node->getType();
-
-  if ($content_type == "faq") {
+  $unauthorized_node = UnAuthContentType::UNAUTHORIZED_NODES;
+  //$content_type != "article" && $content_type != "page" && $content_type != "forum" && $content_type != "sujet"
+  if (!in_array($content_type,$unauthorized_node)) {
     $event = new NotificationEvent();
     $event->setNodeId($node->id());
     $event->setNodeTitle($node->getTitle());
@@ -63,16 +67,6 @@ function yelen_notification_node_insert(Node $node)
     $event_dispatcher = \Drupal::service('event_dispatcher');
     $event_dispatcher->dispatch($event, NotificationEvent::CREATION_CONTENT_PUBLIC);
   }
-
-  /*switch ($content_type) {
-    case 'article':
-
-      break;
-    case 'faq':
-      break;
-    default:
-      break;
-  }*/
 }
 
 /**
@@ -82,8 +76,8 @@ function yelen_notification_mail($key, &$message, $params)
 {
   $options = array('langcode' => $message['langcode']);
   if ($key == SendEmailNotification::MODULE_NAME) {
-    $message['headers'] += $params['headers'];
-    $message['from'] = \Drupal::config('system.site')->get('mail');
+    $message['headers'] = $params['headers'];
+    //$message['from'] = $params['from'];
     //$message['from'] = 'admin@synelia.tech';
     $message['subject'] = $params['subject'];
     $message['body'][] = $params['message'];

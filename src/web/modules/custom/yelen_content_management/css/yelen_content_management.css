@@ -1,0 +1,123 @@
+@media (max-width: 768px) {
+    .o-footer-body .row {
+        flex-direction: column;
+    }
+    .o-footer-body .col-md-2 {
+        margin-bottom: 20px;
+    }
+    }
+    @media only screen and (max-width: 960px) {
+
+    }
+
+
+/* logo yelen header navbar */
+.logo-yelen {
+    width : 50px;
+    margin-right: 50px;
+}
+
+/* logo yelen header navbar */
+
+/* trait orange sous grand titre */
+
+.bloc-offre {
+    margin-top: 35px !important;
+    margin-bottom: 15px;
+}
+
+/* trait orange sous grand titre */
+
+.couleur-icon {
+    color: #f16e20;
+}
+
+.phone-img {
+    margin-top: 20px;
+    margin-right: 50px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    /* width: 100%; */
+    transition: transform 0.2s;
+}
+.phone-img-left {
+    margin-top: 20px;
+    margin-right: 50px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    transition: transform 0.2s;
+}
+.space-li {
+    margin-right: 50px !important;
+}
+.text-on-image {
+    position: absolute;
+    top: 20%;
+    left: 22%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+.btn-on-image {
+    position: absolute;
+    top: 34%;
+    left: 18%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+
+    padding: 18px;
+    border-radius: 30px;
+}
+.border-rounded {
+    border-radius: 9px;
+    border: 1px solid white;
+    padding-right: 30px;
+    padding-left: 10px;
+    background-color: #d9effd;
+    margin-top: 20px;
+    margin-bottom: 35px;
+    padding-top: 15px;
+}
+.bloc-nouveaute {
+
+    background-color: #ffffff;
+
+    margin-left: 15px;
+    margin-right: 21px;
+    border: #ebebeb 1px solid;
+
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.my-icon {
+    margin-bottom: 20px;
+}
+.my-footer {
+    background-color: black;
+    color: white;
+}
+.space-footer {
+    margin-top: 4%;
+    padding-top: 5%;
+}
+.barre {
+    margin-left: 60px;
+}
+.txt-nouveaute-offre {
+    background-color: yellow;
+
+}
+.txt-nouveaute {
+    background-color: yellow;
+}
+

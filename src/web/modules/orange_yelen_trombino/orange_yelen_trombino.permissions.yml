@@ -1,3 +1,12 @@
 administer trombino_point_service:
   title: 'Administer trombino point service'
   restrict access: true
+
+view trombino_point_service:
+  title: 'Voir Point Service Trombino'
+edit trombino_point_service:
+  title: 'Modifier Point Service Trombino'
+delete trombino_point_service:
+  title: 'Supprimer Point Service Trombino'
+add product trombino_point_service:
+  title: 'Ajouter Point Service Trombino'

@@ -110,8 +110,6 @@ final class UtilityContentForm extends FormBase
       $utilite->set('utility',$utility);
       $utilite->save();
     }
-
-
     $this->messenger()->addStatus($this->t("Merci pour votre participation"));
     $form_state->setRedirect('entity.node.canonical',['node'=>$nodeId]);
   }

@@ -40,3 +40,8 @@
         path: "{{ tmp_dir }}/{{ src_archive_file }}"
         state: absent
 
+    - name: composer install
+      command: "sudo /usr/local/sbin/install-composer"
+      register: output
+      ignore_errors: yes
+

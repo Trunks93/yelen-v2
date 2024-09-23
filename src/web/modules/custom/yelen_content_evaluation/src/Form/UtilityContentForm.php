@@ -95,6 +95,9 @@ final class UtilityContentForm extends FormBase
       case 'edit-inutile':
         $utility = "non";
         break;
+        default:
+          $utility = "non";
+        break;
     }
     $evaluation =\Drupal::service('evaluation.service')->getEvaluationOfUser($userid,$nodeId);
    // dd($nodeId,$userid,$title,$utility,$evaluation);

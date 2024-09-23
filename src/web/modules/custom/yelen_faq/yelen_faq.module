@@ -1,9 +1,7 @@
 <?php
 
-/**
- * @implements hook_theme()
- */
-function yelen_faq_theme($existing, $type, $theme, $path):array
+
+function yelen_faq_theme($existing, $type, $theme, $path) :array
 {
 
   return [

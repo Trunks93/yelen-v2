@@ -46,6 +46,7 @@
         "drupal/quiz": "^7.0",
         "drupal/redirect_after_login": "^3.0",
         "drupal/redis": "^1.7",
+        "drupal/scheduler": "^2.1",
         "drupal/search_api": "^1.35",
         "drupal/search_api_autocomplete": "^1.9",
         "drupal/search_api_stats": "^1.0",
@@ -146,5 +147,8 @@
         "drush:cache-clear": [
             "./vendor/bin/drush cr"
         ]
+    },
+    "require-dev": {
+        "drupal/core-dev": "^10.3"
     }
 }

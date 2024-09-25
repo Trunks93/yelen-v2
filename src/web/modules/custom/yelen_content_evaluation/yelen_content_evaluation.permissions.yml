@@ -1,0 +1,4 @@
+administer evaluation types:
+  title: 'Administer evaluation types'
+  description: 'Maintain the types of evaluation entity.'
+  restrict access: true

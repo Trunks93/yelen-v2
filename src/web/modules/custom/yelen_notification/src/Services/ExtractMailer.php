@@ -12,7 +12,7 @@ class ExtractMailer
 {
 
   /**
-   * Permet d'extraire les adresses Emails d'une liste de diffusion
+   * Permet d'extraire les adresses Emails d'une liste de diffusion (depuis un contenu)
    * @param $node
    * @return array
    */
@@ -34,18 +34,30 @@ class ExtractMailer
 
   /**
    * Extrait l'adresse email d'un utilisateur drupal via l'ID
-   * @param $emailIds
+   * @param $userIds
    * @return string
    */
-  public function getEmailAddress($emailIds):string
+  public function getEmailAddress($userIds):string
   {
     $emails = [];
-    foreach ($emailIds as $emailId) {
-      $user = User::load($emailId['target_id']);
+    foreach ($userIds as $userId) {
+      $user = User::load($userId['target_id']);
       $emails[] = $user->getEmail();
     }
     return implode(', ',$emails);
   }
 
+  /**
+   * Extrait une liste d'adresse emails en fonction du nom de la liste de diffusion
+   */
+  public function getEmailsFromBroadcastList($broadcastListName){
+    $broadcastList = \Drupal::entityTypeManager()
+      ->getStorage('broadcast_list')
+      ->loadByProperties(['label'=>$broadcastListName]);
+    $users = current($broadcastList)->field_membres->getValue();
+    $emails = $this->getEmailAddress($users);
+
+    return $emails;
+  }
 
 }

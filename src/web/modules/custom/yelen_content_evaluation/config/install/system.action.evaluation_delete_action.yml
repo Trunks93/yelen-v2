@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - yelen_content_evaluation
+id: evaluation_delete_action
+label: 'Delete evaluations'
+type: evaluation
+plugin: entity:delete_action:evaluation
+configuration: {  }

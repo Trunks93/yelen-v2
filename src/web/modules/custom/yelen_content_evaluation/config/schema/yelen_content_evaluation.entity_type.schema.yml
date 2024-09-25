@@ -1,0 +1,12 @@
+yelen_content_evaluation.evaluation_type.*:
+  type: config_entity
+  label: 'Evaluation type config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string

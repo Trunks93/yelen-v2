@@ -1,5 +1,7 @@
 <?php
 
+use \Drupal\yelen_notification\Constante\UnAuthContentType;
+
 function yelen_theme_preprocess_views_view_unformatted(&$variables) {
   if ($variables['view']->id() == 'yelen_search') {
     $variables['search_rating_form'] = \Drupal::formBuilder()->getForm('Drupal\orange_yelen_search\Form\SearchRatingForm');
@@ -47,7 +49,35 @@ function yelen_theme_preprocess_page(&$variables) {
     $user_display_image = '';
     $user_small_image = '';
   }
-
   $variables['user_display_image'] = $user_display_image;
   $variables['user_small_image'] = $user_small_image;
+
 }
+
+/**
+ * Implements hook_preprocess_HOOK() for page templates.
+ */
+
+function yelen_theme_preprocess_node(&$variables) {
+  $content_type = $variables['node']->type->getValue()[0]['target_id'];
+  if (\Drupal::moduleHandler()->moduleExists('yelen_content_evaluation') && !in_array($content_type,UnAuthContentType::UNAUTHORIZED_NODES)) {
+    $variables['is_module_yelen_content_evaluation_active'] = true;
+    if(isset($variables['node']) && $variables['node']  instanceof \Drupal\node\Entity\Node){
+      $nid = $variables['node']->id();
+      $userId = \Drupal::currentUser()->id();
+      $evaluations = \Drupal::service('evaluation.service')->getEvaluationOfUser($userId,$nid);
+      //dump($evaluations);
+      if(empty($evaluations)){
+        $variables['evaluation']=null;
+        $variables['utility']=null;
+      }else{
+        $evaluation = current($evaluations);
+        $variables['utility']= $evaluation->utility->value;
+        $variables['evaluation']= $evaluation->evaluation->value;
+      }
+    }
+  }
+
+}
+
+

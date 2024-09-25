@@ -23,9 +23,11 @@
         "drupal/coffee": "^1.4",
         "drupal/core-composer-scaffold": "^10.2",
         "drupal/core-recommended": "^10.2",
+        "drupal/dashboards": "^2.1",
         "drupal/devel": "^5.0",
         "drupal/devel_entity_updates": "^4.1",
         "drupal/elasticsearch_connector": "^7.0@alpha",
+        "drupal/elogger": "^1.1",
         "drupal/faq": "^1.2",
         "drupal/filelog": "^3.0",
         "drupal/forum": "^1.0",
@@ -41,9 +43,11 @@
         "drupal/phpmailer_smtp": "^2.2",
         "drupal/poll": "^2.0@alpha",
         "drupal/queue_mail": "^1.6",
-        "drupal/redis": "^1.7",
-        "drupal/search_api": "^1.35",
+        "drupal/quiz": "^7.0",
         "drupal/redirect_after_login": "^3.0",
+        "drupal/redis": "^1.7",
+        "drupal/scheduler": "^2.1",
+        "drupal/search_api": "^1.35",
         "drupal/search_api_autocomplete": "^1.9",
         "drupal/search_api_stats": "^1.0",
         "drupal/select2": "^1.15",
@@ -143,5 +147,8 @@
         "drush:cache-clear": [
             "./vendor/bin/drush cr"
         ]
+    },
+    "require-dev": {
+        "drupal/core-dev": "^10.3"
     }
 }

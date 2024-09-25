@@ -1,0 +1,32 @@
+.evaluation{
+
+  .form-radios {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+  }
+
+  .form-radios input {
+    display: none;
+  }
+
+  .form-radios label {
+    font-size: 24px;
+    cursor: pointer;
+  }
+
+  .form-radios label:hover,
+  .form-radios label:hover ~ label {
+    color: #ff7900;
+  }
+
+  .form-radios input:checked ~ label {
+    color: #ff7900;
+  }
+
+}
+
+input.soumettre, input.fermer,input.yes,input.no{
+  display: none;
+}

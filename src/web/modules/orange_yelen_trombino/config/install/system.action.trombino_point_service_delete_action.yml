@@ -1,10 +1,10 @@
-langcode: en
+langcode: fr
 status: true
 dependencies:
   module:
     - orange_yelen_trombino
 id: trombino_point_service_delete_action
-label: 'Supprimer Trombino Point Service'
+label: 'Supprimer un Point Service - Trombino'
 type: trombino_point_service
 plugin: entity:delete_action:trombino_point_service
 configuration: {  }

@@ -3149,8 +3149,6 @@
             }
         },
         {
-<<<<<<< HEAD
-=======
             "name": "drupal/field_group",
             "version": "3.6.0",
             "source": {
@@ -3227,7 +3225,6 @@
             }
         },
         {
->>>>>>> develop
             "name": "drupal/filelog",
             "version": "3.0.0",
             "source": {

@@ -1,0 +1,18 @@
+<p>Bonjour,</p>
+<p>Un nouveau Quiz vient d'être crée dans Yelen, et vous êtes invité à y participer.</p>
+
+<p><b>Titre du quiz:</b> {{ content.quiz_title | capitalize }}</p>
+
+{% if content.quiz_description %}
+<p><b>Description du quiz:</b> {{ content.quiz_description | raw }}</p>
+{% endif %}
+
+{% if content.quiz_beginDate != null and content.quiz_endDate != null %}
+  <p>
+    <b>NB:</b> Ce quiz restera accessible du
+    <b style="color:#ff7a00">{{ content.quiz_beginDate|format('d-m-Y') }}</b> au
+    <b style="color:#ff7a00">{{ content.quiz_endDate|format('d-m-Y') }}</b>.
+  </p>
+{% endif %}
+<p><a href="{{ content.quiz_url }}">Participer au Quiz</a></p>
+

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9cf1326bcd78993186b4bfe6b81aac3d",
+    "content-hash": "c3b92550da7666939feeaf229936385b",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5406,6 +5406,76 @@
                 "issues": "https://www.drupal.org/project/issues/webform_quiz?version=8.x",
                 "docs": "https://www.drupal.org/docs/8/modules/webform_quiz",
                 "forum": "https://drupal.stackexchange.com/questions/tagged/webform_quiz"
+            }
+        },
+        {
+            "name": "drupal/workbench_email",
+            "version": "3.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/workbench_email.git",
+                "reference": "3.0.5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/workbench_email-3.0.5.zip",
+                "reference": "3.0.5",
+                "shasum": "8d475341ead4fd10ddd106ce226ea537d5d50afc"
+            },
+            "require": {
+                "drupal/core": "^9.1 || ^10 || ^11",
+                "php": "^8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "3.0.5",
+                    "datestamp": "1721954471",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "acbramley",
+                    "homepage": "https://www.drupal.org/user/1036766"
+                },
+                {
+                    "name": "fenstrat",
+                    "homepage": "https://www.drupal.org/user/362649"
+                },
+                {
+                    "name": "frosev",
+                    "homepage": "https://www.drupal.org/user/195325"
+                },
+                {
+                    "name": "larowlan",
+                    "homepage": "https://www.drupal.org/user/395439"
+                },
+                {
+                    "name": "mstrelan",
+                    "homepage": "https://www.drupal.org/user/314289"
+                },
+                {
+                    "name": "teknic",
+                    "homepage": "https://www.drupal.org/user/367359"
+                },
+                {
+                    "name": "unobot",
+                    "homepage": "https://www.drupal.org/user/731188"
+                }
+            ],
+            "description": "Extends Content Moderation by adding the ability to add emails to specific transitions.",
+            "homepage": "https://www.drupal.org/project/workbench_email",
+            "support": {
+                "source": "https://git.drupalcode.org/project/workbench_email",
+                "issues": "http://drupal.org/project/issues/workbench_email"
             }
         },
         {

@@ -1,0 +1,7 @@
+name: 'Yelen access quiz'
+type: module
+description: 'Ce module permet de verifier si l&#039;on a accès à un quiz en particulier'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - quiz:quiz

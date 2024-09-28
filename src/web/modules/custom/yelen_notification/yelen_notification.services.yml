@@ -13,3 +13,4 @@ services:
 
     yelen_notification.emailFinder:
       class: \Drupal\yelen_notification\Services\EmailServices
+      arguments: ['@yelen_notification.extract.mail']

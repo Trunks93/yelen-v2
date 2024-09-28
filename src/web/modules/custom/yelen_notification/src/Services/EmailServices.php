@@ -6,9 +6,16 @@ namespace Drupal\yelen_notification\Services;
 
 use Drupal\user\Entity\User;
 use Drupal\yelen_notification\Entity\BroadcastList;
+use Drupal\yelen_notification\Services\ExtractMailer;
 
 class EmailServices
 {
+  protected $extractor;
+
+  public function __construct(ExtractMailer $extract)
+  {
+    $this->extractor = $extract;
+  }
 
   /**
    * @param string $email
@@ -16,15 +23,11 @@ class EmailServices
    * @return bool
    */
   public function inMailerList(string $email, BroadcastList $listDiffusion):bool{
-    $membres = $listDiffusion->field_membres->getValue();
-    $ids = array_map(function($item){
-      return $item['target_id'];
-    },$membres);
-    $users = User::loadMultiple($ids);
-    foreach ($users as $user){
-      if($user->getEmail() == $email || $user->hasRole('administrator')){
-        return true;
-      }
+    $name = $listDiffusion->label();
+    $allEmails = $this->extractor->getEmailsFromBroadcastList($name);
+    $user = \Drupal::currentUser();
+    if(str_contains($allEmails,$email) || $user->hasRole('administrator') ){
+      return true;
     }
     return false;
   }

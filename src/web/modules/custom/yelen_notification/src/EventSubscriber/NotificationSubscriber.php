@@ -40,7 +40,7 @@ class NotificationSubscriber implements EventSubscriberInterface
     $url = Url::fromRoute('entity.node.canonical', ['node' => $event->getNodeId()])->setAbsolute()->toString();
     $firstEmail = $event->getEmailAddress();
 
-    $to = current(explode(', ', $firstEmail));
+    $to = current(explode(' , ', $firstEmail));
     $cc = $event->getEmailAddress();
     $subject = NotificationSubjectPrefix::CREATION_CONTENT . ': ' . strtoupper($event->getNodeContentType());
     $templateHtml = [
@@ -59,7 +59,7 @@ class NotificationSubscriber implements EventSubscriberInterface
 
     $to = current($emails);
 
-    $emails = implode(',',$emails);
+    $emails = implode(' , ',$emails);
 
     $subject = NotificationSubjectPrefix::INVITE_QUIZ . ': ' . strtoupper($event->getQuizTitle());
     $templateHtml = [

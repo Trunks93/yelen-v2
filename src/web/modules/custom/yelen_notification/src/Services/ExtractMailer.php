@@ -45,7 +45,7 @@ class ExtractMailer
       $user = User::load($userId['target_id']);
       $emails[] = $user->getEmail();
     }
-    return implode(', ',$emails);
+    return implode(' , ',$emails);
   }
 
   /**

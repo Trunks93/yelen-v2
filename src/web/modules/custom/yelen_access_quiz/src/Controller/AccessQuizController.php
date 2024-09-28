@@ -24,13 +24,17 @@ class AccessQuizController
             $listDiffusionEntity = BroadcastList::load($broadCastList['target_id']);
             $response = $emailService->inMailerList($currentUser->getEmail(), $listDiffusionEntity);
             if ($response == true) {
+              \Drupal::logger('access-quiz')->info('Access granted for '.$currentUser->getAccountName());
               return AccessResult::allowed();
             }
           }
+          \Drupal::logger('access-quiz')->info('Access Forbidden for '.$currentUser->getAccountName());
           return AccessResult::forbidden();
         }
     }catch (\Exception $e){
+      \Drupal::logger('access-quiz')->error('Exception '.$e);
     }
+    \Drupal::logger('access-quiz')->info('Access Forbidden for '.$currentUser->getAccountName());
     return AccessResult::forbidden();
   }
 }

@@ -23,6 +23,7 @@ use Drupal\yelen_notification\Services\SendEmailNotification;
  */
 function yelen_notification_theme(): array
 {
+
   return [
     'broadcast_list' => ['render element' => 'elements'],
     'mailer' => [

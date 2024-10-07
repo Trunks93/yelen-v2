@@ -7,6 +7,10 @@
 
 use Drupal\Core\Render\Element;
 
+const TCHAT_VIEW_ID = 'yelen_chat';
+const TCHAT_VIEW_CURRENT_DISPLAY = 'page_1';
+const TCHAT_VIEW_PAGE_NAME = 'view.'.TCHAT_VIEW_ID.'.'.TCHAT_VIEW_CURRENT_DISPLAY;
+const TCHAT_CANONICAL = 'entity.yelen_chat.canonical';
 /**
  * Implements hook_theme().
  */
@@ -32,5 +36,22 @@ function template_preprocess_orange_yelen_chat(array &$variables): void {
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];
   }
+}
+
+/**
+ * Page_attachments_alter()
+ */
+function orange_yelen_chat_page_attachments_alter(&$page) {
+  $page['#attached']['library'][] = 'orange_yelen_chat/orange-yelen-chat';
+  /*if(_orange_yelen_chat__check_path()){
+    $page['#attached']['library'][] = 'orange_yelen_chat/orange-yelen-chat';
+  }*/
+}
+
+
+function _orange_yelen_chat__check_path(): bool
+{
+  $route = \Drupal::routeMatch()->getRouteName();
+  return $route === TCHAT_VIEW_PAGE_NAME || $route === TCHAT_CANONICAL;
 }
 

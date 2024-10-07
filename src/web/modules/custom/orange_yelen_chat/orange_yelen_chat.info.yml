@@ -1,0 +1,5 @@
+name: 'Orange Yelen Chat'
+type: module
+description: 'Module Yelen pour la fonctionnalité du Tchat. Ce Tchat permet à un visiteur authentifier de discuter en temps réel avec un Gestionnaire de base de connaissance(Administrateur)'
+package: Custom
+core_version_requirement: ^10 || ^11

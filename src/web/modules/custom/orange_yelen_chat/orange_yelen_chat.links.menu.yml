@@ -1,0 +1,11 @@
+entity.orange_yelen_chat.settings:
+  title: 'Yelen Tchat'
+  description: 'Configure a Yelen Tchat entity type.'
+  route_name:  entity.orange_yelen_chat.settings
+  parent: system.admin_structure
+
+entity.orange_yelen_chat.collection:
+  title: 'Yelen Tchats'
+  description: 'List of yelen tchats.'
+  route_name: entity.orange_yelen_chat.collection
+  parent: system.admin_content

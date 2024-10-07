@@ -1,0 +1,5 @@
+orange_yelen_chat.add_form:
+  title: 'Add yelen tchat'
+  route_name: entity.orange_yelen_chat.add_form
+  appears_on:
+    - entity.orange_yelen_chat.collection

@@ -1,0 +1,7 @@
+entity.orange_yelen_chat.settings:
+  path: 'admin/structure/orange-yelen-chat'
+  defaults:
+    _form: '\Drupal\orange_yelen_chat\Form\YelenTchatSettingsForm'
+    _title: 'Yelen Tchat'
+  requirements:
+    _permission: 'administer orange_yelen_chat'

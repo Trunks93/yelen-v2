@@ -1,0 +1,10 @@
+entity.orange_yelen_chat.edit_form:
+  route_name: entity.orange_yelen_chat.edit_form
+  group: orange_yelen_chat
+  title: 'Edit'
+
+entity.orange_yelen_chat.delete_form:
+  route_name: entity.orange_yelen_chat.delete_form
+  group: orange_yelen_chat
+  title: 'Delete'
+  weight: 10

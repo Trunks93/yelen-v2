@@ -24,6 +24,8 @@
         "drupal/core-composer-scaffold": "^10.2",
         "drupal/core-recommended": "^10.2",
         "drupal/dashboards": "^2.1",
+        "drupal/datatables": "^2.0",
+        "drupal/datatables_cdn": "^1.0",
         "drupal/devel": "^5.0",
         "drupal/devel_entity_updates": "^4.1",
         "drupal/elasticsearch_connector": "^7.0@alpha",

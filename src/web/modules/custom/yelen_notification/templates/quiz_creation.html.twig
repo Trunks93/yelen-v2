@@ -10,17 +10,16 @@
 {% if content.quiz_beginDate != null and content.quiz_endDate != null %}
   <p>
     <b>NB:</b> Ce quiz restera accessible du
-    <b style="color:#ff7a00">{{ content.quiz_beginDate|format('d-m-Y') }}</b> au
-    <b style="color:#ff7a00">{{ content.quiz_endDate|format('d-m-Y') }}</b>.
+    <b style="color:#ff7a00">{{ content.quiz_beginDate }}</b> au
+    <b style="color:#ff7a00">{{ content.quiz_endDate }}</b>.
   </p>
 {% endif %}
 <p><a href="{{ content.quiz_url }}">Participer au Quiz</a></p>
 
+<br><br>
 <p>Cordialement</p>
 
 <p>---</p>
 
-<p style="font-weight: bold">L'Equipe Yelen CI</p>
-
-<img src="{{ theme.settings.logo.url }}" width="250" alt="">
+<p style="font-weight: bold">Administateur Yelen</p>
 

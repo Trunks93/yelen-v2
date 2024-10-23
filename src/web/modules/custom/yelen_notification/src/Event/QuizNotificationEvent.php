@@ -119,13 +119,13 @@ class QuizNotificationEvent
    */
   public function getDescription(): string
   {
-    return $this->description;
+    return $this->description ?? "<span> N/A </span>";
   }
 
   /**
-   * @param string $description
+   * @param string|null $description
    */
-  public function setDescription(string $description): void
+  public function setDescription(string|null $description): void
   {
     $this->description = $description;
   }

@@ -67,12 +67,13 @@ class NotificationSubscriber implements EventSubscriberInterface
       '#content' => [
         'quiz_title' => $event->getQuizTitle(),
         'quiz_url' => $url,
-        'quiz_beginDate' =>$event->getBeginDate(),
-        'quiz_endDate' =>$event->getEndDate(),
+        'quiz_beginDate' => $event->getBeginDate() ? date_format($event->getBeginDate(), 'd/m/Y H:i:s'):null,
+        'quiz_endDate' =>$event->getEndDate() ? date_format($event->getEndDate(), 'd/m/Y H:i:s'):null,
         'quiz_description'=>$event->getDescription()
 
       ]
     ];
+    //dd($templateHtml);
     $this->sendmail->sendNotification($subject, $to, $emails, $templateHtml);
   }
 

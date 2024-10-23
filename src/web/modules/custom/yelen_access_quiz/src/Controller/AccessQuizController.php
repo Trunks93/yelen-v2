@@ -4,6 +4,7 @@ namespace Drupal\yelen_access_quiz\Controller;
 
 use Drupal\Core\Access\AccessResult;
 use Drupal\yelen_notification\Entity\BroadcastList;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -14,7 +15,7 @@ class AccessQuizController
     $currentUser = \Drupal::currentUser();
     $request = \Drupal::request();
     $quiz = $request->get('quiz');
-    if (!$currentUser->getEmail()) {
+    if ($currentUser->id() !== 0) {
       try {
         $request = \Drupal::request();
         $route_match = \Drupal::service('router.no_access_checks')->match($request->getPathInfo());
@@ -30,13 +31,13 @@ class AccessQuizController
             }
           }
           \Drupal::logger('access-quiz')->info('Access Forbidden for ' . $currentUser->getAccountName());
-          return AccessResult::forbidden();
+          return AccessResult::forbidden("Vous n'avez pas accès à ce QUIZ !");
         }
       } catch (\Exception $e) {
         \Drupal::logger('access-quiz')->error('Exception ' . $e);
       }
     }
     \Drupal::logger('access-quiz')->info('Access Forbidden for ' . $currentUser->getAccountName());
-    return AccessResult::forbidden();
+    return AccessResult::forbidden("Vous n'êtes pas authentifié. Veuillez vous connecter à Yelen !!");
   }
 }

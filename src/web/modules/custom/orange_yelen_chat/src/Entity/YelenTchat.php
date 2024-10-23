@@ -135,9 +135,9 @@ final class YelenTchat extends ContentEntityBase implements YelenTchatInterface 
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['status'] = BaseFieldDefinition::create('boolean')
+    $fields['status'] = BaseFieldDefinition::create('list_string')
       ->setLabel(t('Status'))
-      ->setSetting('on_label', 'Enabled')
+      ->setRequired(TRUE)
       ->setSettings([
         'allowed_values' => [
           'pending' => 'En attente',
@@ -147,17 +147,17 @@ final class YelenTchat extends ContentEntityBase implements YelenTchatInterface 
         ],
       ])
       ->setDefaultValue('pending')
+      ->setDisplayOptions('form', [
+        'type' => 'options_select',
+        'weight' => -2
+      ])
       ->setDisplayOptions('view', [
         'label' => 'hidden',
         'type' => 'list_default',
         'weight' => 0,
       ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE)
-      ->setDisplayOptions('form', [
-        'type' => 'options_select',
-        'weight' => -2
-      ]);
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Authored on'))

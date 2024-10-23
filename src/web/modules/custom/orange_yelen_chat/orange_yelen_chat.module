@@ -39,6 +39,14 @@ function template_preprocess_orange_yelen_chat(array &$variables): void {
 }
 
 /**
+ * Implémentation de hook_preprocess_page().
+ */
+function orange_yelen_chat_preprocess_page(array &$variables) {
+  // $variables['page']['content']['#markup'] = '<div id="chatApp"></div>';
+  // $variables['page']['content']= '<div id="chatApp"></div>';
+}
+
+/**
  * Page_attachments_alter()
  */
 function orange_yelen_chat_page_attachments_alter(&$page) {

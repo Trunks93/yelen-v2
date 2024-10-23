@@ -2,8 +2,8 @@ orange-yelen-chat:
   version: 1.x
   css:
     theme:
-      #chat-app/dist/style.css: {}
+      chat-app/dist/style.css: {}
       css/main.css: { }
   js:
     js/main.js: { }
-    #chat-app/dist/chat-app.umd.js: {}
+    chat-app/dist/chat-app.umd.js: {}

@@ -1,0 +1,60 @@
+<?php 
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
+
+/**
+ * Implements hook_form_alter().
+ */
+function yelen_content_unpublish_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+ 
+ if (strpos($form_id, 'node_') === 0 && (strpos($form_id, '_form') !== false || strpos($form_id, '_edit_form') !== false)) {
+   yelen_content_unpublish_alter_scheduler_form($form, $form_state, $form_id);
+ }
+
+   if ($form_id == 'node_article_form') {
+   $config = \Drupal::config('yelen_content_publish.settings');
+   
+   $scheduled_date = $config->get('default_publish_date');
+
+   if (!empty($scheduled_date)) {
+     $form['publish_on']['#default_value'] = strtotime($scheduled_date);
+
+   }
+ }
+
+ \Drupal::logger('yelen_content_unpublish')->debug('Form alter called for form_id: @form_id', ['@form_id' => $form_id]);
+ 
+
+}
+
+/**
+* Custom function to alter the Scheduler form.
+*/
+function yelen_content_unpublish_alter_scheduler_form(&$form, FormStateInterface $form_state, $form_id) {
+
+ $config = \Drupal::config('yelen_content_unpublish.settings');
+ 
+ //$default_publish_date = $config->get('default_publish_date');
+  $default_unpublish_days = $config->get('default_unpublish_date');
+
+ \Drupal::logger('yelen_content_unpublish')->debug('Default publish date from config: @date', context: ['@date' => $default_unpublish_days]);
+
+     if (isset($form['unpublish_on']) && $default_unpublish_days) {
+
+     $now = new DrupalDateTime();
+     $default_unpublish_date = $now->add(new \DateInterval('P' . $default_unpublish_days . 'D'));
+
+     $form['unpublish_on']['widget'][0]['value']['#default_value'] = $default_unpublish_date;
+     $form['unpublish_on']['widget'][0]['value']['#attributes']['readonly'] = 'readonly';
+     $form['actions']['submit']['#submit'][] = 'yelen_content_unpublish_node_form_submit';
+     \Drupal::messenger()->addWarning(t('The unpublication date is set by default and cannot be changed.'));
+ } 
+ 
+
+}
+
+
+
+
+?>

@@ -16,7 +16,9 @@ class EvaluationService
 
   public function getEvaluationOfUser($userid,$nodeId){
     $evaluation = $this->em->getStorage('evaluation')
-      ->loadByProperties(['uid'=>$userid,'field_contenu'=>$nodeId,'bundle'=>'simple']);
+      ->loadByProperties(['uid'=>$userid,
+    //  'field_contenu'=>$nodeId,
+      'bundle'=>'simple']);
 
     return $evaluation;
 

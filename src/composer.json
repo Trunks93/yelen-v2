@@ -46,7 +46,6 @@
         "drupal/poll": "^2.0@alpha",
         "drupal/queue_mail": "^1.6",
         "drupal/quiz": "^7.0",
-        "drupal/redirect_after_login": "^3.0",
         "drupal/redis": "^1.7",
         "drupal/scheduler": "^2.1",
         "drupal/search_api": "^1.35",

@@ -1,0 +1,6 @@
+name: 'JS Cookie Override'
+type: module
+description: 'Overrides the js_cookie library to use a local version instead of CDN.'
+core_version_requirement: ^10 || ^11
+dependencies:
+  - js_cookie:js_cookie

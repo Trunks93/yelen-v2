@@ -93,7 +93,9 @@ stages:
 build-assets:
   stage: build
   tags:
-    - oci-simswp-prod
+    - nodejs
+#    - oci-simswp-prod
+    
   image:
     name: node:${NODEJS_VERSION}
   variables:
@@ -145,7 +147,8 @@ build-assets:
 build-php:
   stage: build
   tags:
-    - oci-simswp-prod
+    - apache
+#    - oci-simswp-prod
   image:
     name: php:${PHP_VERSION}-alpine
     entrypoint: [""]
@@ -197,7 +200,8 @@ build-php:
 .deploy:
   stage: deploy
   tags:
-    - oci-simswp-prod
+    - ansible
+#    - oci-simswp-prod
   image: fs0ci3ty/centos7-ansible-new
   variables:
     DOCKER_HOST: "tcp://docker:2375"

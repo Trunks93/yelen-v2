@@ -41,6 +41,7 @@
         "drupal/login_history": "^2.0",
         "drupal/login_security": "^2.0",
         "drupal/login_tracker": "^2.0",
+        "drupal/minifyhtml": "^2.0",
         "drupal/paragraphs": "^1.17",
         "drupal/pathauto": "^1.13",
         "drupal/phpmailer_smtp": "^2.2",

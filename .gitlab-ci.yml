@@ -22,9 +22,7 @@ variables:
   COMPOSER_VERSION: 1.10.21
   CUSTOM_MODULES_JS_DIR: "web/modules/_custom"
   DOCKER_HOST: tcp://docker:2375
-#  HTTP_PROXY: http://192.168.42.15:3128
-#  HTTPS_PROXY: http://192.168.42.15:3128
-#  NO_PROXY: localhost,127.0.0.1
+
 
 cache:
   key: "$CI_PROJECT_PATH_SLUG" # cache same dependencies between all branch
@@ -99,8 +97,8 @@ build-assets:
   image:
     name: node:${NODEJS_VERSION}
   variables:
-    http_proxy: "http://192.168.42.15:3128"
-    https_proxy: "http://192.168.42.15:3128"
+#    http_proxy: "http://192.168.42.15:3128"
+#    https_proxy: "http://192.168.42.15:3128"
     no_proxy: "localhost,127.0.0.1"
   script:
     - export
@@ -153,8 +151,8 @@ build-php:
     name: php:${PHP_VERSION}-alpine
     entrypoint: [""]
   variables:
-    http_proxy: "http://192.168.42.15:3128"
-    https_proxy: "http://192.168.42.15:3128"
+#    http_proxy: "http://192.168.42.15:3128"
+#    https_proxy: "http://192.168.42.15:3128"
     no_proxy: "localhost,127.0.0.1"
   script:
     - export
@@ -205,8 +203,8 @@ build-php:
   image: fs0ci3ty/centos7-ansible-new
   variables:
     DOCKER_HOST: "tcp://docker:2375"
-    http_proxy: "http://192.168.42.15:3128"
-    https_proxy: "http://192.168.42.15:3128"
+#    http_proxy: "http://192.168.42.15:3128"
+#    https_proxy: "http://192.168.42.15:3128"
     no_proxy: "localhost,127.0.0.1"
     #ansible/centos7-ansible
 

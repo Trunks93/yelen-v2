@@ -1,0 +1,17 @@
+<?php
+/**
+ * Implements hook_library_info_alter().
+ * *
+ * * Replace external js_cookie library with a local version.
+ *
+ */
+function js_cookie_override_library_info_alter(array &$libraries, $extension) {
+  if (($extension == 'js_cookie' || $extension === 'js-cookie') && isset($libraries['js-cookie'])) {
+    unset($libraries['js-cookie']['js']['https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js']);
+    $libraries['js-cookie']['js'] = ['/'.\Drupal::service('extension.path.resolver')->getPath('module', 'js_cookie_override') . '/js/js.cookie.min.js' =>  [
+      'type' => 'file',
+      'weight' => -1,
+      ]
+    ];
+  }
+}

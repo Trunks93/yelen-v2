@@ -60,6 +60,7 @@
         "drupal/term_csv_export_import": "^4.0",
         "drupal/token": "^1.15",
         "drupal/twig_tweak": "^3.3",
+        "drupal/video": "^3.0",
         "drupal/views_data_export": "^1.4",
         "drupal/webform": "^6.2",
         "drupal/webform_quiz": "^2.1",

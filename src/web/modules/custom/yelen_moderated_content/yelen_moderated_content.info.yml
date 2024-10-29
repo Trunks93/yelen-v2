@@ -1,0 +1,7 @@
+name: 'Yelen Moderated Content'
+type: module
+description: 'Ce module permet de dépublier un contenu directement depuis le bouton action'
+package: custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:node

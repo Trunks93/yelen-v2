@@ -1,0 +1,38 @@
+<?php
+
+use Drupal\Core\Url;
+/**
+ * @file
+ * Primary module hooks for yelen_unpublish_content module.
+ */
+
+/**
+ * Implémentez hook_entity_operation_alter() pour ajouter un lien d'action personnalisé.
+ */
+function yelen_moderated_content_entity_operation_alter(array &$operations, \Drupal\Core\Entity\EntityInterface $entity) {
+  // Vérifiez que l'entité est de type node.
+  if ($entity->getEntityTypeId() === 'node') {
+      $node = \Drupal\node\Entity\Node::load($entity->id());
+    // Ajoutez une nouvelle action "Télécharger en PDF".
+    if($node->status->value == '1'){
+      $operations['depublier'] = [
+        'title' =>'Dépublier ce contenu',
+        'weight' => 10, // Position du lien dans la liste.
+        'url' => Url::fromRoute('unpublish_content', ['node' => $entity->id()]),
+        'attributes' => [
+          'class' => ['button'],
+        ],
+      ];
+    }else{
+      $operations['Publier'] = [
+        'title' =>'Publier ce contenu',
+        'weight' => 10, // Position du lien dans la liste.
+        'url' => Url::fromRoute('publish_content', ['node' => $entity->id()]),
+        'attributes' => [
+          'class' => ['button'],
+        ],
+      ];
+    }
+
+  }
+}

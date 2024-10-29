@@ -1,0 +1,16 @@
+unpublish_content:
+  path: '/node/{node}/unpublish'
+  defaults:
+    #_title: 'Foire aux questions'
+    _controller: 'Drupal\yelen_moderated_content\Controller\DefaultController::unpublish'
+  requirements:
+    _permission: 'authenticated'
+
+
+publish_content:
+  path: '/node/{node}/publish'
+  defaults:
+    #_title: 'Foire aux questions'
+    _controller: 'Drupal\yelen_moderated_content\Controller\DefaultController::publish'
+  requirements:
+    _permission: 'authenticated'

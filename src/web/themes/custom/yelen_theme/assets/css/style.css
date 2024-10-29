@@ -273,3 +273,8 @@ a.hover-orange:hover{
   align-items: center;
   justify-content: center;
 }
+
+/*disable preview block*/
+.node-preview-container{
+  display: none !important;
+}

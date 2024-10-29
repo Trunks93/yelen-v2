@@ -7,6 +7,7 @@ use Drupal\Core\Messenger\Messenger;
 use Drupal\Core\StackMiddleware\Session;
 use Drupal\Core\Url;
 use Drupal\yelen_notification\Event\NotificationEvent;
+use Drupal\yelen_notification\Event\QuizNotificationEvent;
 use Drupal\yelen_notification\Services\SendEmailNotification;
 use Drupal\yelen_notification\Constante\NotificationSubjectPrefix;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -29,6 +30,7 @@ class NotificationSubscriber implements EventSubscriberInterface
   {
     return [
       NotificationEvent::CREATION_CONTENT_PUBLIC => 'sendPublicNotification',
+      QuizNotificationEvent::PUBLISH_QUIZ => 'sendQuizPublishNotification',
     ];
   }
 
@@ -38,7 +40,7 @@ class NotificationSubscriber implements EventSubscriberInterface
     $url = Url::fromRoute('entity.node.canonical', ['node' => $event->getNodeId()])->setAbsolute()->toString();
     $firstEmail = $event->getEmailAddress();
 
-    $to = current(explode(', ', $firstEmail));
+    $to = current(explode(' , ', $firstEmail));
     $cc = $event->getEmailAddress();
     $subject = NotificationSubjectPrefix::CREATION_CONTENT . ': ' . strtoupper($event->getNodeContentType());
     $templateHtml = [
@@ -49,6 +51,29 @@ class NotificationSubscriber implements EventSubscriberInterface
       ]
     ];
     $this->sendmail->sendNotification($subject, $to, $cc, $templateHtml);
+  }
+
+  public function sendQuizPublishNotification(QuizNotificationEvent $event){
+    $url = Url::fromRoute('entity.quiz.take', ['quiz' => $event->getQuizId()])->setAbsolute()->toString();
+    $emails = $event->getEmailAddress();
+
+    $to = current($emails);
+
+    $emails = implode(' , ',$emails);
+
+    $subject = NotificationSubjectPrefix::INVITE_QUIZ . ': ' . strtoupper($event->getQuizTitle());
+    $templateHtml = [
+      '#theme' => 'mailer_quiz',
+      '#content' => [
+        'quiz_title' => $event->getQuizTitle(),
+        'quiz_url' => $url,
+        'quiz_beginDate' =>$event->getBeginDate(),
+        'quiz_endDate' =>$event->getEndDate(),
+        'quiz_description'=>$event->getDescription()
+
+      ]
+    ];
+    $this->sendmail->sendNotification($subject, $to, $emails, $templateHtml);
   }
 
 

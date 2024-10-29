@@ -5,10 +5,10 @@
 #}
 <div class="most-popular-terms__list">
   {% for keyword, num in stats %}
-  <a class="term card" href="{{ path }}?{{ param_name }}={{ keyword }}">
-    <div class="card-body">
+  <a class="term" href="{{ path }}?{{ param_name }}={{ keyword }}">
+    <div class="">
       <span >
-        {{ keyword }} ({{ num }})
+        {{ keyword }} {#  ({{ num }}) #}
       </span>
     </div>
   </a>

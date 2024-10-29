@@ -5,3 +5,13 @@ faq-page:
     _controller: 'Drupal\yelen_faq\Controller\DefaultController::index'
   requirements:
     _permission: 'access content'
+
+faq-page-criteria:
+  path: '/faq/{category}/{sousCategory}'
+  defaults:
+    _title: 'Foire aux questions'
+    _controller: 'Drupal\yelen_faq\Controller\DefaultController::getFaqGroupBy'
+    category: ''
+    sousCategory: ''
+  requirements:
+    _permission: 'access content'

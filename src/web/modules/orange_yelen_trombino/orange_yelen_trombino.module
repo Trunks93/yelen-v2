@@ -13,6 +13,9 @@ const TROMBINO_VIEW_ID = 'trombino_point_service';
 const TROMBINO_VIEW_CURRENT_DISPLAY = 'page_1';
 const TROMBINO_VIEW_PAGE_NAME = 'view.'.TROMBINO_VIEW_ID.'.'.TROMBINO_VIEW_CURRENT_DISPLAY;
 const TROMBINO_CANONICAL = 'entity.trombino_point_service.canonical';
+
+CONST OPENING_DAYS_PATTERN_1 = '/(\w+)\s+au\s+(\w+)\s+(\d+)H-(\d+)H/i'; //Teste le patterne => Lundi au Vendredi 8H-17H
+CONST OPENING_DAYS_PATTERN_2 = '/(\w+)\s+de\s+(\d+)H-(\d+)H/i'; // Teste le patterne => Samedi de 08H-14H
 /**
  * @return array[]
  * @Implement hook_theme()
@@ -97,8 +100,8 @@ function orange_yelen_trombino_user_predelete(UserInterface $account): void {
 function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variables){
   $route_name = \Drupal::routeMatch()->getRouteName();
   if (_orange_yelen_trombino__check_path()) {
-    $search_term = \Drupal::request()->query->get('search_api_fulltext');
-    $variables['orange_yelen_search_term'] = $search_term;
+    $search_term = \Drupal::request()->query->get('service_point');
+    $variables['orange_trombino_service_term'] = $search_term;
   }
 }
 
@@ -106,9 +109,10 @@ function orange_yelen_trombino_preprocess_views_view_unformatted(array &$variabl
  * Page_attachments_alter()
  */
 function orange_yelen_trombino_page_attachments_alter(&$page) {
-  if(_orange_yelen_trombino__check_path()){
+  $page['#attached']['library'][] = 'orange_yelen_trombino/orange-yelen-trombino';
+  /*if(_orange_yelen_trombino__check_path()){
     $page['#attached']['library'][] = 'orange_yelen_trombino/orange-yelen-trombino';
-  }
+  }*/
 }
 
 /**
@@ -168,7 +172,7 @@ function orange_yelen_trombino_views_pre_render(ViewExecutable $view): void {
  * @param array $variables
  * @return void
  */
-function orange_yelen_trombino_preprocess_trombino_point_service(array &$variables){
+function orange_yelen_trombino_preprocess_trombino_point_service(array &$variables): void{
   $field_images = $variables['elements']['#trombino_point_service']->get('images');
   $images = [];
   foreach ($field_images as $field_image) {
@@ -190,7 +194,7 @@ function _orange_yelen_trombino__check_path(): bool
   return $route === TROMBINO_VIEW_PAGE_NAME || $route === TROMBINO_CANONICAL;
 }
 
-function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) {
+function _orange_yelen_trombino__is_point_open_old($schedule, $current_time = null) {
   $schedule_cleaned = trim(preg_replace('/\s+/', ' ', $schedule));
   $days_of_week = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
   $current_time = $current_time ?: new DateTime();
@@ -198,30 +202,30 @@ function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) 
   $current_hour = (int) $current_time->format('G');
   $current_minute = (int) $current_time->format('i');
   $schedules = explode(' \n', $schedule_cleaned);
-
-  if(count($schedules) == 1){
-    $schedules[] = '';
-  }
   $parsed_schedules = [];
-  // Parse the schedules
-  for ($i = 0; $i < count($schedules); $i++) {
-    if (preg_match('/(\w+)\s+au\s+(\w+)\s+(\d+)H-(\d+)H/', $schedules[$i] . ' ' . $schedules[$i + 1], $matches)) {
-      list(, $start_day, $end_day, $start_hour, $end_hour) = $matches;
-      $start_hour = (int) $start_hour;
-      $end_hour = (int) $end_hour;
-      $parsed_schedules[] = compact('start_day', 'end_day', 'start_hour', 'end_hour');
-      $i++;
-    } elseif (preg_match('/(\w+)\s+de\s+(\d+)H-(\d+)H/', $schedules[$i] . ' ' . $schedules[$i + 1], $matches)) {
-      list(, $start_day, $start_hour, $end_hour) = $matches;
-      $start_hour = (int) $start_hour;
-      $end_hour = (int) $end_hour;
-      $parsed_schedules[] = compact('start_day', 'start_hour', 'end_hour');
-      $i++;
-    }
 
+  if(_opening_days_is_valid($schedule_cleaned)){
+    if(count($schedules) === 1){
+      $schedules[] = '';
+    }
+    for ($i = 0; $i < count($schedules); $i++) {
+      if (preg_match(OPENING_DAYS_PATTERN_1, $schedules[$i] . ' ' . $schedules[$i + 1], $matches)) {
+        list(, $start_day, $end_day, $start_hour, $end_hour) = $matches;
+        $start_hour = (int) $start_hour;
+        $end_hour = (int) $end_hour;
+        $parsed_schedules[] = compact('start_day', 'end_day', 'start_hour', 'end_hour');
+        $i++;
+      } elseif (preg_match(OPENING_DAYS_PATTERN_2, $schedules[$i] . ' ' . $schedules[$i + 1], $matches)) {
+        list(, $start_day, $start_hour, $end_hour) = $matches;
+        $start_hour = (int) $start_hour;
+        $end_hour = (int) $end_hour;
+        $parsed_schedules[] = compact('start_day', 'start_hour', 'end_hour');
+        $i++;
+      }
+
+    }
   }
 
-  // Check if the current time falls within any of the parsed schedules
   foreach ($parsed_schedules as $parsed_schedule) {
     $start_day_index = array_search($parsed_schedule['start_day'], $days_of_week);
     $end_day_index = array_search($parsed_schedule['end_day'] ?? $parsed_schedule['start_day'], $days_of_week);
@@ -246,4 +250,108 @@ function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) 
   }
 
   return (object) ['is_open' => false, 'minutes_remaining' => -1, 'next_hour' => 0];
+}
+
+function _orange_yelen_trombino__is_point_open($schedule, $current_time = null) {
+  // Nettoyer la chaîne d'entrée
+  $schedule_cleaned = trim(preg_replace('/\s+/', ' ', $schedule));
+
+  // Tableau des jours de la semaine
+  $days_of_week = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+
+  // Obtenir l'heure actuelle
+  $current_time = $current_time ?: new DateTime();
+  $current_day = $days_of_week[(int) $current_time->format('w')];
+  $current_hour = (int) $current_time->format('G');
+  $current_minute = (int) $current_time->format('i');
+
+  // Séparer les horaires (ajustez le séparateur si nécessaire)
+  $schedules = explode("\n", $schedule_cleaned);
+  $parsed_schedules = [];
+
+  // Vérifier la validité des horaires
+  if (_opening_days_is_valid($schedule_cleaned)) {
+    // Si une seule ligne, pas besoin d'ajouter un élément vide
+    // if(count($schedules) === 1){
+    //     $schedules[] = '';
+    // }
+
+    for ($i = 0; $i < count($schedules); $i++) {
+      // Essayer de matcher avec le premier pattern
+      if (preg_match(OPENING_DAYS_PATTERN_1, $schedules[$i], $matches)) {
+        list(, $start_day, $end_day, $start_hour, $end_hour) = $matches;
+        $start_hour = (int) $start_hour;
+        $end_hour = (int) $end_hour;
+        $parsed_schedules[] = compact('start_day', 'end_day', 'start_hour', 'end_hour');
+      }
+      // Essayer de matcher avec le second pattern
+      elseif (preg_match(OPENING_DAYS_PATTERN_2, $schedules[$i], $matches)) {
+        list(, $start_day, $start_hour, $end_hour) = $matches;
+        $start_hour = (int) $start_hour;
+        $end_hour = (int) $end_hour;
+        $parsed_schedules[] = compact('start_day', 'start_hour', 'end_hour');
+      }
+    }
+  }
+
+  // Parcourir les horaires parsés
+  foreach ($parsed_schedules as $parsed_schedule) {
+    // Normaliser les noms des jours
+    $start_day = ucfirst(strtolower($parsed_schedule['start_day']));
+    $end_day = isset($parsed_schedule['end_day']) ? ucfirst(strtolower($parsed_schedule['end_day'])) : $start_day;
+
+    $start_day_index = array_search($start_day, $days_of_week);
+    $end_day_index = array_search($end_day, $days_of_week);
+    $current_day_index = array_search($current_day, $days_of_week);
+
+    if ($start_day_index === false || $end_day_index === false || $current_day_index === false) {
+      continue; // Jour invalide, passer au suivant
+    }
+
+    // Vérifier si la plage traverse la semaine
+    if ($start_day_index <= $end_day_index) {
+      $is_within_days = ($start_day_index <= $current_day_index) && ($current_day_index <= $end_day_index);
+    } else {
+      // La plage traverse le début de la semaine
+      $is_within_days = ($current_day_index >= $start_day_index) || ($current_day_index <= $end_day_index);
+    }
+
+    if ($is_within_days) {
+      if ($current_hour >= $parsed_schedule['start_hour'] && $current_hour < $parsed_schedule['end_hour']) {
+        $minutes_until_close = (($parsed_schedule['end_hour'] - $current_hour - 1) * 60) + (60 - $current_minute);
+        return (object) [
+          'is_open' => true,
+          'minutes_remaining' => $minutes_until_close,
+          'next_hour' => $parsed_schedule['end_hour']
+        ];
+      } else {
+        if ($current_hour < $parsed_schedule['start_hour']) {
+          $minutes_until_open = (($parsed_schedule['start_hour'] - $current_hour - 1) * 60) + (60 - $current_minute);
+        } else {
+          // Après les heures d'ouverture, ajuster selon vos besoins
+          $minutes_until_open = 0; // Exemple
+        }
+
+        $valid_remaining_time = $parsed_schedule['start_hour'] <= 4 ? $minutes_until_open : 0;
+
+        return (object) [
+          'is_open' => false,
+          'minutes_remaining' => $valid_remaining_time,
+          'next_hour' => $parsed_schedule['start_hour']
+        ];
+      }
+    }
+  }
+
+  // Si aucun horaire ne correspond
+  return (object) [
+    'is_open' => false,
+    'minutes_remaining' => -1,
+    'next_hour' => 0
+  ];
+}
+
+function _opening_days_is_valid($opening_days): bool {
+
+  return preg_match(OPENING_DAYS_PATTERN_1, $opening_days) || preg_match(OPENING_DAYS_PATTERN_2, $opening_days);
 }

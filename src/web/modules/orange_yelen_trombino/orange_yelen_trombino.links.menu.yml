@@ -1,11 +1,11 @@
 entity.trombino_point_service.settings:
   title: 'Trombino Point Service'
-  description: 'Configure a Trombino Point Service entity type.'
+  description: 'Configurer les Points Services - Trombino'
   route_name:  entity.trombino_point_service.settings
   parent: system.admin_structure
 
 entity.trombino_point_service.collection:
   title: 'Trombino Point Service'
-  description: 'List of trombino point service.'
+  description: 'Liste des points services - Trombino'
   route_name: entity.trombino_point_service.collection
   parent: system.admin_content

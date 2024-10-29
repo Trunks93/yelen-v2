@@ -1,0 +1,7 @@
+name: 'yelen content management'
+type: module
+description: 'Dans ce module est gérer tout la gestion de contenue'
+package: Custom
+core_version_requirement: ^10 || ^11
+libraries:
+  - yelen_content_management/content_management

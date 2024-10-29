@@ -1,0 +1,4 @@
+{% for value, label in element['#options'] %}
+  <input type="radio" id="star{{ value }}" name="{{ element['#name'] }}" value="{{ value }}" {% if element['#value'] == value %} checked {% endif %}>
+  <label for="star{{ value }}" class="star" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="{{ value }}">&#9733;</label>
+{% endfor %}

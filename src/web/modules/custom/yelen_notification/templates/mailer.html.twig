@@ -1,12 +1,15 @@
-<html lang="fr">
-<head>
+<p>Bonjour,</p>
+<p>Un nouveau contenu vient d'être crée dans Yelen.</p>
+<p><b>Titre du contenu:</b> {{ content.node_title | capitalize }}</p>
 
-</head>
-    <body>
-      <p>Bonjour,</p>
-      <p>Un nouveau contenu vient d'être crée dans Yelen.</p>
-      <p><b>Titre du contenu:</b> {{ content.node_title | capitalize }}</p>
+<p><a href="{{ content.node_url }}">Consulter le contenu</a></p>
 
-      <p><a href="{{ content.node_url }}">Consulter le contenu</a></p>
-    </body>
-</html>
+<p>Cordialement</p>
+
+<p>---</p>
+
+<p style="font-weight: bold">L'Equipe Yelen CI</p>
+
+<img src="{{ theme.settings.logo.url }}" width="250" alt="">
+
+

@@ -21,7 +21,16 @@
   <h3>{{ title }}</h3>
 {% endif %}
 {% if orange_yelen_search_term %}
-<h3 class="orange-yelen-title">{{ 'Résultats de recherche pour:' | t}} <strong class="text-primary">"{{ orange_yelen_search_term }}"</strong></h3>
+<div class="row mb-2 mb-md-0">
+  <div class="col-md-9 col-12">
+    <h3 class="orange-yelen-title">{{ 'Résultats de recherche pour:' | t}} <strong class="text-primary">"{{ orange_yelen_search_term }}"</strong></h3>
+  </div>
+  <div class="col-md-3 col-12">
+    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#rateSearchModal">
+      Evaluer la recherche
+    </button>
+  </div>
+</div>
 {% endif %}
 <section class="yelen-search-result__list">
   {% for row in rows %}
@@ -50,16 +59,33 @@
                 <a href="{{ row.content['#row'].search_api_url[0] }}"> {{ row.content['#row'].title[0] }}</a>
               </h5>
               {% if(row.content['#row'].body) %}
-              {{row.content['#row'].body[0] | raw | t}}
+              <div class="short-description">
+                {{row.content['#row'].body[0] | raw | t}}
+              </div>
               {% endif %}
             </div>
             <div class="action">
-              <a class="btn btn-primary" href={{ row.content['#row'].search_api_url[0] }}>{{ 'Voir plus' | t }}</a>
+              <a class="btn btn-outline-secondary" href={{ row.content['#row'].search_api_url[0] }}>{{ 'Voir plus' | t }}</a>
             </div>
           </div>
         </div>
       </div>
     </div>
   {% endfor %}
+
+  <!-- Modal -->
+  <div class="modal fade" id="rateSearchModal" tabindex="-1" aria-labelledby="rateSearchModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title h5" id="rateSearchModalLabel">Evaluer la recherche effectuée</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Close"><span class="visually-hidden">Close</span></button>
+        </div>
+          <div class="modal-body">
+            {{ search_rating_form }}
+          </div>
+      </div>
+    </div>
+  </div>
 </section>
 

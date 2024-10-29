@@ -1,0 +1,5 @@
+services:
+  orange_yelen_forum.node_insert_subscriber:
+    class: Drupal\orange_yelen_forum\EventSubscriber\NodeInsertSubscriber
+    tags:
+      - { name: event_subscriber }

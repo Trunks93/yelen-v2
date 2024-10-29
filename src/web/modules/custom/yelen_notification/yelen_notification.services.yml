@@ -10,3 +10,7 @@ services:
 
     yelen_notification.sendmail:
       class: \Drupal\yelen_notification\Services\SendEmailNotification
+
+    yelen_notification.emailFinder:
+      class: \Drupal\yelen_notification\Services\EmailServices
+      arguments: ['@yelen_notification.extract.mail']

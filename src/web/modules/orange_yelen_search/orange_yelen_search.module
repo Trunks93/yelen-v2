@@ -6,6 +6,29 @@
  */
 
 /**
+ * Implements hook_theme_HOOK()
+ */
+function orange_yelen_search_theme() {
+  return [
+    'rating_star' => [
+      'render element' => 'element',
+      'template' => 'form/rating-star'
+    ],
+    'boosted_button' => [
+      'render element' => 'element',
+      'template' => 'form/boosted-button'
+    ],
+    'rating_notification' => [
+      'render element' => 'elements',
+      'template' => 'notification/rating',
+      'variables' => [
+        'content' => NULL
+      ]
+    ],
+  ];
+}
+
+/**
  * Implements hook_preprocess_HOOK() for page templates.
  */
 
@@ -28,10 +51,12 @@ function orange_yelen_search_preprocess_views_view_unformatted(array &$variables
  * Page_attachments_alter()
  */
 function orange_yelen_search_page_attachments_alter(&$page) {
-  if(_orange_yelen_search__check_path()){
+  // $route = \Drupal::routeMatch()->getRouteName();
+  $page['#attached']['library'][] = 'orange_yelen_search/result_page';
+  /*if(_orange_yelen_search__check_path()){
     // Add login library.
     $page['#attached']['library'][] = 'orange_yelen_search/result_page';
-  }
+  }*/
 }
 
 function _orange_yelen_search__check_path()

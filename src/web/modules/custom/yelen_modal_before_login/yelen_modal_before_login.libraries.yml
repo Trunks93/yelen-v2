@@ -1,0 +1,13 @@
+login-alert:
+  js:
+    js/login-alert.js: {}
+  css:
+    theme:
+      css/modal-style.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.dialog
+    - core/drupal.dialog.ajax
+    - core/drupalSettings
+    - core/once  

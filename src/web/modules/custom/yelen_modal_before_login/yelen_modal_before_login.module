@@ -21,7 +21,7 @@ function yelen_modal_before_login_page_attachments(array &$attachments) {
         'mediaType' => '',
       ];
   
-      // Charger le dernier contenu de mon type "article"
+      // load last content in type content "article"
       $query = \Drupal::entityQuery('node')
         ->condition('type', value: 'article')
         ->condition('status', 1)
@@ -38,20 +38,20 @@ function yelen_modal_before_login_page_attachments(array &$attachments) {
         if ($node && !$node->get('field_video')->isEmpty()) {
             $media = $node->get('field_video')->entity;
             if ($media && $media->hasField('field_media_image')) {
-                // Pour les images, récupérer l'entité fichier associée
+                // associée get image 
                 $file = $media->get('field_media_image')->entity;
             } elseif ($media && $media->hasField('field_media_video_file')) {
-                // Pour les vidéos, récupérer l'entité fichier associée
+                //  get video
                 $file = $media->get('field_media_video_file')->entity;
             }
 
-            // Vérifier si un fichier a été trouvé
+            //  check file is found
             if (isset($file) && $file instanceof File) {
-                // Obtenir le type MIME et l'URL du fichier
+                // get type MIME and file URL
                 $mime_type = $file->getMimeType();
                 $media_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
 
-                // Définir les paramètres JavaScript en fonction du type de fichier
+                // define params Js in function file type
                 if (strpos($mime_type, 'image/') === 0) {
                     $attachments['#attached']['drupalSettings']['yelenModalBeforeLogin']['mediaUrl'] = $media_url;
                     $attachments['#attached']['drupalSettings']['yelenModalBeforeLogin']['mediaType'] = 'image';

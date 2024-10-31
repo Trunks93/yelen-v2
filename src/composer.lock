@@ -2157,6 +2157,7 @@
             }
         },
         {
+<<<<<<< HEAD
             "name": "drupal/colorbutton",
             "version": "1.5.0",
             "source": {
@@ -2174,12 +2175,43 @@
                 "drupal/ckeditor": "*",
                 "drupal/core": "^9.3 || ^10",
                 "drupal/panelbutton": "^1.3"
+=======
+            "name": "drupal/color_field",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/color_field.git",
+                "reference": "3.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/color_field-3.0.1.zip",
+                "reference": "3.0.1",
+                "shasum": "fd2f75db74063f817d81a537221fa1c8398e4d8f"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10 || ^11"
+            },
+            "require-dev": {
+                "drupal/core-recommended": "^9 || ^10",
+                "drupal/feeds": "^3.0@beta",
+                "drupal/token": "~1.3"
+            },
+            "suggest": {
+                "bower-asset/jquery-simple-color": "^v1.2.2: Provides JavaScript library necessary for the Color Grid widget",
+                "bower-asset/spectrum": "^1.8: Provides JavaScript library necessary for Spectrum widget."
+>>>>>>> feat/modal-page-before-login
             },
             "type": "drupal-module",
             "extra": {
                 "drupal": {
+<<<<<<< HEAD
                     "version": "8.x-1.5",
                     "datestamp": "1671700335",
+=======
+                    "version": "3.0.1",
+                    "datestamp": "1717506868",
+>>>>>>> feat/modal-page-before-login
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2192,6 +2224,7 @@
             ],
             "authors": [
                 {
+<<<<<<< HEAD
                     "name": "Kevin Quillen (kevinquillen)",
                     "homepage": "https://www.drupal.org/u/kevinquillen",
                     "role": "Maintainer"
@@ -2213,6 +2246,81 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/colorbutton",
                 "issues": "http://drupal.org/project/issues/colorbutton"
+=======
+                    "name": "targoo",
+                    "homepage": "https://www.drupal.org/user/431910",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Nick Wilde",
+                    "homepage": "https://www.drupal.org/user/nickwilde",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "targoo",
+                    "homepage": "https://www.drupal.org/user/431910"
+                }
+            ],
+            "description": "Provides a color field type to store the color value and opacity",
+            "homepage": "https://www.drupal.org/project/color_field",
+            "support": {
+                "source": "https://git.drupalcode.org/project/color_field",
+                "issues": "https://www.drupal.org/project/issues/color_field?version=8.x"
+            }
+        },
+        {
+            "name": "drupal/colorpalette",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/colorpalette.git",
+                "reference": "1.0.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/colorpalette-1.0.4.zip",
+                "reference": "1.0.4",
+                "shasum": "7a5569d149f98325572d81763dc5a3838e19f179"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "1.0.4",
+                    "datestamp": "1692310567",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "abhaysaraf",
+                    "homepage": "https://www.drupal.org/user/2723079",
+                    "email": "abhaysaraf@2723079.no-reply.drupal.org"
+                },
+                {
+                    "name": "Gauravvvv",
+                    "homepage": "https://www.drupal.org/user/3643629"
+                },
+                {
+                    "name": "pgrandeg",
+                    "homepage": "https://www.drupal.org/user/3574140"
+                }
+            ],
+            "description": "Field input widget supporting launching of color palette with pre-approved color options.",
+            "homepage": "https://www.drupal.org/project/colorpalette",
+            "support": {
+                "source": "https://git.drupalcode.org/project/colorpalette",
+                "issues": "https://www.drupal.org/project/issues/colorpalette"
+>>>>>>> feat/modal-page-before-login
             }
         },
         {

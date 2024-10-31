@@ -52,6 +52,44 @@ function yelen_theme_preprocess_page(&$variables) {
   $variables['user_display_image'] = $user_display_image;
   $variables['user_small_image'] = $user_small_image;
 
+
+
+
+
+  // pour le footer
+
+  $vid = 'liens';
+  
+  $terms = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->loadTree($vid, 0, NULL, TRUE);
+
+    $menu = [];
+
+
+  foreach ($terms as $term) {
+    if (empty($term->parents[0])) { 
+      $menus[$term->id()] = [
+        'title' => $term->getName(),
+        'children' => []
+      ];
+    }
+  }
+
+  foreach ($terms as $term) {
+    if (!empty($term->parents[0])) {
+      $parent_id = $term->parents[0];
+      if (isset($menus[$parent_id])) {
+        $menus[$parent_id]['children'][] = [
+          'title' => $term->getName(),
+          'url' => $term->toUrl()->toString()
+        ];
+      }
+    }
+  }
+
+  $variables['footer_menus'] = $menus;
+
 }
 
 /**
@@ -79,5 +117,4 @@ function yelen_theme_preprocess_node(&$variables) {
   }
 
 }
-
 

@@ -9,7 +9,7 @@
 yelen_content_unpublish.settings:
  path: '/admin/config/content/yelen_content_unpublish'
  defaults:
-    _form: '\Drupal\yelen_content_unpublish\Form\YelenContentUnpublishSettingsForm'    
-    _title: 'Durée de Dépublication'
+    _form: '\Drupal\yelen_content_unpublish\Form\YelenContentUnpublishSettingsForm'
+    _title: 'Durée de dépublication'
  requirements:
     _permission: 'administer site configuration'

@@ -161,7 +161,7 @@ build-php:
 #    - apk add git
     - cd ${SRC_DIR}
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-    - composer self-update $COMPOSER_VERSION
+    - composer self-update  --2 $COMPOSER_VERSION
     - php -d memory_limit=-1 /usr/bin/composer install --ignore-platform-reqs --prefer-dist --no-scripts
     # - tar czf ../ansible/${SRC_ARCHIVE_FILE} --exclude='.env.*'  --exclude='.git' --exclude='node_modules' .
     - tar -acf vendor.tar.gz vendor

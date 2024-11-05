@@ -19,7 +19,8 @@ variables:
   SONAR_HOST_URL: http://sonarqube.ovh.smile.lan:9000
   SONAR_PROJECT_VERSION: ${CI_COMMIT_TAG}
   SONAR_PROJECT_KEY: ${CI_PROJECT_NAME}
-  COMPOSER_VERSION: 1.10.21
+  COMPOSER_VERSION: 2.8.2
+  #1.10.21
   CUSTOM_MODULES_JS_DIR: "web/modules/_custom"
   DOCKER_HOST: tcp://docker:2375
 
@@ -161,8 +162,7 @@ build-php:
 #    - apk add git
     - cd ${SRC_DIR}
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-#    - composer self-update   $COMPOSER_VERSION 
-    - composer self-update --rollback
+    - composer self-update   $COMPOSER_VERSION 
     - php -d memory_limit=-1 /usr/bin/composer install --ignore-platform-reqs --prefer-dist --no-scripts
     # - tar czf ../ansible/${SRC_ARCHIVE_FILE} --exclude='.env.*'  --exclude='.git' --exclude='node_modules' .
     - tar -acf vendor.tar.gz vendor

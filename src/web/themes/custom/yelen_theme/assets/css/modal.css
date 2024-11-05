@@ -30,10 +30,11 @@
   margin: auto;
 }
 
-.ui-dialog-content{
+.no_padding_container{
   padding:0 !important;
 }
-.ui-dialog-buttonset>button{
+.popup_btn>button{
   background-color: #ff7900 !important;
   color: white;
+  font-size: 14px;
 }

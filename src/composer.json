@@ -71,6 +71,7 @@
         "drupal/workbench_moderation": "^1.8",
         "drupal/xls_views_data_export": "^3.0",
         "drush/drush": "^12.5",
+        "nodespark/des-connector": "7.x-dev",
         "predis/predis": "^2.2"
     },
     "conflict": {

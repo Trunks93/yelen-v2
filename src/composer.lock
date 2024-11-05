@@ -6209,6 +6209,7 @@
             }
         },
         {
+<<<<<<< HEAD
             "name": "drupal/xls_serialization",
             "version": "1.5.0",
             "source": {
@@ -6323,6 +6324,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "drush/drush",
+            "version": "12.5.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drush-ops/drush.git",
+                "reference": "7fe0a492d5126c457c5fb184c4668a132b0aaac6"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> e4bba7e0 (OK pour basculement)
                 "url": "https://api.github.com/repos/drush-ops/drush/zipball/7fe0a492d5126c457c5fb184c4668a132b0aaac6",
                 "reference": "7fe0a492d5126c457c5fb184c4668a132b0aaac6",
                 "shasum": ""
@@ -18003,11 +18015,17 @@
         "drupal/elasticsearch_connector": 15,
         "drupal/gin": 5,
         "drupal/gin_toolbar": 5,
+<<<<<<< HEAD
         "drupal/poll": 15
+=======
+        "drupal/poll": 15,
+        "drupal/quiz": 15,
+        "nodespark/des-connector": 20
+>>>>>>> e4bba7e0 (OK pour basculement)
     },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "plugin-api-version": "2.3.0"
 }

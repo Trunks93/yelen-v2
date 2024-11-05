@@ -12,7 +12,7 @@ variables:
   SRC_DIR: "src"
   NODEJS_VERSION: "15"
   NODEJS_PACKAGE_MANAGER: yarn
-  PHP_VERSION: "7.2"
+  PHP_VERSION: "8.2"
   SONAR_LANGUAGE: php
   SONAR_SOURCES: ./src
   SONAR_URL: http://sonarqube.ovh.smile.lan:9000

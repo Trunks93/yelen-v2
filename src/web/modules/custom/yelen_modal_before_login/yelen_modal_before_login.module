@@ -14,37 +14,42 @@ use Drupal\file\Entity\File;
  */
 function yelen_modal_before_login_page_attachments(array &$attachments) {
     $current_path = \Drupal::service('path.current')->getPath();
-    
+
     if ($current_path == '/user/login') {
       $attachments['#attached']['drupalSettings']['yelenModalBeforeLogin'] = [
         'mediaUrl' => '',
         'mediaType' => '',
       ];
-  
+
       // load last content in type content "article"
       $query = \Drupal::entityQuery('node')
-        ->condition('type', value: 'article')
+        ->condition('type', 'popup')
         ->condition('status', 1)
         ->accessCheck(TRUE)
         ->sort('created', 'DESC')
         ->range(0, 1);
-      
+
       $nids = $query->execute();
-      
+
       if (!empty($nids)) {
         $nid = reset($nids);
         $node = Node::load($nid);
 
+        if ($node && !$node->get('field_image')->isEmpty()) {
+          $file = $node->get('field_image')->entity;
+        }
         if ($node && !$node->get('field_video')->isEmpty()) {
-            $media = $node->get('field_video')->entity;
-            if ($media && $media->hasField('field_media_image')) {
-                // associée get image 
+          $file = $node->get('field_video')->entity;
+        }
+           // dump($media);die();
+           /* if ($media && $media->hasField('field_media_image')) {
+                // associée get image
                 $file = $media->get('field_media_image')->entity;
             } elseif ($media && $media->hasField('field_media_video_file')) {
                 //  get video
                 $file = $media->get('field_media_video_file')->entity;
-            }
-
+            }*/
+//dump($file);die();
             //  check file is found
             if (isset($file) && $file instanceof File) {
                 // get type MIME and file URL
@@ -52,6 +57,8 @@ function yelen_modal_before_login_page_attachments(array &$attachments) {
                 $media_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
 
                 // define params Js in function file type
+                $attachments['#attached']['drupalSettings']['yelenModalBeforeLogin']['titleModal']=$node->getTitle();
+                $attachments['#attached']['drupalSettings']['yelenModalBeforeLogin']['textbuton']=$node->get('field_texte_du_bouton')->value;
                 if (strpos($mime_type, 'image/') === 0) {
                     $attachments['#attached']['drupalSettings']['yelenModalBeforeLogin']['mediaUrl'] = $media_url;
                     $attachments['#attached']['drupalSettings']['yelenModalBeforeLogin']['mediaType'] = 'image';
@@ -60,12 +67,12 @@ function yelen_modal_before_login_page_attachments(array &$attachments) {
                     $attachments['#attached']['drupalSettings']['yelenModalBeforeLogin']['mediaType'] = 'video';
                 }
             }
-        }
+
 
       }
-      
+
       // Attacher à la bibliothèque
       $attachments['#attached']['library'][] = 'yelen_modal_before_login/login-alert';
     }
   }
-  
+

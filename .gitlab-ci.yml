@@ -19,7 +19,7 @@ variables:
   SONAR_HOST_URL: http://sonarqube.ovh.smile.lan:9000
   SONAR_PROJECT_VERSION: ${CI_COMMIT_TAG}
   SONAR_PROJECT_KEY: ${CI_PROJECT_NAME}
-  COMPOSER_VERSION: 2 
+  COMPOSER_VERSION: 2.8.2 
   #1.10.21
   CUSTOM_MODULES_JS_DIR: "web/modules/_custom"
   DOCKER_HOST: tcp://docker:2375

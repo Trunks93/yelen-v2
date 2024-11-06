@@ -402,3 +402,8 @@ a.hover-orange:hover{
 .node-preview-container{
   display: none !important;
 }
+
+.orange_style{
+  font-size: 20px;
+  font-weight: bold;
+}

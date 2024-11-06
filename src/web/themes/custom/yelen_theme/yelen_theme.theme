@@ -133,4 +133,3 @@ function yelen_theme_preprocess_node(&$variables)
 
 }
 
-

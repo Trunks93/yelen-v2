@@ -17,7 +17,7 @@
     "require": {
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
-        "drupal/admin_toolbar": "^3.4",
+        "drupal/admin_toolbar": "^3.5",
         "drupal/autologout": "^1.4",
         "drupal/big_pipe_sessionless": "^2.2",
         "drupal/chat_livehelperchat": "^1.4",
@@ -59,6 +59,7 @@
         "drupal/select2": "^1.15",
         "drupal/site_audit": "^4.1",
         "drupal/slick": "^3.0",
+        "drupal/slick_views": "^3.0",
         "drupal/smtp": "^1.4",
         "drupal/term_csv_export_import": "^4.0",
         "drupal/token": "^1.15",

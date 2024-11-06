@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "0fd7bf8489c8bdd1be451106dfc3ca77",
+=======
+    "content-hash": "6e6fbdb01c1c300cd3fc32a09953f662",
+>>>>>>> 3b4b4a4f (OK pour Depublication)
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1769,6 +1773,7 @@
             }
         },
         {
+<<<<<<< HEAD
             "name": "drupal/big_pipe_sessionless",
             "version": "2.2.0",
             "source": {
@@ -1825,6 +1830,20 @@
                 "url": "https://ftp.drupal.org/files/projects/blazy-3.0.13.zip",
                 "reference": "3.0.13",
                 "shasum": "f1fbac3fddbf166a4c80753dc4ec2fb0d18758c3"
+=======
+            "name": "drupal/blazy",
+            "version": "3.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/blazy.git",
+                "reference": "3.0.10"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/blazy-3.0.10.zip",
+                "reference": "3.0.10",
+                "shasum": "8887721c80b9faac7350af4723aae6fb0ffa6927"
+>>>>>>> 3b4b4a4f (OK pour Depublication)
             },
             "require": {
                 "drupal/core": ">=9.4"
@@ -1835,8 +1854,13 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
+<<<<<<< HEAD
                     "version": "3.0.13",
                     "datestamp": "1729740941",
+=======
+                    "version": "3.0.10",
+                    "datestamp": "1723362697",
+>>>>>>> 3b4b4a4f (OK pour Depublication)
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2727,6 +2751,7 @@
             }
         },
         {
+<<<<<<< HEAD
             "name": "drupal/datatables",
             "version": "2.0.1",
             "source": {
@@ -2841,6 +2866,17 @@
             },
             "dist": {
                 "type": "zip",
+=======
+            "name": "drupal/devel",
+            "version": "5.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/devel.git",
+                "reference": "5.3.1"
+            },
+            "dist": {
+                "type": "zip",
+>>>>>>> 3b4b4a4f (OK pour Depublication)
                 "url": "https://ftp.drupal.org/files/projects/devel-5.3.1.zip",
                 "reference": "5.3.1",
                 "shasum": "6a5f13bdf93dc5f7f194b6af847589ae15e37b63"
@@ -5639,8 +5675,70 @@
             }
         },
         {
+<<<<<<< HEAD
             "name": "drupal/video",
             "version": "3.0.5",
+=======
+            "name": "drupal/view_unpublished",
+            "version": "1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/view_unpublished.git",
+                "reference": "8.x-1.3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/view_unpublished-8.x-1.3.zip",
+                "reference": "8.x-1.3",
+                "shasum": "7dd4411c53866585ac6319d147ab11d214d55877"
+            },
+            "require": {
+                "drupal/core": "^9.4 || ^10 || ^11"
+            },
+            "require-dev": {
+                "drupal/coder": "^8.3.18",
+                "phpcompatibility/php-compatibility": "10.x-dev@dev"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.3",
+                    "datestamp": "1724503131",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Agnes Chisholm",
+                    "homepage": "https://www.drupal.org/user/173461",
+                    "email": "amaria@chisholmtech.com"
+                },
+                {
+                    "name": "fathima.asmat",
+                    "homepage": "https://www.drupal.org/user/3622664"
+                },
+                {
+                    "name": "tobiasb",
+                    "homepage": "https://www.drupal.org/user/183956"
+                }
+            ],
+            "description": "Select which roles should be able to see unpublished nodes.",
+            "homepage": "https://www.drupal.org/project/view_unpublished",
+            "support": {
+                "source": "https://git.drupalcode.org/project/view_unpublished"
+            }
+        },
+        {
+            "name": "drupal/views_bulk_operations",
+            "version": "4.2.7",
+>>>>>>> 3b4b4a4f (OK pour Depublication)
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/video.git",

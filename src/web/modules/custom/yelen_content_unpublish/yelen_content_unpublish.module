@@ -1,11 +1,13 @@
 <?php
 
+
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Implements hook_form_alter().
  */
+
 function yelen_content_unpublish_form_alter(&$form, FormStateInterface $form_state, $form_id)
 {
 
@@ -24,7 +26,6 @@ function yelen_content_unpublish_form_alter(&$form, FormStateInterface $form_sta
   }
 
   \Drupal::logger('yelen_content_unpublish')->debug('Form alter called for form_id: @form_id', ['@form_id' => $form_id]);
-
 
 }
 
@@ -52,8 +53,5 @@ function yelen_content_unpublish_alter_scheduler_form(&$form, FormStateInterface
     //\Drupal::messenger()->addWarning(t('The unpublication date is set by default and cannot be changed.'));
   }
 
-
 }
 
-
-?>

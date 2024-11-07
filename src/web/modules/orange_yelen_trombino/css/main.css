@@ -184,6 +184,10 @@ body{
       padding-right: 0;
     }
 
+    select.form-type--select{
+      display: none;
+    }
+
     /*.form-type--search-api-autocomplete{
       flex: 0 0 80%;
 

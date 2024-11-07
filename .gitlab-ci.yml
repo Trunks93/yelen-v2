@@ -98,9 +98,6 @@ build-assets:
   image:
     name: node:${NODEJS_VERSION}
   variables:
-#    http_proxy: "http://192.168.42.15:3128"
-#    https_proxy: "http://192.168.42.15:3128"
-#    no_proxy: "localhost,127.0.0.1"
   script:
     - export
     
@@ -152,9 +149,6 @@ build-php:
     name: php:${PHP_VERSION}-alpine
     entrypoint: [""]
   variables:
-#    http_proxy: "http://192.168.42.15:3128"
-#    https_proxy: "http://192.168.42.15:3128"
-#    no_proxy: "localhost,127.0.0.1"
   script:
     - export
     - printenv | grep proxy
@@ -199,14 +193,8 @@ build-php:
 .deploy:
   stage: deploy
   tags:
-#    - ansible
-    - oci-simswp-prod
+    - ansible
   image: fs0ci3ty/centos7-ansible-new
-  variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    http_proxy: "http://192.168.42.15:3128"
-    https_proxy: "http://192.168.42.15:3128"
-    no_proxy: "localhost,127.0.0.1"
     #ansible/centos7-ansible
 
   script: 

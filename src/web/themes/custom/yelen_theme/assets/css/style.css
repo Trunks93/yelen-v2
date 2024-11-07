@@ -402,3 +402,8 @@ a.hover-orange:hover{
 .node-preview-container{
   display: none !important;
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}

@@ -18,9 +18,3 @@ popup_login:
       assets/css/modal.css: {}
 
 
-popup_login:
-  css:
-    theme:
-      assets/css/modal.css: {}
-
-

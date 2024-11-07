@@ -16,7 +16,8 @@ class YelenContentUnpublishSettingsForm extends ConfigFormBase {
     return 'yelen_content_unpublish_settings_form';
   }
 
-  public function buildForm(array $form, FormStateInterface $form_state) {
+  public function buildForm(array $form, FormStateInterface $form_state){
+
     $default_days = 0;
     $config = $this->config('yelen_content_unpublish.settings');
 
@@ -27,6 +28,20 @@ class YelenContentUnpublishSettingsForm extends ConfigFormBase {
       '#type' => 'number',
       '#title' => $this->t(string: 'Date de dépublication '),
       '#default_value' => $default_value ?? $default_days,
+      ];
+
+    $config = $this->config('yelen_content_unpublish.settings');
+
+    $default_value = $config->get('default_unpublish_date');
+    if (!$default_value) {
+      $default_days = 0;
+
+    }
+
+    $form['default_unpublish_date'] = [
+      '#type' => 'number',
+      '#title' => $this->t(string: 'Date de dépublication '),
+      '#default_value' => $default_days,
       '#description' => $this->t(string: 'Entrez le nombre de jours pour la dépublication '),
       '#min' => 0,
     ];
@@ -50,4 +65,6 @@ class YelenContentUnpublishSettingsForm extends ConfigFormBase {
 
     parent::submitForm($form, $form_state);
   }
+
 }
+

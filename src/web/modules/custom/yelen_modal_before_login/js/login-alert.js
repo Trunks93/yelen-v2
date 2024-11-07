@@ -58,7 +58,6 @@
                               modalsize[settings.yelenModalBeforeLogin.size]
                             ]*/
                           classes:{
-
                             "ui-dialog-titlebar":'bg-orange',
                             "ui-dialog-buttonset":"popup_btn",
                             "ui-dialog-content":"no_padding_container"

@@ -1,6 +1,13 @@
 <?php
 
-
+/**
+ * hook mail
+ * @param $existing
+ * @param $type
+ * @param $theme
+ * @param $path
+ * @return array[]
+ */
 function yelen_faq_theme($existing, $type, $theme, $path) :array
 {
 

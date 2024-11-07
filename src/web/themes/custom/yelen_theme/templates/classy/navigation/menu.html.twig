@@ -50,7 +50,6 @@ We call a macro which calls itself to render the full tree.
         'nav-link dropdown-toggle',
         item.in_active_trail ? 'active'
       ] %}
-
         {% if item.below %}
           <li{{ item.attributes.addClass(classes) }}>
           {{ link(item.title, item.url, {'class': menu_class_below,'role':'button','data-bs-toggle':'dropdown'}) }}

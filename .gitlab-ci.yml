@@ -3,7 +3,7 @@
 include:
   - project: 'template/pipelines/base'
     file: '/.gitlab-ci.yml'
-    
+
 variables:
   APP_NAME: ${CI_PROJECT_NAME}
   SRC_ARCHIVE_FILE: ${CI_PROJECT_NAME}.tar.gz
@@ -19,7 +19,7 @@ variables:
   SONAR_HOST_URL: http://sonarqube.ovh.smile.lan:9000
   SONAR_PROJECT_VERSION: ${CI_COMMIT_TAG}
   SONAR_PROJECT_KEY: ${CI_PROJECT_NAME}
-  COMPOSER_VERSION: 2.8.2 
+  COMPOSER_VERSION: 2.8.2
   #1.10.21
   CUSTOM_MODULES_JS_DIR: "web/modules/_custom"
   DOCKER_HOST: tcp://docker:2375
@@ -41,39 +41,39 @@ stages:
   - dast
   - gitlab-pages
   - notify
-  
-# lint-php:
-#   stage: lint
-#   tags:
-#     - php
-#   image:
-#     name: php:${PHP_VERSION}-alpine
-#   script:
-#     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-#     - composer require --no-plugins overtrue/phplint 
-#     - cd ${SRC_DIR}
-#     - ../vendor/bin/phplint ./ --exclude=vendor --no-cache 
-#   rules:
-#     - changes:
-#         - "**/*.php"
 
-# lint-js:
-#   stage: lint
-#   tags:
-#     - nodejs
-#   image:
-#     name: node:${NODEJS_VERSION}
-#   script:
-#      - |
+    # lint-php:
+    #   stage: lint
+    #   tags:
+    #     - php
+    #   image:
+    #     name: php:${PHP_VERSION}-alpine
+    #   script:
+    #     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
+    #     - composer require --no-plugins overtrue/phplint
+    #     - cd ${SRC_DIR}
+    #     - ../vendor/bin/phplint ./ --exclude=vendor --no-cache
+    #   rules:
+    #     - changes:
+    #         - "**/*.php"
 
-#        if [[ -f ${SRC_DIR}/package.json ]]
-#        then
-#           cd ${SRC_DIR}
-#           rm -f package-lock.json
-#           ${NODEJS_PACKAGE_MANAGER} install
-#           npm run lint --if-present
-#        fi
-       
+    # lint-js:
+    #   stage: lint
+    #   tags:
+    #     - nodejs
+    #   image:
+    #     name: node:${NODEJS_VERSION}
+    #   script:
+    #      - |
+
+    #        if [[ -f ${SRC_DIR}/package.json ]]
+    #        then
+    #           cd ${SRC_DIR}
+    #           rm -f package-lock.json
+    #           ${NODEJS_PACKAGE_MANAGER} install
+    #           npm run lint --if-present
+    #        fi
+
 #        if [[ -z $CUSTOM_MODULES_JS_DIR ]]; then exit 0; fi
 #        #for package in `find ${CI_PROJECT_DIR}/${SRC_DIR}/${CUSTOM_MODULES_JS_DIR} -name *package.json`
 #        for package in `ls -1 ${CI_PROJECT_DIR}/${SRC_DIR}/${CUSTOM_MODULES_JS_DIR}/*/*/package.json`
@@ -93,38 +93,35 @@ build-assets:
   stage: build
   tags:
     - nodejs
-#    - oci-simswp-prod
-    
+    #    - oci-simswp-prod
+
   image:
     name: node:${NODEJS_VERSION}
   variables:
-#    http_proxy: "http://192.168.42.15:3128"
-#    https_proxy: "http://192.168.42.15:3128"
-#    no_proxy: "localhost,127.0.0.1"
   script:
     - export
-    
+
     - |
-     
-       if [[ -f ${SRC_DIR}/package.json ]]
-       then
-          cd ${SRC_DIR}
-          ${NODEJS_PACKAGE_MANAGER} install
-          npm run build --if-present
-       fi
-       
-       # If there is a  custom module js directory 
-       if [[ ! -z $CUSTOM_MODULES_JS_DIR ]]
-       then
-        for package in `find ${CI_PROJECT_DIR}/${SRC_DIR}/${CUSTOM_MODULES_JS_DIR} -name *package.json`
-        do
-            cd `dirname $package`
-            ${NODEJS_PACKAGE_MANAGER} install
-            npm run build --if-present
-        done
-       fi
-       cd ${CI_PROJECT_DIR}
-       tar -acf ${SRC_DIR}.tar.gz  --exclude "node_modules" --exclude ".git" --exclude "vendor" ${SRC_DIR}
+
+      if [[ -f ${SRC_DIR}/package.json ]]
+      then
+         cd ${SRC_DIR}
+         ${NODEJS_PACKAGE_MANAGER} install
+         npm run build --if-present
+      fi
+
+      # If there is a  custom module js directory
+      if [[ ! -z $CUSTOM_MODULES_JS_DIR ]]
+      then
+       for package in `find ${CI_PROJECT_DIR}/${SRC_DIR}/${CUSTOM_MODULES_JS_DIR} -name *package.json`
+       do
+           cd `dirname $package`
+           ${NODEJS_PACKAGE_MANAGER} install
+           npm run build --if-present
+       done
+      fi
+      cd ${CI_PROJECT_DIR}
+      tar -acf ${SRC_DIR}.tar.gz  --exclude "node_modules" --exclude ".git" --exclude "vendor" ${SRC_DIR}
   artifacts:
     paths:
       - ${SRC_DIR}.tar.gz
@@ -142,38 +139,34 @@ build-assets:
       changes:
         - ${SRC_DIR}/package.json
         - ${SRC_DIR}/${CUSTOM_MODULES_JS_DIR}/**/package.json
-
 build-php:
   stage: build
   tags:
     - apache
-#    - oci-simswp-prod
+  #    - oci-simswp-prod
   image:
     name: php:${PHP_VERSION}-alpine
     entrypoint: [""]
   variables:
-#    http_proxy: "http://192.168.42.15:3128"
-#    https_proxy: "http://192.168.42.15:3128"
-#    no_proxy: "localhost,127.0.0.1"
   script:
     - export
     - printenv | grep proxy
     - apk add --no-cache --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/main --repository http://dl-cdn.alpinelinux.org/alpine/v3.12/community --allow-untrusted git
-#    - apk add git
+    #    - apk add git
     - cd ${SRC_DIR}
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
-    - composer self-update   $COMPOSER_VERSION 
+    - composer self-update   $COMPOSER_VERSION
     - php -d memory_limit=-1 /usr/bin/composer install --ignore-platform-reqs --prefer-dist --no-scripts
     # - tar czf ../ansible/${SRC_ARCHIVE_FILE} --exclude='.env.*'  --exclude='.git' --exclude='node_modules' .
     - tar -acf vendor.tar.gz vendor
   artifacts:
     paths:
       - ${SRC_DIR}/vendor.tar.gz
-  #   exclude:
-  #     - ${SRC_DIR}/vendor
-  #     - ${SRC_DIR}/**/vendor
-  #     - ${SRC_DIR}/node_modules/**/*
-  #     - ${SRC_DIR}/**/node_modules/**/*
+    #   exclude:
+    #     - ${SRC_DIR}/vendor
+    #     - ${SRC_DIR}/**/vendor
+    #     - ${SRC_DIR}/node_modules/**/*
+    #     - ${SRC_DIR}/**/node_modules/**/*
     expire_in: 1d
   rules:
     - if: $CI_COMMIT_REF_NAME =~ /^(dev|stg|prod)-.*$/
@@ -199,17 +192,10 @@ build-php:
 .deploy:
   stage: deploy
   tags:
-#    - ansible
-    - oci-simswp-prod
+    - ansible
   image: fs0ci3ty/centos7-ansible-new
-  variables:
-    DOCKER_HOST: "tcp://docker:2375"
-    http_proxy: "http://192.168.42.15:3128"
-    https_proxy: "http://192.168.42.15:3128"
-    no_proxy: "localhost,127.0.0.1"
     #ansible/centos7-ansible
-
-  script: 
+  script:
     - yum install gettext -y
     - chmod +x bin/*
     - cd bin
@@ -243,10 +229,9 @@ deploy-staging:
 
 deploy-production:
   extends: .deploy
-#  when: manual
+  #  when: manual
   environment:
     name: production
     url: $APP_URL
   only:
     - /^prod-.*$/
-

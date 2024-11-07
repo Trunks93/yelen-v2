@@ -98,6 +98,9 @@ build-assets:
   image:
     name: node:${NODEJS_VERSION}
   variables:
+  #    http_proxy: "http://192.168.42.15:3128"
+  #    https_proxy: "http://192.168.42.15:3128"
+  #    no_proxy: "localhost,127.0.0.1"
   script:
     - export
 
@@ -139,6 +142,7 @@ build-assets:
       changes:
         - ${SRC_DIR}/package.json
         - ${SRC_DIR}/${CUSTOM_MODULES_JS_DIR}/**/package.json
+
 build-php:
   stage: build
   tags:
@@ -148,6 +152,9 @@ build-php:
     name: php:${PHP_VERSION}-alpine
     entrypoint: [""]
   variables:
+  #    http_proxy: "http://192.168.42.15:3128"
+  #    https_proxy: "http://192.168.42.15:3128"
+  #    no_proxy: "localhost,127.0.0.1"
   script:
     - export
     - printenv | grep proxy
@@ -192,9 +199,16 @@ build-php:
 .deploy:
   stage: deploy
   tags:
-    - ansible
+    #    - ansible
+    - oci-simswp-prod
   image: fs0ci3ty/centos7-ansible-new
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    http_proxy: "http://192.168.42.15:3128"
+    https_proxy: "http://192.168.42.15:3128"
+    no_proxy: "localhost,127.0.0.1"
     #ansible/centos7-ansible
+
   script:
     - yum install gettext -y
     - chmod +x bin/*

@@ -20,7 +20,9 @@
 {% if title %}
   <h3>{{ title }}</h3>
 {% endif %}
-<div{{ row.attributes.addClass(row_classes) }}>
+
+
+<div class="slider">
 
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"
        data-bs-interval="130000">
@@ -31,7 +33,7 @@
                 aria-current="true" aria-label="Slide {{ loop.index }}"></button>
       {% endfor %}
     </div>
-    <div class="carousel-inner">
+    <div class="carousel-inner bg-dark text-white">
       {% for row in rows %}
         {% set row_classes = [
           default_row_class ? 'views-row',
@@ -40,7 +42,7 @@
         <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
           <div class="row">
 
-            <div class="col-md-6  back-texte-carousel">
+            <div class="col-md-6">
               <div class="promo-vacances p-4 ">
                 <h2>{{ row.content['field_titre']["#object"].field_titre.value }}</h2>
                 {{ row.content['field_titre']["#object"].body.value|raw }}

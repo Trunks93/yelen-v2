@@ -1,0 +1,5 @@
+services:
+  orange_yelen_login_page.route_event_subscriber:
+    class: Drupal\orange_yelen_login_page\EventSubscriber\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

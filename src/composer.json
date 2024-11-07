@@ -22,6 +22,7 @@
         "drupal/big_pipe_sessionless": "^2.2",
         "drupal/chat_livehelperchat": "^1.4",
         "drupal/ckeditor5_font": "^1.1@beta",
+        "drupal/ckeditor5_plugin_pack": "^1.2",
         "drupal/coffee": "^1.4",
         "drupal/colorbutton": "^1.5",
         "drupal/core-composer-scaffold": "^10.2",

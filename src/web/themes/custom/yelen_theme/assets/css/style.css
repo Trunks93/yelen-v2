@@ -402,3 +402,14 @@ a.hover-orange:hover{
 .node-preview-container{
   display: none !important;
 }
+
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
+.main_slider .carousel{
+  height: 200px;
+  overflow-y: hidden;
+}

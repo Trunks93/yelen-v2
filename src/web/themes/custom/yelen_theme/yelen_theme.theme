@@ -78,7 +78,7 @@ function yelen_theme_preprocess_page(&$variables)
     ->getStorage('taxonomy_term')
     ->loadTree($vid, 0, NULL, TRUE);
 
-  $menu = [];
+  $menus = [];
 
 
   foreach ($terms as $term) {

@@ -1,5 +1,8 @@
 <?php
 
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
 /**
  * @file
  * Primary module hooks for Orange Yelen Login Page module.
@@ -11,8 +14,16 @@
         $request = \Drupal::request();
         $route_match = \Drupal::routeMatch();
         unset($form['more-links']);
+        $form['#validate'][] = 'orange_yelen_login_page_user_login_validate';
     }
  }
+
+function orange_yelen_login_page_user_login_validate(&$form, $formState) {
+  if ($formState->getErrors()) {
+    $formState->clearErrors();
+    $formState->setErrorByName('name', t("Les identifiants fournis sont incorrects. Veuillez réessayer."));
+  }
+}
 
  function orange_yelen_login_page_page_attachments_alter(array &$attachments) {
    // Ajout de fichier css à la page d'authentification
@@ -24,7 +35,15 @@
 
 function orange_yelen_login_page_preprocess_html(&$variables): void {
   $route_name = \Drupal::routeMatch()->getRouteName();
+  $route_path = \Drupal::request()->getPathInfo();
+
   if($route_name === 'user.login'){
     $variables['page']['#title'] = t('Connexion');
   }
+
+  /*if($route_path === '/user/password'){
+    $url = Url::fromUri('internal:/');
+    $response = new RedirectResponse($url->toString());
+    $response->send();
+  }*/
 }

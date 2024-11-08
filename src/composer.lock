@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "59036e4ad6a93d2369e1280860099556",
+    "content-hash": "f322755adf0c8dcf1d230c86435cead3",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -118,16 +118,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.325.3",
+            "version": "3.325.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "de0b289c7260fb19301ffa2eb724de2076daad74"
+                "reference": "86372984539f25485718059f997a4ea12c05ba0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/de0b289c7260fb19301ffa2eb724de2076daad74",
-                "reference": "de0b289c7260fb19301ffa2eb724de2076daad74",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/86372984539f25485718059f997a4ea12c05ba0a",
+                "reference": "86372984539f25485718059f997a4ea12c05ba0a",
                 "shasum": ""
             },
             "require": {
@@ -210,9 +210,9 @@
             "support": {
                 "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
                 "issues": "https://github.com/aws/aws-sdk-php/issues",
-                "source": "https://github.com/aws/aws-sdk-php/tree/3.325.3"
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.325.4"
             },
-            "time": "2024-11-06T19:05:22+00:00"
+            "time": "2024-11-07T19:25:01+00:00"
         },
         {
             "name": "caxy/php-htmldiff",
@@ -1767,17 +1767,17 @@
         },
         {
             "name": "drupal/authorization",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/authorization.git",
-                "reference": "8.x-1.4"
+                "reference": "8.x-1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/authorization-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "ab53bb875e1f5959044c12b87472a92000cc2464"
+                "url": "https://ftp.drupal.org/files/projects/authorization-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "9d87ff0bba3cfa8c7bdd2cb9a7a240567d23e2b3"
             },
             "require": {
                 "drupal/core": "^9 || ^10 || ^11",
@@ -1786,8 +1786,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1725920419",
+                    "version": "8.x-1.5",
+                    "datestamp": "1731019647",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3940,17 +3940,17 @@
         },
         {
             "name": "drupal/gin",
-            "version": "3.0.0-rc13",
+            "version": "3.0.0-rc14",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/gin.git",
-                "reference": "8.x-3.0-rc13"
+                "reference": "8.x-3.0-rc14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/gin-8.x-3.0-rc13.zip",
-                "reference": "8.x-3.0-rc13",
-                "shasum": "7b8e9d7ae6fe6de7de0bba930200fe80b437eefe"
+                "url": "https://ftp.drupal.org/files/projects/gin-8.x-3.0-rc14.zip",
+                "reference": "8.x-3.0-rc14",
+                "shasum": "8ca8735f5a1d7ef25ee446358cd704a3feb1cae7"
             },
             "require": {
                 "drupal/core": "^9 || ^10 || ^11",
@@ -3959,8 +3959,8 @@
             "type": "drupal-theme",
             "extra": {
                 "drupal": {
-                    "version": "8.x-3.0-rc13",
-                    "datestamp": "1720416342",
+                    "version": "8.x-3.0-rc14",
+                    "datestamp": "1731015952",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "RC releases are not covered by Drupal security advisories."
@@ -4539,6 +4539,64 @@
             "support": {
                 "source": "https://git.drupalcode.org/project/minifyhtml",
                 "issues": "https://www.drupal.org/project/issues/minifyhtml"
+            }
+        },
+        {
+            "name": "drupal/noreqnewpass",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/noreqnewpass.git",
+                "reference": "8.x-1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/noreqnewpass-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "b3fd5499d8a371ff1c259e371284c48602b9dbc3"
+            },
+            "require": {
+                "drupal/core": "^8 || ^9 || ^10 || ^11"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "8.x-1.4",
+                    "datestamp": "1727698112",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Neslee Canil Pinto",
+                    "homepage": "https://www.drupal.org/u/neslee-canil-pinto",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "neslee canil pinto",
+                    "homepage": "https://www.drupal.org/user/3580850"
+                },
+                {
+                    "name": "pedrofaria",
+                    "homepage": "https://www.drupal.org/user/27805"
+                },
+                {
+                    "name": "University of Colorado Boulder",
+                    "homepage": "https://www.drupal.org/user/3299791"
+                }
+            ],
+            "description": "Disable link to request a new password.",
+            "homepage": "https://www.drupal.org/project/noreqnewpass",
+            "support": {
+                "source": "https://git.drupalcode.org/project/noreqnewpass",
+                "issues": "https://www.drupal.org/project/issues/noreqnewpass"
             }
         },
         {
@@ -5901,6 +5959,121 @@
             }
         },
         {
+            "name": "drupal/token_filter",
+            "version": "2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/token_filter.git",
+                "reference": "2.2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/token_filter-2.2.1.zip",
+                "reference": "2.2.1",
+                "shasum": "1950ce8c0235418175e11c0d9ed15afbe1421dd7"
+            },
+            "require": {
+                "drupal/core": "^10 || ^11",
+                "drupal/token": "^1",
+                "php": ">=8.1"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.2.1",
+                    "datestamp": "1719183798",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "ademarco",
+                    "homepage": "https://www.drupal.org/user/186696"
+                },
+                {
+                    "name": "asciikewl",
+                    "homepage": "https://www.drupal.org/user/147292"
+                },
+                {
+                    "name": "darvanen",
+                    "homepage": "https://www.drupal.org/user/1068770"
+                },
+                {
+                    "name": "dave reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "Deciphered",
+                    "homepage": "https://www.drupal.org/user/103796"
+                },
+                {
+                    "name": "pescetti",
+                    "homepage": "https://www.drupal.org/user/436244"
+                },
+                {
+                    "name": "pvhee",
+                    "homepage": "https://www.drupal.org/user/108811"
+                }
+            ],
+            "description": "This is a very simple module to make global token values available as an input filter.",
+            "homepage": "https://www.drupal.org/project/token_filter",
+            "support": {
+                "source": "https://git.drupalcode.org/project/token_filter"
+            }
+        },
+        {
+            "name": "drupal/token_views_filter",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/token_views_filter.git",
+                "reference": "2.0.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/token_views_filter-2.0.0.zip",
+                "reference": "2.0.0",
+                "shasum": "a87e7e417620c6378bc0a8d820fd4f07d42e4654"
+            },
+            "require": {
+                "drupal/core": "^9 || ^10",
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0",
+                    "datestamp": "1693560324",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "validoll",
+                    "homepage": "https://www.drupal.org/user/144206"
+                }
+            ],
+            "description": "This is module allow to use tokens in views filter criteria values.",
+            "homepage": "https://www.drupal.org/project/token_views_filter",
+            "support": {
+                "source": "https://git.drupalcode.org/project/token_views_filter"
+            }
+        },
+        {
             "name": "drupal/twig_tweak",
             "version": "3.4.0",
             "source": {
@@ -6089,17 +6262,17 @@
         },
         {
             "name": "drupal/views_bulk_operations",
-            "version": "4.3.1",
+            "version": "4.3.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupalcode.org/project/views_bulk_operations.git",
-                "reference": "4.3.1"
+                "reference": "4.3.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.3.1.zip",
-                "reference": "4.3.1",
-                "shasum": "1089fe41ddb01313f34d55e19e8f3a5157889430"
+                "url": "https://ftp.drupal.org/files/projects/views_bulk_operations-4.3.2.zip",
+                "reference": "4.3.2",
+                "shasum": "b3d0ee06abb15520595b83324e93c5500d5dcef3"
             },
             "require": {
                 "drupal/core": "^10.3 || ^11"
@@ -6116,8 +6289,8 @@
             "type": "drupal-module",
             "extra": {
                 "drupal": {
-                    "version": "4.3.1",
-                    "datestamp": "1729683242",
+                    "version": "4.3.2",
+                    "datestamp": "1731070018",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -13151,16 +13324,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v3.14.1",
+            "version": "v3.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "f405356d20fb43603bcadc8b09bfb676cb04a379"
+                "reference": "0b6f9d8370bb3b7f1ce5313ed8feb0fafd6e399a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/f405356d20fb43603bcadc8b09bfb676cb04a379",
-                "reference": "f405356d20fb43603bcadc8b09bfb676cb04a379",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/0b6f9d8370bb3b7f1ce5313ed8feb0fafd6e399a",
+                "reference": "0b6f9d8370bb3b7f1ce5313ed8feb0fafd6e399a",
                 "shasum": ""
             },
             "require": {
@@ -13214,7 +13387,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v3.14.1"
+                "source": "https://github.com/twigphp/Twig/tree/v3.14.2"
             },
             "funding": [
                 {
@@ -13226,7 +13399,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-06T18:17:38+00:00"
+            "time": "2024-11-07T12:36:22+00:00"
         },
         {
             "name": "webflo/drupal-finder",

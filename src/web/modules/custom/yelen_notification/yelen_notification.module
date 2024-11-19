@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Drupal\node\Entity\Node;
 use Drupal\yelen_notification\Constante\Constante;
+use Drupal\yelen_notification\Event\BroadcastListEvent;
 use Drupal\yelen_notification\Event\NotificationEvent;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\content_moderation\Entity\ContentModerationState;
@@ -25,79 +26,48 @@ use Drupal\yelen_notification\Entity\BroadcastList;
  */
 function yelen_notification_cron()
 {
-  $isExist = _isExist_all_user_broadcastList();
+  $event_dispatcher = \Drupal::service('event_dispatcher');
+
+  $event = new BroadcastListEvent();
+  $event->setBroadcastlist(Constante::ALL_YELEN_USERS);
+
+  $isExist = _is_exist_broadcastList(Constante::ALL_YELEN_USERS);
   if ($isExist) {
-    //update
-    _update_allOrange_BroadcastList($isExist);
-  } else {
-    //create
-    _create_allOrange_BroadcastList();
+    $event->setEntity($isExist);
+    $event_dispatcher->dispatch($event, BroadcastListEvent::BROADCASTLIST_UPDATE);
+  }else{
+    $event_dispatcher->dispatch($event, BroadcastListEvent::BROADCASTLIST_CREATE);
   }
-}
 
+  $event2 = new BroadcastListEvent();
+  $event2->setBroadcastlist(Constante::ALL_YELEN_ADMINS);
 
-function _isExist_all_user_broadcastList()
-{
-  $em = \Drupal::entityTypeManager()->getStorage('broadcast_list');
-  $allUserBroadcastList = $em->loadByProperties(['label' => 'Tous les utilisateurs Yelen']);
-  if (!empty($allUserBroadcastList)) {
-    return current($allUserBroadcastList);
+  $isAdminExist = _is_exist_broadcastList(Constante::ALL_YELEN_ADMINS);
+
+  if ($isAdminExist) {
+    $event2->setEntity($isAdminExist);
+    $event_dispatcher->dispatch($event2, BroadcastListEvent::BROADCASTLIST_UPDATE);
+  }else{
+    $event_dispatcher->dispatch($event2, BroadcastListEvent::BROADCASTLIST_CREATE);
   }
-  return false;
-}
 
-function _update_allOrange_BroadcastList(BroadcastList $currentListe)
-{
-  $currentMember = $currentListe->field_membres->getValue();
-  $user_ids = _getAllOrangeUser($currentMember);
-  $position = count($currentMember);
-  foreach ($user_ids as $user_id) {
-    $currentListe->get('field_membres')->set($position,['target_id' => $user_id]);
-    $position++;
-  }
-  $currentListe->save();
 }
 
 /**
- * @throws \Drupal\Core\Entity\EntityStorageException
- */
-function _create_allOrange_BroadcastList()
-{
-  $user_ids = _getAllOrangeUser();
-  $members = [];
-  foreach ($user_ids as $user_id) {
-    $members[] = ['target_id' => $user_id];
-  }
-  $list = BroadcastList::create([
-    'label' => 'Tous les utilisateurs Yelen',
-    'status' => TRUE,
-    'bundle' => 'normal',
-    'field_membres' => $members
-  ]);
-  $list->save();
-}
-
-/**
- * @return array
+ * verifie s'il existe une liste de diffusion existe
+ * @return EntityInterface|false
  * @throws \Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException
  * @throws \Drupal\Component\Plugin\Exception\PluginNotFoundException
  */
-function _getAllOrangeUser(array $currentmembers = []): array
+function _is_exist_broadcastList(string $name)
 {
-  $em = \Drupal::entityTypeManager()->getStorage('user');
-  $users = $em->getQuery()
-    ->accessCheck(TRUE)
-    ->condition('status', true)
-    ->condition('mail', '%orange%', 'LIKE');
-  if (!empty($currentmembers)) {
-    $list = [];
-    foreach ($currentmembers as $member) {
-      $list[] = $member['target_id'];
-    }
-    $users->condition('uid', $list, 'NOT IN');
+  $em = \Drupal::entityTypeManager()->getStorage('broadcast_list');
+  $allUserBroadcastList = $em->loadByProperties(['label' => $name]);
+  if (!empty($allUserBroadcastList)) {
+    return current($allUserBroadcastList);
   }
 
-  return $users->execute();
+  return false;
 }
 
 

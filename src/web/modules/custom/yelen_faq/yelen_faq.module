@@ -10,7 +10,6 @@
  */
 function yelen_faq_theme($existing, $type, $theme, $path) :array
 {
-
   return [
     'yelen_faq_block' => [
       'variables' => [

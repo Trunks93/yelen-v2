@@ -6,6 +6,7 @@ namespace Drupal\orange_yelen_search\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\yelen_notification\Constante\Constante;
 
 /**
  * Provides a Orange Yelen Search form.
@@ -98,8 +99,8 @@ final class SearchRatingForm extends FormBase {
     $notificationService = \Drupal::service('yelen_notification.sendmail');
 
     $subject = 'Evaluation de Recherche';
-    //TODO: SET REAL RECEIVER
-    $receiver = 'saintcyrwin@gmail.com,julius.konan@synelia.tech,wisdom.houede@synelia.tech';
+    $emailExtractor = \Drupal::service('yelen_notification.extract.mail');
+    $emails = $emailExtractor->getEmailsFromBroadcastList(Constante::ALL_YELEN_ADMINS);
     $cc = null;
     $notificationTemplate = [
         '#theme' => 'rating_notification',
@@ -112,7 +113,7 @@ final class SearchRatingForm extends FormBase {
     ];
 
     try {
-        $notificationService->sendNotification($subject, $receiver, $cc, $notificationTemplate);
+        $notificationService->sendNotification($subject, $emails, $cc, $notificationTemplate);
         $this->messenger()->addStatus($this->t('Votre évaluation a bien été prise en compte. Merci !'));
     } catch (\Exception $e){
         $this->messenger()->addError($this->t('Désolé,  nous ne sommes pas parvenus à enregistrer votre évaluation'));

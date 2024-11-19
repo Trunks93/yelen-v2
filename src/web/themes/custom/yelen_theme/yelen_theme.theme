@@ -1,17 +1,34 @@
 <?php
 
-use \Drupal\yelen_notification\Constante\UnAuthContentType;
+use \Drupal\yelen_notification\Constante\Constante;
 
-function yelen_theme_preprocess_views_view_unformatted(&$variables) {
+function yelen_theme_preprocess_views_view_unformatted(&$variables)
+{
   if ($variables['view']->id() == 'yelen_search') {
     $variables['search_rating_form'] = \Drupal::formBuilder()->getForm('Drupal\orange_yelen_search\Form\SearchRatingForm');
   }
 }
 
 /**
+ * Implémente hook_page_attachments_alter() pour ajouter un CSS spécifique à une page.
+ */
+function yelen_theme_page_attachments_alter(array &$attachments)
+{
+  // Vérifiez si la page correspond à un certain chemin.
+  if (\Drupal::routeMatch()->getRouteName() === 'user.login' || \Drupal::routeMatch()->getRouteName() ==='view.frontpage.page_1') {
+    // Ajoutez la bibliothèque CSS.
+    $attachments['#attached']['library'][] = 'yelen_theme/popup_login';
+  } else {
+    // Retirez la bibliothèque si elle est ajoutée par défaut dans un preprocess, par exemple.
+    unset($attachments['#attached']['library']['yelen_theme/popup_login']);
+  }
+}
+
+/**
  * Implements hook_preprocess_HOOK() for block templates.
  */
-function yelen_theme_preprocess_block(&$variables) {
+function yelen_theme_preprocess_block(&$variables)
+{
   if ($variables['elements']['#id'] == 'yelen_theme_trombino_point_service_page_1_search_form') {
     $config = \Drupal::config('orange_yelen_trombino.trombino_point_service_settings');
     $image_fid = $config->get('background_image');
@@ -37,14 +54,15 @@ function yelen_theme_preprocess_block(&$variables) {
 /**
  * Implements hook_preprocess_HOOK() for page templates.
  */
-function yelen_theme_preprocess_page(&$variables) {
+function yelen_theme_preprocess_page(&$variables)
+{
   $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
   if ($user && !$user->user_picture->isEmpty()) {
-     $uri = $user->user_picture->entity->getFileUri();
-     $user_display_image = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
-     $style = \Drupal\image\Entity\ImageStyle::load('thumbnail');
-     $image_uri = $style->buildUri($uri);
-     $user_small_image = \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri);
+    $uri = $user->user_picture->entity->getFileUri();
+    $user_display_image = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
+    $style = \Drupal\image\Entity\ImageStyle::load('thumbnail');
+    $image_uri = $style->buildUri($uri);
+    $user_small_image = \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri);
   } else {
     $user_display_image = '';
     $user_small_image = '';
@@ -52,32 +70,66 @@ function yelen_theme_preprocess_page(&$variables) {
   $variables['user_display_image'] = $user_display_image;
   $variables['user_small_image'] = $user_small_image;
 
+
+  // pour le footer
+  $vid = 'menu_footer';
+
+  $terms = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->loadTree($vid, 0, NULL, TRUE);
+
+  $menus = [];
+
+
+  foreach ($terms as $term) {
+    if (empty($term->parents[0])) {
+      $menus[$term->id()] = [
+        'title' => $term->getName(),
+        'children' => []
+      ];
+    }
+  }
+
+  foreach ($terms as $term) {
+    if (!empty($term->parents[0])) {
+      $parent_id = $term->parents[0];
+      if (isset($menus[$parent_id])) {
+        $menus[$parent_id]['children'][] = [
+          'title' => $term->getName(),
+          'url' => $term->toUrl()->toString()
+        ];
+      }
+    }
+  }
+
+  $variables['footer_menus'] = $menus;
+
 }
 
 /**
  * Implements hook_preprocess_HOOK() for page templates.
  */
 
-function yelen_theme_preprocess_node(&$variables) {
+function yelen_theme_preprocess_node(&$variables)
+{
   $content_type = $variables['node']->type->getValue()[0]['target_id'];
-  if (\Drupal::moduleHandler()->moduleExists('yelen_content_evaluation') && !in_array($content_type,UnAuthContentType::UNAUTHORIZED_NODES)) {
+  if (\Drupal::moduleHandler()->moduleExists('yelen_content_evaluation') && !in_array($content_type, Constante::UNAUTHORIZED_NODES)) {
     $variables['is_module_yelen_content_evaluation_active'] = true;
-    if(isset($variables['node']) && $variables['node']  instanceof \Drupal\node\Entity\Node){
+    if (isset($variables['node']) && $variables['node'] instanceof \Drupal\node\Entity\Node) {
       $nid = $variables['node']->id();
       $userId = \Drupal::currentUser()->id();
-      $evaluations = \Drupal::service('evaluation.service')->getEvaluationOfUser($userId,$nid);
+      $evaluations = \Drupal::service('evaluation.service')->getEvaluationOfUser($userId, $nid);
       //dump($evaluations);
-      if(empty($evaluations)){
-        $variables['evaluation']=null;
-        $variables['utility']=null;
-      }else{
+      if (empty($evaluations)) {
+        $variables['evaluation'] = null;
+        $variables['utility'] = null;
+      } else {
         $evaluation = current($evaluations);
-        $variables['utility']= $evaluation->utility->value;
-        $variables['evaluation']= $evaluation->evaluation->value;
+        $variables['utility'] = $evaluation->utility->value;
+        $variables['evaluation'] = $evaluation->evaluation->value;
       }
     }
   }
 
 }
-
 

@@ -1,0 +1,8 @@
+name : Yelen Content Unpublish
+type: module
+description: Yelen Content Unpublish est un module qui détermine la durée de dépublication d'un contenu
+core_version_requirement: ^10
+package: custom
+dependencies:
+  - scheduler
+  - drupal:node

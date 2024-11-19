@@ -1,0 +1,11 @@
+services:
+  #yelen_access_quiz.middleware:
+  #  class: Drupal\yelen_access_quiz\StackMiddleware\QuizAccessMiddleware
+  #  arguments: ['@http_kernel']
+  #  tags:
+  #   - { name: http_middleware }
+
+  yelen_access_quiz.event_subscriber:
+    class: Drupal\yelen_access_quiz\EventSubscriber\AccessQuizSubscriber
+    tags:
+      - { name: event_subscriber }

@@ -41,7 +41,7 @@
         <img class="petite-icon img-fluid" src="/{{ directory }}/assets/images/internet-et-fibre-newAccueil.png"  alt="">
       </div>
       <div class="bloc-txt">
-        <a href="{{ row['content']['#row']._entity.field_lien.value[0]['uri'] }}" class="text-decoration-none hover-orange">
+        <a href="{{ row['content']['#row']._entity.field_lien.value[0]['uri'] }}" target="_blank" class="text-decoration-none hover-orange">
             <h5 class="">{{row['content']['#row']._entity.title.value }}</h5>
             <p class="">{{ row['content']['#row']._entity.field_lien.value[0]['title'] }}</p>
         </a>

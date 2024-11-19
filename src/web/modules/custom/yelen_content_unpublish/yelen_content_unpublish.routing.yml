@@ -1,0 +1,15 @@
+# yelen_content_unpublish.settings:
+#   path: '/admin/config/content/yelen_content_unpublish-settings'
+#   defaults:
+#     _form: '\Drupal\yelen_content_unpublish\Form\DepublicationSettingsForm'
+#     _title: 'Paramètres de dépublication automatique'
+#   requirements:
+#     _permission: 'administer site configuration'
+
+yelen_content_unpublish.settings:
+ path: '/admin/config/content/yelen_content_unpublish'
+ defaults:
+    _form: '\Drupal\yelen_content_unpublish\Form\YelenContentUnpublishSettingsForm'
+    _title: 'Durée de dépublication'
+ requirements:
+    _permission: 'administer site configuration'

@@ -4,6 +4,7 @@
 namespace Drupal\yelen_notification\Services;
 
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\Entity\Node;
 use Drupal\user\Entity\User;
 use Drupal\yelen_notification\Entity\BroadcastList;
@@ -16,10 +17,10 @@ class ExtractMailer
    * @param $node
    * @return array
    */
-  public function extractMailFromBroadcastList(Node $node,string $field): array
+  public function extractMailFromBroadcastList(EntityInterface $entity,string $field): array
   {
     $emailIds = [];
-    $mailingLists = $node->get($field)->getValue();
+    $mailingLists = $entity->get($field)->getValue();
 
     foreach ($mailingLists as $mailingList) {
       $emailEntity = BroadcastList::load($mailingList['target_id']);
@@ -44,7 +45,7 @@ class ExtractMailer
       $user = User::load($userId['target_id']);
       $emails[] = $user->getEmail();
     }
-    return implode(', ',$emails);
+    return implode(' , ',$emails);
   }
 
   /**

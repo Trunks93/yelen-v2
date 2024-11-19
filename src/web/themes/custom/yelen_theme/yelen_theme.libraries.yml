@@ -9,5 +9,12 @@ global:
       assets/css/boosted.min.css: {}
       assets/css/swiper.min.css : {}
       assets/css/style.css: {}
+      assets/css/modal.css: {}
+
+
+popup_login:
+  css:
+    theme:
+      assets/css/modal.css: {}
 
 

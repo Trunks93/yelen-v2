@@ -1,0 +1,6 @@
+yelen_content_unpublish.admin:
+  title: 'Durée de dépublication'
+  description: 'Configurer les durées de dépublication automatique'
+  route_name: yelen_content_unpublish.settings
+  parent: system.admin
+  weight: 20

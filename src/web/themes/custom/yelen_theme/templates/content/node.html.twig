@@ -76,8 +76,15 @@
   view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 ] %}
 {{ attach_library('claro/classy.node') }}
-<article{{ attributes.addClass(classes) }}>
 
+{% if node.in_preview %}
+  <div class="p-1">
+    <a class="btn btn-primary" href="{{ path('entity.node.edit_form',{'node':node.id,'uuid': node.uuid.value}) }}">
+      <i class="fa fa-arrow-left"> </i> Retour aux modification</a>
+  </div>
+{% endif %}
+
+<article{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label and not page %}
     <h2{{ title_attributes }}>
@@ -112,6 +119,5 @@
         </div>
       {% endif %}
     {% endif %}
-
   {% endif %}
 </article>

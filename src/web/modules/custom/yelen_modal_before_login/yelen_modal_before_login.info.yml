@@ -1,0 +1,7 @@
+name : Yelen Modal Before Login
+type: module
+description: Yelen Modal Before Login est un module qui présente une vidéo ou une image avant la page de connexion
+core_version_requirement: ^10
+package: custom
+dependencies:
+  - drupal:node

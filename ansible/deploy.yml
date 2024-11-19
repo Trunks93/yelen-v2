@@ -37,6 +37,8 @@
       register: output
       ignore_errors: yes
 
+
+
     - name: Execute after deploy script (Output)
       debug: var=output
       

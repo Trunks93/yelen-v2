@@ -29,15 +29,16 @@ We call a macro which calls itself to render the full tree.
 {% macro menu_links(items, attributes, menu_level) %}
   {% import _self as menus %}
   {% if items %}
+
     {% if menu_level == 0 %}
-      <ul class="navbar-nav">
-    {% else %}
-      <ul class="navbar-nav">
+<ul class="navbar-nav me-auto">
+  {% else %}
+  <ul class="dropdown-menu">
     {% endif %}
     {% for item in items %}
       {% set classes = [
         'nav-item',
-        item.is_expanded ? 'menu-item--expanded',
+        item.is_expanded ? 'dropdown',
         item.is_collapsed ? 'menu-item--collapsed',
         item.in_active_trail ? 'menu-item--active-trail',
       ] %}
@@ -45,13 +46,21 @@ We call a macro which calls itself to render the full tree.
         'nav-link',
         item.in_active_trail ? 'active'
       ] %}
-      <li{{ item.attributes.addClass(classes) }}>
-        {{ link(item.title, item.url, {'class': menu_class}) }}
+      {% set menu_class_below = [
+        'nav-link dropdown-toggle',
+        item.in_active_trail ? 'active'
+      ] %}
         {% if item.below %}
-          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+          <li{{ item.attributes.addClass(classes) }}>
+          {{ link(item.title, item.url, {'class': menu_class_below,'role':'button','data-bs-toggle':'dropdown'}) }}
+          {{ menus.menu_links(item.below,attributes.addClass('dropdown-item'), menu_level + 1) }}
+        {% else %}
+          <li>
+          {{ link(item.title, item.url, {'class': menu_class}) }}
         {% endif %}
       </li>
     {% endfor %}
   </ul>
   {% endif %}
   {% endmacro %}
+</ul>

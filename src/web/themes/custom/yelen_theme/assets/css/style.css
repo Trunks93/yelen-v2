@@ -10,6 +10,117 @@
   display: none !important;
 }
 
+.choissez {
+  margin-top: 10px;
+}
+.bloc-offre {
+  margin-top: 35px !important;
+  margin-bottom: 15px;
+}
+.texte-phone {
+  text-decoration: none;
+}
+.texte-phone:hover {
+  font-weight: bold;
+
+}
+.texte-sous-categorie {
+  text-decoration: none;
+
+}
+.texte-categorie {
+  text-decoration: none;
+  font-weight: bold;
+}
+.texte-categorie:hover {
+  text-decoration: none;
+  color: black;
+}
+.texte-sous-categorie:hover {
+color: #f16e20;
+}
+/*faq */
+
+
+.bloc-recherche {
+margin-top: 30px;
+}
+.texte-trombino-agence {
+margin-top: 100px;
+padding: 40px;
+}
+.texte-trombino-agence {
+margin-top: 100px;
+padding: 40px;
+}
+.texte-orange {
+color: #f16e20;
+}
+.trombino-agence {
+font-size: 27px;
+color: #f16e20;
+font-weight: 600;
+margin-top: -80px;
+}
+.input-trombino {
+margin-top: 225px;
+}
+.back-trombino  {
+background-image: url('img/q5tnynj1.png');
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+height: 100%;
+padding: 0;
+box-sizing: border-box;
+margin-left: -20px;
+padding-right: 100px;
+}
+.bouton-infos {
+color: white;
+}
+.promo-vacances {
+padding-top: 105px !important;
+padding-left: 80px !important;
+}
+.texte-bon-plan {
+background-color: yellow;
+padding: 5px;
+color: black;
+text-align: center;
+margin-left: 10px;
+}
+.texte-jusqua {
+padding-top: 45px
+}
+.img-baisses {
+  width: 100%;
+}
+
+.div-img-baisses {
+  padding-top: 5%;
+  padding-bottom: 5%;
+  padding-right: 5%;
+}
+.bloc-actualite {
+  margin-right: 30px;
+  margin-top: 20px;
+  box-shadow: 10px 40px 0px #f2f2f2;
+}
+.text-ombre {
+  box-shadow: 10px 40px 0px #f2f2f2;
+  background-color: #f2f2f2;
+}
+.mes-images {
+
+box-shadow: -15px 65px 1px #f2f2f2;
+
+}
+.texte-phone {
+text-decoration: none;
+}
+
+
 .orange-yelen-title{
   position: relative;
   padding-bottom: 1rem;
@@ -64,6 +175,7 @@ dans le HTML
   color: white;
 }
 .bloc-recherche {
+
   margin-top: 30px;
 }
 .texte-trombino-agence {
@@ -85,6 +197,15 @@ dans le HTML
 }
 .input-trombino {
   margin-top: 225px;
+}
+.back-trombino  {
+  background-image: url('img/q5tnynj1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* carousel */
@@ -142,6 +263,7 @@ dans le HTML
   color: white;
 }
 .promo-vacances {
+
   padding-left: 80px !important;
 }
 .texte-bon-plan {
@@ -154,6 +276,7 @@ dans le HTML
 .texte-jusqua {
   padding-top: 45px
 }
+
 @media (max-width: 450px) {
   .d-flex {
     flex-direction: column;
@@ -243,14 +366,14 @@ dans le HTML
 /*begin wisdom styling*/
 
 a.hover-orange:hover{
-  color:#f16e20
+  color:orange
 }
 .orange-color-link a{
   color:black;
   text-decoration: none;
 }
 .orange-color-link a:hover{
-  color:#f16e20;
+  color:orange;
   text-decoration: none;
 }
 
@@ -265,6 +388,7 @@ a.hover-orange:hover{
      height: 10px;
      left: 0;
  }
+
 }
 
 .utility_form{
@@ -272,4 +396,20 @@ a.hover-orange:hover{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/*disable preview block*/
+.node-preview-container{
+  display: none !important;
+}
+
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
+.main_slider .carousel{
+  height: 200px;
+  overflow-y: hidden;
 }

@@ -1,5 +1,17 @@
-orange_yelen_chat.add_form:
-  title: 'Add yelen tchat'
-  route_name: entity.orange_yelen_chat.add_form
-  appears_on:
-    - entity.orange_yelen_chat.collection
+#orange_yelen_chat.add_form:
+#  title: 'Add yelen tchat'
+#  route_name: entity.orange_yelen_chat.add_form
+#  appears_on:
+#    - entity.orange_yelen_chat.collection
+#
+#orange_yelen_chat_conversation.add_form:
+#  title: 'Add conversation'
+#  route_name: entity.orange_yelen_chat_conversation.add_form
+#  appears_on:
+#    - entity.orange_yelen_chat_conversation.collection
+#
+#orange_yelen_chat_message.add_form:
+#  title: 'Add message chat'
+#  route_name: entity.orange_yelen_chat_message.add_form
+#  appears_on:
+#    - entity.orange_yelen_chat_message.collection

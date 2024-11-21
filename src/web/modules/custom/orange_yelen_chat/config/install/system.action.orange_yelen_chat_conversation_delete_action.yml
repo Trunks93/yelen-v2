@@ -1,0 +1,10 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - orange_yelen_chat
+id: orange_yelen_chat_conversation_delete_action
+label: 'Delete conversations'
+type: orange_yelen_chat_conversation
+plugin: entity:delete_action:orange_yelen_chat_conversation
+configuration: {  }

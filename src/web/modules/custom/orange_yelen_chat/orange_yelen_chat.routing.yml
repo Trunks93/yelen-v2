@@ -1,7 +1,109 @@
-entity.orange_yelen_chat.settings:
-  path: 'admin/structure/orange-yelen-chat'
+#entity.orange_yelen_chat.settings:
+#  path: 'admin/structure/orange-yelen-chat'
+#  defaults:
+#    _form: '\Drupal\orange_yelen_chat\Form\YelenTchatSettingsForm'
+#    _title: 'Yelen Tchat'
+#  requirements:
+#    _permission: 'administer orange_yelen_chat'
+#
+#entity.orange_yelen_chat_conversation.settings:
+#  path: 'admin/structure/orange-yelen-chat-conversation'
+#  defaults:
+#    _form: '\Drupal\orange_yelen_chat\Form\ConversationSettingsForm'
+#    _title: 'Conversation'
+#  requirements:
+#    _permission: 'administer orange_yelen_chat_conversation'
+#
+#entity.orange_yelen_chat_message.settings:
+#  path: 'admin/structure/orange-yelen-chat-message'
+#  defaults:
+#    _form: '\Drupal\orange_yelen_chat\Form\MessageSettingsForm'
+#    _title: 'Message Chat'
+#  requirements:
+#    _permission: 'administer orange_yelen_chat_message'
+
+orange_yelen_chat.conversations:
+  path: '/yelen-chat/api/conversations'
   defaults:
-    _form: '\Drupal\orange_yelen_chat\Form\YelenTchatSettingsForm'
-    _title: 'Yelen Tchat'
+    _controller: '\Drupal\orange_yelen_chat\Controller\OrangeYelenChatController::getConversations'
   requirements:
-    _permission: 'administer orange_yelen_chat'
+    _permission: 'access content'
+  methods: [GET]
+  options:
+    _auth: ['basic_auth', 'cookie']
+
+orange_yelen_chat.conversation_messages:
+  path: '/yelen-chat/api/conversations/{conversationId}/messages'
+  defaults:
+    _controller: '\Drupal\orange_yelen_chat\Controller\OrangeYelenChatController::getConversationMessages'
+  requirements:
+    _permission: 'access content'
+  methods: [GET]
+  options:
+    _auth: ['basic_auth', 'cookie']
+
+orange_yelen_chat.send_message:
+  path: '/yelen-chat/api/conversations/{conversationId}/messages'
+  defaults:
+    _controller: '\Drupal\orange_yelen_chat\Controller\OrangeYelenChatController::sendMessage'
+  requirements:
+    _permission: 'access content'
+  methods: [POST]
+  options:
+    _auth: ['basic_auth', 'cookie']
+
+orange_yelen_chat.create_conversation:
+  path: '/yelen-chat/api/conversations'
+  defaults:
+    _controller: '\Drupal\orange_yelen_chat\Controller\OrangeYelenChatController::createConversation'
+  requirements:
+    _permission: 'access content'
+  methods: [POST]
+  options:
+    _auth: ['basic_auth', 'cookie']
+
+orange_yelen_chat.close_conversation:
+  path: '/yelen-chat/api/conversations/{conversationId}/close'
+  defaults:
+    _controller: '\Drupal\orange_yelen_chat\Controller\OrangeYelenChatController::closeConversation'
+  requirements:
+    _permission: 'access content'
+  methods: [POST]
+  options:
+    _auth: ['basic_auth', 'cookie']
+
+orange_yelen_chat.update_online_status:
+  path: '/yelen-chat/api/chat/online-status'
+  defaults:
+    _controller: '\Drupal\orange_yelen_chat\Controller\OrangeYelenChatController::updateOnlineStatus'
+  requirements:
+    _permission: 'access content'
+  methods: [POST]
+  options:
+    _auth: ['basic_auth', 'cookie']
+
+orange_yelen_chat.mark_as_read:
+  path: '/yelen-chat/api/conversations/{conversationId}/messages/read'
+  defaults:
+    _controller: '\Drupal\orange_yelen_chat\Controller\OrangeYelenChatController::markMessagesAsRead'
+  requirements:
+    _permission: 'access content'
+  methods: [POST]
+  options:
+    _auth: ['basic_auth', 'cookie']
+
+#orange_yelen_chat.chat_page:
+#  path: '/chat'
+#  defaults:
+#    _controller: '\Drupal\orange_yelen_chat\Controller\OrangeYelenChatController::chatPage'
+#    _title: 'Chat en temps réel'
+#  requirements:
+#    _permission: 'access content'
+
+#orange_yelen_chat.admin_conversations:
+#  path: '/admin/reports/conversations'
+#  defaults:
+#    _controller: '\Drupal\realtime_chat\Controller\AdminController::conversationsList'
+#    _title: 'Liste des conversations'
+#  requirements:
+#    _permission: 'administer site configuration'

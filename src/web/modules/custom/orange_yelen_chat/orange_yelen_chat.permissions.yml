@@ -9,3 +9,11 @@ delete orange_yelen_chat:
   title: 'Delete yelen tchat'
 create orange_yelen_chat:
   title: 'Create yelen tchat'
+
+administer orange_yelen_chat_conversation:
+  title: 'Administer conversations'
+  restrict access: true
+
+administer orange_yelen_chat_message:
+  title: 'Administer message chats'
+  restrict access: true

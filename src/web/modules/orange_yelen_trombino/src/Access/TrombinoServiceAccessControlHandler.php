@@ -7,7 +7,7 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Entity\EntityInterface;
 
 /**
- * Access controller for the Product entity type.
+ * Access controller for the Trombino Service entity type.
  */
 class TrombinoServiceAccessControlHandler extends EntityAccessControlHandler{
   /**

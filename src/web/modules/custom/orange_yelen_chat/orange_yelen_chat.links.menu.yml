@@ -1,11 +1,35 @@
-entity.orange_yelen_chat.settings:
-  title: 'Yelen Tchat'
-  description: 'Configure a Yelen Tchat entity type.'
-  route_name:  entity.orange_yelen_chat.settings
-  parent: system.admin_structure
-
-entity.orange_yelen_chat.collection:
-  title: 'Yelen Tchats'
-  description: 'List of yelen tchats.'
-  route_name: entity.orange_yelen_chat.collection
-  parent: system.admin_content
+#entity.orange_yelen_chat.settings:
+#  title: 'Yelen Tchat'
+#  description: 'Configure a Yelen Tchat entity type.'
+#  route_name:  entity.orange_yelen_chat.settings
+#  parent: system.admin_structure
+#
+#entity.orange_yelen_chat.collection:
+#  title: 'Yelen Tchats'
+#  description: 'List of yelen tchats.'
+#  route_name: entity.orange_yelen_chat.collection
+#  parent: system.admin_content
+#
+#entity.orange_yelen_chat_conversation.settings:
+#  title: 'Conversation'
+#  description: 'Configure a Conversation entity type.'
+#  route_name:  entity.orange_yelen_chat_conversation.settings
+#  parent: system.admin_structure
+#
+#entity.orange_yelen_chat_conversation.collection:
+#  title: 'Conversations'
+#  description: 'List of conversations.'
+#  route_name: entity.orange_yelen_chat_conversation.collection
+#  parent: system.admin_content
+#
+#entity.orange_yelen_chat_message.settings:
+#  title: 'Message Chat'
+#  description: 'Configure a Message Chat entity type.'
+#  route_name:  entity.orange_yelen_chat_message.settings
+#  parent: system.admin_structure
+#
+#entity.orange_yelen_chat_message.collection:
+#  title: 'Message Chats'
+#  description: 'List of message chats.'
+#  route_name: entity.orange_yelen_chat_message.collection
+#  parent: system.admin_content

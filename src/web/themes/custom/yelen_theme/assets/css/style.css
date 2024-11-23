@@ -311,6 +311,11 @@ dans le HTML
   color: #f16e20;
   font-size: 30px;
 }
+.card-title a {
+  text-decoration: none;
+  color: #f16e20;
+  font-size: 30px;
+}
 
 .btn-voir-plus {
   border: 1px solid white;
@@ -407,9 +412,23 @@ a.hover-orange:hover{
 .dropdown:hover .dropdown-menu {
   display: block;
   margin-top: 0;
+  min-width: 185px !important;
 }
 
 .main_slider .carousel{
   height: 200px;
   overflow-y: hidden;
+}
+
+/* Style node generaly */
+
+.field--name-body{
+  margin-top: 20px;
+}
+
+.field--name-field-process,
+.field--name-field-files,
+.field--name-field-modes-operatoires,
+.field--name-field-documents{
+  margin-bottom: 20px;
 }

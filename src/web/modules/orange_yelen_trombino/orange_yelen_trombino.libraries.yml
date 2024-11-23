@@ -6,4 +6,8 @@ orange-yelen-trombino:
       css/main.css: {}
   js:
     js/main.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/drupalSettings
     #trombino-app/dist/trombino-app.umd.js: {}

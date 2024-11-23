@@ -48,7 +48,12 @@ class ExtractMailer
     $emails = [];
     foreach ($userIds as $userId) {
       $user = User::load($userId['target_id']);
-      $emails[] = $user->getEmail();
+      if($user instanceof User){
+        $emails[] = $user->getEmail();
+      }else{
+        \Drupal::logger('Notification Email')->error('erreur avec cet utilisateur '.$userId['target_id']);
+      }
+
     }
     return implode(' , ',$emails);
   }

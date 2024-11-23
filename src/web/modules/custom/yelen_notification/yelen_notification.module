@@ -136,6 +136,9 @@ function yelen_notification_node_insert(Node $node)
   }
 }
 
+
+//function hook_scheduler_publish_action
+
 /**
  * Implements hook_mail()
  */

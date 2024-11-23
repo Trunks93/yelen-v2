@@ -49,9 +49,9 @@ class BroadcastListSubscriber implements EventSubscriberInterface
       $entity = $event->getEntity();
       $currentMember = $entity->field_membres->getValue();
       if(str_contains($broadcastListName,'admins')){
-        $user_ids = $this->getOrangeUsers([],Constante::ADMINISTRATEUR);
+        $user_ids = $this->getOrangeUsers($currentMember,Constante::ADMINISTRATEUR);
       }else{
-        $user_ids = $this->getOrangeUsers();
+        $user_ids = $this->getOrangeUsers($currentMember);
       }
       $position = count($currentMember);
       foreach ($user_ids as $user_id) {

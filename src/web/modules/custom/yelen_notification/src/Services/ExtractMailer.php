@@ -20,7 +20,12 @@ class ExtractMailer
   public function extractMailFromBroadcastList(EntityInterface $entity,string $field): array
   {
     $emailIds = [];
-    $mailingLists = $entity->get($field)->getValue();
+    try{
+      $mailingLists = $entity->get($field)->getValue();
+    }catch (\Exception $e){
+      \Drupal::logger('Error Notification')->error($entity->label().' - '.$e->getMessage());
+    }
+
 
     foreach ($mailingLists as $mailingList) {
       $emailEntity = BroadcastList::load($mailingList['target_id']);

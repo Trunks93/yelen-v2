@@ -144,8 +144,6 @@ function yelen_notification_mail($key, &$message, $params)
   $options = array('langcode' => $message['langcode']);
   if ($key == SendEmailNotification::MODULE_NAME) {
     $message['headers'] = $params['headers'];
-    //$message['from'] = $params['from'];
-    //$message['from'] = 'admin@synelia.tech';
     $message['subject'] = $params['subject'];
     $message['body'][] = $params['message'];
   }

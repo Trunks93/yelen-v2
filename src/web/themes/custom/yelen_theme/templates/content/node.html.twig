@@ -77,54 +77,63 @@
 ] %}
 {{ attach_library('claro/classy.node') }}
 
-{% if node.in_preview %}
+{% if node.in_preview and node.id != null %}
   <div class="p-1">
     <a class="btn btn-primary" href="{{ path('entity.node.edit_form',{'node':node.id,'uuid': node.uuid.value}) }}">
-      <i class="fa fa-arrow-left"> </i> Retour aux modification</a>
+      <i class="fa fa-arrow-left"> </i> Retour aux modifications</a>
   </div>
+  {% elseif node.in_preview %}
+    <div class="p-1">
+      <a class="btn btn-primary" href="javascript:void(0);" onclick="window.history.back();">
+        <i class="fa fa-arrow-left"> </i> Retour aux modifications</a>
+    </div>
 {% endif %}
 
 <article{{ attributes.addClass(classes) }}>
   {# title_prefix #}
-  <h2{{ title_attributes }}>{{ label }}</h2>
-  {% if label and not page %}
-    <h2{{ title_attributes }}>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h2>
-  {% endif %}
-  {#  title_suffix #}
 
-  {% if display_submitted %}
-    <footer class="node__meta">
-      {{ author_picture }}
-      <div{{ author_attributes.addClass('node__submitted') }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
-      </div>
-    </footer>
-  {% endif %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+    {% if label and not page %}
+      <h2{{ title_attributes }}>
+        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+      </h2>
+    {% endif %}
+    {#  title_suffix #}
 
-  <div{{ content_attributes.addClass('node__content') }}>
-    {{ content.field_image }}
-    {{ content.body }}
-    <hr>
-    {{ content.field_process }}
-    {{ content.field_files }}
-    {{ content.field_modes_operatoires }}
-    {{ content.field_documents }}
-  </div>
-
-  {% if is_module_yelen_content_evaluation_active is defined %}
-    {% if utility == null or utility == "none" %}
-      <div class="utility_form mt-3">
-        {{ drupal_form('Drupal\\yelen_content_evaluation\\Form\\UtilityContentForm',node.id) }}
-      </div>
-    {% else %}
-      {% if evaluation == null %}
-        <div class="mt-3">
-          {{ drupal_form('Drupal\\yelen_content_evaluation\\Form\\EvaluationContentForm',node.id) }}
+    {% if display_submitted %}
+      <footer class="node__meta">
+        {{ author_picture }}
+        <div{{ author_attributes.addClass('node__submitted') }}>
+          {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
+          {{ metadata }}
         </div>
+      </footer>
+    {% endif %}
+
+    <div{{ content_attributes.addClass('node__content') }}>
+      {{ content.field_image }}
+      {{ content.body }}
+      {% if content['body']['#object'].type.value[0]['target_id'] != 'page'  %}
+      <hr>
+      {% endif %}
+      {{ content.field_process }}
+      {{ content.field_files }}
+      {{ content.field_modes_operatoires }}
+      {{ content.field_documents }}
+    </div>
+
+    {% if is_module_yelen_content_evaluation_active is defined %}
+      {% if utility == null or utility == "none" %}
+        <div class="utility_form mt-3">
+          {{ drupal_form('Drupal\\yelen_content_evaluation\\Form\\UtilityContentForm',node.id) }}
+        </div>
+      {% else %}
+        {% if evaluation == null %}
+          <div class="mt-3">
+            {{ drupal_form('Drupal\\yelen_content_evaluation\\Form\\EvaluationContentForm',node.id) }}
+          </div>
+        {% endif %}
       {% endif %}
     {% endif %}
-  {% endif %}
+
 </article>

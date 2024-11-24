@@ -113,7 +113,7 @@
     <div{{ content_attributes.addClass('node__content') }}>
       {{ content.field_image }}
       {{ content.body }}
-      {% if content['body']['#object'].type.value[0]['target_id'] != 'page'  %}
+      {% if content['body']['#object'] is defined and content['body']['#object'].type.value[0]['target_id'] != 'page'  %}
       <hr>
       {% endif %}
       {{ content.field_process }}

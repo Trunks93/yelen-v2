@@ -91,8 +91,9 @@
 
 <article{{ attributes.addClass(classes) }}>
   {# title_prefix #}
-
+  {% if content['body']['#object'] is defined and content['body']['#object'].type.value[0]['target_id'] != 'page' %}
     <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
     {% if label and not page %}
       <h2{{ title_attributes }}>
         <a href="{{ url }}" rel="bookmark">{{ label }}</a>
@@ -113,7 +114,7 @@
     <div{{ content_attributes.addClass('node__content') }}>
       {{ content.field_image }}
       {{ content.body }}
-      {% if content['body']['#object'] is defined and content['body']['#object'].type.value[0]['target_id'] != 'page'  %}
+      {% if content['body']['#object'] is defined and content['body']['#object'].type.value[0]['target_id'] != 'page' %}
       <hr>
       {% endif %}
       {{ content.field_process }}

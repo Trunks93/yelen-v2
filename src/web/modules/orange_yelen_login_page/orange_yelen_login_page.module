@@ -28,27 +28,6 @@ function orange_yelen_login_page_user_login_validate(&$form, $formState) {
  function orange_yelen_login_page_page_attachments_alter(array &$attachments) {
    // Ajout de fichier css à la page d'authentification
    $route_name = \Drupal::routeMatch()->getRouteName();
-   $account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-   $current_user = \Drupal::currentUser();
-   // _paq.push(['setUserId', '$username']);
-   if ($current_user->isAuthenticated()) {
-     $username = \Drupal::currentUser()->getAccountName();
-     $user_email = \Drupal::currentUser()->getEmail();
-     $fullname = $account->hasField('field_nom_et_prenoms') ? $account->get('field_nom_et_prenoms')->value : 'N/A';
-     $js = <<<EOD
-       _paq.push(['setCustomVariable',1,'Nom Utilisateur','$username','visit']);
-       _paq.push(['setCustomVariable',2,'Adresse email','$user_email','visit']);
-       _paq.push(['setCustomDimension',1, '$username']);
-       _paq.push(['setCustomDimension', 2, '$user_email']);
-       _paq.push(['setCustomDimension', 3, '$fullname']);
-       _paq.push(['trackPageView']);
-     EOD;
-
-     $attachments['#attached']['html_head'][] = [
-       ['#tag' => 'script', '#value' => $js],
-       'matomo_custom_tracking',
-     ];
-   }
    if ($route_name == 'user.login') {
      $attachments['#attached']['library'][] = 'orange_yelen_login_page/orange_yelen_login_page_css';
    }

@@ -56,11 +56,8 @@ class NotificationSubscriber implements EventSubscriberInterface
   public function sendQuizPublishNotification(QuizNotificationEvent $event){
     $url = Url::fromRoute('entity.quiz.take', ['quiz' => $event->getQuizId()])->setAbsolute()->toString();
     $emails = $event->getEmailAddress();
-
     $to = current($emails);
-
     $emails = implode(' , ',$emails);
-
     $subject = NotificationSubjectPrefix::INVITE_QUIZ . ': ' . strtoupper($event->getQuizTitle());
     $templateHtml = [
       '#theme' => 'mailer_quiz',

@@ -176,7 +176,6 @@ function yelen_notification_mail($key, &$message, $params)
  */
 function yelen_notification_quiz_update(EntityInterface $entity)
 {
-
   $current_state = $entity->moderation_state->getValue()[0]['target_id'];
   $date = !empty($entity->quiz_date->getValue()) ? $entity->quiz_date->getValue()[0] : [];
   $description = !empty($entity->body->getValue()) ? $entity->body->getValue()[0]['value'] : null;

@@ -112,15 +112,18 @@
     {% endif %}
 
     <div{{ content_attributes.addClass('node__content') }}>
-      {{ content.field_image }}
+      {{ content }}
+
+      {# content.field_image }}
       {{ content.body }}
       {% if content['body']['#object'] is defined and content['body']['#object'].type.value[0]['target_id'] != 'page'  %}
-      <hr>
+        <hr>
       {% endif %}
       {{ content.field_process }}
       {{ content.field_files }}
       {{ content.field_modes_operatoires }}
-      {{ content.field_documents }}
+      {{ content.field_documents #}
+
     </div>
 
     {% if is_module_yelen_content_evaluation_active is defined %}

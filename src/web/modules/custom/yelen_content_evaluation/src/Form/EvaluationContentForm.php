@@ -105,8 +105,9 @@ final class EvaluationContentForm extends FormBase
   {
     $nodeId = $form_state->getValue('content');
     $userid =\Drupal::currentUser()->id();
+    $user =\Drupal::currentUser();
     $content = Node::load($nodeId);
-    $title = sprintf('%s_%s',$content->uuid(),$userid);
+    $title = sprintf('Evaluation %s contenue %s',$user->getAccountName(), $content->label());
     $note = $form_state->getValue('evaluation');
     $description = $form_state->getValue('comment');
 
@@ -124,10 +125,7 @@ final class EvaluationContentForm extends FormBase
       $eval->set('description',$description);
       $eval->save();
     }
-
-
     $this->messenger()->addStatus($this->t("Merci pour votre participation"));
-
     $form_state->setRedirect('entity.node.canonical',['node'=>$nodeId]);
   }
 

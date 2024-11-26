@@ -52,6 +52,7 @@ class ExtractMailer
         $emails[] = $user->getEmail();
       }else{
         \Drupal::logger('Notification Email')->error('erreur avec cet utilisateur '.$userId['target_id']);
+        \Drupal::logger('Notification Email')->error('Détail utilisateur à problème'.$user->getAccountName());
       }
 
     }

@@ -7,7 +7,7 @@ use Drupal\yelen_notification\Constante\Constante;
 use Drupal\yelen_notification\Event\BroadcastListEvent;
 use Drupal\yelen_notification\Event\NotificationEvent;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\content_moderation\Entity\ContentModerationState;
+// use Drupal\content_moderation\Entity\ContentModerationState;
 use Drupal\Core\Site\Settings;
 use Drupal\yelen_notification\Event\QuizNotificationEvent;
 

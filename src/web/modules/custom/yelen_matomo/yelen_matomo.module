@@ -6,13 +6,20 @@
  */
 
 function yelen_matomo_page_attachments_alter(array &$attachments) {
-  $account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-  $current_user = \Drupal::currentUser();
-  if ($current_user->isAuthenticated()) {
-    $username = \Drupal::currentUser()->getAccountName();
-    $user_email = \Drupal::currentUser()->getEmail();
-    $fullname = $account->hasField('field_nom_et_prenoms') ? $account->get('field_nom_et_prenoms')->value : 'N/A';
-    $js = <<<EOD
+  $config = \Drupal::config('matomo.settings');
+
+  $matomo_pages_forbidden = $config->get('visibility.request_path_pages');
+  $route_path = \Drupal::request()->getPathInfo();
+  $matomo_pages_forbidden_exploded = explode("\r\n", $matomo_pages_forbidden);
+  $is_path_forbidden = isPathIncluded($route_path, $matomo_pages_forbidden_exploded);
+  if(!$is_path_forbidden) {
+    $account = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $current_user = \Drupal::currentUser();
+    if ($current_user->isAuthenticated()) {
+      $username = \Drupal::currentUser()->getAccountName();
+      $user_email = \Drupal::currentUser()->getEmail();
+      $fullname = $account->hasField('field_nom_et_prenoms') ? $account->get('field_nom_et_prenoms')->value : 'N/A';
+      $js = <<<EOD
        _paq.push(['setCustomVariable',1,'Nom Utilisateur','$username','visit']);
        _paq.push(['setCustomVariable',2,'Adresse email','$user_email','visit']);
        _paq.push(['setCustomDimension',1, '$username']);
@@ -21,9 +28,35 @@ function yelen_matomo_page_attachments_alter(array &$attachments) {
        _paq.push(['trackPageView']);
      EOD;
 
-    $attachments['#attached']['html_head'][] = [
-      ['#tag' => 'script', '#value' => $js],
-      'matomo_custom_tracking',
-    ];
+      $attachments['#attached']['html_head'][] = [
+        ['#tag' => 'script', '#value' => $js],
+        'matomo_custom_tracking',
+      ];
+    }
   }
+
+}
+
+function isPathIncluded(string $path, array $patterns): bool
+{
+  foreach ($patterns as $pattern) {
+    // Transformer les motifs en expressions régulières
+    $regex = convertPatternToRegex($pattern);
+
+    if (preg_match($regex, $path)) {
+      return true; // Correspondance trouvée
+    }
+  }
+
+  return false; // Aucune correspondance
+}
+
+function convertPatternToRegex(string $pattern): string
+{
+    // Échapper les caractères spéciaux, sauf *
+    $escapedPattern = preg_quote($pattern, '/');
+    // Remplacer les jokers (*) par des expressions régulières
+    $regex = str_replace('\*', '.*', $escapedPattern);
+    // Ajouter des délimiteurs regex et forcer la correspondance complète
+    return '/^' . $regex . '$/';
 }

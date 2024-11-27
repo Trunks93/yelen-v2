@@ -39,7 +39,7 @@ We call a macro which calls itself to render the full tree.
       {% set classes = [
         'nav-item',
         item.is_expanded ? 'dropdown',
-        item.is_collapsed ? 'menu-item--collapsed',
+        item.is_collapsed ? 'dropdown menu-item--collapsed',
         item.in_active_trail ? 'menu-item--active-trail',
       ] %}
       {% set menu_class = [

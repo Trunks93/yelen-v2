@@ -46,21 +46,24 @@
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
   {% for item in items %}
 
-    {% set truncated_text = item.content['#row']._entity.body.value|raw|slice(0, 100) ~ '...' %}
-    <div class="card views-view-responsive-grid__item">
+    {% set truncated_text = item.content['#row']._entity.body.value|slice(0, 100) ~ '...' %}
+    <div class="card views-view-responsive-grid__item card-yelen">
 
       {% set image_entity = item.content['#row']._entity.field_image %}
       {% set image = file_url(image_entity.entity.uri.value) %}
       {% set width = image_entity.value[0]['width']  %}
       {% set height = image_entity.value[0]['height']  %}
 
+      {% set title = item.content['#row']._entity.title.value %}
+      {% if title|length > 16 %}
+        {% set title = title|slice(0, 16) ~ '...' %}
+      {% endif %}
       <a href="/node/{{item.content['#row']._entity.nid.value }}">
-        <img src="{{ image }}" width="{{ width }}" height="{{ height }}"/>
+        <img src="{{ image }}"/>
       </a>
-
       <div class="card-body views-view-responsive-grid__item-inner">
-        <h2 class="card-title">{{ item.content['#row']._entity.title.value }}</h2>
-        <p class="card-text fw-bold mb-4">{{ truncated_text }}</p>
+        <h2 class="card-title">{{ title|capitalize }}</h2>
+        <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>
         <a class="btn btn-secondary btn-voir-plus" href="/node/{{item.content['#row']._entity.nid.value }}">
           Voir plus
         </a>

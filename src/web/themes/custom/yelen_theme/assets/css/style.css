@@ -432,3 +432,18 @@ a.hover-orange:hover{
 .field--name-field-documents{
   margin-bottom: 20px;
 }
+
+/* style node listing content type */
+.card-yelen img{
+  width: 350px;
+  height: 200px
+}
+
+.card-yelen .card-body{
+  height: 230px;
+}
+
+.card-yelen .card-body .btn{
+  position: absolute;
+  bottom: 20px;
+}

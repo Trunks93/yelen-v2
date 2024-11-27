@@ -129,6 +129,7 @@ function yelen_theme_preprocess_node(&$variables)
         $variables['evaluation'] = $evaluation->evaluation->value;
       }
     }
+
   }
 
 }

@@ -1,98 +1,117 @@
-.content-header{
+.content-header {
   background-color: #fff !important;
 }
 
-.body{
+.body {
   min-height: 1000px;
 }
 
-.menu-item-title{
+.menu-item-title {
   display: none !important;
 }
 
 .choissez {
   margin-top: 10px;
 }
+
 .bloc-offre {
   margin-top: 35px !important;
   margin-bottom: 15px;
 }
+
 .texte-phone {
   text-decoration: none;
 }
+
 .texte-phone:hover {
   font-weight: bold;
 
 }
+
 .texte-sous-categorie {
   text-decoration: none;
 
 }
+
 .texte-categorie {
   text-decoration: none;
   font-weight: bold;
 }
+
 .texte-categorie:hover {
   text-decoration: none;
   color: black;
 }
+
 .texte-sous-categorie:hover {
-color: #f16e20;
+  color: #f16e20;
 }
+
 /*faq */
 
 
 .bloc-recherche {
-margin-top: 30px;
+  margin-top: 30px;
 }
+
 .texte-trombino-agence {
-margin-top: 100px;
-padding: 40px;
+  margin-top: 100px;
+  padding: 40px;
 }
+
 .texte-trombino-agence {
-margin-top: 100px;
-padding: 40px;
+  margin-top: 100px;
+  padding: 40px;
 }
+
 .texte-orange {
-color: #f16e20;
+  color: #f16e20;
 }
+
 .trombino-agence {
-font-size: 27px;
-color: #f16e20;
-font-weight: 600;
-margin-top: -80px;
+  font-size: 27px;
+  color: #f16e20;
+  font-weight: 600;
+  margin-top: -80px;
 }
+
 .input-trombino {
-margin-top: 225px;
+  margin-top: 225px;
 }
-.back-trombino  {
-background-image: url('img/q5tnynj1.png');
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
-height: 100%;
-padding: 0;
-box-sizing: border-box;
-margin-left: -20px;
-padding-right: 100px;
+
+.back-trombino {
+  background-image: url('img/q5tnynj1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  margin-left: -20px;
+  padding-right: 100px;
 }
+
 .bouton-infos {
-color: white;
+  color: white;
 }
+
 .promo-vacances {
-padding-top: 105px !important;
-padding-left: 80px !important;
+  padding-top: 105px !important;
+  padding-left: 80px !important;
 }
+
 .texte-bon-plan {
-background-color: yellow;
-padding: 5px;
-color: black;
-text-align: center;
-margin-left: 10px;
+  background-color: yellow;
+  padding: 5px;
+  color: black;
+  text-align: center;
+  margin-left: 10px;
 }
+
 .texte-jusqua {
-padding-top: 45px
+  padding-top: 45px
 }
+
 .img-baisses {
   width: 100%;
 }
@@ -102,38 +121,44 @@ padding-top: 45px
   padding-bottom: 5%;
   padding-right: 5%;
 }
+
 .bloc-actualite {
   margin-right: 30px;
   margin-top: 20px;
   box-shadow: 10px 40px 0px #f2f2f2;
 }
+
 .text-ombre {
   box-shadow: 10px 40px 0px #f2f2f2;
   background-color: #f2f2f2;
 }
+
 .mes-images {
 
-box-shadow: -15px 65px 1px #f2f2f2;
+  box-shadow: -15px 65px 1px #f2f2f2;
 
 }
+
 .texte-phone {
-text-decoration: none;
+  text-decoration: none;
 }
 
 
-.orange-yelen-title{
+.orange-yelen-title {
   position: relative;
   padding-bottom: 1rem;
 
-  &::after{
-    content: "";
-    position: absolute;
-    top: 2rem;
-    width: 7%;
-    background-color: #ff7900;
-    height: 10px;
-    left: 0;
-  }
+&
+::after {
+  content: "";
+  position: absolute;
+  top: 2rem;
+  width: 7%;
+  background-color: #ff7900;
+  height: 10px;
+  left: 0;
+}
+
 }
 
 
@@ -141,7 +166,7 @@ text-decoration: none;
 REGION
  */
 
-.region-hero-sidebar{
+.region-hero-sidebar {
   height: 100%;
 }
 
@@ -157,48 +182,59 @@ dans le HTML
   margin-top: 100px;
   padding: 40px;
 }
+
 .texte-orange {
   color: #f16e20;
 }
+
 .trombino-agence {
   font-size: 22px;
   color: #f16e20;
   font-weight: 600;
   margin-top: -80px;
 }
+
 .txt_collapse {
   font-weight: normal;
   font-size: 20px;
 }
+
 .back-texte-carousel {
   background-color: black;
   color: white;
 }
+
 .bloc-recherche {
 
   margin-top: 30px;
 }
+
 .texte-trombino-agence {
   margin-top: 100px;
   padding: 40px;
 }
+
 .texte-trombino-agence {
   margin-top: 100px;
   padding: 40px;
 }
+
 .texte-orange {
   color: #f16e20;
 }
+
 .trombino-agence {
   font-size: 27px;
   color: #f16e20;
   font-weight: 600;
   margin-top: -80px;
 }
+
 .input-trombino {
   margin-top: 225px;
 }
-.back-trombino  {
+
+.back-trombino {
   background-image: url('img/q5tnynj1.png');
   background-size: cover;
   background-position: center;
@@ -213,42 +249,49 @@ dans le HTML
 .barre-haut {
   border: none;
 }
+
 /* accordion */
 
-.petit-bloc-rectangle  {
+.petit-bloc-rectangle {
   padding: 20px;
   background-color: red;
 }
+
 .my-card {
   border: 1px solid #cccccc;
   margin-bottom: 70px;
   margin-right: 70px;
 }
+
 .bloc-img {
   flex: 0 0 auto;
   width: 50%;
 }
 
-.petite-icon
-{
+.petite-icon {
   width: 70%;
 }
+
 .bloc-txt {
-  width:  35%;
+  width: 35%;
   margin-left: -60px;
   margin-top: 10px;
 }
+
 .icon-orange::after {
   color: #f16e20 !important;
 }
+
 .txt_collapse {
   font-weight: normal;
   font-size: 20px;
 }
+
 .texte-phone {
   text-decoration: none;
 }
-.back-trombino  {
+
+.back-trombino {
   background-image: url('img/q5tnynj1.png');
   background-size: cover;
   background-position: center;
@@ -259,13 +302,16 @@ dans le HTML
   margin-left: -20px;
   padding-right: 100px;
 }
+
 .bouton-infos {
   color: white;
 }
+
 .promo-vacances {
 
   padding-left: 80px !important;
 }
+
 .texte-bon-plan {
   background-color: yellow;
   padding: 5px;
@@ -273,6 +319,7 @@ dans le HTML
   text-align: center;
   margin-left: 10px;
 }
+
 .texte-jusqua {
   padding-top: 45px
 }
@@ -282,6 +329,7 @@ dans le HTML
     flex-direction: column;
     align-items: center;
   }
+
   .paginate {
     flex-direction: row;
     text-decoration: none;
@@ -291,7 +339,6 @@ dans le HTML
     margin-left: 0;
   }
 }
-
 
 
 .icon-orange::after {
@@ -311,6 +358,7 @@ dans le HTML
   color: #f16e20;
   font-size: 30px;
 }
+
 .card-title a {
   text-decoration: none;
   color: #f16e20;
@@ -370,33 +418,37 @@ dans le HTML
 
 /*begin wisdom styling*/
 
-a.hover-orange:hover{
-  color:orange
+a.hover-orange:hover {
+  color: orange
 }
-.orange-color-link a{
-  color:black;
+
+.orange-color-link a {
+  color: black;
   text-decoration: none;
 }
-.orange-color-link a:hover{
-  color:orange;
+
+.orange-color-link a:hover {
+  color: orange;
   text-decoration: none;
 }
 
 .orange-yelen-title-block {
-  position:relative;
-  &::after {
-     content: "";
-     position: absolute;
-     top: 2rem;
-     width: 25%;
-     background-color: #ff7900;
-     height: 10px;
-     left: 0;
- }
+  position: relative;
+
+&
+::after {
+  content: "";
+  position: absolute;
+  top: 2rem;
+  width: 25%;
+  background-color: #ff7900;
+  height: 10px;
+  left: 0;
+}
 
 }
 
-.utility_form{
+.utility_form {
   border: solid 1px;
   display: flex;
   align-items: center;
@@ -404,7 +456,7 @@ a.hover-orange:hover{
 }
 
 /*disable preview block*/
-.node-preview-container{
+.node-preview-container {
   display: none !important;
 }
 
@@ -415,35 +467,82 @@ a.hover-orange:hover{
   min-width: 185px !important;
 }
 
-.main_slider .carousel{
+.main_slider .carousel {
   height: 200px;
   overflow-y: hidden;
 }
 
 /* Style node generaly */
 
-.field--name-body{
+.field--name-body {
   margin-top: 20px;
 }
 
 .field--name-field-process,
 .field--name-field-files,
 .field--name-field-modes-operatoires,
-.field--name-field-documents{
+.field--name-field-documents {
   margin-bottom: 20px;
 }
 
 /* style node listing content type */
-.card-yelen img{
+.card-yelen img {
   width: 350px;
   height: 200px
 }
 
-.card-yelen .card-body{
+.card-yelen .card-body {
   height: 230px;
 }
 
-.card-yelen .card-body .btn{
+.card-yelen .card-body .btn {
   position: absolute;
   bottom: 20px;
 }
+
+/* styling chiffre cle bloc */
+.view-id-hero_slider {
+  margin-bottom: 0.3px
+}
+
+.bloc_chiffre_cle {
+  margin-top: 0;
+  width: 100%;
+  padding: 18px 18px;
+
+.chiffrecle_header {
+  width: 30%;
+}
+
+.chiffrecle_content {
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.chiffrecle::before {
+  content: '';
+  height: 40px;
+  background-color: white;
+  width: 1px;
+  position: absolute;
+}
+
+.chiffrecle {
+  display: flex;
+  font-size: 20px;
+  width: 100%;
+  font-weight: bold;
+
+  .chiffre_title {
+    text-transform: uppercase;
+    margin-right: 5px;
+    margin-left: 35px;
+  }
+
+  .chiffre_value {
+    color: #ff7900;
+  }
+}
+
+

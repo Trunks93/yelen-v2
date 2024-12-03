@@ -10,6 +10,7 @@ regions:
   hero_header: 'Hero Header'
   hero_sidebar: 'Hero Sidebar'
   menu: 'Menu'
+  hero_bottom: 'hero_bottom'
   breadcrumb: Breadcrumb
   highlighted: Highlighted
   help: Help

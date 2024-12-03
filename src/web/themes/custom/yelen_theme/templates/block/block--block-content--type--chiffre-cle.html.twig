@@ -40,27 +40,27 @@
   {% endif %}
   {{ title_suffix }}
   {% block content %}
-    {#  content #}
-    <div class="bg-dark text-white d-flex bloc_chiffre_cle">
+    <div class="text-white d-flex bloc_chiffre_cle">
         <div class="chiffrecle_header">
-          <h2>Les chiffres clés <br>du mois</h2>
+          <h2>Les chiffres clés</h2>
+          <span>du mois</span>
         </div>
       <div class="chiffrecle_content d-flex justify-content-around">
         <div class="chiffrecle">
           <div class="chiffre_title">CSAT</div>
-          <div class="chiffre_value">22,30%</div>
+          <div class="chiffre_value">{{ content['field_csat']['#object'].field_csat.value }}</div>
         </div>
         <div class="chiffrecle">
           <div class="chiffre_title">DSAT</div>
-          <div class="chiffre_value">22,30%</div>
+          <div class="chiffre_value">{{ content['field_dsat']['#object'].field_dsat.value }}</div>
         </div>
         <div class="chiffrecle">
           <div class="chiffre_title">FCR</div>
-          <div class="chiffre_value">22,30%</div>
+          <div class="chiffre_value">{{ content['field_fcr']['#object'].field_fcr.value }}</div>
         </div>
         <div class="chiffrecle">
           <div class="chiffre_title">CR</div>
-          <div class="chiffre_value">22,30%</div>
+          <div class="chiffre_value">{{ content['field_cr']['#object'].field_cr.value }}</div>
         </div>
       </div>
     </div>

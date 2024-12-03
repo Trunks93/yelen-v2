@@ -44,7 +44,7 @@
 }
 
 .texte-sous-categorie:hover {
-  color: #f16e20;
+  color: #ff7900;
 }
 
 /*faq */
@@ -65,12 +65,12 @@
 }
 
 .texte-orange {
-  color: #f16e20;
+  color: #ff7900;
 }
 
 .trombino-agence {
   font-size: 27px;
-  color: #f16e20;
+  color: #ff7900;
   font-weight: 600;
   margin-top: -80px;
 }
@@ -147,18 +147,15 @@
 .orange-yelen-title {
   position: relative;
   padding-bottom: 1rem;
-
-&
-::after {
-  content: "";
-  position: absolute;
-  top: 2rem;
-  width: 7%;
-  background-color: #ff7900;
-  height: 10px;
-  left: 0;
-}
-
+    &::after {
+      content: "";
+      position: absolute;
+      top: 2rem;
+      width: 7%;
+      background-color: #ff7900;
+      height: 10px;
+      left: 0;
+    }
 }
 
 
@@ -184,12 +181,12 @@ dans le HTML
 }
 
 .texte-orange {
-  color: #f16e20;
+  color: #ff7900;
 }
 
 .trombino-agence {
   font-size: 22px;
-  color: #f16e20;
+  color: #ff7900;
   font-weight: 600;
   margin-top: -80px;
 }
@@ -220,12 +217,12 @@ dans le HTML
 }
 
 .texte-orange {
-  color: #f16e20;
+  color: #ff7900;
 }
 
 .trombino-agence {
   font-size: 27px;
-  color: #f16e20;
+  color: #ff7900;
   font-weight: 600;
   margin-top: -80px;
 }
@@ -279,7 +276,7 @@ dans le HTML
 }
 
 .icon-orange::after {
-  color: #f16e20 !important;
+  color: #ff7900 !important;
 }
 
 .txt_collapse {
@@ -342,7 +339,7 @@ dans le HTML
 
 
 .icon-orange::after {
-  color: #f16e20 !important;
+  color: #ff7900 !important;
 }
 
 .card-custom-width {
@@ -355,13 +352,13 @@ dans le HTML
 }
 
 .card-title {
-  color: #f16e20;
+  color: #ff7900;
   font-size: 30px;
 }
 
 .card-title a {
   text-decoration: none;
-  color: #f16e20;
+  color: #ff7900;
   font-size: 30px;
 }
 
@@ -408,7 +405,7 @@ dans le HTML
 }
 
 .texte-phone:hover {
-  color: #f16e20;
+  color: #ff7900;
 }
 
 .txt_collapse {
@@ -419,7 +416,7 @@ dans le HTML
 /*begin wisdom styling*/
 
 a.hover-orange:hover {
-  color: orange
+  color: #ff7900;
 }
 
 .orange-color-link a {
@@ -428,24 +425,21 @@ a.hover-orange:hover {
 }
 
 .orange-color-link a:hover {
-  color: orange;
+  color: #ff7900;
   text-decoration: none;
 }
 
 .orange-yelen-title-block {
   position: relative;
-
-&
-::after {
-  content: "";
-  position: absolute;
-  top: 2rem;
-  width: 25%;
-  background-color: #ff7900;
-  height: 10px;
-  left: 0;
-}
-
+  &::after {
+    content: "";
+    position: absolute;
+    top: 2rem;
+    width: 25%;
+    background-color: #ff7900;
+    height: 10px;
+    left: 0;
+   }
 }
 
 .utility_form {
@@ -508,8 +502,9 @@ a.hover-orange:hover {
 .bloc_chiffre_cle {
   margin-top: 0;
   width: 100%;
+  background-color: #353641;
   padding: 18px 18px;
-
+}
 .chiffrecle_header {
   width: 30%;
 }
@@ -528,21 +523,43 @@ a.hover-orange:hover {
   position: absolute;
 }
 
-.chiffrecle {
-  display: flex;
-  font-size: 20px;
-  width: 100%;
-  font-weight: bold;
+    .chiffrecle {
+      display: flex;
+      font-size: 20px;
+      width: 100%;
+      font-weight: bold;
+    }
+    .chiffre_title {
+      text-transform: uppercase;
+      margin-right: 5px;
+      margin-left: 35px;
+    }
 
-  .chiffre_title {
-    text-transform: uppercase;
-    margin-right: 5px;
-    margin-left: 35px;
-  }
+    .chiffre_value {
+      color: #ff7900;
+    }
 
-  .chiffre_value {
+
+
+.chiffrecle_header span{
+  font-size: 20px !important;
+}
+.chiffrecle_header h2{
+  margin-bottom: 10px !important;
+}
+
+
+.home-body{
+  text-decoration:none;
+  .orange-color-link:hover{
     color: #ff7900;
   }
 }
 
+.field__item a{
+  text-decoration: none !important;
+}
 
+.field__item a:hover{
+  color: #ff7900 !important;
+}

@@ -116,8 +116,7 @@ body{
   }
 }
 .trombino-service-point-search-form-block.block.views-exposed-form{
-  --space-size: 20px;
-  height: 100%;
+  --space-size: 14px;
   box-shadow: none;
   border: none;
   border-radius: 0;

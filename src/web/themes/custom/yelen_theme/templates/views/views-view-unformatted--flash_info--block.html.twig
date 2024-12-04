@@ -20,17 +20,23 @@
 {% if title %}
   <h3>{{ title }}</h3>
 {% endif %}
-{% for row in rows %}
-  {%
-    set row_classes = [
-      default_row_class ? 'views-row',
-    'bg-dark','d-flex'
-    ]
-  %}
-  <div{{ row.attributes.addClass(row_classes) }}>
-    <div class="flash_info">
-        <h3>Flash infos</h3>
-    </div>
-    {{- row.content -}}
+{% if rows|length > 0 %}
+<div class="bg-dark d-flex flash-info-block">
+  <div class="flash_info p-2 text-white">
+    <span>Flash infos</span>
   </div>
-{% endfor %}
+  <div class="flash_info_information">
+    {% for row in rows %}
+      {%
+        set row_classes = [
+          default_row_class ? 'views-row',
+        'item-flash'
+        ]
+      %}
+      <div{{ row.attributes.addClass(row_classes) }}>
+        {{- row.content -}}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{% endif %}

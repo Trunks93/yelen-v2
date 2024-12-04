@@ -563,3 +563,54 @@ a.hover-orange:hover {
 .field__item a:hover{
   color: #ff7900 !important;
 }
+
+/*flash info*/
+.view-flash-info{
+  margin-bottom: 7px !important;
+}
+
+.flash-info-block{
+  /*overflow: hidden;*/
+  white-space: nowrap;
+  position: relative;
+}
+
+.flash_info{
+  width: 10%;
+  background-color:#ff7900 ;
+  z-index: 100;
+  span{
+    font-size: 18px;
+  }
+}
+.flash_info_information{
+  display: block;
+  animation: defilement 30s linear infinite; /*Animation */
+  width: 80%;
+  align-content: center;
+}
+
+.item-flash{
+  width: 100%;
+  display: inline-block;
+}
+
+.item-flash .views-field .field-content a{
+  color: white !important;
+  text-decoration: none;
+}
+
+/* Animation */
+@keyframes defilement {
+  0% {
+    transform: translateX(100%); /* Démarre hors de l'écran */
+  }
+  100% {
+    transform: translateX(-500%); /* Sort par la gauche */
+  }
+}
+
+.item-flash:hover ~ .flash_info_information,
+.flash_info_information:hover {
+  animation-play-state: paused; /* Arrête l'animation */
+}

@@ -49,8 +49,8 @@
     {% if truncated_text|length >200 %}
       {% set truncated_text = truncated_text|slice(0, 200) ~ '...'  %}
     {% endif %}
-    <div class="home views-view-responsive-grid__item" style="border: solid 2px #bebebe">
-      <div class="d-flex align-items-center" style="background-color: #bebebe">
+    <div class="home views-view-responsive-grid__item" style="border: solid 2px #ececec">
+      <div class="d-flex align-items-center" style="background-color: #ececec">
         {{ item.content['field_image'] }}
         <h4 class="home-title mb-0">{{ item.content['field_titre'] }}</h4>
       </div>

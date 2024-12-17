@@ -20,7 +20,12 @@ class ExtractMailer
   public function extractMailFromBroadcastList(EntityInterface $entity,string $field): array
   {
     $emailIds = [];
-    $mailingLists = $entity->get($field)->getValue();
+    try{
+      $mailingLists = $entity->get($field)->getValue();
+    }catch (\Exception $e){
+      \Drupal::logger('Error Notification')->error($entity->label().' - '.$e->getMessage());
+    }
+
 
     foreach ($mailingLists as $mailingList) {
       $emailEntity = BroadcastList::load($mailingList['target_id']);
@@ -43,7 +48,13 @@ class ExtractMailer
     $emails = [];
     foreach ($userIds as $userId) {
       $user = User::load($userId['target_id']);
-      $emails[] = $user->getEmail();
+      if($user instanceof User){
+        $emails[] = $user->getEmail();
+      }else{
+        \Drupal::logger('Notification Email')->error('erreur avec cet utilisateur '.$userId['target_id']);
+        \Drupal::logger('Notification Email')->error('Détail utilisateur à problème'.$user->getAccountName());
+      }
+
     }
     return implode(' , ',$emails);
   }

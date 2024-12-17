@@ -1,0 +1,7 @@
+name: 'Yelen Matomo'
+type: module
+description: 'Matomo Wrapper for custom variables'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - matomo:matomo

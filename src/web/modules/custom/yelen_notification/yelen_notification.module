@@ -7,7 +7,7 @@ use Drupal\yelen_notification\Constante\Constante;
 use Drupal\yelen_notification\Event\BroadcastListEvent;
 use Drupal\yelen_notification\Event\NotificationEvent;
 use Drupal\Core\Entity\EntityInterface;
-use Drupal\content_moderation\Entity\ContentModerationState;
+// use Drupal\content_moderation\Entity\ContentModerationState;
 use Drupal\Core\Site\Settings;
 use Drupal\yelen_notification\Event\QuizNotificationEvent;
 
@@ -122,8 +122,7 @@ function yelen_notification_node_insert(Node $node)
 {
   $content_type = $node->getType();
   $unauthorized_node = Constante::UNAUTHORIZED_NODES;
-  //$content_type != "article" && $content_type != "page" && $content_type != "forum" && $content_type != "sujet"
-  if (!in_array($content_type, $unauthorized_node)) {
+  if (!in_array($content_type, $unauthorized_node) && $node->get('status')->value == 1) {
     $event = new NotificationEvent();
     $event->setNodeId($node->id());
     $event->setNodeTitle($node->getTitle());
@@ -136,6 +135,29 @@ function yelen_notification_node_insert(Node $node)
   }
 }
 
+
+function yelen_notification_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+  if($entity instanceof Node){
+    $originalNodeStatus = $entity->original->get('status')->value;
+    $updatedNodeStatus = $entity->get('status')->value;
+    if($updatedNodeStatus == 1 && $originalNodeStatus == 0){
+      $content_type = $entity->getType();
+      $unauthorized_node = Constante::UNAUTHORIZED_NODES;
+      if (!in_array($content_type, $unauthorized_node)) {
+        $event = new NotificationEvent();
+        $event->setNodeId($entity->id());
+        $event->setNodeTitle($entity->getTitle());
+        $event->setNodeContentType($entity->getType());
+        $emailExtractorService = \Drupal::service('yelen_notification.extract.mail');
+        $emails = $emailExtractorService->extractMailFromBroadcastList($entity, 'field_liste_de_diffusion');
+        $event->setEmailAddress($emails);
+        $event_dispatcher = \Drupal::service('event_dispatcher');
+        $event_dispatcher->dispatch($event, NotificationEvent::CREATION_CONTENT_PUBLIC);
+      }
+    }
+  }
+}
+
 /**
  * Implements hook_mail()
  */
@@ -144,8 +166,6 @@ function yelen_notification_mail($key, &$message, $params)
   $options = array('langcode' => $message['langcode']);
   if ($key == SendEmailNotification::MODULE_NAME) {
     $message['headers'] = $params['headers'];
-    //$message['from'] = $params['from'];
-    //$message['from'] = 'admin@synelia.tech';
     $message['subject'] = $params['subject'];
     $message['body'][] = $params['message'];
   }
@@ -156,7 +176,6 @@ function yelen_notification_mail($key, &$message, $params)
  */
 function yelen_notification_quiz_update(EntityInterface $entity)
 {
-
   $current_state = $entity->moderation_state->getValue()[0]['target_id'];
   $date = !empty($entity->quiz_date->getValue()) ? $entity->quiz_date->getValue()[0] : [];
   $description = !empty($entity->body->getValue()) ? $entity->body->getValue()[0]['value'] : null;

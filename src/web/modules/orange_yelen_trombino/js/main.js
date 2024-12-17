@@ -8,11 +8,11 @@
         $(this).closest('form').submit();
       })
 
-      once('orange_yelen_trombino', 'html').forEach((element) => {
+      /*once('orange_yelen_trombino', 'html').forEach((element) => {
         console.log('--- orange_yelen_trombino user_email ---', drupalSettings.orange_yelen_trombino.user_email)
         console.log('--- Oorange_yelen_trombino username ---', drupalSettings.orange_yelen_trombino.username)
-        
-      })
+
+      })*/
     }
   };
-})(jQuery, Drupal, once, drupalSettings);
+})(jQuery, Drupal, drupalSettings);

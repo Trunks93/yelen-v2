@@ -27,7 +27,7 @@ use Drupal\user\UserInterface;
  *   handlers = {
  *     "list_builder" = "Drupal\orange_yelen_chat\MessageListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
- *     "access" = "Drupal\orange_yelen_chat\OrangeYelenChatAccessControlHandler",
+ *     "access" = "Drupal\orange_yelen_chat\Access\OrangeYelenChatAccessControlHandler",
  *   },
  *   base_table = "orange_yelen_chat_message",
  *   admin_permission = "administer orange_yelen_chat_message",
@@ -122,6 +122,10 @@ final class Message extends ContentEntityBase implements MessageInterface {
 
   public function getMessage(): string {
     return $this->get('message')->value;
+  }
+
+  public function getCreatedTime(): string {
+    return $this->get('created')->value;
   }
 
   public function isRead(): bool {

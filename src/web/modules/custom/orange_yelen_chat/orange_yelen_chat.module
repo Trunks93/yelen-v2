@@ -56,6 +56,18 @@ function orange_yelen_chat_page_attachments_alter(&$page) {
   }*/
 }
 
+/**
+ * Implements hook_page_attachments().
+ */
+function orange_yelen_chat_page_attachments(array &$attachments) {
+  $current_user = \Drupal::currentUser();
+  $attachments['#attached']['drupalSettings']['yelen_chat']['current_user'] =[
+    'uid' => $current_user->id(),
+    'name' => $current_user->getAccountName(),
+  ];
+}
+
+
 
 function _orange_yelen_chat__check_path(): bool
 {

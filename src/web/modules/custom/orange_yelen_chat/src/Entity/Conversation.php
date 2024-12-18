@@ -28,7 +28,7 @@ use Drupal\user\UserInterface;
  *   handlers = {
  *     "list_builder" = "Drupal\orange_yelen_chat\ConversationListBuilder",
  *     "views_data" = "Drupal\views\EntityViewsData",
- *     "access" = "Drupal\orange_yelen_chat\OrangeYelenChatAccessControlHandler",
+ *     "access" = "Drupal\orange_yelen_chat\Access\OrangeYelenChatAccessControlHandler",
  *   },
  *   base_table = "orange_yelen_chat_conversation",
  *   admin_permission = "administer orange_yelen_chat_conversation",
@@ -116,6 +116,12 @@ final class Conversation extends ContentEntityBase implements ConversationInterf
 
   public function getParticipant(): ?UserInterface {
     return $this->get('participant')->entity;
+  }
+  public function getCreatedTime(): ?UserInterface {
+    return $this->get('created')->entity;
+  }
+  public function getChangedTime(): ?UserInterface {
+    return $this->get('changed')->entity;
   }
 
   public function getStatus(): string

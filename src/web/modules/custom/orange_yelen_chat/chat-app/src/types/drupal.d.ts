@@ -1,6 +1,6 @@
 declare interface DrupalSettings {
   yelen_chat: {
-    currentUser: {
+    current_user: {
       uid: number;
       name: string;
     };

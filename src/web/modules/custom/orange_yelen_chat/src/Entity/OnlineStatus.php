@@ -32,7 +32,7 @@ use Drupal\user\UserInterface;
  *   },
  *   handlers = {
  *     "views_data" = "Drupal\views\EntityViewsData",
- *     "access" = "Drupal\orange_yelen_chat\OrangeYelenChatAccessControlHandler",
+ *     "access" = "Drupal\orange_yelen_chat\Access\OrangeYelenChatAccessControlHandler",
  *   },
  *   admin_permission = "administer orange_yelen_chat_online_status",
  * )

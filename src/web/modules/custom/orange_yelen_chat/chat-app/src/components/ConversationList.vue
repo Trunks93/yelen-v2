@@ -13,7 +13,7 @@ const emit = defineEmits<{
 const fetchConversations = async () => {
   try {
     loading.value = true
-    const response = await fetch('/yelen-chat/api/conversations')
+    const response = await fetch('/api/conversations')
     conversations.value = await response.json()
   } catch (error) {
     console.error('Erreur lors de la récupération des conversations:', error)
@@ -66,6 +66,7 @@ onMounted(fetchConversations)
   border-right: 1px solid #ddd;
   height: 100%;
   overflow-y: auto;
+  background-color: #FFF;
 }
 
 .conversation-header {

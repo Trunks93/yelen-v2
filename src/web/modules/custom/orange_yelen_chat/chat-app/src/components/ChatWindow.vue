@@ -10,18 +10,18 @@ const props = defineProps<{
 const messages = ref<Message[]>([])
 const newMessage = ref('')
 const loading = ref(false)
-const currentUserId = ref(window.drupalSettings.yelen_chat.currentUser.uid)
+const currentUserId = ref(window.drupalSettings.yelen_chat.current_user.uid)
 
 const fetchMessages = async () => {
   if (!props.conversation) return
 
   try {
-    const response = await fetch(`/yelen-chat/api/conversations/${props.conversation.id}/messages`)
+    const response = await fetch(`/yelen_chat/api/conversations/${props.conversation.id}/messages`)
     messages.value = await response.json()
 
     // Marquer les messages comme lus
     if (messages.value.length > 0) {
-      await fetch(`/yelen-chat/api/conversations/${props.conversation.id}/messages/read`, {
+      await fetch(`/yelen_chat/api/conversations/${props.conversation.id}/messages/read`, {
         method: 'POST'
       })
     }
@@ -31,11 +31,13 @@ const fetchMessages = async () => {
 }
 
 const sendMessage = async () => {
+  console.log('---Sending Message 1----', newMessage.value.trim())
+  console.log('---Sending Message 2----', props.conversation)
   if (!newMessage.value.trim() || !props.conversation) return
 
   try {
     loading.value = true
-    await fetch(`/yelen-chat/api/conversations/${props.conversation.id}/messages`, {
+    await fetch(`/yelen_chat/api/conversations/${props.conversation.id}/messages`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -56,7 +58,7 @@ const closeConversation = async () => {
   if (!props.conversation) return
 
   try {
-    await fetch(`/yelen-chat/api/conversations/${props.conversation.id}/close`, {
+    await fetch(`/yelen_chat/api/conversations/${props.conversation.id}/close`, {
       method: 'POST',
     })
     emit('conversationClosed')
@@ -67,7 +69,7 @@ const closeConversation = async () => {
 
 const isOwnMessage = (message: Message) => message.user_id === currentUserId.value
 
-let refreshInterval: ReturnType<typeof setInterval>
+let refreshInterval: number
 
 onMounted(() => {
   fetchMessages()
@@ -129,8 +131,8 @@ const emit = defineEmits<{
         placeholder="Écrivez votre message..."
         type="text"
       >
-      <button @click="sendMessage" :disabled="loading">
-        {{ loading ? 'Envoi...' : 'Envoyer' }}
+      <button class="btn btn-primary" @click="sendMessage" :disabled="loading">
+        {{ loading ? 'Envoi...' : 'Envoyer 1' }}
       </button>
     </div>
   </div>
@@ -247,12 +249,12 @@ input {
 
 input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #25d366;
+  box-shadow: 0 0 0 2px var(--bs-primary);
 }
 
 button {
   padding: 8px 20px;
-  background-color: #25d366;
+  background-color: var(--bs-primary);
   color: white;
   border: none;
   border-radius: 24px;
@@ -262,7 +264,7 @@ button {
 }
 
 button:hover {
-  background-color: #128c7e;
+  background-color: #000000;
 }
 
 button:disabled {

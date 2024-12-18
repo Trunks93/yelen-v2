@@ -59,5 +59,5 @@ onUnmounted(() => {
 }
 
 .status-indicator.online {
-  background-color: #25d366;
+  background-color: var(--bs-primary);
 }</style>

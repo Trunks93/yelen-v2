@@ -32,18 +32,17 @@ final class OrangeYelenChatController extends ControllerBase {
     $participantId = $data['participant_id'];
 
     // Vérifier si une conversation active existe déjà
-    $query = $this->entityTypeManager()->getStorage('orange_yelen_chat_conversation')->getQuery()
-      ->condition('status', 'active')
-      ->condition([
-        [
-          'created_by', $this->currentUser()->id(),
-          'participant', $participantId,
-        ],
-        [
-          'created_by', $participantId,
-          'participant', $this->currentUser()->id(),
-        ],
-      ], NULL, 'OR');
+    $query = $this->entityTypeManager()
+      ->getStorage('orange_yelen_chat_conversation')
+      ->getQuery()
+      ->accessCheck(TRUE)
+      ->condition('status', 'active');
+
+    $or_group = $query->orConditionGroup()
+      ->condition('created_by', $this->currentUser()->id())
+      ->condition('participant', $this->currentUser()->id());
+
+    $query->condition($or_group);
 
     $result = $query->execute();
 
@@ -85,12 +84,17 @@ final class OrangeYelenChatController extends ControllerBase {
     ]);
   }
   public function getConversations() {
-    $query = $this->entityTypeManager()->getStorage('orange_yelen_chat_conversation')->getQuery()
-      ->condition('status', 'active')
-      ->condition([
-        ['created_by', $this->currentUser()->id()],
-        ['participant', $this->currentUser()->id()],
-      ], NULL, 'OR')
+    $query = $this->entityTypeManager()
+      ->getStorage('orange_yelen_chat_conversation')
+      ->getQuery()
+      ->accessCheck(TRUE)
+      ->condition('status', 'active');
+
+    $or_group = $query->orConditionGroup()
+      ->condition('created_by', $this->currentUser()->id())
+      ->condition('participant', $this->currentUser()->id());
+
+    $query->condition($or_group)
       ->sort('changed', 'DESC');
 
     $result = $query->execute();
@@ -128,7 +132,10 @@ final class OrangeYelenChatController extends ControllerBase {
       return new JsonResponse(['error' => 'Access denied'], 403);
     }
 
-    $query = $this->entityTypeManager()->getStorage('orange_yelen_chat_message')->getQuery()
+    $query = $this->entityTypeManager()
+      ->getStorage('orange_yelen_chat_message')
+      ->getQuery()
+      ->accessCheck(TRUE)
       ->condition('conversation', $conversationId)
       ->sort('created', 'DESC')
       ->range(0, 50);
@@ -201,7 +208,10 @@ final class OrangeYelenChatController extends ControllerBase {
       return new JsonResponse(['error' => 'Access denied'], 403);
     }
 
-    $query = $this->entityTypeManager()->getStorage('orange_yelen_chat_message')->getQuery()
+    $query = $this->entityTypeManager()
+      ->getStorage('orange_yelen_chat_message')
+      ->getQuery()
+      ->accessCheck(TRUE)
       ->condition('conversation', $conversationId)
       ->condition('user', $this->currentUser()->id(), '<>')
       ->condition('read', 0);
@@ -226,7 +236,10 @@ final class OrangeYelenChatController extends ControllerBase {
     $status = $data['status'] ?? 'online';
     $currentTime = \Drupal::time()->getCurrentTime();
 
-    $query = $this->entityTypeManager()->getStorage('orange_yelen_chat_online_status')->getQuery()
+    $query = $this->entityTypeManager()
+      ->getStorage('orange_yelen_chat_online_status')
+      ->getQuery()
+      ->accessCheck(TRUE)
       ->condition('uid', $this->currentUser()->id());
     $result = $query->execute();
 
@@ -246,7 +259,10 @@ final class OrangeYelenChatController extends ControllerBase {
 
     // Nettoyer les statuts expirés (plus de 2 minutes d'inactivité)
     $expiredTime = $currentTime - 120;
-    $query = $this->entityTypeManager()->getStorage('orange_yelen_chat_online_status')->getQuery()
+    $query = $this->entityTypeManager()
+      ->getStorage('orange_yelen_chat_online_status')
+      ->getQuery()
+      ->accessCheck(TRUE)
       ->condition('last_active', $expiredTime, '<');
     $expired = $query->execute();
 

@@ -13,7 +13,7 @@ const checkUnreadMessages = async () => {
     for (const conv of conversations) {
       const messagesResponse = await fetch(`/yelen-chat/api/conversations/${conv.id}/messages`)
       const messages = await messagesResponse.json()
-      count += messages.filter((m: any) => !m.read && m.user_id !== window.drupalSettings.yelen_chat.currentUser.uid).length
+      count += messages.filter((m: any) => !m.read && m.user_id !== window.drupalSettings.yelen_chat.current_user.uid).length
     }
 
     unreadCount.value = count

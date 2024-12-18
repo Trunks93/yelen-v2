@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "test:unit": "vitest",
     "build-only": "vite build",
+    "watch": "vite build --watch",
     "type-check": "vue-tsc --build --force"
   },
   "dependencies": {

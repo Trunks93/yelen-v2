@@ -347,8 +347,8 @@ dans le HTML
 }
 
 .card-body {
-  background-color: black;
-  color: white;
+  color: black;
+  background-color: white;
 }
 
 .card-title {
@@ -358,7 +358,7 @@ dans le HTML
 
 .card-title a {
   text-decoration: none;
-  color: #ff7900;
+  color: black;
   font-size: 30px;
 }
 
@@ -493,6 +493,9 @@ a.hover-orange:hover {
   position: absolute;
   bottom: 20px;
 }
+.home-body p{
+  font-weight:normal !important;
+}
 
 /* styling chiffre cle bloc */
 .view-id-hero_slider {
@@ -613,4 +616,14 @@ a.hover-orange:hover {
 .item-flash:hover ~ .flash_info_information,
 .flash_info_information:hover {
   animation-play-state: paused; /* Arrête l'animation */
+  .item-flash .views-field .field-content a{
+    color: #ff7900 !important;
+    text-decoration: none;
+  }
+}
+
+/*pager*/
+.pager__link.is-active, .pager__item--current{
+  background-color:#ff7900 !important;
+  color:black;
 }

@@ -347,8 +347,8 @@ dans le HTML
 }
 
 .card-body {
-  background-color: black;
-  color: white;
+  color: black;
+  background-color: white;
 }
 
 .card-title {
@@ -358,12 +358,13 @@ dans le HTML
 
 .card-title a {
   text-decoration: none;
-  color: #ff7900;
+  color: black;
   font-size: 30px;
 }
 
 .btn-voir-plus {
   border: 1px solid white;
+  color: white
 }
 
 .bloc-quiz {
@@ -493,6 +494,9 @@ a.hover-orange:hover {
   position: absolute;
   bottom: 20px;
 }
+.home-body p{
+  font-weight:normal !important;
+}
 
 /* styling chiffre cle bloc */
 .view-id-hero_slider {
@@ -502,7 +506,7 @@ a.hover-orange:hover {
 .bloc_chiffre_cle {
   margin-top: 7px;
   width: 100%;
-  background-color: #353641;
+  background-color: #3C3C3B;
   padding: 18px 18px;
 }
 .chiffrecle_header {
@@ -613,4 +617,37 @@ a.hover-orange:hover {
 .item-flash:hover ~ .flash_info_information,
 .flash_info_information:hover {
   animation-play-state: paused; /* Arrête l'animation */
+  .item-flash .views-field .field-content a{
+    color: #ff7900 !important;
+    text-decoration: none;
+  }
+}
+
+.utility_btn_img{
+  width: 50px;
+  height: auto;
+}
+.yes{
+  background-color:#ff7900;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border:solid 1px #ff7900;
+  box-shadow: 1px 1px 1px black;
+}
+
+.no{
+  background-color:black;
+  width: 75px;
+  height: 75px;
+  color: white;
+  border-radius: 50%;
+  border:solid 1px black;
+  box-shadow: 1px 1px 1px grey;
+}
+
+/*pager*/
+.pager__link.is-active, .pager__item--current{
+  background-color:#ff7900 !important;
+  color:black;
 }

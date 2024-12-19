@@ -119,7 +119,6 @@ function yelen_theme_preprocess_node(&$variables)
       $nid = $variables['node']->id();
       $userId = \Drupal::currentUser()->id();
       $evaluations = \Drupal::service('evaluation.service')->getEvaluationOfUser($userId, $nid);
-      //dump($evaluations);
       if (empty($evaluations)) {
         $variables['evaluation'] = null;
         $variables['utility'] = null;

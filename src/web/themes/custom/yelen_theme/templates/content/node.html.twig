@@ -92,10 +92,10 @@
 <article{{ attributes.addClass(classes) }}>
   {# title_prefix #}
   {% if content['body']['#object'] is defined and content['body']['#object'].type.value[0]['target_id'] != 'page' %}
-    <h2{{ title_attributes }}>{{ label }}</h2>
+    <h2{{ title_attributes.addClass('orange-yelen-title') }}>{{ label }}</h2>
   {% endif %}
     {% if label and not page %}
-      <h2{{ title_attributes }}>
+      <h2{{ title_attributes.addClass('orange-yelen-title') }}>
         <a href="{{ url }}" rel="bookmark">{{ label }}</a>
       </h2>
     {% endif %}
@@ -128,7 +128,7 @@
 
     {% if is_module_yelen_content_evaluation_active is defined %}
       {% if utility == null or utility == "none" %}
-        <div class="utility_form mt-3">
+        <div class="utility_forms mt-3">
           {{ drupal_form('Drupal\\yelen_content_evaluation\\Form\\UtilityContentForm',node.id) }}
         </div>
       {% else %}

@@ -53,10 +53,6 @@
                             closeOnEscape: true,
                             modal: true,
                             autoOpen: true,
-                            /*classes: [
-                              "ui-dialog", "yelen-modal-dialog",'papa',
-                              modalsize[settings.yelenModalBeforeLogin.size]
-                            ]*/
                           classes:{
                             "ui-dialog-titlebar":'bg-orange',
                             "ui-dialog-buttonset":"popup_btn",

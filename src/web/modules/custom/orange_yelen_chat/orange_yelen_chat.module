@@ -17,6 +17,10 @@ const TCHAT_CANONICAL = 'entity.yelen_chat.canonical';
 function orange_yelen_chat_theme(): array {
   return [
     'orange_yelen_chat' => ['render element' => 'elements'],
+    'reply_message_button' => [
+      'render element' => 'element',
+      'template' => 'form/reply-message-button'
+    ],
   ];
 }
 

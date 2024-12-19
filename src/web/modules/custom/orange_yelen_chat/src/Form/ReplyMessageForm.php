@@ -28,7 +28,7 @@ final class ReplyMessageForm extends FormBase {
 
     $form['message'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Reply Message'),
+      '#title' => $this->t('Répondre au message'),
       '#required' => TRUE,
     ];
 

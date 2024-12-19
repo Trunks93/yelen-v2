@@ -39,20 +39,20 @@ final class UtilityContentForm extends FormBase
 
     $form['actions'] = [
       '#type' => 'actions',
-      '#prefix' => '<div class="mb-3 d-flex justify-content-center">',
+      '#prefix' => '<div class="mb-3 d-flex">',
       '#suffix' => '</div>',
-    ];
-    $form['actions']['inutile'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Non'),
-      '#attributes' => ['class' => ['btn', 'btn-outline-secondary', 'me-2', 'no']],
-      '#theme' => 'utility_button'
     ];
     $form['actions']['utile'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Oui'),
-      '#attributes' => ['class' => ['btn', 'btn-primary', 'yes']],
-      '#theme' => 'utility_button'
+      '#return_value' => $this->t('Oui'),
+      '#attributes' => ['class' => ['me-2','yes']],
+      '#theme' => 'utility_button_positif'
+    ];
+    $form['actions']['inutile'] = [
+      '#type' => 'submit',
+      '#return_value' => $this->t('Non'),
+      '#attributes' => ['class' => ['me-2', 'no']],
+      '#theme' => 'utility_button_negatif'
     ];
 
     $form['#attached']['library'][] = 'yelen_content_evaluation/content_evaluation';
@@ -64,6 +64,7 @@ final class UtilityContentForm extends FormBase
    */
   public function validateForm(array &$form, FormStateInterface $form_state): void
   {
+
     // @todo Validate the form here.
     // Example:
     // @code
@@ -83,9 +84,10 @@ final class UtilityContentForm extends FormBase
   public function submitForm(array &$form, FormStateInterface $form_state): void
   {
     $nodeId = $form_state->getValue('content');
-    $userid =\Drupal::currentUser()->id();
+    $user =\Drupal::currentUser();
+    $userid = $user->id();
     $content = Node::load($nodeId);
-    $title = sprintf('%s_%s',$content->uuid(),$userid);
+    $title = sprintf('Evaluation - %s - (%s)',$content->getTitle(),$content->getType());
     $triggering_element = $form_state->getTriggeringElement();
     $button_clicked = $triggering_element['#id'];
     switch ($button_clicked){

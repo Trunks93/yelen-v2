@@ -5,6 +5,7 @@
  * Primary module hooks for yelen_content_evaluation module.
  */
 
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\Element;
 use Drupal\user\UserInterface;
 
@@ -22,6 +23,14 @@ function yelen_content_evaluation_theme(): array {
     'utility_button' => [
       'render element' => 'element',
       'template' => 'forms/utility-button'
+    ],
+    'utility_button_positif' => [
+      'render element' => 'element',
+      'template' => 'forms/utility-button-positif'
+    ],
+    'utility_button_negatif' => [
+      'render element' => 'element',
+      'template' => 'forms/utility-button-negatif'
     ],
   ];
 }
@@ -94,4 +103,11 @@ function yelen_content_evaluation_user_predelete(UserInterface $account): void {
   $storage->delete(
     $storage->loadMultiple($evaluation_ids)
   );
+}
+
+function yelen_content_evaluation_entity_operation_alter(array &$operations, EntityInterface $entity) {
+  // Pour retirer le bouton modifier pour l'entité evaluation
+  if ($entity->getEntityTypeId() === 'evaluation') {
+    unset($operations['edit']);
+  }
 }

@@ -188,18 +188,3 @@ function yelen_notification_quiz_update(EntityInterface $entity)
     $event_dispatcher->dispatch($event, QuizNotificationEvent::PUBLISH_QUIZ);
   }
 }
-
-/**
- * Implements hook_entity_insert().
- */
-/*function yelen_notification_entity_insert(EntityInterface $entity) {
-dump('yes');
-  _yelen_notification_quiz_if_moderated($entity);
-}*/
-
-/*function yelen_notification_content_moderation_state_update(ContentModerationState $entity) {
-  dump($entity);
-  dd('end');
-  //_workbench_email_content_moderation_event_shim($entity);
-}*/
-

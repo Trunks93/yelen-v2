@@ -128,7 +128,7 @@
 
     {% if is_module_yelen_content_evaluation_active is defined %}
       {% if utility == null or utility == "none" %}
-        <div class="utility_form mt-3">
+        <div class="utility_forms mt-3">
           {{ drupal_form('Drupal\\yelen_content_evaluation\\Form\\UtilityContentForm',node.id) }}
         </div>
       {% else %}

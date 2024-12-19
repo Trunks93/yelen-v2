@@ -1,1 +1,2 @@
-<button {{ attributes.removeClass('button') }}>{{ attributes.value }}</button>
+{% set image  = '/' ~ directory ~'/assets/images/vote-negatif.png'%}
+<button {{ attributes.removeClass('button') }}><img src="{{ image }}"/> </button>

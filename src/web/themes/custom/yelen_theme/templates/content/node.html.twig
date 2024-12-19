@@ -92,10 +92,10 @@
 <article{{ attributes.addClass(classes) }}>
   {# title_prefix #}
   {% if content['body']['#object'] is defined and content['body']['#object'].type.value[0]['target_id'] != 'page' %}
-    <h2{{ title_attributes }}>{{ label }}</h2>
+    <h2{{ title_attributes.addClass('orange-yelen-title') }}>{{ label }}</h2>
   {% endif %}
     {% if label and not page %}
-      <h2{{ title_attributes }}>
+      <h2{{ title_attributes.addClass('orange-yelen-title') }}>
         <a href="{{ url }}" rel="bookmark">{{ label }}</a>
       </h2>
     {% endif %}

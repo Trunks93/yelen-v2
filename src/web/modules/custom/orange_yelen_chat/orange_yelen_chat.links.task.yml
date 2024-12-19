@@ -21,22 +21,22 @@ entity.orange_yelen_chat.delete_form:
 #  base_route: system.admin_content
 #  weight: 10
 
-entity.orange_yelen_chat_conversation.settings:
-  title: 'Settings'
-  route_name: entity.orange_yelen_chat_conversation.settings
-  base_route: entity.orange_yelen_chat_conversation.settings
-entity.orange_yelen_chat_conversation.collection:
-  title: 'Conversations'
-  route_name: entity.orange_yelen_chat_conversation.collection
-  base_route: system.admin_content
-  weight: 10
-
-entity.orange_yelen_chat_message.settings:
-  title: 'Settings'
-  route_name: entity.orange_yelen_chat_message.settings
-  base_route: entity.orange_yelen_chat_message.settings
-entity.orange_yelen_chat_message.collection:
-  title: 'Message Chats'
-  route_name: entity.orange_yelen_chat_message.collection
-  base_route: system.admin_content
-  weight: 10
+#entity.orange_yelen_chat_conversation.settings:
+#  title: 'Settings'
+#  route_name: entity.orange_yelen_chat_conversation.settings
+#  base_route: entity.orange_yelen_chat_conversation.settings
+#entity.orange_yelen_chat_conversation.collection:
+#  title: 'Conversations'
+#  route_name: entity.orange_yelen_chat_conversation.collection
+#  base_route: system.admin_content
+#  weight: 10
+#
+#entity.orange_yelen_chat_message.settings:
+#  title: 'Settings'
+#  route_name: entity.orange_yelen_chat_message.settings
+#  base_route: entity.orange_yelen_chat_message.settings
+#entity.orange_yelen_chat_message.collection:
+#  title: 'Message Chats'
+#  route_name: entity.orange_yelen_chat_message.collection
+#  base_route: system.admin_content
+#  weight: 10

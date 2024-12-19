@@ -65,22 +65,26 @@ final class OrangeYelenChatController extends ControllerBase {
 
     // Créer une nouvelle conversation
     $conversation = $this->entityTypeManager()->getStorage('orange_yelen_chat_conversation')->create([
-      'created_by' => $this->currentUser()->id(),
-      'participant' => $participantId,
+      'created_by' => $participantId,
+      'participant' => null,
       'status' => 'active',
     ]);
+
+    $conversation->setCreatedTime(time());
+    $conversation->setChangedTime(time());
 
     $conversation->save();
 
     return new JsonResponse([
       'id' => $conversation->id(),
+      'created_by' => [
+        'uid' => $conversation->getCreatedBy()->id(),
+        'name' => $conversation->getCreatedBy()->getDisplayName(),
+      ],
       'status' => $conversation->getStatus(),
       'created' => $conversation->getCreatedTime(),
       'updated' => $conversation->getChangedTime(),
-      'other_user' => [
-        'uid' => $participantId,
-        'name' => $this->entityTypeManager()->getStorage('user')->load($participantId)->getDisplayName(),
-      ],
+      'other_user' => null
     ]);
   }
   public function getConversations() {
@@ -110,13 +114,17 @@ final class OrangeYelenChatController extends ControllerBase {
 
       $data[] = [
         'id' => $conversation->id(),
+        'created_by' => [
+          'uid' => $conversation->getCreatedBy()->id(),
+          'name' => $conversation->getCreatedBy()->getDisplayName(),
+        ],
         'status' => $conversation->getStatus(),
         'created' => $conversation->getCreatedTime(),
         'updated' => $conversation->getChangedTime(),
-        'other_user' => [
+        'other_user' => $otherUser ? [
           'uid' => $otherUser->id(),
           'name' => $otherUser->getDisplayName(),
-        ],
+        ] : null,
       ];
     }
 
@@ -137,7 +145,6 @@ final class OrangeYelenChatController extends ControllerBase {
       ->getQuery()
       ->accessCheck(TRUE)
       ->condition('conversation', $conversationId)
-      ->sort('created', 'DESC')
       ->range(0, 50);
 
     $result = $query->execute();

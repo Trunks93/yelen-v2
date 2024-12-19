@@ -32,7 +32,7 @@ onMounted(fetchConversations)
 <template>
   <div class="conversation-list">
     <div class="conversation-header">
-      <h2>Conversations</h2>
+      <h2>Conversations ({{conversations.length}})</h2>
       <NotificationBadge />
     </div>
     <div v-if="loading" class="loading">
@@ -50,7 +50,7 @@ onMounted(fetchConversations)
       @click="selectConversation(conv)"
     >
       <div class="user-info">
-        <strong>{{ conv.other_user.name }}</strong>
+        <strong>{{ conv.other_user ? conv.other_user.name : 'Gestionnaire' }}</strong>
         <span class="status" v-if="conv.status === 'closed'">(Clôturée)</span>
       </div>
       <div class="timestamp">

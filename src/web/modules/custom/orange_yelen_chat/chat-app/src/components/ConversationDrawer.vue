@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import type { Conversation } from '@/domain/entity/chat'
 import NotificationBadge from './NotificationBadge.vue'
 
 const props = defineProps<{
   conversations: Conversation[]
+  isOpen: {
+    type: boolean,
+    default: false
+  },
   loading?: boolean
 }>()
 
@@ -12,23 +16,28 @@ const emit = defineEmits<{
   (e: 'select', conversation: Conversation): void
 }>()
 
-const isOpen = ref(false)
+const isOpen = ref(props.isOpen)
 
 const toggleDrawer = () => {
   isOpen.value = !isOpen.value
 }
+
+watch(() => props.isOpen, (currentValue, oldValue) => {
+  console.log('---Watch props.isOpen----', currentValue)
+  isOpen.value = currentValue
+})
 </script>
 
 <template>
   <div class="conversation-drawer" :class="{ open: isOpen }">
     <button class="btn btn-primary drawer-toggle" @click="toggleDrawer">
-      {{ isOpen ? '×' : 'Mes Conversations' }}
+      {{ isOpen ? '×' : '' }}
       <NotificationBadge v-if="!isOpen" />
     </button>
 
     <div class="drawer-content">
       <div class="conversation-header">
-        <h2>Conversations</h2>
+        <h2>Conversations ({{conversations.length}})</h2>
         <NotificationBadge />
       </div>
 
@@ -47,10 +56,10 @@ const toggleDrawer = () => {
         @click="emit('select', conv)"
       >
         <div class="user-info">
-          <strong>{{ conv.other_user.name }}</strong>
+          <strong>{{ conv.other_user ? conv.other_user.name : 'Administrateur' }}</strong>
           <span class="status" v-if="conv.status === 'closed'">(Clôturée)</span>
         </div>
-        <div class="timestamp">
+        <div class="timestamp" v-if="conv.updated">
           {{ new Date(conv.updated * 1000).toLocaleString() }}
         </div>
       </div>
@@ -61,14 +70,15 @@ const toggleDrawer = () => {
 <style scoped>
 .conversation-drawer {
   position: fixed;
-  top: 0;
   right: 0;
-  height: 100vh;
+  height: 600px;
+  max-width: 1200px;
   background-color: white;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   transform: translateX(100%);
   transition: transform 0.3s ease;
   z-index: 1000;
+  padding: 1rem;
 }
 
 .conversation-drawer.open {
@@ -77,10 +87,13 @@ const toggleDrawer = () => {
 
 .drawer-toggle {
   position: absolute;
-  left: -550px;
-  bottom: 50px;
+  right: 10px;
+  top: 10px;
   padding: 8px 16px;
   border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
 }
 
 .drawer-content {

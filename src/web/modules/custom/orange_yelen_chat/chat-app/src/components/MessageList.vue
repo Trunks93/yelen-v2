@@ -31,7 +31,7 @@ watch(() => props.messages, scrollToBottom, { deep: true })
     >
       <div class="message" :class="{ 'own': isOwnMessage(message) }">
         <div class="message-header">
-          <span class="username">{{ message.username }}</span>
+          <span class="username" v-if="!isOwnMessage(message)">{{ message.username }}</span>
           <span class="timestamp">{{ new Date(message.created * 1000).toLocaleString() }}</span>
         </div>
         <div class="message-content">
@@ -88,10 +88,11 @@ watch(() => props.messages, scrollToBottom, { deep: true })
 }
 
 .timestamp {
-  color: #FFFFFF;
   margin-left: 8px;
 }
-
+.message.own .timestamp{
+  color: #FFFFFF;
+}
 .message-content {
   color: #000000;
   word-wrap: break-word;

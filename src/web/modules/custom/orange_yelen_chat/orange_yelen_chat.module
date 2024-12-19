@@ -50,7 +50,14 @@ function orange_yelen_chat_preprocess_page(array &$variables) {
  * Page_attachments_alter()
  */
 function orange_yelen_chat_page_attachments_alter(&$page) {
-  $page['#attached']['library'][] = 'orange_yelen_chat/orange-yelen-chat';
+  $current_user = \Drupal::currentUser();
+  $is_current_route_admin = \Drupal::service('router.admin_context')->isAdminRoute();
+  if (
+    !$current_user->hasPermission('administer site configuration') && !$is_current_route_admin
+  ) {
+    $page['#attached']['library'][] = 'orange_yelen_chat/orange-yelen-chat';
+  }
+
   /*if(_orange_yelen_chat__check_path()){
     $page['#attached']['library'][] = 'orange_yelen_chat/orange-yelen-chat';
   }*/
@@ -65,6 +72,17 @@ function orange_yelen_chat_page_attachments(array &$attachments) {
     'uid' => $current_user->id(),
     'name' => $current_user->getAccountName(),
   ];
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function orange_yelen_chat_preprocess_views_view_unformatted(&$variables) {
+  if ($variables['view']->id() == 'messages_de_conversation') {
+    // Ajoutez le formulaire au contexte Twig.
+    $variables['reply_message_form'] = \Drupal::formBuilder()->getForm('Drupal\orange_yelen_chat\Form\ReplyMessageForm');
+  }
 }
 
 

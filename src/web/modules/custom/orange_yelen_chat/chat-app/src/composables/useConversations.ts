@@ -46,6 +46,27 @@ export function useConversations() {
       loading.value = false
     }
   }
+  const closeConversation = async (conversationId: number, participantId: number) => {
+    try {
+      loading.value = true
+      const response = await fetch(`/yelen-chat/api/conversations/${conversationId}/close`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ participant_id: participantId }),
+      })
+      const newConversation = await response.json()
+      conversations.value.unshift(newConversation)
+      return newConversation
+    } catch (err) {
+      error.value = 'Erreur lors de la création de la conversation'
+      console.error(err)
+      return null
+    } finally {
+      loading.value = false
+    }
+  }
 
   return {
     conversations,
@@ -55,5 +76,6 @@ export function useConversations() {
     lastConversation,
     fetchConversations,
     createConversation,
+    closeConversation
   }
 }

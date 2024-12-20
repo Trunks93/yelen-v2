@@ -40,9 +40,9 @@
         "drupal/faq": "^1.2",
         "drupal/filelog": "^3.0",
         "drupal/forum": "^1.0",
-        "drupal/gin": "^3.0@rc",
-        "drupal/gin_login": "^2.0",
-        "drupal/gin_toolbar": "^1.0@rc",
+        "drupal/gin": "^4.0",
+        "drupal/gin_login": "^2.1",
+        "drupal/gin_toolbar": "^2.0",
         "drupal/ldap": "^4.10",
         "drupal/login_history": "^2.0",
         "drupal/login_security": "^2.0",
@@ -86,7 +86,8 @@
         "predis/predis": "^2.2"
     },
     "conflict": {
-        "drupal/drupal": "*"
+        "drupal/drupal": "*",
+        "drupal/gin_toolbar": "^1.0"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

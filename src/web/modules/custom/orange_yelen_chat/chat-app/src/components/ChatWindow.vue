@@ -104,7 +104,7 @@ onMounted(async () => {
     <MessageInput
       v-if="activeConversation?.status !== 'closed'"
       @send="handleSendMessage"
-      :disabled="messageLoading || (activeConversation && activeConversation.status === 'closed')"
+      :disabled="messageLoading"
     />
   </div>
 </template>

@@ -13,11 +13,13 @@ export interface Message {
   read: number;
 }
 
+export type ConversationStatus = 'active' | 'closed'
+
 export interface Conversation {
   id: number;
   created_by: number;
   participant_id: number;
-  status: 'active' | 'closed';
+  status: ConversationStatus;
   created: number;
   updated: number;
   other_user: User;

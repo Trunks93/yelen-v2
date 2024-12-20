@@ -1,14 +1,11 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import {onMounted, ref, watch} from 'vue'
 import type { Conversation } from '@/domain/entity/chat'
 import NotificationBadge from './NotificationBadge.vue'
 
 const props = defineProps<{
   conversations: Conversation[]
-  isOpen: {
-    type: boolean,
-    default: false
-  },
+  isOpen?: boolean,
   loading?: boolean
 }>()
 
@@ -16,11 +13,13 @@ const emit = defineEmits<{
   (e: 'select', conversation: Conversation): void
 }>()
 
-const isOpen = ref(props.isOpen)
+const isOpen = ref(false)
 
 const toggleDrawer = () => {
   isOpen.value = !isOpen.value
 }
+
+onMounted(() => isOpen.value = !!props.isOpen)
 
 watch(() => props.isOpen, (currentValue, oldValue) => {
   console.log('---Watch props.isOpen----', currentValue)

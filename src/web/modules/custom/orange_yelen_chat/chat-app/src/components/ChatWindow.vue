@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, watch } from 'vue'
+import {ref, onMounted, onUnmounted, watch, type PropType} from 'vue'
 import type { Message, Conversation } from '@/domain/entity/chat'
 import OnlineStatus from './OnlineStatus.vue'
 import MessageInput from "@/components/MessageInput.vue";
@@ -8,7 +8,7 @@ import {useMessages} from "@/composables/useMessages";
 import {useConversations} from "@/composables/useConversations";
 
 const {conversation} = defineProps<{
-  conversation: Conversation
+  conversation: Conversation | null
 }>()
 const emit = defineEmits<{
   (e: 'conversationClosed'): void,
@@ -49,7 +49,7 @@ const handleSendMessage = async (message: string) => {
   if(activeConversation.value){
     const { sendMessage } = useMessages(activeConversation.value.id)
     await sendMessage(message)
-    await loadMessages(lastConversation.value.id)
+    await loadMessages(activeConversation.value.id)
   }
 }
 const handleCloseConversation = async() => {
@@ -90,7 +90,7 @@ onMounted(async () => {
           Actions
         </button>
         <ul class="dropdown-menu">
-          <li v-if="activeConversation.status === 'active'"><a class="dropdown-item" href="#" @click="closeConversation">Clôturer cette conversation</a></li>
+          <li v-if="activeConversation.status === 'active'"><a class="dropdown-item" href="#" @click="handleCloseConversation">Clôturer cette conversation</a></li>
           <li><a class="dropdown-item" href="#" @click="$emit('openConversationDrawer')">Mes conversations</a></li>
         </ul>
       </div>
@@ -104,7 +104,7 @@ onMounted(async () => {
     <MessageInput
       v-if="activeConversation?.status !== 'closed'"
       @send="handleSendMessage"
-      :disabled="messageLoading || (activeConversation?.status === 'closed')"
+      :disabled="messageLoading || (activeConversation && activeConversation.status === 'closed')"
     />
   </div>
 </template>

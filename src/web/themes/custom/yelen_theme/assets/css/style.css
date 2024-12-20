@@ -629,8 +629,8 @@ a.hover-orange:hover {
 }
 .yes{
   background-color:#ff7900;
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   border:solid 1px #ff7900;
   box-shadow: 1px 1px 1px black;
@@ -638,8 +638,8 @@ a.hover-orange:hover {
 
 .no{
   background-color:black;
-  width: 75px;
-  height: 75px;
+  width: 60px;
+  height: 60px;
   color: white;
   border-radius: 50%;
   border:solid 1px black;

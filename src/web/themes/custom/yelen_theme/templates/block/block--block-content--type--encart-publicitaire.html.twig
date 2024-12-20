@@ -36,10 +36,12 @@
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
-    <h2{{ title_attributes }}>{{ label }}</h2>
+    <h3{{ title_attributes.addClass('orange-yelen-title') }}>{{ label|capitalize }}</h3>
   {% endif %}
   {{ title_suffix }}
   {% block content %}
-    {{ content }}
+    <a href="{{ content.field_lien['#object'].field_lien.value[0].uri}}" target="_blank">
+      {{ content.field_image }}
+    </a>
   {% endblock %}
 </div>

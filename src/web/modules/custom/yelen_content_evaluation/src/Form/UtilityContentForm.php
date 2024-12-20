@@ -29,7 +29,7 @@ final class UtilityContentForm extends FormBase
   public function buildForm(array $form, FormStateInterface $form_state, $nodeId = NULL): array
   {
 
-    $form['message']['#markup'] = "<h3>Ce contenu vous a t'il été utile ? </h3>";
+    $form['message']['#markup'] = "<b>Ce contenu vous a t'il été utile ? </b>";
 
 
     $form['content'] = [
@@ -87,7 +87,7 @@ final class UtilityContentForm extends FormBase
     $user =\Drupal::currentUser();
     $userid = $user->id();
     $content = Node::load($nodeId);
-    $title = sprintf('Evaluation - %s - (%s)',$content->getTitle(),$content->getType());
+    $title = sprintf('Evaluation - %s - %s',$nodeId,$userid);
     $triggering_element = $form_state->getTriggeringElement();
     $button_clicked = $triggering_element['#id'];
     switch ($button_clicked){

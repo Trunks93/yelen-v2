@@ -169,7 +169,13 @@
             "@drush:cache-clear"
         ],
         "drush:cache-clear": [
-            "./vendor/bin/drush cr"
+            "php ./vendor/bin/drush cr"
+        ],
+        "drush:set-claro-as-admin-theme": [
+            "./vendor/bin/drush config:set system.theme admin claro -y"
+        ],
+        "drush:uninstall-gin-admin-theme": [
+            "./vendor/bin/drush thun gin"
         ]
     },
     "require-dev": {

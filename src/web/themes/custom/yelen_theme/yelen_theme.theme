@@ -133,3 +133,55 @@ function yelen_theme_preprocess_node(&$variables)
 
 }
 
+
+function yelen_theme_preprocess_comment(&$variables){
+  $comment = $variables['comment'];
+  $comment_type = $comment->get('comment_type')->getValue()[0]['target_id'];
+
+  if($comment_type === 'comment_forum'){
+    $variables['attributes']['class'][] = 'yelen-forum-comment';
+
+    $comment_time = $comment->getCreatedTime();
+    $current_time = \Drupal::time()->getCurrentTime();
+    $diff = $current_time - $comment_time;
+    if ($diff < 60) {
+      $variables['created'] = t('À l\'instant');
+    }
+    elseif ($diff < 3600) {
+      $minutes = floor($diff / 60);
+      $variables['created'] = t('Il y a @count min', ['@count' => $minutes]);
+    }
+    elseif ($diff < 86400) {
+      $hours = floor($diff / 3600);
+      $variables['created'] = t('Il y a @count h', ['@count' => $hours]);
+    }
+    elseif ($diff < 604800) {
+      $days = floor($diff / 86400);
+      if ($days == 1) {
+        $variables['created'] = t('Hier');
+      } else {
+        $variables['created'] = t('Il y a @count j', ['@count' => $days]);
+      }
+    }
+    else {
+      $variables['created'] = \Drupal::service('date.formatter')
+        ->format($comment_time, 'custom', 'j F Y à H:i');
+    }
+
+    $user = $comment->getOwner();
+    if ($user && !$user->user_picture->isEmpty()) {
+      $uri = $user->user_picture->entity->getFileUri();
+      $user_display_image = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
+      $style = \Drupal\image\Entity\ImageStyle::load('thumbnail');
+      $image_uri = $style->buildUri($uri);
+      $user_small_image = \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri);
+    } else {
+      $user_display_image = '';
+      $user_small_image = '';
+    }
+    $variables['user_display_image'] = $user_display_image;
+    $variables['user_small_image'] = $user_small_image;
+  }
+
+}
+

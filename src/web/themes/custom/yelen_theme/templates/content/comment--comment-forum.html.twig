@@ -1,0 +1,33 @@
+{% set user_avatar = user_small_image|length == 0 ? '/' ~ directory ~ '/assets/images/user.png' : user_small_image %}
+<article{{ attributes.addClass('yelen-comment-wrapper') }}>
+  <div class="comment-header">
+    {% if user_avatar %}
+      <div class="comment-avatar">
+        <img src="{{ user_avatar }}" width="36" height="36" class="img-fluid img-thumbnail rounded-circle" role="img" alt="User" loading="lazy">
+      </div>
+    {% endif %}
+
+    <div class="comment-meta">
+      <div class="comment-author">{{ author }}</div>
+      <div class="comment-date">{{ created }}</div>
+    </div>
+  </div>
+
+  <div class="comment-content">
+    {{ content|without('links') }}
+  </div>
+
+  {% if comment.hasParentComment() %}
+    <div class="comment-parent">
+      En réponse à {{ parent_author }}
+    </div>
+  {% endif %}
+
+  <div class="comment-footer">
+    {% if content.links %}
+      <div class="comment-links">
+        {{ content.links }}
+      </div>
+    {% endif %}
+  </div>
+</article>

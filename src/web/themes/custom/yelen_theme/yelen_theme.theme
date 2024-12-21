@@ -57,18 +57,9 @@ function yelen_theme_preprocess_block(&$variables)
 function yelen_theme_preprocess_page(&$variables)
 {
   $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-  if ($user && !$user->user_picture->isEmpty()) {
-    $uri = $user->user_picture->entity->getFileUri();
-    $user_display_image = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
-    $style = \Drupal\image\Entity\ImageStyle::load('thumbnail');
-    $image_uri = $style->buildUri($uri);
-    $user_small_image = \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri);
-  } else {
-    $user_display_image = '';
-    $user_small_image = '';
-  }
-  $variables['user_display_image'] = $user_display_image;
-  $variables['user_small_image'] = $user_small_image;
+  $user_avatars = _yelen_get_user_avatar($user);
+  $variables['user_display_image'] = $user_avatars['user_display_image'];
+  $variables['user_small_image'] = $user_avatars['user_small_image'];
 
 
   // pour le footer
@@ -134,7 +125,7 @@ function yelen_theme_preprocess_node(&$variables)
 }
 
 
-function yelen_theme_preprocess_comment(&$variables){
+function yelen_theme_preprocess_comment(&$variables): void{
   $comment = $variables['comment'];
   $comment_type = $comment->get('comment_type')->getValue()[0]['target_id'];
 
@@ -169,19 +160,28 @@ function yelen_theme_preprocess_comment(&$variables){
     }
 
     $user = $comment->getOwner();
-    if ($user && !$user->user_picture->isEmpty()) {
-      $uri = $user->user_picture->entity->getFileUri();
-      $user_display_image = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
-      $style = \Drupal\image\Entity\ImageStyle::load('thumbnail');
-      $image_uri = $style->buildUri($uri);
-      $user_small_image = \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri);
-    } else {
-      $user_display_image = '';
-      $user_small_image = '';
-    }
-    $variables['user_display_image'] = $user_display_image;
-    $variables['user_small_image'] = $user_small_image;
+    $user_avatars = _yelen_get_user_avatar($user);
+    $variables['user_display_image'] = $user_avatars['user_display_image'];
+    $variables['user_small_image'] = $user_avatars['user_small_image'];
   }
 
+}
+
+function _yelen_get_user_avatar($userEntity): array{
+  if ($userEntity && !$userEntity->user_picture->isEmpty()) {
+    $uri = $userEntity->user_picture->entity->getFileUri();
+    $user_display_image = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
+    $style = \Drupal\image\Entity\ImageStyle::load('thumbnail');
+    $image_uri = $style->buildUri($uri);
+    $user_small_image = \Drupal::service('file_url_generator')->generateAbsoluteString($image_uri);
+  } else {
+    $user_display_image = '';
+    $user_small_image = '';
+  }
+
+  return [
+    'user_display_image' => $user_display_image,
+    'user_small_image' => $user_small_image
+  ];
 }
 

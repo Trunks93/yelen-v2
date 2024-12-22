@@ -110,6 +110,15 @@ final class Conversation extends ContentEntityBase implements ConversationInterf
     return $fields;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function setCreatedTime($created): Conversation
+  {
+    $this->set('created', $created);
+    return $this;
+  }
+
   public function getCreatedBy(): ?UserInterface {
     return $this->get('created_by')->entity;
   }

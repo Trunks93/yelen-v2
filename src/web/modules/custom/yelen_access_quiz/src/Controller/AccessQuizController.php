@@ -15,6 +15,9 @@ class AccessQuizController
     $currentUser = \Drupal::currentUser();
     $request = \Drupal::request();
     $quiz = $request->get('quiz');
+    if($currentUser->getAccountName()=="admin"){
+      return AccessResult::allowed();
+    }
     if ($currentUser->id() !== 0) {
       try {
         $request = \Drupal::request();

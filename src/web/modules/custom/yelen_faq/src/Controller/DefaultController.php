@@ -29,6 +29,8 @@ class DefaultController extends ControllerBase
   public function index(): array
   {
     $parents = $this->faqService->getParentCategory();
+    $currentUser = \Drupal::currentUser();
+
     return [
       '#theme' => 'yelen_faq_page',
       '#content'=> [

@@ -55,6 +55,7 @@ function template_preprocess_orange_yelen_chat(array &$variables): void {
 function orange_yelen_chat_preprocess_page(array &$variables) {
   // $variables['page']['content']['#markup'] = '<div id="chatApp"></div>';
   // $variables['page']['content']= '<div id="chatApp"></div>';
+  $variables['conversation_path'] = \Drupal::currentUser()->hasRole('administrator') ? '/yelen-chat/conversations' : '/yelen-chat/mes-conversations';
 }
 
 /**
@@ -112,31 +113,27 @@ function orange_yelen_chat_preprocess_views_view_unformatted(&$variables) {
         $hours = floor($diff / 3600);
         $row['content']['#row']->sended_at = t('Il y a @counth', ['@count' => $hours]);
       }
-      elseif ($diff < 604800) {
+      else {
         $days = floor($diff / 86400);
         if ($days == 1) {
           $row['content']['#row']->sended_at = t('Hier');
         } else {
-          $row['content']['#row']->sended_at = t('Il y a @countjr', ['@count' => $days]);
+          $row['content']['#row']->sended_at = \Drupal::service('date.formatter')
+            ->format($message_time, 'custom', 'j F Y à H:i');
         }
-      }
-      else {
-        $row['content']['#row']->sended_at = \Drupal::service('date.formatter')
-          ->format($message_time, 'custom', 'j F Y à H:i');
       }
 
     }
     $variables['conversation_status'] = !$conversation || $conversation->getStatus() === 'closed' ? 'closed' : 'active';
+    if($conversation->getClosedBy()){
+      $variables['conversation_closed_by'] = \Drupal::currentUser()->id() === $conversation->getClosedBy()->id() ? 'vous' : $conversation->getClosedBy()->getAccountName();
+    } else {
+      $variables['conversation_closed_by'] = 'un des participants';
+    }
     $variables['reply_message_form'] = \Drupal::formBuilder()->getForm('Drupal\orange_yelen_chat\Form\ReplyMessageForm');
+    $variables['close_conversation_form'] = \Drupal::formBuilder()->getForm('Drupal\orange_yelen_chat\Form\CloseConversationForm');
   }
 }
-
-function orange_yelen_chat_preprocess_views_view_table(&$variables) {
-  if ($variables['view']->id() == 'conversations') {
-    // dump($variables);
-  }
-}
-
 /**
  * Implements hook_entity_access().
  */

@@ -68,6 +68,9 @@
               </button>
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ path('user.edit') }}">{{ 'Mes informations'|t }}</a></li>
+                {% if(conversation_path) %}
+                <li><a class="dropdown-item" href="{{ conversation_path }}">{{ 'Mes conversations'|t }}</a></li>
+                {% endif %}
                 <li><a class="dropdown-item" href="{{ path('user.logout') }}">{{ 'Se déconnecter'|t }}</a></li>
               </ul>
             </div>

@@ -73,7 +73,7 @@ stages:
     #           rm -f package-lock.json
     #           ${NODEJS_PACKAGE_MANAGER} install
     #           npm run lint --if-present
-    #        fi
+  #        fi
 
 #        if [[ -z $CUSTOM_MODULES_JS_DIR ]]; then exit 0; fi
 #        #for package in `find ${CI_PROJECT_DIR}/${SRC_DIR}/${CUSTOM_MODULES_JS_DIR} -name *package.json`
@@ -94,9 +94,14 @@ build-assets:
   stage: build
   tags:
     - nodejs
+    #    - oci-simswp-prod
 
   image:
     name: node:${NODEJS_VERSION}
+  variables:
+  #    http_proxy: "http://192.168.42.15:3128"
+  #    https_proxy: "http://192.168.42.15:3128"
+  #    no_proxy: "localhost,127.0.0.1"
   script:
     - export
 
@@ -143,9 +148,14 @@ build-php:
   stage: build
   tags:
     - apache
+  #    - oci-simswp-prod
   image:
     name: php:${PHP_VERSION}-alpine
     entrypoint: [""]
+  variables:
+  #    http_proxy: "http://192.168.42.15:3128"
+  #    https_proxy: "http://192.168.42.15:3128"
+  #    no_proxy: "localhost,127.0.0.1"
   script:
     - export
     - printenv | grep proxy
@@ -190,9 +200,14 @@ build-php:
 .deploy:
   stage: deploy
   tags:
-     - ansible
+    #    - ansible
+    - oci-simswp-prod
   image: fs0ci3ty/centos7-ansible-new
-
+  variables:
+    DOCKER_HOST: "tcp://docker:2375"
+    http_proxy: "http://192.168.42.15:3128"
+    https_proxy: "http://192.168.42.15:3128"
+    no_proxy: "localhost,127.0.0.1"
     #ansible/centos7-ansible
 
   script:

@@ -80,20 +80,19 @@ onMounted(async () => {
 
 <template>
   <div class="chat-window">
-    <div v-if="activeConversation" class="chat-header">
-      <div class="user-info">
-        <h3>{{ activeConversation.other_user ?  activeConversation.other_user.name : 'Administrateur' }}</h3>
+    <div class="chat-header">
+      <div v-if="activeConversation" class="user-info">
+        <h3 class="mb-0">{{ activeConversation.other_user ?  activeConversation.other_user.name : 'Administrateur' }}</h3>
         <OnlineStatus class="d-none" :userId="activeConversation.other_user?.uid" />
       </div>
-      <div class="btn-group">
-        <button class="btn btn-dropdown btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          Actions
-        </button>
-        <ul class="dropdown-menu">
-          <li v-if="activeConversation.status === 'active'"><a class="dropdown-item" href="#" @click="handleCloseConversation">Clôturer cette conversation</a></li>
-          <li><a class="dropdown-item" href="#" @click="$emit('openConversationDrawer')">Mes conversations</a></li>
-        </ul>
+      <div v-if="activeConversation && activeConversation.status === 'closed'" class="conversation-status">
+        <span class="badge rounded-pill text-bg-danger">Clôturée</span>
       </div>
+      <button
+        v-if="activeConversation && activeConversation.status === 'active'"
+        class="btn btn-sm btn-danger"
+        data-bs-toggle="modal" data-bs-target="#closeConversationModal"
+      >Clôturer</button>
     </div>
 
     <MessageList
@@ -106,6 +105,24 @@ onMounted(async () => {
       @send="handleSendMessage"
       :disabled="messageLoading"
     />
+
+    <div class="modal fade" id="closeConversationModal" tabindex="-1" aria-labelledby="closeConversationModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title h3" id="closeConversationModalLabel">Confirmation</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Fermer"><span class="visually-hidden">Fermer</span></button>
+          </div>
+          <div class="modal-body">
+            <h5>Voulez-vous vraiment clôturer cette conversation ?</h5>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="button" class="btn btn-primary" @click="handleCloseConversation" data-bs-dismiss="modal">Oui, je clôture</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

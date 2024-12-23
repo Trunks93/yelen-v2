@@ -2,6 +2,15 @@
 
 use \Drupal\yelen_notification\Constante\Constante;
 
+function yelen_theme_preprocess_html(&$variables) {
+  // Add node id to the body class.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $route_path = \Drupal::request()->getPathInfo();
+  if($route_name === 'view.messages_de_conversation.page_1') {
+    $variables['attributes']['class'][] = 'page-messages-conversation';
+  }
+}
 function yelen_theme_preprocess_views_view_unformatted(&$variables)
 {
   if ($variables['view']->id() == 'yelen_search') {

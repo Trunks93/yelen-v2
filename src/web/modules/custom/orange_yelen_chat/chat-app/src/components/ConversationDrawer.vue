@@ -10,20 +10,17 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits<{
-  (e: 'select', conversation: Conversation): void
+  (e: 'select', conversation: Conversation): void,
+  (e: 'toggleConversationDrawer', status: boolean): void
 }>()
 
-const isOpen = ref(false)
-
 const toggleDrawer = () => {
-  isOpen.value = !isOpen.value
+  emit('toggleConversationDrawer', !props.isOpen)
 }
-
-onMounted(() => isOpen.value = !!props.isOpen)
 
 watch(() => props.isOpen, (currentValue, oldValue) => {
   console.log('---Watch props.isOpen----', currentValue)
-  isOpen.value = currentValue
+  // isOpen.value = currentValue
 })
 </script>
 

@@ -27,30 +27,35 @@
       default_row_class ? 'views-row',
     ]
     %}
-    {% set user_avatar = row.content["#row"].user_avatar|length == 0 ? '/' ~ directory ~ '/assets/images/user.png' : row.content["#row"].user_avatar %}
+    {{ dump(row.content["#row"]._entity) }}
+    {% set user_small_image = _yelen_get_user_avatar(row.content["#row"]._entity.user)['user_small_image'] %}
+    {% set user_avatar = user_small_image|length == 0 ? '/' ~ directory ~ '/assets/images/user.png' : user_small_image %}
+    {% set author = row.content["#row"]._entity.user %}
     <div{{ row.attributes.addClass(row_classes) }}>
       <article class="message-item">
-        <div class="inner-content d-flex align-items-start gap-2">
+        <div class="inner-content">
+          <div class="comment-header">
             {% if user_avatar %}
-              <div class="user-avatar">
+              <div class="comment-avatar">
                 <img src="{{ user_avatar }}" width="36" height="36" class="img-fluid img-thumbnail rounded-circle" role="img" alt="User" loading="lazy">
               </div>
             {% endif %}
 
             <div class="message-meta">
-              <div class="message-author text-primary">{{ row.content["#row"].username }}</div>
-              <span class="text-black-50 fw-medium sended_at d-block mt-1">{{ row.content["#row"].sended_at }}</span>
-              <div class="message-content mt-2">{{ row.content["#row"]._entity.message.value|raw }}</div>
+              <div class="message-author">{{ author }}</div>
+
             </div>
+          </div>
+          {{- row.content -}}
         </div>
       </article>
     </div>
   {% endfor %}
 </section>
 {% if(conversation_status == "active") %}
-  <div class="reply-message-form">
-    {{ reply_message_form }}
-  </div>
+<div class="reply-message-form">
+  {{ reply_message_form }}
+</div>
 {% else %}
-  <div class="alert alert-danger justify-content-center my-3">Vous ne pouvez plus répondre à cette conversation car elle a été clôturée par</div>
+<div class="alert alert-danger justify-content-center my-3">Vous ne pouvez plus répondre à cette conversation car elle a été clôturée par</div>
 {% endif %}

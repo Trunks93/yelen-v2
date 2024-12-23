@@ -51,6 +51,18 @@ final class Conversation extends ContentEntityBase implements ConversationInterf
 
     $fields = parent::baseFieldDefinitions($entity_type);
 
+    $fields['created_by'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Created by'))
+      ->setDescription(t('L\'utilisateur qui a crée la conversation.'))
+      ->setSetting('target_type', 'user')
+      ->setRequired(TRUE);
+
+    $fields['participant'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Participant'))
+      ->setDescription(t('Le destinataire de la conversation.'))
+      ->setSetting('target_type', 'user')
+      ->setRequired(TRUE);
+
     $fields['status'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Status'))
       ->setDescription(t('Le statut de la conversation.'))
@@ -76,15 +88,9 @@ final class Conversation extends ContentEntityBase implements ConversationInterf
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-    $fields['created_by'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Created by'))
-      ->setDescription(t('L\'utilisateur qui a crée la conversation.'))
-      ->setSetting('target_type', 'user')
-      ->setRequired(TRUE);
-
-    $fields['participant'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Participant'))
-      ->setDescription(t('Le destinataire de la conversation.'))
+    $fields['closed_by'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel(t('Clôturée par'))
+      ->setDescription(t('La personne qui a clôturé la destinataire de la conversation.'))
       ->setSetting('target_type', 'user')
       ->setRequired(TRUE);
 
@@ -125,6 +131,9 @@ final class Conversation extends ContentEntityBase implements ConversationInterf
 
   public function getParticipant(): ?UserInterface {
     return $this->get('participant')->entity;
+  }
+  public function getClosedBy(): ?UserInterface {
+    return $this->get('closed_by')->entity;
   }
   public function getCreatedTime(): ?UserInterface {
     return $this->get('created')->entity;

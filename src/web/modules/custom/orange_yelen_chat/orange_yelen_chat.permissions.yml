@@ -1,14 +1,14 @@
 administer orange_yelen_chat:
-  title: 'Administer yelen tchats'
+  title: 'Administrer le Tchat'
   restrict access: true
 view orange_yelen_chat:
-  title: 'View yelen tchat'
+  title: 'Voir le Tchat'
 edit orange_yelen_chat:
-  title: 'Edit yelen tchat'
+  title: 'Modifier le Tchat'
 delete orange_yelen_chat:
-  title: 'Delete yelen tchat'
+  title: 'Supprimer le Tchat'
 create orange_yelen_chat:
-  title: 'Create yelen tchat'
+  title: 'Ajouter un Tchat'
 
 administer orange_yelen_chat_conversation:
   title: 'Administer conversations'

@@ -25,6 +25,11 @@ const loadMessages = async (conversationId: number) => {
   await fetchMessages()
 }
 
+const handleConversationDrawer = (status: boolean) => {
+  console.log('---handleConversationDrawer - status----', status)
+  isConversationDrawerOpen.value = status
+}
+
 onMounted(async () => {
   await fetchConversations()
 })
@@ -38,7 +43,7 @@ onMounted(async () => {
     <div class="chat-container">
       <ChatWindow
         :conversation="activeConversation"
-        @openConversationDrawer="isConversationDrawerOpen = true"
+        @toggleConversationDrawer="handleConversationDrawer"
       />
 
     <ConversationDrawer
@@ -46,6 +51,7 @@ onMounted(async () => {
       :loading="conversationsLoading"
       :is-open="isConversationDrawerOpen"
       @select="handleConversationSelect"
+      @toggleConversationDrawer="handleConversationDrawer"
     />
   </div>
   </template>
@@ -57,7 +63,8 @@ onMounted(async () => {
   position: relative;
 }
 .chat-container {
-  max-width: 1200px;
+  width: 400px;
+  max-width: 600px;
   margin: 0 auto;
   height: 600px;
   display: flex;

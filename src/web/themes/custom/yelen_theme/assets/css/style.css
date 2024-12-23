@@ -655,7 +655,8 @@ a.hover-orange:hover {
 
 /* YELEN FORUM COMMENT */
 
-.yelen-comment-wrapper {
+.yelen-comment-wrapper,
+.yelen-chat-messages .message-item{
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -664,7 +665,8 @@ a.hover-orange:hover {
   transition: transform 0.2s ease;
 }
 
-.yelen-comment-wrapper:hover {
+.yelen-comment-wrapper:hover,
+.yelen-chat-messages .message-item:hover{
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
 }
@@ -771,3 +773,35 @@ a.hover-orange:hover {
 }
 
 /* END YELEN FORUM CONTENT */
+
+/* YELEN CHAT */
+#chatApp{
+  z-index: 2000;
+  position: relative;
+}
+.page-messages-conversation{
+  .body,
+  .content-header
+  {
+    background-color: rgb(249 250 251) !important;
+  }
+  .message-author{
+    text-transform: capitalize;
+  }
+}
+.yelen-chat-messages {
+  .message-item {
+    .sended_at{
+      font-size: .875rem;
+    }
+
+    .user-avatar{
+      img{
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+}
+
+/* END YELEN CHAT */

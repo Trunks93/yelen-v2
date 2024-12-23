@@ -87,12 +87,12 @@ final class OrangeYelenChatController extends ControllerBase {
       'other_user' => null
     ]);
   }
-  public function getConversations() {
+  public function getConversations(string $status = 'active') {
     $query = $this->entityTypeManager()
       ->getStorage('orange_yelen_chat_conversation')
       ->getQuery()
       ->accessCheck(TRUE)
-      ->condition('status', 'active');
+      ->condition('status', $status);
 
     $or_group = $query->orConditionGroup()
       ->condition('created_by', $this->currentUser()->id())
@@ -125,6 +125,7 @@ final class OrangeYelenChatController extends ControllerBase {
           'uid' => $otherUser->id(),
           'name' => $otherUser->getDisplayName(),
         ] : null,
+        'closed_by' => $conversation->getClosedBy() ? $conversation->getClosedBy()->getDisplayName() : NULL
       ];
     }
 
@@ -200,6 +201,8 @@ final class OrangeYelenChatController extends ControllerBase {
     }
 
     $conversation->set('status', 'closed');
+    $conversation->set('closed_by', $this->currentUser()->id());
+    $conversation->setChangedTime(time());
     $conversation->save();
 
     return new JsonResponse(['status' => 'success']);

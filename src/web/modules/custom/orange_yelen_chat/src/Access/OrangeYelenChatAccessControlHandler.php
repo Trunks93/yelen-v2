@@ -7,13 +7,15 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityAccessControlHandler;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
-
+use Drupal\Core\Logger\LoggerChannelTrait;
 /**
  * Access controller for the Message and Conversation entity type.
  */
 class OrangeYelenChatAccessControlHandler extends EntityAccessControlHandler
 {
-  protected function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
+  use LoggerChannelTrait;
+  public function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
+    $this->getLogger('orange_yelen_chat')->notice('checkAccess called for operation: @operation', ['@operation' => $operation]);
     if ($account->hasPermission('administer site configuration')) {
       return AccessResult::allowed();
     }
@@ -30,9 +32,7 @@ class OrangeYelenChatAccessControlHandler extends EntityAccessControlHandler
   }
 
   protected function checkConversationAccess(EntityInterface $entity, $operation, AccountInterface $account) {
-    $is_participant = $entity->getCreatedBy()->id() === $account->id() ||
-      $entity->getParticipant()->id() === $account->id();
-
+    $is_participant = $entity->getCreatedBy()->id() === $account->id() || $entity->getParticipant()->id() === $account->id();
     if (!$is_participant) {
       return AccessResult::forbidden();
     }

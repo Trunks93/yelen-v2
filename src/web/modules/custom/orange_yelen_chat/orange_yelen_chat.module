@@ -5,7 +5,10 @@
  * Primary module hooks for Orange Yelen Chat module.
  */
 
+use Drupal\Core\Access\AccessResult;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\Element;
+use Drupal\Core\Session\AccountInterface;
 
 const TCHAT_VIEW_ID = 'yelen_chat';
 const TCHAT_VIEW_CURRENT_DISPLAY = 'page_1';
@@ -20,6 +23,10 @@ function orange_yelen_chat_theme(): array {
     'reply_message_button' => [
       'render element' => 'element',
       'template' => 'form/reply-message-button'
+    ],
+    'views_view_unformatted__messages_de_conversation' => [
+      'template' => 'views/views-view-unformatted--messages-de-conversation',
+      'base hook' => 'views',
     ],
   ];
 }
@@ -78,22 +85,124 @@ function orange_yelen_chat_page_attachments(array &$attachments) {
   ];
 }
 
-
 /**
  * Implements hook_preprocess_HOOK().
  */
 function orange_yelen_chat_preprocess_views_view_unformatted(&$variables) {
   if ($variables['view']->id() == 'messages_de_conversation') {
-    // Ajoutez le formulaire au contexte Twig.
+    $conversation_id = \Drupal::routeMatch()->getParameter('conversation');
+    $conversation = \Drupal::entityTypeManager()
+      ->getStorage('orange_yelen_chat_conversation')
+      ->load($conversation_id);
+    foreach ($variables['rows'] as $row) {
+      $user = $row['content']['#row']->_entity->user->referencedEntities()[0];
+      $row['content']['#row']->username = $user->getAccountName();
+      $row['content']['#row']->user_avatar = _yelen_get_user_avatar($user)['user_small_image'];
+      $message_time = $row['content']['#row']->_entity->getCreatedTime();
+      $current_time = \Drupal::time()->getCurrentTime();
+      $diff = $current_time - $message_time;
+      if ($diff < 60) {
+        $row['content']['#row']->sended_at = t('À l\'instant');
+      }
+      elseif ($diff < 3600) {
+        $minutes = floor($diff / 60);
+        $row['content']['#row']->sended_at = t('Il y a @countmin', ['@count' => $minutes]);
+      }
+      elseif ($diff < 86400) {
+        $hours = floor($diff / 3600);
+        $row['content']['#row']->sended_at = t('Il y a @counth', ['@count' => $hours]);
+      }
+      elseif ($diff < 604800) {
+        $days = floor($diff / 86400);
+        if ($days == 1) {
+          $row['content']['#row']->sended_at = t('Hier');
+        } else {
+          $row['content']['#row']->sended_at = t('Il y a @countjr', ['@count' => $days]);
+        }
+      }
+      else {
+        $row['content']['#row']->sended_at = \Drupal::service('date.formatter')
+          ->format($message_time, 'custom', 'j F Y à H:i');
+      }
+
+    }
+    $variables['conversation_status'] = !$conversation || $conversation->getStatus() === 'closed' ? 'closed' : 'active';
     $variables['reply_message_form'] = \Drupal::formBuilder()->getForm('Drupal\orange_yelen_chat\Form\ReplyMessageForm');
   }
 }
 
+function orange_yelen_chat_preprocess_views_view_table(&$variables) {
+  if ($variables['view']->id() == 'conversations') {
+    // dump($variables);
+  }
+}
 
+/**
+ * Implements hook_entity_access().
+ */
+function orange_yelen_chat_entity_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  $current_user = \Drupal::currentUser();
+  if ($account->hasPermission('administer site configuration')) {
+    return AccessResult::allowed();
+  }
+
+  switch ($entity->getEntityTypeId()) {
+    case 'orange_yelen_chat_conversation':
+      return checkConversationAccess($entity, $operation, $account);
+
+    case 'orange_yelen_chat_message':
+      return checkMessageAccess($entity, $operation, $account);
+  }
+
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_entity_access().
+ */
+function orange_yelen_chat_entity_type_alter(array &$entity_types) {
+  // dump($entity_types['orange_yelen_chat_conversation'], 'ENTITY TYPPES');
+}
 
 function _orange_yelen_chat__check_path(): bool
 {
   $route = \Drupal::routeMatch()->getRouteName();
   return $route === TCHAT_VIEW_PAGE_NAME || $route === TCHAT_CANONICAL;
 }
+
+function checkConversationAccess(EntityInterface $entity, $operation, AccountInterface $account) {
+  $is_participant = $entity->getCreatedBy()->id() === $account->id() || $entity->getParticipant()->id() === $account->id();
+  if (!$is_participant) {
+    return AccessResult::forbidden();
+  }
+
+  if ($operation === 'update' && $entity->getStatus() === 'closed') {
+    return AccessResult::forbidden();
+  }
+
+  return AccessResult::allowed();
+}
+
+function checkMessageAccess(EntityInterface $entity, $operation, AccountInterface $account) {
+  $conversation = $entity->getConversation();
+
+  if (!$conversation) {
+    return AccessResult::forbidden();
+  }
+
+  $is_participant = $conversation->getCreatedBy()->id() === $account->id() ||
+    $conversation->getParticipant()->id() === $account->id();
+
+  if (!$is_participant) {
+    return AccessResult::forbidden();
+  }
+
+  if ($operation === 'update' && $conversation->getStatus() === 'closed') {
+    return AccessResult::forbidden();
+  }
+
+  return AccessResult::allowed();
+}
+
+
 

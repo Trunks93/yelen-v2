@@ -24,11 +24,11 @@ const updateOnlineStatus = async () => {
 
 onMounted(() => {
   updateOnlineStatus()
-  statusInterval = setInterval(updateOnlineStatus, 30000)
+  // statusInterval = setInterval(updateOnlineStatus, 30000)
 })
 
 onUnmounted(() => {
-  clearInterval(statusInterval)
+  // clearInterval(statusInterval)
 })
 </script>
 

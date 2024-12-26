@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {ref, onMounted, onUnmounted, watch, type PropType} from 'vue'
+import {ref, onMounted, onUnmounted, watch, type PropType, onBeforeMount} from 'vue'
 import type { Message, Conversation } from '@/domain/entity/chat'
 import OnlineStatus from './OnlineStatus.vue'
 import MessageInput from "@/components/MessageInput.vue";
@@ -23,12 +23,11 @@ const {
 } = useConversations()
 // Récupérer l'utilisateur courant depuis drupalSettings
 const currentUser = window.drupalSettings?.yelen_chat?.current_user
-console.log('---- current User----', currentUser)
 
 const messages = ref<Message[]>([])
 const messageLoading = ref(false)
 const activeConversation = ref<Conversation | null>(null)
-
+const isMessagesInit = ref(false)
 const loadMessages = async (conversationId: number) => {
   const { messages: conversationMessages, loading, fetchMessages } = useMessages(conversationId)
   await fetchMessages()
@@ -37,10 +36,7 @@ const loadMessages = async (conversationId: number) => {
 }
 const handleSendMessage = async (message: string) => {
   if (!activeConversation.value) {
-    console.log('---Not active conversation----')
-    console.log('---We should create one----')
     const conversationResponse = await createConversation(currentUser.uid)
-    console.log('----conversationResponse----', conversationResponse)
     if(conversationResponse && typeof conversationResponse === "object" && "id" in conversationResponse){
       activeConversation.value = conversationResponse
     }
@@ -54,9 +50,7 @@ const handleSendMessage = async (message: string) => {
 }
 const handleCloseConversation = async() => {
   if(!activeConversation.value) return;
-  console.log('----Close Conversation---')
   const closeConversationResponse = await closeConversation(activeConversation.value.id, currentUser?.uid)
-
   if(
     closeConversationResponse &&
     typeof closeConversationResponse === "object" &&
@@ -68,13 +62,20 @@ const handleCloseConversation = async() => {
   }
 }
 
+const fetchMessages = async() => {
+  const intervalTimeout = isMessagesInit.value ? 5000 : 100
+  setInterval(async () => {
+    await fetchConversations()
+    if (lastConversation.value) {
+      activeConversation.value = lastConversation.value
+      await loadMessages(lastConversation.value.id)
+    }
+  }, intervalTimeout)
+}
 onMounted(async () => {
   activeConversation.value = conversation
-  await fetchConversations()
-  if (lastConversation.value) {
-    activeConversation.value = lastConversation.value
-    await loadMessages(lastConversation.value.id)
-  }
+  await fetchMessages()
+  isMessagesInit.value = true
 })
 </script>
 

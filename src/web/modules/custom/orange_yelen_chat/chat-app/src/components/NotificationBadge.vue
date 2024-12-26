@@ -39,11 +39,11 @@ const requestNotificationPermission = async () => {
 onMounted(() => {
   requestNotificationPermission()
   checkUnreadMessages()
-  checkInterval = setInterval(checkUnreadMessages, 10000)
+  // checkInterval = setInterval(checkUnreadMessages, 10000)
 })
 
 onUnmounted(() => {
-  clearInterval(checkInterval)
+  // clearInterval(checkInterval)
 })
 </script>
 

@@ -21,6 +21,11 @@
   <h3>{{ title }}</h3>
 {% endif %}
 <section class="yelen-chat-messages">
+  {% if(conversation_status == "active") %}
+  <div class="d-flex-justify-content-end">
+    {{ close_conversation_form }}
+  </div>
+  {% endif %}
   {% for row in rows %}
     {%
       set row_classes = [
@@ -52,5 +57,5 @@
     {{ reply_message_form }}
   </div>
 {% else %}
-  <div class="alert alert-danger justify-content-center my-3">Vous ne pouvez plus répondre à cette conversation car elle a été clôturée par</div>
+  <div class="alert alert-danger justify-content-center my-3">Vous ne pouvez plus répondre à cette conversation car elle a été clôturée par {{ conversation_closed_by }}.</div>
 {% endif %}

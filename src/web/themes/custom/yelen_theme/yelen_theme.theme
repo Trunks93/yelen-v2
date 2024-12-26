@@ -10,6 +10,8 @@ function yelen_theme_preprocess_html(&$variables) {
   if($route_name === 'view.messages_de_conversation.page_1') {
     $variables['attributes']['class'][] = 'page-messages-conversation';
   }
+
+  // $variables['conversation_path'] = \Drupal::currentUser()->hasRole('administrator') ? '/yelen-chat/conversations' : '/yelen-chat/mes-conversations';
 }
 function yelen_theme_preprocess_views_view_unformatted(&$variables)
 {
@@ -154,18 +156,14 @@ function yelen_theme_preprocess_comment(&$variables): void{
     elseif ($diff < 86400) {
       $hours = floor($diff / 3600);
       $variables['created'] = t('Il y a @count h', ['@count' => $hours]);
-    }
-    elseif ($diff < 604800) {
+    } else {
       $days = floor($diff / 86400);
       if ($days == 1) {
         $variables['created'] = t('Hier');
       } else {
-        $variables['created'] = t('Il y a @count j', ['@count' => $days]);
+        $variables['created'] = \Drupal::service('date.formatter')
+          ->format($comment_time, 'custom', 'j F Y à H:i');
       }
-    }
-    else {
-      $variables['created'] = \Drupal::service('date.formatter')
-        ->format($comment_time, 'custom', 'j F Y à H:i');
     }
 
     $user = $comment->getOwner();

@@ -27,28 +27,43 @@
 
 {{ attach_library('views/views.responsive-grid') }}
 
-{%
-  set classes = [
-    'views-view-responsive-grid',
-    'views-view-responsive-grid--' ~ options.alignment,
-  ]
-%}
+{% set classes = [
+  'views-view-responsive-grid',
+  'views-view-responsive-grid--' ~ options.alignment,
+] %}
 
 {% set responsive_grid_styles = [
-    '--views-responsive-grid--column-count:' ~ options.columns ~ ';',
-    '--views-responsive-grid--cell-min-width:' ~ options.cell_min_width ~ 'px;',
-    '--views-responsive-grid--layout-gap:' ~ options.grid_gutter ~ 'px;',
-  ]
-%}
+  '--views-responsive-grid--column-count:' ~ options.columns ~ ';',
+  '--views-responsive-grid--cell-min-width:' ~ options.cell_min_width ~ 'px;',
+  '--views-responsive-grid--layout-gap:' ~ options.grid_gutter ~ 'px;',
+] %}
 
-{% if title %}
-  <h3>{{ title }}</h3>
-{% endif %}
+<h2 class="orange-yelen-title">{{ view.storage.display('default')['display_options']['title'] }}</h2>
+
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
   {% for item in items %}
-    <div class="views-view-responsive-grid__item">
-      <div class="views-view-responsive-grid__item-inner">
-        {{- item.content -}}
+    {% set truncated_text = item.content['#row']._entity.body.value|slice(0, 100) ~ '...' %}
+    <div class="card views-view-responsive-grid__item card-yelen">
+      {% set image_entity = item.content['#row']._entity.field_image %}
+      {% if image_entity != null %}
+        {% set image = file_url(image_entity.entity.uri.value) %}
+        {% set width = image_entity.value[0]['width'] %}
+        {% set height = image_entity.value[0]['height'] %}
+        <a href="/node/{{ item.content['#row']._entity.nid.value }}">
+          <img src="{{ image }}"/>
+        </a>
+      {% endif %}
+      {% set title = item.content['#row']._entity.title.value %}
+      {% if title|length > 16 %}
+        {% set title = title|slice(0, 16) ~ '...' %}
+      {% endif %}
+      <div class="card-body views-view-responsive-grid__item-inner">
+        <h2 class="card-title"> {{ title|capitalize }}</h2>
+        <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>
+        <a class="btn btn-inverse btn-primary btn-voir-plus" href="/node/{{ item.content['#row']._entity.nid.value }}">
+          Voir plus
+        </a>
+
       </div>
     </div>
   {% endfor %}

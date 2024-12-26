@@ -88,7 +88,7 @@ final class Message extends ContentEntityBase implements MessageInterface {
       ])
       ->setDisplayOptions('view', [
         'label' => 'hidden',
-        'type' => 'list_default',
+        'type' => 'options_select',
         'weight' => 0,
       ])
       ->setDisplayConfigurable('form', TRUE)

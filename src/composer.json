@@ -19,6 +19,7 @@
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.5",
         "drupal/autologout": "^1.4",
+        "drupal/better_exposed_filters": "^7.0",
         "drupal/big_pipe_sessionless": "^2.2",
         "drupal/chat_livehelperchat": "^1.4",
         "drupal/ckeditor5_font": "^1.1@beta",

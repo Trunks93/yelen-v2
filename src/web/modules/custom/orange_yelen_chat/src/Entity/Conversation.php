@@ -82,7 +82,7 @@ final class Conversation extends ContentEntityBase implements ConversationInterf
       ])
       ->setDisplayOptions('view', [
         'label' => 'hidden',
-        'type' => 'list_default',
+        'type' => 'options_select',
         'weight' => 0,
       ])
       ->setDisplayConfigurable('form', TRUE)

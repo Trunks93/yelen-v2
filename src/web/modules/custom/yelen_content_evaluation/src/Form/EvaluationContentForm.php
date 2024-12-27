@@ -107,7 +107,7 @@ final class EvaluationContentForm extends FormBase
     $userid =\Drupal::currentUser()->id();
     $user =\Drupal::currentUser();
     $content = Node::load($nodeId);
-    $title = sprintf('Evaluation %s contenue %s',$user->getAccountName(), $content->label());
+    $title = $content->label();
     $note = $form_state->getValue('evaluation');
     $description = $form_state->getValue('comment');
 

@@ -87,7 +87,7 @@ final class UtilityContentForm extends FormBase
     $user =\Drupal::currentUser();
     $userid = $user->id();
     $content = Node::load($nodeId);
-    $title = sprintf('Evaluation - %s - %s',$nodeId,$userid);
+    $title = $content->label();
     $triggering_element = $form_state->getTriggeringElement();
     $button_clicked = $triggering_element['#id'];
     switch ($button_clicked){

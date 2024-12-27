@@ -29,16 +29,16 @@
 
 {%
   set classes = [
-    'views-view-responsive-grid',
-    'views-view-responsive-grid--' ~ options.alignment,
-  ]
+  'views-view-responsive-grid',
+  'views-view-responsive-grid--' ~ options.alignment,
+]
 %}
 
 {% set responsive_grid_styles = [
-    '--views-responsive-grid--column-count:' ~ options.columns ~ ';',
-    '--views-responsive-grid--cell-min-width:' ~ options.cell_min_width ~ 'px;',
-    '--views-responsive-grid--layout-gap:' ~ options.grid_gutter ~ 'px;',
-  ]
+  '--views-responsive-grid--column-count:' ~ options.columns ~ ';',
+  '--views-responsive-grid--cell-min-width:' ~ options.cell_min_width ~ 'px;',
+  '--views-responsive-grid--layout-gap:' ~ options.grid_gutter ~ 'px;',
+]
 %}
 
 <h2 class="orange-yelen-title">{{view.storage.display('default')['display_options']['title']}}</h2>
@@ -58,9 +58,19 @@
           </a>
         </h2>
         <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>
-        <a class="btn btn-inverse btn-primary btn-voir-plus" target="_blank" href="{{ item.content['#row']._entity.field_lien.value[0].uri }}">
-          Découvrir
-        </a>
+
+        {% set lien = item.content['#row']._entity.field_lien.value[0].uri %}
+
+        {% if 'entity:node' in lien %}
+          {%  set nodeId = lien|split('/')[1] %}
+          <a class="btn btn-inverse btn-primary btn-voir-plus" target="_blank" href="node/{{ nodeId }}">
+            Découvrir
+          </a>
+        {% else %}
+          <a class="btn btn-inverse btn-primary btn-voir-plus" target="_blank" href="{{ item.content['#row']._entity.field_lien.value[0].uri }}">
+            Découvrir
+          </a>
+        {% endif %}
       </div>
     </div>
   {% endfor %}

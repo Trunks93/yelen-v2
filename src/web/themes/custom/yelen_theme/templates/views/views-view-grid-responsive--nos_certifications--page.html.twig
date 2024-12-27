@@ -58,9 +58,19 @@
           </a>
         </h2>
         <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>
-        <a class="btn btn-inverse btn-primary btn-voir-plus" target="_blank" href="{{ item.content['#row']._entity.field_lien.value[0].uri }}">
-          Découvrir
-        </a>
+
+        {% set lien = item.content['#row']._entity.field_lien.value[0].uri %}
+
+        {% if 'entity:node' in lien %}
+          {%  set nodeId = lien|split('/')[1] %}
+          <a class="btn btn-inverse btn-primary btn-voir-plus" target="_blank" href="node/{{ nodeId }}">
+            Découvrir
+          </a>
+        {% else %}
+          <a class="btn btn-inverse btn-primary btn-voir-plus" target="_blank" href="{{ item.content['#row']._entity.field_lien.value[0].uri }}">
+            Découvrir
+          </a>
+        {% endif %}
       </div>
     </div>
   {% endfor %}

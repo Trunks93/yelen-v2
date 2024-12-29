@@ -101,6 +101,8 @@ final class SearchRatingForm extends FormBase {
     $subject = 'Evaluation de Recherche';
     $emailExtractor = \Drupal::service('yelen_notification.extract.mail');
     $emails = $emailExtractor->getEmailsFromBroadcastList(Constante::ALL_YELEN_ADMINS);
+    $currentHour = (int) date('H');
+    $greeting = $currentHour > 0 && $currentHour <= 12 ? 'Bonjour' : 'Bonsoir';
     $cc = null;
     $notificationTemplate = [
         '#theme' => 'rating_notification',
@@ -109,6 +111,7 @@ final class SearchRatingForm extends FormBase {
             'search_term' => $search_term,
             'comment' => $comment,
             'rating' => $rating,
+            'greeting' => $greeting
         ],
     ];
 

@@ -5,7 +5,7 @@
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>{{ site_name }} - Evaluation de recherche</title>
+  <title>{{ site_name }} - Nouveau message dans le Tchat</title>
   <style>
     /* Styles pour assurer la compatibilité avec les clients mail */
     body {
@@ -63,10 +63,9 @@
   </div>
 
   <div class="content">
-    <h1 class="greeting">{{ content.greeting }} <strong>cher Admin</strong>,</h1>
-    <p>Vous avez une évaluation de recherche concernant le mot clé: <strong>{{ content.search_term }}</strong> de la part de <strong>{{ content.username }}</strong></p>
-    <p>Note attribuée: <strong>{{ content.rating }}</strong></p>
-    <p>Commentaire: <strong>{{ content.comment }}</strong></p>
+    <h1 class="greeting">{{ content.greeting }} <strong>{{ content.recipient_name }}</strong>,</h1>
+    <p>Vous avez une reçu un nouveau message dans le Tchat.</p>
+    <p>Connectez-vous à votre compte pour le consulter.</p>
     <p>Merci !</p>
   </div>
 
@@ -77,4 +76,3 @@
 </div>
 </body>
 </html>
-

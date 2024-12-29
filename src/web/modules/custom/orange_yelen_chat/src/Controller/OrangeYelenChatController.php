@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Drupal\orange_yelen_chat\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\yelen_notification\Constante\Constante;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -12,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
  * Returns responses for Orange Yelen Chat routes.
  */
 final class OrangeYelenChatController extends ControllerBase {
-
   /**
    * Builds the response.
    */
@@ -28,6 +28,9 @@ final class OrangeYelenChatController extends ControllerBase {
 
 
   public function createConversation(Request $request) {
+    if(!$this->currentUser()->id()){
+      return new JsonResponse(['error' => 'Vous n\'êtes pas autorisé à effectuer cette action.'], 403);
+    }
     $data = json_decode($request->getContent(), TRUE);
     $participantId = $data['participant_id'];
 
@@ -88,6 +91,9 @@ final class OrangeYelenChatController extends ControllerBase {
     ]);
   }
   public function getConversations(string $status = 'active') {
+    if(!$this->currentUser()->id()){
+      return new JsonResponse(['error' => 'Vous n\'êtes pas autorisé à effectuer cette action.'], 403);
+    }
     $query = $this->entityTypeManager()
       ->getStorage('orange_yelen_chat_conversation')
       ->getQuery()
@@ -133,6 +139,9 @@ final class OrangeYelenChatController extends ControllerBase {
   }
 
   public function getConversationMessages($conversationId) {
+    if(!$this->currentUser()->id()){
+      return new JsonResponse(['error' => 'Vous n\'êtes pas autorisé à effectuer cette action.'], 403);
+    }
     $conversation = $this->entityTypeManager()
       ->getStorage('orange_yelen_chat_conversation')
       ->load($conversationId);
@@ -169,6 +178,9 @@ final class OrangeYelenChatController extends ControllerBase {
   }
 
   public function sendMessage(Request $request, $conversationId) {
+    if(!$this->currentUser()->id()){
+      return new JsonResponse(['error' => 'Vous n\'êtes pas autorisé à effectuer cette action.'], 403);
+    }
     $conversation = $this->entityTypeManager()
       ->getStorage('orange_yelen_chat_conversation')
       ->load($conversationId);
@@ -179,6 +191,17 @@ final class OrangeYelenChatController extends ControllerBase {
 
     $data = json_decode($request->getContent(), TRUE);
 
+    if(!$data || !isset($data['message'])) {
+      return new JsonResponse(['error' => 'Veuillez renseigner le contenu du message.'], 400);
+    }
+
+    // Vérifier que celui qui répond,
+    // quand il est différent de celui qui a crée la conversation, est un ADMIN
+    $isCurrentUserAdmin = \Drupal::currentUser()->hasRole('administrator');
+    if($this->currentUser()->id() !== $conversation->getCreatedBy()->id() && !$isCurrentUserAdmin) {
+      return new JsonResponse(['error' => 'Vous n\'êtes pas autorisé à répondre à ce message.'], 403);
+    }
+
     $message = $this->entityTypeManager()->getStorage('orange_yelen_chat_message')->create([
       'conversation' => $conversation->id(),
       'user' => $this->currentUser()->id(),
@@ -188,16 +211,49 @@ final class OrangeYelenChatController extends ControllerBase {
     $message->save();
     $conversation->setChangedTime(time())->save();
 
+    $notificationService = \Drupal::service('yelen_notification.sendmail');
+
+    $subject = 'YELEN - Vous avez reçu un nouveau message';
+    $emailExtractor = \Drupal::service('yelen_notification.extract.mail');
+    $emails = $isCurrentUserAdmin ? $conversation->getCreatedBy()->getEmail() : $emailExtractor->getEmailsFromBroadcastList(Constante::ALL_YELEN_ADMINS);
+    $recipientName = $isCurrentUserAdmin ? $conversation->getCreatedBy()->getAccountName() : 'cher Admin';
+    $currentHour = (int) date('H');
+    $greeting = $currentHour > 0 && $currentHour <= 12 ? 'Bonjour' : 'Bonsoir';
+    $cc = null;
+    $notificationTemplate = [
+      '#theme' => 'new_message_notification',
+      '#content' => [
+        'recipient_name' => $recipientName,
+        'greeting' => $greeting
+      ]
+    ];
+
+    try {
+      $notificationService->sendNotification($subject, $emails, $cc, $notificationTemplate);
+      \Drupal::logger('yelen_chat')->info('Notification de Tchat envoyé avec succès à: %recipient', ['%recipient' => $emails]);
+    } catch (\Exception $e){
+      \Drupal::logger('yelen_chat')->error('Erreur lors de l\'envoi de notification de Tchat à: %recipient - Erreur: %error', ['%recipient' => $emails, '%error' => $e->getMessage()]);
+    }
     return new JsonResponse(['status' => 'success']);
   }
 
   public function closeConversation($conversationId) {
+    if(!$this->currentUser()->id()){
+      return new JsonResponse(['error' => 'Vous n\'êtes pas autorisé à effectuer cette action.'], 403);
+    }
     $conversation = $this->entityTypeManager()
       ->getStorage('orange_yelen_chat_conversation')
       ->load($conversationId);
 
     if (!$conversation || !$conversation->access('update')) {
       return new JsonResponse(['error' => 'Access denied'], 403);
+    }
+
+    //Vérifier que celui qui clôture est participant
+    $isParticipant = $this->currentUser()->id() === $conversation->getCreatedBy()->id() || $this->currentUser()->id() !== $conversation->getParticipant()->id();
+    $isCurrentUserAdmin = \Drupal::currentUser()->hasRole('administrator');
+    if(!$isParticipant && !$isCurrentUserAdmin ){
+      return new JsonResponse(['error' => 'Vous n\'êtes pas autorisé à effectuer cette action.'], 403);
     }
 
     $conversation->set('status', 'closed');

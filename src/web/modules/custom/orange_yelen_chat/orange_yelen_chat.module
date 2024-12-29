@@ -18,6 +18,7 @@ const TCHAT_CANONICAL = 'entity.yelen_chat.canonical';
  * Implements hook_theme().
  */
 function orange_yelen_chat_theme(): array {
+  $logo_full_url = _orange_yelen_chat_get_site_logo();
   return [
     'orange_yelen_chat' => ['render element' => 'elements'],
     'reply_message_button' => [
@@ -27,6 +28,16 @@ function orange_yelen_chat_theme(): array {
     'views_view_unformatted__messages_de_conversation' => [
       'template' => 'views/views-view-unformatted--messages-de-conversation',
       'base hook' => 'views',
+    ],
+    'new_message_notification' => [
+      'render element' => 'elements',
+      'template' => 'notification/new-message',
+      'variables' => [
+        'content' => NULL,
+        'site_name' => \Drupal::config('system.site')->get('name'),
+        'site_logo' => $logo_full_url,
+        'footer_text' => t('Cet email a été envoyé automatiquement, merci de ne pas y répondre.')
+      ]
     ],
   ];
 }
@@ -46,6 +57,19 @@ function template_preprocess_orange_yelen_chat(array &$variables): void {
   $variables['view_mode'] = $variables['elements']['#view_mode'];
   foreach (Element::children($variables['elements']) as $key) {
     $variables['content'][$key] = $variables['elements'][$key];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for notification-email templates.
+ */
+function orange_yelen_chat_preprocess_new_message(&$variables) {
+  $variables['site_logo'] = theme_get_setting('logo.url');
+  $variables['site_name'] = \Drupal::config('system.site')->get('name');
+  $variables['content']['site_name'] = \Drupal::config('system.site')->get('name');
+  $variables['content']['site_logo'] = theme_get_setting('logo.url');
+  if (empty($variables['footer_text'])) {
+    $variables['footer_text'] = t('Cet email a été envoyé automatiquement, merci de ne pas y répondre.');
   }
 }
 
@@ -159,6 +183,29 @@ function orange_yelen_chat_entity_access(EntityInterface $entity, $operation, Ac
  */
 function orange_yelen_chat_entity_type_alter(array &$entity_types) {
   // dump($entity_types['orange_yelen_chat_conversation'], 'ENTITY TYPPES');
+}
+
+function _orange_yelen_chat_get_site_logo()
+{
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+  $themeIconPath = theme_get_setting('icon_path', $theme);
+  $themeUseDefaultIcon = theme_get_setting('icon_default', $theme);
+  $fileUrlGenerator = \Drupal::service('file_url_generator');
+  $icon_path = NULL;
+  // #3258015: Make sure we're compatible with the new variant.
+  if ($themeUseDefaultIcon === NULL) {
+    $themeIconPath = theme_get_setting('logo.path', $theme);
+    $themeUseDefaultIcon = theme_get_setting('logo.use_default', $theme);
+  }
+
+  if (!$themeUseDefaultIcon && !empty($themeIconPath)) {
+    $icon_path = $fileUrlGenerator->generateAbsoluteString($themeIconPath);
+  }
+  $host = \Drupal::request()->getSchemeAndHttpHost();
+  if(!$icon_path){
+    $icon_path = $host . '/' .'themes/custom/yelen_theme/assets/images/orange.png';
+  }
+  return $icon_path;
 }
 
 function _orange_yelen_chat__check_path(): bool

@@ -15,7 +15,7 @@ class OrangeYelenChatAccessControlHandler extends EntityAccessControlHandler
 {
   use LoggerChannelTrait;
   public function checkAccess(EntityInterface $entity, $operation, AccountInterface $account) {
-    $this->getLogger('orange_yelen_chat')->notice('checkAccess called for operation: @operation', ['@operation' => $operation]);
+    // $this->getLogger('orange_yelen_chat')->notice('checkAccess called for operation: @operation', ['@operation' => $operation]);
     if ($account->hasPermission('administer site configuration')) {
       return AccessResult::allowed();
     }

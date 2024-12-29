@@ -99,7 +99,7 @@ final class Conversation extends ContentEntityBase implements ConversationInterf
       ->setDescription(t('La date à laquelle la conversation a été créée.'))
       ->setDisplayOptions('view', [
         'label' => 'above',
-        'type' => 'timestamp',
+        'type' => 'datetime_default',
         'weight' => 20,
       ])
       ->setDisplayConfigurable('form', TRUE)

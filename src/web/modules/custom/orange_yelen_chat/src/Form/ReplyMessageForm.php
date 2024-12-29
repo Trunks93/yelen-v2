@@ -6,6 +6,7 @@ namespace Drupal\orange_yelen_chat\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\yelen_notification\Constante\Constante;
 
 /**
  * Provides a Orange Yelen Chat form.
@@ -93,6 +94,31 @@ final class ReplyMessageForm extends FormBase {
       'user' => $this->currentUser()->id(),
       'message' => $message_content
     ]);
+
+    $isCurrentUserAdmin = \Drupal::currentUser()->hasRole('administrator');
+    $notificationService = \Drupal::service('yelen_notification.sendmail');
+
+    $subject = 'YELEN - Vous avez reçu un nouveau message';
+    $emailExtractor = \Drupal::service('yelen_notification.extract.mail');
+    $emails = $isCurrentUserAdmin ? $conversation->getCreatedBy()->getEmail() : $emailExtractor->getEmailsFromBroadcastList(Constante::ALL_YELEN_ADMINS);
+    $recipientName = $isCurrentUserAdmin ? $conversation->getCreatedBy()->getAccountName() : 'cher Admin';
+    $currentHour = (int) date('H');
+    $greeting = $currentHour > 0 && $currentHour <= 12 ? 'Bonjour' : 'Bonsoir';
+    $cc = null;
+    $notificationTemplate = [
+      '#theme' => 'new_message_notification',
+      '#content' => [
+        'recipient_name' => $recipientName,
+        'greeting' => $greeting
+      ]
+    ];
+
+    try {
+      $notificationService->sendNotification($subject, $emails, $cc, $notificationTemplate);
+      \Drupal::logger('yelen_chat')->info('Notification de Tchat envoyé avec succès à: %recipient', ['%recipient' => $emails]);
+    } catch (\Exception $e){
+      \Drupal::logger('yelen_chat')->error('Erreur lors de l\'envoi de notification de Tchat à: %recipient - Erreur: %error', ['%recipient' => $emails, '%error' => $e->getMessage()]);
+    }
 
     $message->save();
     $conversation->set('participant', $this->currentUser()->id());

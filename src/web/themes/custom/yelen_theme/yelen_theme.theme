@@ -136,6 +136,11 @@ function yelen_theme_preprocess_node(&$variables)
 }
 
 
+/**
+ * @file
+ * Functions to support theming in the your_theme theme.
+ */
+
 function yelen_theme_preprocess_comment(&$variables): void{
   $comment = $variables['comment'];
   $comment_type = $comment->get('comment_type')->getValue()[0]['target_id'];

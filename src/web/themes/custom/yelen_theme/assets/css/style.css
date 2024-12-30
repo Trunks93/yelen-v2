@@ -552,6 +552,9 @@ a.hover-orange:hover {
   margin-bottom: 10px !important;
 }
 
+.header-homepage-block{
+  padding:10px
+}
 
 .home-body{
   text-decoration:none;

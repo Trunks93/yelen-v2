@@ -25,7 +25,7 @@
   {%
     set row_classes = [
       default_row_class ? 'views-row',
-    'p-3','mb-1'
+    'p-3','mb-1','multi-color'
     ]
   %}
   <div{{ row.attributes.addClass(row_classes) }} style="background-color: {{ row.content.field_color['#object'].field_color.value[0]['color'] }}">

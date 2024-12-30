@@ -151,7 +151,7 @@
       content: "";
       position: absolute;
       top: 2rem;
-      width: 7%;
+      width: 70px;
       background-color: #ff7900;
       height: 10px;
       left: 0;
@@ -337,6 +337,13 @@ dans le HTML
   }
 }
 
+.multi-color .field a{
+  color: white;
+}
+
+.button--primary{
+  background-color: #ff7900 !important;
+}
 
 .icon-orange::after {
   color: #ff7900 !important;
@@ -562,6 +569,7 @@ a.hover-orange:hover {
     color: #ff7900;
   }
 }
+
 
 .field__item a{
   text-decoration: none !important;

@@ -55,8 +55,12 @@
         <h4 class="home-title mb-0">{{ item.content['field_titre'] }}</h4>
       </div>
       <div class="home-body views-view-responsive-grid__item-inner p-2">
-        <p class="mb-4 description-simple">{{ truncated_text|raw }}</p>
+        <p class="mb-1 description-simple">{{ truncated_text|raw }}</p>
+        <div class="d-flex home-link">
+          <span style="color:#ff7900;font-weight: bold;font-size:15px;padding-right:5px;">+</span>
           {{ item.content['field_lien'] }}
+        </div>
+
       </div>
     </div>
   {% endfor %}

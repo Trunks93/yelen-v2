@@ -9,7 +9,7 @@ use Drupal\yelen_notification\Event\NotificationEvent;
 use Drupal\Core\Entity\EntityInterface;
 // use Drupal\content_moderation\Entity\ContentModerationState;
 use Drupal\Core\Site\Settings;
-use Drupal\yelen_notification\Event\QuizNotificationEvent;
+
 
 /**
  * @file
@@ -168,23 +168,5 @@ function yelen_notification_mail($key, &$message, $params)
     $message['headers'] = $params['headers'];
     $message['subject'] = $params['subject'];
     $message['body'][] = $params['message'];
-  }
-}
-
-/**
- * Implements hook_entity_update().
- */
-function yelen_notification_quiz_update(EntityInterface $entity)
-{
-  $current_state = $entity->moderation_state->getValue()[0]['target_id'];
-  $date = !empty($entity->quiz_date->getValue()) ? $entity->quiz_date->getValue()[0] : [];
-  $description = !empty($entity->body->getValue()) ? $entity->body->getValue()[0]['value'] : null;
-  $emailExtractorService = \Drupal::service('yelen_notification.extract.mail');
-  $emails = $emailExtractorService->extractMailFromBroadcastList($entity, 'field_liste_de_diffusion');
-  if ($current_state == Constante::PUBLISHED) {
-    $event = new QuizNotificationEvent($entity->id(), $entity->label(), $emails, $date);
-    $event->setDescription($description);
-    $event_dispatcher = \Drupal::service('event_dispatcher');
-    $event_dispatcher->dispatch($event, QuizNotificationEvent::PUBLISH_QUIZ);
   }
 }

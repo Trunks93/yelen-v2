@@ -11,7 +11,7 @@ use Drupal\yelen_notification\Event\QuizNotificationEvent;
 /**
  * Implements hook_entity_update().
  */
-function yelen_access_quiz_update(EntityInterface $entity)
+function yelen_access_quiz_quiz_update(EntityInterface $entity)
 {
   $current_state = $entity->moderation_state->getValue()[0]['target_id'];
   $date = !empty($entity->quiz_date->getValue()) ? $entity->quiz_date->getValue()[0] : [];

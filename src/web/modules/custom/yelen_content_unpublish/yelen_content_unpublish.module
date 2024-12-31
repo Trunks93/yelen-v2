@@ -55,10 +55,7 @@ function yelen_content_unpublish_alter_scheduler_form(&$form, FormStateInterface
     //\Drupal::messenger()->addWarning(t('The unpublication date is set by default and cannot be changed.'));
   }
 
-
-
 }
 
 
-?>
 

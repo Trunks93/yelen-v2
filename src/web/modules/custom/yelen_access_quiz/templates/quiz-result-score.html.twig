@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a quiz result score.
+ *
+ * Available variables:
+ * - numeric_score: The numeric score for the quiz.
+ * - percentage_score: The percentage score for the quiz.
+ * - question_count: The total number of questions in the quiz.
+ * - username: The user who took the quiz.
+ * - your_total: The possessive pronoun if you took the quiz, or 'Total' if you're viewing someone else's quiz results.
+ * - possible_attributes: HTML attributes for the possible score containing element.
+ * - percent_attributes: HTML attributes for the possible score containing element.
+ *
+ * @see template_preprocess_quiz_result_score()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set className = percentage_score > 50 ? 'alert-success' : 'alert-warning' %}
+{% set icon = percentage_score > 50 ? 'Success' : 'Warning' %}
+<div class="alert {{ className }}" role="alert">
+  <span class="alert-icon"><span class="visually-hidden">{{ icon }}</span></span>
+  <p>
+    {{ ':username got :numeric_score of :question_count possible points'|t({':username': username, ':numeric_score': numeric_score, ':question_count': question_count }) }},
+
+    {{ ':your_total score: <span style="color:#ff7900">:percentage_score% </span>'|t({':username': username, ':your_total': your_total, ':percentage_score': percentage_score }) }}
+  </p>
+</div>
+
+

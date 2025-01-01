@@ -4,5 +4,5 @@ description: Yelen Content Unpublish est un module qui détermine la durée de d
 core_version_requirement: ^10
 package: custom
 dependencies:
-  - scheduler
+  - scheduler:scheduler
   - drupal:node

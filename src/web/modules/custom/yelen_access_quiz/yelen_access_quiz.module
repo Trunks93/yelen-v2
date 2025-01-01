@@ -9,6 +9,21 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\yelen_notification\Event\QuizNotificationEvent;
 
 /**
+ * Implements hook_theme()
+ */
+
+function yelen_access_quiz_theme(){
+  return [
+    'quiz_result_score' => [
+      'variables' => [
+        'content' => NULL,
+      ],
+    ],
+
+  ];
+}
+
+/**
  * Implements hook_entity_update().
  */
 function yelen_access_quiz_quiz_update(EntityInterface $entity)
@@ -25,3 +40,5 @@ function yelen_access_quiz_quiz_update(EntityInterface $entity)
     $event_dispatcher->dispatch($event, QuizNotificationEvent::PUBLISH_QUIZ);
   }
 }
+
+

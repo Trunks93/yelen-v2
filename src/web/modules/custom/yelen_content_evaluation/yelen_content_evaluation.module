@@ -35,9 +35,6 @@ function yelen_content_evaluation_theme(): array {
   ];
 }
 
-/**
- * Implements hook_theme_HOOK()
- */
 
 
 /**

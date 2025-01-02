@@ -44,13 +44,16 @@ final class UtilityContentForm extends FormBase
     ];
     $form['actions']['utile'] = [
       '#type' => 'submit',
-      '#return_value' => $this->t('Oui'),
+      '#return_value' => 'yes',
+      '#value' => $this->t('Oui'),
       '#attributes' => ['class' => ['me-2','yes']],
       '#theme' => 'utility_button_positif'
     ];
+
     $form['actions']['inutile'] = [
       '#type' => 'submit',
-      '#return_value' => $this->t('Non'),
+      '#return_value' => 'no',
+      '#value' => $this->t('Non'),
       '#attributes' => ['class' => ['me-2', 'no']],
       '#theme' => 'utility_button_negatif'
     ];
@@ -89,16 +92,13 @@ final class UtilityContentForm extends FormBase
     $content = Node::load($nodeId);
     $title = $content->label();
     $triggering_element = $form_state->getTriggeringElement();
-    $button_clicked = $triggering_element['#id'];
+    $button_clicked = $triggering_element['#return_value'];
     switch ($button_clicked){
-      case 'edit-utile':
+      case 'yes':
         $utility = "oui";
         break;
-      case 'edit-inutile':
+      case 'no':
         $utility = "non";
-        break;
-        default:
-          $utility = "non";
         break;
     }
     $evaluation =\Drupal::service('evaluation.service')->getEvaluationOfUser($userid,$nodeId);
@@ -113,7 +113,7 @@ final class UtilityContentForm extends FormBase
       $utilite->save();
     }
     $this->messenger()->addStatus($this->t("Merci pour votre participation"));
-    $form_state->setRedirect('entity.node.canonical',['node'=>$nodeId]);
+    $form_state->setRedirect('entity.node.canonical',['node'=>$nodeId],['fragment'=>'edit-evaluation--wrapper']);
   }
 
 }

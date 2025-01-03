@@ -344,6 +344,13 @@ dans le HTML
 .button--primary{
   background-color: #ff7900 !important;
 }
+/**
+bouton  soumission filtre vue
+ */
+.views-exposed-form .js-form-submit{
+  background-color: #ff7900;
+  color: white;
+}
 
 .icon-orange::after {
   color: #ff7900 !important;
@@ -638,7 +645,7 @@ a.hover-orange:hover {
   width: 50px;
   height: auto;
 }
-.yes{
+#edit-utile{
   background-color:#ff7900;
   width: 60px;
   height: 60px;
@@ -647,7 +654,7 @@ a.hover-orange:hover {
   box-shadow: 1px 1px 1px black;
 }
 
-.no{
+#edit-inutile{
   background-color:black;
   width: 60px;
   height: 60px;

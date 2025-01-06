@@ -1,0 +1,51 @@
+#views-exposed-form-user-conversations-page-1{
+  input.form-text.form-element{
+    margin-top: 0;
+  }
+}
+
+form{
+  &.orange-yelen-chat-close-conversation{
+    input[type=submit]{
+      &.form-submit{
+        box-shadow: none;
+        background-color: var(--bs-danger);
+        border-radius: 0;
+        font-family: var(--bs-btn-font-family), 'serif';
+        font-size: var(--bs-btn-font-size);
+        font-weight: var(--bs-btn-font-weight);
+        line-height: var(--bs-btn-line-height);
+        color: #FFFFFF;
+        text-decoration: none;
+        letter-spacing: var(--bs-btn-letter-spacing);
+        vertical-align: middle;
+
+        &:hover{
+          background-color: #000;
+        }
+      }
+    }
+  }
+  &.orange-yelen-chat-reply-message{
+    input[type=submit] {
+      &.form-submit {
+        box-shadow: none;
+        background-color: var(--bs-primary);
+        border-radius: 0;
+        color: #000000;
+        font-family: var(--bs-btn-font-family), 'serif';
+        font-size: var(--bs-btn-font-size);
+        font-weight: var(--bs-btn-font-weight);
+        line-height: var(--bs-btn-line-height);
+        text-decoration: none;
+        letter-spacing: var(--bs-btn-letter-spacing);
+        vertical-align: middle;
+
+        &:hover {
+          background-color: #000;
+          color: #FFFFFF;
+        }
+      }
+    }
+  }
+}

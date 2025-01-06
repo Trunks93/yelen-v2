@@ -9,6 +9,7 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\views\ViewExecutable;
 
 const TCHAT_VIEW_ID = 'yelen_chat';
 const TCHAT_VIEW_CURRENT_DISPLAY = 'page_1';
@@ -183,6 +184,49 @@ function orange_yelen_chat_entity_access(EntityInterface $entity, $operation, Ac
  */
 function orange_yelen_chat_entity_type_alter(array &$entity_types) {
   // dump($entity_types['orange_yelen_chat_conversation'], 'ENTITY TYPPES');
+}
+
+function orange_yelen_chat_preprocess_input__textfield(&$vars) {
+  $view_id = \Drupal::routeMatch()->getParameter('view_id');
+  // Added condition so that code execute for specfied view.
+  if (!empty($view_id) && $view_id == 'user_conversations') {
+    // Added Check to find whether specified exist in the view & code execute for specified field only
+    if(isset($vars['element']['#name']) && $vars['element']['#name'] == 'created'){
+      // convert input type to datetime-local
+      $vars['attributes']['type'] = 'date';
+    }
+  }
+}
+
+/**
+ * Implémentation de hook_views_query_alter().
+ *
+ * Ce hook vous permet de manipuler la requête SQL générée par la vue avant son exécution.
+ */
+function orange_yelen_chat_views_query_alter(ViewExecutable $view, $query) {
+  if ($view->id() == 'user_conversations' && isset($view->exposed_data['created'])) {
+    $created = $view->exposed_data['created'];
+    if($created !== ''){
+      $date_timestamp = strtotime($created . ' 00:00:00');
+      $next_day_timestamp = strtotime('+1 day', $date_timestamp);
+      foreach ($query->where as &$condition_group) {
+        foreach ($condition_group['conditions'] as &$condition) {
+          if (str_starts_with($condition['field'], 'orange_yelen_chat_conversation.created')) {
+            $condition = [
+              'field' => 'orange_yelen_chat_conversation.created',
+              'value' => $date_timestamp,
+              'operator' => '>=',
+            ];
+            $condition = [
+              'field' => 'orange_yelen_chat_conversation.created',
+              'value' => $next_day_timestamp,
+              'operator' => '<',
+            ];
+          }
+        }
+      }
+    }
+  }
 }
 
 function _orange_yelen_chat_get_site_logo()

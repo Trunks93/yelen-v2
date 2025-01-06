@@ -20,3 +20,4 @@ regions:
 
 libraries:
   - yelen_theme/global
+  - yelen_theme/slick

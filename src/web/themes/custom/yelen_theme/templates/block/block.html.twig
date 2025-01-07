@@ -34,9 +34,8 @@
 ]
 %}
 <div{{ attributes.addClass(classes) }}>
-  {{ title_prefix }}
   {% if label %}
-    <h3{{ title_attributes.addClass('orange-yelen-title') }}>{{ label|capitalize }}</h3>
+    <h3{{ title_attributes }}>{{ label }}</h3>
   {% endif %}
   {{ title_suffix }}
   {% block content %}

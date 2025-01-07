@@ -352,6 +352,18 @@ bouton  soumission filtre vue
   color: white;
 }
 
+/**
+Bouton voir plus views
+ */
+
+.more-link a{
+  border: solid #ff7900;
+  color: #ff7900;
+  padding: 10px;
+  text-transform: none;
+  text-decoration: none;
+}
+
 .icon-orange::after {
   color: #ff7900 !important;
 }

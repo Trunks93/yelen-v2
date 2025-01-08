@@ -4,13 +4,15 @@ declare(strict_types=1);
 
 namespace Drupal\orange_yelen_chat\Form;
 
+use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 
 /**
  * Provides a Orange Yelen Chat form.
  */
-final class CloseConversationForm extends FormBase {
+final class CloseConversationForm extends ConfirmFormBase {
 
   /**
    * {@inheritdoc}
@@ -30,6 +32,7 @@ final class CloseConversationForm extends FormBase {
       'submit' => [
         '#type' => 'submit',
         '#value' => $this->t('Clôturer la conversation'),
+
       ],
     ];
 
@@ -75,6 +78,20 @@ final class CloseConversationForm extends FormBase {
     $conversation->setChangedTime(time())->save();
 
     $this->messenger()->addStatus($this->t('Conversation clôturée avec succès.'));
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getCancelUrl() {
+    return new Url(\Drupal::routeMatch()->getRouteName());
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getQuestion() {
+    return $this->t('Voulez-vous vraiment clôturer cette conversation ?');
   }
 
 }

@@ -20,16 +20,16 @@
 {% set Alertclasses = ['alert-danger','alert-warning','alert-info','alert-success'] %}
 {% set Iconclasses = ['Danger','Warning','Info','Success'] %}
 
-{% if(percentage_score > 0 and percentage_score < 25 ) %}
+{% if(percentage_score >= 0 and percentage_score < 25 ) %}
   {% set className = 'alert-danger' %}
   {% set icon = 'Danger' %}
-{% elseif(percentage_score > 25 and percentage_score< 50) %}
+{% elseif(percentage_score >= 25 and percentage_score< 50) %}
   {% set className = 'alert-warning' %}
   {% set icon = 'Warning' %}
-{% elseif(percentage_score > 50 and percentage_score < 70) %}
+{% elseif(percentage_score >= 50 and percentage_score < 70) %}
   {% set className = 'alert-info' %}
   {% set icon = 'Info' %}
-{% elseif(percentage_score > 70 and percentage_score <= 100) %}
+{% elseif(percentage_score >= 70 and percentage_score <= 100) %}
   {% set className = 'alert-success' %}
   {% set icon = 'Success' %}
 {% endif %}

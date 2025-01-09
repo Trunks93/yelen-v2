@@ -96,16 +96,24 @@ final class UtilityContentForm extends FormBase
     switch ($button_clicked){
       case 'yes':
         $utility = "oui";
+        $utilite = Evaluation::create(['bundle'=>'simple','label'=>'#'.$title,
+          'field_contenu'=>$content,
+          'utility'=>$utility,
+          'evaluation'=>5,
+          'description'=>'RAS'
+        ]);
         break;
       case 'no':
         $utility = "non";
+        $utilite = Evaluation::create(['bundle'=>'simple','label'=>'#'.$title,
+          'field_contenu'=>$content,
+          'utility'=>$utility
+        ]);
         break;
     }
     $evaluation =\Drupal::service('evaluation.service')->getEvaluationOfUser($userid,$nodeId);
    // dd($nodeId,$userid,$title,$utility,$evaluation);
     if(empty($evaluation)){
-      $utilite = Evaluation::create(['bundle'=>'simple','label'=>'#'.$title,
-        'field_contenu'=>$content,'utility'=>$utility]);
       $utilite->save();
     }else{
       $utilite = current($evaluation);

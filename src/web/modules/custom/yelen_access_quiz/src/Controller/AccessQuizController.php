@@ -12,6 +12,7 @@ class AccessQuizController
 {
   public function has_access()
   {
+
     $currentUser = \Drupal::currentUser();
     $request = \Drupal::request();
     $quiz = $request->get('quiz');
@@ -19,13 +20,15 @@ class AccessQuizController
       return AccessResult::allowed();
     }
     if ($currentUser->id() !== 0) {
+
       try {
         $request = \Drupal::request();
         $route_match = \Drupal::service('router.no_access_checks')->match($request->getPathInfo());
-        if(\Drupal::moduleHandler()->moduleExists('yelen_notification')){
+        if(!\Drupal::moduleHandler()->moduleExists('yelen_notification')){
           \Drupal::logger('Notification module')->info('Le module de notification est inactif');
           return AccessResult::forbidden("Vous n'avez pas accès à ce QUIZ !");
         }
+
         if ($route_match['_route'] == "entity.quiz.take" || $route_match['_route'] == "quiz.question.take") {
           $broadCastLists = $quiz->field_liste_de_diffusion->getValue();
           $emailService = \Drupal::service('yelen_notification.emailFinder');

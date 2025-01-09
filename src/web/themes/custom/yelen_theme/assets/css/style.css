@@ -835,3 +835,12 @@ a.hover-orange:hover {
 }
 
 /* END YELEN CHAT */
+
+/*Sondage*/
+.sondage{
+  background-color: #ececec;
+  padding: 5px;
+}
+.sondage h3{
+  color: #ff7900;
+}

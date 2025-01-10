@@ -41,6 +41,10 @@
   {% endif %}
   {{ title_suffix }}
   {% block content %}
+    {% if content['view_build']['#rows']|length > 0 %}
     {{ content }}
+    {% else %}
+      <b><i>Aucun média à la une</i></b>
+    {% endif %}
   {% endblock %}
 </div>

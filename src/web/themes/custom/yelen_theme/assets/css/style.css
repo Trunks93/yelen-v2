@@ -844,3 +844,54 @@ a.hover-orange:hover {
 .sondage h3{
   color: #ff7900;
 }
+
+.poll .percent {
+  text-align: right;
+  font-size: 13px;
+}
+
+.poll-results-title{
+  display:none
+}
+
+.poll .bar {
+  height: 0.5em !important;
+  margin: 1px 0;
+  background-color: #ddd;
+}
+.poll .bar .foreground:nth-of-type(1) {
+  background-color: #ff7900;
+  height: 0.5em;
+  float: left;
+}
+.poll .bar .foreground:nth-of-type(2) {
+  background-color: #66cc66;
+  height: 0.5em;
+  float: left;
+}
+.poll .bar .foreground:nth-of-type(3) {
+  background-color: #ffcc00;
+  height: 0.5em;
+  float: left;
+}
+.poll .bar .foreground:nth-of-type(4) {
+  background-color: black;
+  height: 0.5em;
+  float: left;
+}
+.poll .bar .foreground:nth-of-type(4) {
+  background-color: #ff6666;
+  height: 0.5em;
+  float: left;
+}
+
+/* Error page */
+.unauthorized h1{
+  font-weight: bold;
+  font-size: 70px;
+  color: #ff7900;
+}
+
+.unauthorized p{
+  font-size: 20px;
+}

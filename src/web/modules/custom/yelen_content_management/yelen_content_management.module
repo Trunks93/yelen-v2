@@ -5,9 +5,4 @@
  * Primary module hooks for yelen_content_management module.
  */
 
-/**
- * Page_attachments_alter()
- */
-function yelen_content_management_page_attachments_alter(&$page) {
-    $page['#attached']['library'][] = 'yelen_content_management/content_management';
-}
+

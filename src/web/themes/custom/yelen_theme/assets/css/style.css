@@ -859,27 +859,27 @@ a.hover-orange:hover {
   margin: 1px 0;
   background-color: #ddd;
 }
-.poll .bar .foreground:nth-of-type(1) {
+.choice-result:nth-of-type(1) .foreground {
   background-color: #ff7900;
   height: 0.5em;
   float: left;
 }
-.poll .bar .foreground:nth-of-type(2) {
+.choice-result:nth-of-type(2) .foreground {
   background-color: #66cc66;
   height: 0.5em;
   float: left;
 }
-.poll .bar .foreground:nth-of-type(3) {
+.choice-result:nth-of-type(3) .foreground {
   background-color: #ffcc00;
   height: 0.5em;
   float: left;
 }
-.poll .bar .foreground:nth-of-type(4) {
+.choice-result:nth-of-type(4) .foreground {
   background-color: black;
   height: 0.5em;
   float: left;
 }
-.poll .bar .foreground:nth-of-type(4) {
+.choice-result:nth-of-type(5) .foreground {
   background-color: #ff6666;
   height: 0.5em;
   float: left;

@@ -50,9 +50,8 @@
     ]
   %}
 {% endif %}
-{% if title %}
-  <h3>{{ title }}</h3>
-{% endif %}
+<h2 class="orange-yelen-title">{{ view.storage.display('default')['display_options']['title'] }}</h2>
+
 <div{{ attributes.addClass(classes) }}>
   {% if options.alignment == 'horizontal' %}
     {% for row in items %}

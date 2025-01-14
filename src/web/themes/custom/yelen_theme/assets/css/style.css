@@ -355,8 +355,20 @@ bouton  soumission filtre vue
 /**
 Bouton voir plus views
  */
+.more-link{
+position: absolute;
+  right: 0;
+  top: 12%;
+}
 
 .more-link a{
+  border: solid black;
+  color: black;
+  padding: 10px;
+  text-transform: none;
+  text-decoration: none;
+}
+.more-link a:hover{
   border: solid #ff7900;
   color: #ff7900;
   padding: 10px;
@@ -835,3 +847,82 @@ a.hover-orange:hover {
 }
 
 /* END YELEN CHAT */
+
+.price{
+  color: #ff7900;
+  font-size: 18px;
+}
+.fmi{
+  width: 87%;
+}
+.card-yelen .card-body .fmi {
+  position: absolute;
+  bottom: 38px;
+}
+/*Sondage*/
+.sondage{
+  background-color: #ececec;
+  padding: 5px;
+}
+.sondage h3{
+  color: #ff7900;
+}
+
+.poll .percent {
+  text-align: right;
+  font-size: 13px;
+}
+
+.poll-results-title{
+  display:none
+}
+
+.poll .bar {
+  height: 0.5em !important;
+  margin: 1px 0;
+  background-color: #ddd;
+}
+.choice-result:nth-of-type(1) .foreground {
+  background-color: #ff7900;
+  height: 0.5em;
+  float: left;
+}
+.choice-result:nth-of-type(2) .foreground {
+  background-color: #66cc66;
+  height: 0.5em;
+  float: left;
+}
+.choice-result:nth-of-type(3) .foreground {
+  background-color: #ffcc00;
+  height: 0.5em;
+  float: left;
+}
+.choice-result:nth-of-type(4) .foreground {
+  background-color: black;
+  height: 0.5em;
+  float: left;
+}
+.choice-result:nth-of-type(5) .foreground {
+  background-color: #ff6666;
+  height: 0.5em;
+  float: left;
+}
+
+/* Error page */
+.unauthorized h1{
+  font-weight: bold;
+  font-size: 70px;
+  color: #ff7900;
+}
+
+.unauthorized p{
+  font-size: 20px;
+}
+
+
+/* NAV */
+
+.nav-underline .nav-link.active{
+  border-color: transparent !important;
+  color: #ff7900 !important;
+}

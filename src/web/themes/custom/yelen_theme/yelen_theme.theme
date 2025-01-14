@@ -208,3 +208,72 @@ function _yelen_get_user_avatar($userEntity): array{
   ];
 }
 
+function _yelen_theme_get_taxonomy_terms($vocabulary) {
+  // Utilisez le service entity_type.manager pour charger les termes.
+  $terms = \Drupal::entityTypeManager()
+    ->getStorage('taxonomy_term')
+    ->loadTree($vocabulary);
+
+  $result = [];
+
+  // Parcourez les termes et préparez les données.
+  foreach ($terms as $term) {
+    $result[] = [
+      'id' => $term->tid,
+      'name' => $term->name,
+    ];
+  }
+
+  return $result;
+}
+
+/**
+ * Implémente hook_preprocess_HOOK() pour views_view__MACHINE_NAME.
+ */
+function yelen_theme_preprocess_views_view_grid_responsive__equipement_fixe(array &$variables) {
+  // Exemple : Ajoutez une classe CSS spécifique à une vue particulière.
+  $variables['categorie'] = _yelen_theme_get_taxonomy_terms('categorie_equipement_fixe');
+  $variables['current_path']  = \Drupal::request()->getPathInfo();
+  $variables['equipements'] = [];
+  foreach ($variables['items'] as $item){
+    $variables['equipements'][$item['content']['#row']->_entity->field_categorie->getValue()[0]['target_id']][] = $item;
+  }
+}
+
+/**
+ * Implémente hook_preprocess_HOOK() pour views_view__MACHINE_NAME.
+ */
+function yelen_theme_preprocess_views_view_grid_responsive__equipement_internet(array &$variables) {
+  // Exemple : Ajoutez une classe CSS spécifique à une vue particulière.
+  $variables['categorie'] = _yelen_theme_get_taxonomy_terms('categorie_equipement_internet');
+  $variables['current_path']  = \Drupal::request()->getPathInfo();
+  $variables['equipements'] = [];
+  foreach ($variables['items'] as $item){
+    $variables['equipements'][$item['content']['#row']->_entity->field_categorie->getValue()[0]['target_id']][] = $item;
+  }
+}
+
+/**
+ * Implémente hook_preprocess_HOOK() pour views_view__MACHINE_NAME.
+ */
+function yelen_theme_preprocess_views_view_grid_responsive__equipement_mobile(array &$variables) {
+  // Exemple : Ajoutez une classe CSS spécifique à une vue particulière.
+  $variables['categorie'] = _yelen_theme_get_taxonomy_terms('autre_categorie_equipement_mobil');
+  $variables['current_path']  = \Drupal::request()->getPathInfo();
+  $variables['equipements'] = [];
+  foreach ($variables['items'] as $item){
+    $variables['equipements'][$item['content']['#row']->_entity->field_categorie->getValue()[0]['target_id']][] = $item;
+  }
+}
+
+/**
+ * Implémente hook_preprocess_HOOK() pour views_view__MACHINE_NAME.
+ */
+function yelen_theme_preprocess_views_view_grid_responsive__equipement_fixe__page(array &$variables) {
+  // Exemple : Ajoutez une classe CSS spécifique à une vue particulière.
+  $variables['categorie_fixe'] = _yelen_theme_get_taxonomy_terms('categorie_equipement_fixe');
+  $variables['current_path']  = \Drupal::request()->getPathInfo();
+
+}
+
+

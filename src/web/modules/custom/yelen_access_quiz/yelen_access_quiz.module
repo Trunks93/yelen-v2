@@ -4,15 +4,19 @@
 declare(strict_types=1);
 
 
+use Drupal\quiz\Entity\QuizFeedbackType;
 use Drupal\yelen_notification\Constante\Constante;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\yelen_notification\Event\QuizNotificationEvent;
+
+//use function quiz_get_feedback_options;
 
 /**
  * Implements hook_theme()
  */
 
-function yelen_access_quiz_theme(){
+function yelen_access_quiz_theme()
+{
   return [
     'quiz_result_score' => [
       'variables' => [
@@ -41,3 +45,38 @@ function yelen_access_quiz_quiz_update(EntityInterface $entity)
   }
 }
 
+
+/**
+ * Implements hook_form_alter
+ * Ce hook me permet de surcharger le formulaire de création de quiz avec les elements de la configuration
+ * au niveau de la manière d'afficher les stats après le quiz et après les questions
+ */
+
+function yelen_access_quiz_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  if ($form_id == 'quiz_quiz_form') {
+    if (\Drupal::moduleHandler()->moduleExists('quiz')) {
+      \Drupal::moduleHandler()->loadInclude('quiz', 'module');
+      $review_options = quiz_get_feedback_options();
+      $config = \Drupal::config('quiz.settings');
+      foreach (QuizFeedbackType::loadMultiple() as $key => $when) {
+
+        $items = (array)$config->get("admin_review_options_$key");
+        $selected = [];
+        foreach ($items as $item_name => $item) {
+          if ($item === TRUE) {
+            $selected[$item_name] = $item_name;
+          }
+        }
+
+        $form['question_feedback']['review_options'][$key] = [
+          '#title' => $when->label(),
+          '#description' => $when->get('description'),
+          '#type' => 'checkboxes',
+          '#options' => $review_options,
+          '#default_value' => $selected,
+        ];
+      }
+    }
+  }
+}

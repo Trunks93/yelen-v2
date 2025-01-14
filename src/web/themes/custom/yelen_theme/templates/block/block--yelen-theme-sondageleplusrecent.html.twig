@@ -36,10 +36,15 @@
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
-    <h5{{ title_attributes.addClass('orange-yelen-title') }}>{{ label }}</h5>
+    <h3{{ title_attributes.addClass('orange-yelen-title') }}>Sondage</h3>
   {% endif %}
   {{ title_suffix }}
   {% block content %}
-    {{ content }}
+    <div class="sondage">
+      <h3>Votre avis nous intéresse</h3>
+      <p class="">{{ label }}</p>
+      {{ content }}
+    </div>
+
   {% endblock %}
 </div>

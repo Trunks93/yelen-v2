@@ -16,6 +16,7 @@ regions:
   help: Help
   content: Content
   sidebar: 'Sidebar'
+  sidebar_left: 'Sidebar left'
   page_footer: 'Page footer'
 
 libraries:

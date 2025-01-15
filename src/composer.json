@@ -44,6 +44,8 @@
         "drupal/gin": "^4.0",
         "drupal/gin_login": "^2.1",
         "drupal/gin_toolbar": "^2.0",
+        "drupal/jquery_ui": "^1.7",
+        "drupal/jquery_ui_checkboxradio": "^2.1",
         "drupal/ldap": "^4.10",
         "drupal/login_history": "^2.0",
         "drupal/login_security": "^2.0",

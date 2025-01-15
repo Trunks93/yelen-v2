@@ -276,4 +276,39 @@ function yelen_theme_preprocess_views_view_grid_responsive__equipement_fixe__pag
 
 }
 
+/**
+ * Implémente hook_form_alter().
+ */
+function yelen_theme_form_views_exposed_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Vérifiez que c'est le bon formulaire de filtre exposé.
+
+  //dump($form);
+  if (isset($form['#id']) && $form['#id'] === 'views-exposed-form-equipement-mobile-page-1') {
+    $categories = _yelen_theme_get_taxonomy_terms('autre_categorie_equipement_mobil');
+    $marques = _yelen_theme_get_taxonomy_terms('marque_terminaux_fmi');
+   /*$mark = [];
+    foreach ($marques as $marque){
+      $mark[$marque['id']]=$marque['name'];
+    }
+    $category = [];
+    foreach ($categories as $categorie){
+      $category[$categorie['id']]=$categorie['name'];
+    }
+    // Ciblez le champ spécifique à modifier.
+    if (isset($form['field_marque_target_id'])) {
+      $form['field_marque_target_id']['#type'] = 'checkboxes'; // Ou 'radios' pour boutons radio.
+      //$form['field_marque_target_id']['#options'] =$mark ; // Ou 'radios' pour boutons radio.
+      //$form['field_marque_target_id']['#value']=current($marques)['id'];
+    }
+    if (isset($form['field_categorie_target_id'])) {
+      $form['field_categorie_target_id']['#type'] = 'checkboxes'; // Ou 'radios' pour boutons radio.
+      //$form['field_categorie_target_id']['#options'] =$category ;
+      //$form['field_categorie_target_id']['#value']=current($categories)['id'];
+
+    }
+   */
+  }
+}
+
+
 

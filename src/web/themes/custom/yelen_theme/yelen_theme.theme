@@ -273,7 +273,6 @@ function yelen_theme_preprocess_views_view_grid_responsive__equipement_fixe__pag
   // Exemple : Ajoutez une classe CSS spécifique à une vue particulière.
   $variables['categorie_fixe'] = _yelen_theme_get_taxonomy_terms('categorie_equipement_fixe');
   $variables['current_path']  = \Drupal::request()->getPathInfo();
-
 }
 
 

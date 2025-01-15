@@ -358,7 +358,7 @@ Bouton voir plus views
 .more-link{
 position: absolute;
   right: 0;
-  top: 12%;
+  top: 0;
 }
 
 .more-link a{

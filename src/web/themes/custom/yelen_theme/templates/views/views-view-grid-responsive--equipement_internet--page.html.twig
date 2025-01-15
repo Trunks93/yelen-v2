@@ -42,28 +42,37 @@
 
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
   {% for item in items %}
-    {% set truncated_text = item.content['#row']._entity.body.summary|slice(0, 100) ~ '...' %}
     <div class="card views-view-responsive-grid__item card-yelen">
+      <div style="background-color: #ff7900;width: 100%;height: 3px">&nbsp;</div>
+      {% set title = item.content['#row']._entity.title.value %}
+      {# if title|length > 25 %}
+                {% set title = title|slice(0, 15) ~ '...' %}
+              {% endif #}
 
       {% set image_entity = item.content['#row']._entity.field_image %}
-      {% set image = file_url(image_entity.entity.uri.value) %}
-      {% set width = image_entity.value[0]['width'] %}
-      {% set height = image_entity.value[0]['height'] %}
-
-      <a href="/node/{{ item.content['#row']._entity.nid.value }}">
-        <img src="{{ image }}"/>
-      </a>
-      {% set title = item.content['#row']._entity.title.value %}
-      {% if title|length > 16 %}
-        {% set title = title|slice(0, 16) ~ '...' %}
+      {% if image_entity != null %}
+        {% set image = file_url(image_entity.entity.uri.value) %}
+        {% set width = image_entity.value[0]['width'] %}
+        {% set height = image_entity.value[0]['height'] %}
+        <!--a href="/node/{{ item.content['#row']._entity.nid.value }}">
+                  <img src="{{ image }}"/>
+                </a-->
       {% endif %}
+
       <div class="card-body views-view-responsive-grid__item-inner">
-        <h2 class="card-title"> {{ title|capitalize }}</h2>
-        <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>
-        <a class="btn btn-inverse btn-primary btn-voir-plus" href="/node/{{ item.content['#row']._entity.nid.value }}">
-          Voir plus
+        <p class="text-align-left mb-5"> {{ title|capitalize }}</p>
+        <p class=text-align-left"><b>
+            A partir de <br>
+            {{ item.content['#row']._entity.field_prix.value }} FCFA/Mois</b>
+        </p>
+        <a class="btn btn-secondary btn-voir-plus fmi"
+           href="/node/{{ item.content['#row']._entity.nid.value }}">
+          En savoir plus >
         </a>
+
       </div>
     </div>
   {% endfor %}
 </div>
+
+

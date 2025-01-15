@@ -46,7 +46,7 @@
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
   {% for item in items %}
 
-    {% set truncated_text = item.content['#row']._entity.body.value|slice(0, 100) ~ '...' %}
+    {% set truncated_text = item.content['#row']._entity.body.summary|slice(0, 100) ~ '...' %}
     <div class="card views-view-responsive-grid__item card-yelen">
 
       {% set image_entity = item.content['#row']._entity.field_image %}

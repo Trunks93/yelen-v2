@@ -40,7 +40,8 @@
 
 <h2 class="orange-yelen-title">{{ view.storage.display('default')['display_options']['title'] }}</h2>
 
-<ul role="tablist" aria-owns="nav-linkA nav-linkB nav-linkC nav-linkD" class="nav nav-underline mt-0" style="border-bottom: none">
+<ul role="tablist" aria-owns="nav-linkA nav-linkB nav-linkC nav-linkD" class="nav nav-underline mt-0"
+    style="border-bottom: none">
   {% for categorie in categorie %}
     {% if loop.index == 1 %}
       <li class="nav-item" role="presentation">
@@ -64,15 +65,11 @@
     {% if loop.index == 1 %}
       <div class="tab-pane fade show active" id="link-{{ categorie.id }}" role="tabpanel"
            aria-labelledby="nav-link-{{ categorie.id }}">
-
         <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
-          {% for item in equipements[categorie.id] %}
+          {% for item in astuces[categorie.id] %}
+
+            {% set truncated_text = item.content['#row']._entity.body.summary|slice(0, 100) ~ '...' %}
             <div class="card views-view-responsive-grid__item card-yelen">
-              {% set title = item.content['#row']._entity.title.value %}
-              {% if title|length > 25 %}
-                {% set title = title|slice(0, 15) ~ '...' %}
-              {% endif %}
-              <p class="text-center mb-5"> {{ title|capitalize }}</p>
               {% set image_entity = item.content['#row']._entity.field_image %}
               {% if image_entity != null %}
                 {% set image = file_url(image_entity.entity.uri.value) %}
@@ -82,31 +79,29 @@
                   <img src="{{ image }}"/>
                 </a>
               {% endif %}
-
+              {% set title = item.content['#row']._entity.title.value %}
+              {% if title|length > 16 %}
+                {% set title = title|slice(0, 16) ~ '...' %}
+              {% endif %}
               <div class="card-body views-view-responsive-grid__item-inner">
-
-                <p class="price text-center">{{ item.content['#row']._entity.field_prix.value }} FCFA</p>
-                <a class="btn btn-inverse btn-primary btn-voir-plus fmi"
+                <h2 class="card-title"> {{ title|capitalize }}</h2>
+                <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>
+                <a class="btn btn-inverse btn-primary btn-voir-plus"
                    href="/node/{{ item.content['#row']._entity.nid.value }}">
-                  Détails
+                  Voir plus
                 </a>
 
               </div>
             </div>
           {% endfor %}
         </div>
-
       </div>
     {% else %}
       <div class="tab-pane" id="link-{{ categorie.id }}" role="tabpanel" aria-labelledby="nav-link-{{ categorie.id }}">
         <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
-          {% for item in equipements[categorie.id] %}
+          {% for item in astuces[categorie.id] %}
+            {% set truncated_text = item.content['#row']._entity.body.summary|slice(0, 100) ~ '...' %}
             <div class="card views-view-responsive-grid__item card-yelen">
-              {% set title = item.content['#row']._entity.title.value %}
-              {% if title|length > 25 %}
-                {% set title = title|slice(0, 15) ~ '...' %}
-              {% endif %}
-              <p class="text-center mb-5"> {{ title|capitalize }}</p>
               {% set image_entity = item.content['#row']._entity.field_image %}
               {% if image_entity != null %}
                 {% set image = file_url(image_entity.entity.uri.value) %}
@@ -116,21 +111,24 @@
                   <img src="{{ image }}"/>
                 </a>
               {% endif %}
-
+              {% set title = item.content['#row']._entity.title.value %}
+              {% if title|length > 16 %}
+                {% set title = title|slice(0, 16) ~ '...' %}
+              {% endif %}
               <div class="card-body views-view-responsive-grid__item-inner">
-
-                <p class="price text-center">{{ item.content['#row']._entity.field_prix.value }} FCFA</p>
-                <a class="btn btn-inverse btn-primary btn-voir-plus fmi"
+                <h2 class="card-title"> {{ title|capitalize }}</h2>
+                <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>
+                <a class="btn btn-inverse btn-primary btn-voir-plus"
                    href="/node/{{ item.content['#row']._entity.nid.value }}">
-                  Détails
+                  Voir plus
                 </a>
 
               </div>
             </div>
+
           {% endfor %}
         </div>
       </div>
     {% endif %}
   {% endfor %}
 </div>
-

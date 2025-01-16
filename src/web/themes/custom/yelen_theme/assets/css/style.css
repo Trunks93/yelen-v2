@@ -863,6 +863,7 @@ a.hover-orange:hover {
 .sondage{
   background-color: #ececec;
   padding: 5px;
+  margin-bottom: 20px;
 }
 .sondage h3{
   color: #ff7900;

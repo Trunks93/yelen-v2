@@ -269,6 +269,19 @@ function yelen_theme_preprocess_views_view_grid_responsive__equipement_mobile(ar
 /**
  * Implémente hook_preprocess_HOOK() pour views_view__MACHINE_NAME.
  */
+function yelen_theme_preprocess_views_view_grid_responsive__astuce_fmi(array &$variables) {
+  // Exemple : Ajoutez une classe CSS spécifique à une vue particulière.
+  $variables['categorie'] = _yelen_theme_get_taxonomy_terms('categorie_astuce');
+  $variables['current_path']  = \Drupal::request()->getPathInfo();
+  $variables['astuces'] = [];
+  foreach ($variables['items'] as $item){
+    $variables['astuces'][$item['content']['#row']->_entity->field_categorie->getValue()[0]['target_id']][] = $item;
+  }
+}
+
+/**
+ * Implémente hook_preprocess_HOOK() pour views_view__MACHINE_NAME.
+ */
 function yelen_theme_preprocess_views_view_grid_responsive__equipement_fixe__page(array &$variables) {
   // Exemple : Ajoutez une classe CSS spécifique à une vue particulière.
   $variables['categorie_fixe'] = _yelen_theme_get_taxonomy_terms('categorie_equipement_fixe');

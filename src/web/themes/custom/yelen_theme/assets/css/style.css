@@ -943,8 +943,8 @@ a.hover-orange:hover {
   .form-boolean-group{
     border: solid 2px black;
     height: 100%;
-    padding: 2px;
-    margin-top:5px;
+    padding: 15px !important;
+    margin-top:25px !important;
   }
   .form-boolean--type-radio:checked{
     background-color: #ff7900;
@@ -964,6 +964,10 @@ a.hover-orange:hover {
   }
 }
 
+.form-radios .form-item label{
+  font-weight: bold;
+}
+
 .block-views-exposed-filter-blockequipement-internet-page-1{
   form{
     width: 100%;
@@ -979,9 +983,10 @@ a.hover-orange:hover {
 .form-boolean-group{
   border: solid 2px black;
   height: 100%;
-  padding: 2px;
-  margin-top:5px;
+  padding: 15px !important;
+  margin-top:25px !important;
 }
+
 .form-boolean--type-radio:checked{
   background-color: #ff7900;
   border-color: #ff7900;
@@ -1013,13 +1018,12 @@ a.hover-orange:hover {
     float: none !important;
   }
 
-  .form-boolean-group{
-    border: solid 2px black;
-    height: 100%;
-    padding: 2px;
-    margin-top:5px;
-
-  }
+.form-boolean-group{
+  border: solid 2px black;
+  height: 100%;
+  padding: 15px !important;
+  margin-top:25px !important;
+}
   .form-boolean--type-radio:checked{
     background-color: #ff7900;
     border-color: #ff7900;

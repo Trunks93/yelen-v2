@@ -30,27 +30,36 @@
 </div>
 
 {% if content.category or content.sous_category %}
-  <div class="row pt-3" style="background-color: #ebe9e9;">
+  <div class="row pt-3">
     <div class="col-3">
       {% if content.childOrdered is defined and content.childOrdered|length > 0 %}
-        <div class="row col-lg-10">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="text-primary mb-3 fs-2">Catégories</h5>
           {% for parent in content.childOrdered %}
-            <p class="orange-color-link">
-              <a class="text-decoration-none" href="{{ path('faq-page-criteria', {'category':  parent.name}) }}">
-                <b>{{ parent.name| capitalize }}</b>
+            <div class="orange-color-link mb-2">
+              <a class="text-decoration-none fs-4 fw-bold{{ parent.name == content.category ? ' text-primary' : '' }}" href="{{ path('faq-page-criteria', {'category':  parent.name}) }}">
+                <span>{{ parent.name| capitalize }}</span>
               </a>
-            </p>
+            </div>
             {% if parent.children is defined and content.childOrdered|length > 0 %}
               {% for child in parent.children %}
-                <p class="orange-color-link ms-2">
-                  <a class="text-decoration-none"
-                     href="{{ path('faq-page-criteria', {'category':parent.name ,'sousCategory':  child.name}) }}">
-                    {{ child.name| capitalize }}
-                  </a>
-                </p>
+                <div class="orange-color-link ms-2 mb-2">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="faqSubCategory{{ loop.index + 1 }}" {{ content.sous_category and child.name == content.sous_category ? 'checked' : '' }}>
+                    <label class="form-check-label" for="faqSubCategory{{ loop.index + 1 }}">
+                      <a class="text-decoration-none{{ content.sous_category and child.name == content.sous_category ? ' text-primary' : '' }}"
+                         href="{{ path('faq-page-criteria', {'category':parent.name ,'sousCategory':  child.name}) }}">
+                        {{ child.name| capitalize }}
+                      </a>
+                    </label>
+                  </div>
+
+                </div>
               {% endfor %}
             {% endif %}
           {% endfor %}
+          </div>
         </div>
       {% else %}
         <p>Aucune catégorie disponible.</p>
@@ -58,19 +67,16 @@
     </div>
     <div class="col-9">
       {% if content.faqs|length>0 %}
-        <div class="accordion" id="accordionExample">
+        <div class="accordion" id="faq-homepage">
           {% for faq in content.faqs %}
             <div class="accordion-item">
               <h2 class="accordion-header">
-                <button class="accordion-button p-1" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapse{{ faq.nid }}"
-                        aria-expanded="true" aria-controls="collapse{{ faq.nid }}">
+                <button class="accordion-button{{ loop.first ? '' : ' collapsed' }}" type="button" data-bs-toggle="collapse" data-bs-target="#item{{ loop.index + 1 }}">
                   {{ faq.title }}
                 </button>
               </h2>
-              <div id="collapse{{ faq.nid }}" class="accordion-collapse collapse"
-                   data-bs-parent="#accordionExample">
-                <div class="accordion-body p-2">
+              <div id="item{{ loop.index + 1 }}" class="accordion-collapse collapse{{ loop.first ? ' show' : '' }}">
+                <div class="accordion-body">
                   {{ faq.reponse|raw }}
                 </div>
               </div>
@@ -78,11 +84,18 @@
           {% endfor %}
         </div>
       {% else %}
-        {% if content.category and content.sous_category %}
-          <h3>Aucune FAQ dans cette sous catégorie</h3>
-        {% else %}
-          <h3>Aucune FAQ dans cette catégorie</h3>
-        {% endif %}
+        <div class="h-100 d-flex flex-column align-items-center justify-content-center">
+          <div class="text-center">
+          <i class="fa-regular fa-file fs--4 text-primary">&nbsp;</i>
+          <p class="fw-bold fs-3 mt-4">
+          {% if content.category and content.sous_category %}
+            Aucun contenu trouvé pour la catégorie <strong class="text-primary">"{{ content.category }} -> {{ content.sous_category }}"</strong>
+          {% else %}
+            Aucun contenu trouvé pour la catégorie <strong class="text-primary">"{{ content.category }}"</strong>
+          {% endif %}
+          </p>
+          </div>
+        </div>
       {% endif %}
     </div>
   </div>

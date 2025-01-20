@@ -548,7 +548,7 @@ a.hover-orange:hover {
 /* style node listing content type */
 .card-yelen img {
   width: 350px;
-  height: 200px
+  /*height: 200px*/
 }
 
 .card-yelen .card-body {

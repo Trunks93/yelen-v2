@@ -30,4 +30,6 @@ node_modules/
 src/.scannerwork
 
 # Gitlab CI
+ansible/deploy.yml
+ansible/inventory
 .gitlab-ci.yml

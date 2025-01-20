@@ -31,4 +31,9 @@ popup_login:
     theme:
       assets/css/modal.css: {}
 
+fontawesome:
+  css:
+    theme:
+      assets/fontawesome/css/all.min.css: {}
+
 

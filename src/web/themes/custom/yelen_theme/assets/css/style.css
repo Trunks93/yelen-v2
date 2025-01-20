@@ -1,3 +1,18 @@
+/*
+BOOSTRAP OVERRIDE
+ */
+.fs--2{
+  font-size: 2rem;
+}
+.fs--3{
+  font-size: 3rem;
+}
+.fs--4{
+  font-size: 4rem;
+}
+/*
+END BOOSTRAP OVERRIDE
+ */
 .content-header {
   background-color: #fff !important;
 }
@@ -1040,5 +1055,37 @@ a.hover-orange:hover {
 
   .form-boolean--type-radio{
     border-radius: 0;
+  }
+}
+#faq-homepage{
+  box-shadow: none;
+  border: none;
+  .accordion-button::after {
+    --circle-size: 30px;
+    --circle-symbol-font-size: 1rem;
+    content: "+";
+    background-image: none;
+    font-size: var(--circle-symbol-font-size);
+    line-height: calc(var(--circle-size) - (var(--circle-symbol-font-size) / 2));
+    width: var(--circle-size);
+    height: var(--circle-size);
+    text-align: center;
+    border-radius: 50%;
+    border: 1px solid;
+  }
+
+  .accordion-button:not(.collapsed) {
+    color: var(--bs-primary);
+    &::after{
+      content: "-";
+      transform: none;
+    }
+
+  }
+
+  .accordion-button {
+    font-size: 1.1rem;
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem 0;
   }
 }

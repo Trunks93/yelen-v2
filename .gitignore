@@ -28,3 +28,6 @@ src/web/.DS_Store
 node_modules/
 
 src/.scannerwork
+
+# Gitlab CI
+.gitlab-ci.yml

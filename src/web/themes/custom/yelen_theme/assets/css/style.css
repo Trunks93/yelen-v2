@@ -12,17 +12,28 @@ BOOSTRAP OVERRIDE
 }
 /*
 END BOOSTRAP OVERRIDE
+<<<<<<< HEAD
 
 
  */
 
 /*
+=======
+------------------------
+ */
+
+/*
+------------------------
+>>>>>>> develop
 OVERRIDE CLARO
  */
 :root{
   --color-absolutezero: var(--bs-primary);
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 .views-table{
   .views-field{
     .tablesort.tablesort--asc {
@@ -572,13 +583,24 @@ a.hover-orange:hover {
 .card-yelen .card-body {
   height: 230px;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> b8f8a87a (hide message de sondage)
+.poll-view-form .messages-list{
+  display: none;
+}
+
 .card-yelen .fmi-fixe{
   height: 130px;
 }
+
+.tab-content{
+  padding: 0 !important;
+}
+
+.nav-underline{
+  gap: 0;
+  margin-left: 0;
+}
+
 .poll-view-form .messages-list{
   display: none;
 }

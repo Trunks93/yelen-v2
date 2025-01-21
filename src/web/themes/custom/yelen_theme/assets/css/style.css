@@ -22,6 +22,7 @@ OVERRIDE CLARO
 :root{
   --color-absolutezero: var(--bs-primary);
 }
+
 .views-table{
   .views-field{
     .tablesort.tablesort--asc {
@@ -32,6 +33,8 @@ OVERRIDE CLARO
 /*
 END CLARO OVERRIDE
 
+=======
+/*
  */
 .content-header {
   background-color: #fff !important;

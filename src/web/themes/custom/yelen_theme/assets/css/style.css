@@ -12,6 +12,18 @@ BOOSTRAP OVERRIDE
 }
 /*
 END BOOSTRAP OVERRIDE
+------------------------
+ */
+
+/*
+------------------------
+OVERRIDE CLARO
+ */
+:root{
+  --color-absolutezero: var(--bs-primary);
+}
+/*
+END CLARO OVERRIDE
  */
 .content-header {
   background-color: #fff !important;

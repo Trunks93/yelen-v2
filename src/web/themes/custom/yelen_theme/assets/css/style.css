@@ -572,12 +572,14 @@ a.hover-orange:hover {
 .card-yelen .card-body {
   height: 230px;
 }
+
 .card-yelen .fmi-fixe{
   height: 130px;
 }
 .poll-view-form .messages-list{
   display: none;
 }
+
 
 .card-yelen .card-body .btn {
   position: absolute;

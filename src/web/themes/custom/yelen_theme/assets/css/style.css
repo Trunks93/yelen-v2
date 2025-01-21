@@ -571,9 +571,20 @@ a.hover-orange:hover {
 .card-yelen .card-body {
   height: 230px;
 }
+
 .card-yelen .fmi-fixe{
   height: 130px;
 }
+
+.tab-content{
+  padding: 0 !important;
+}
+
+.nav-underline{
+  gap: 0;
+  margin-left: 0px;
+}
+
 .poll-view-form .messages-list{
   display: none;
 }

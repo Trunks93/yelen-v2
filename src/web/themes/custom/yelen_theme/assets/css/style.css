@@ -630,7 +630,7 @@ a.hover-orange:hover {
     .chiffre_title {
       text-transform: uppercase;
       margin-right: 5px;
-      margin-left: 35px;
+      /*margin-left: 35px;*/
     }
 
     .chiffre_value {

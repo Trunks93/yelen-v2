@@ -582,7 +582,7 @@ a.hover-orange:hover {
 
 .nav-underline{
   gap: 0;
-  margin-left: 0px;
+  margin-left: 0;
 }
 
 .poll-view-form .messages-list{

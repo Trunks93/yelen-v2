@@ -578,6 +578,9 @@ a.hover-orange:hover {
 .card-yelen .fmi-fixe {
   height: 130px;
 }
+.poll-view-form .messages-list{
+  display: none;
+}
 
 .card-yelen .card-body .btn {
   position: absolute;

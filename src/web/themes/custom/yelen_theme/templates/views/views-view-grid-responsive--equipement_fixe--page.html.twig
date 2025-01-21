@@ -47,7 +47,7 @@
       {% if title|length > 25 %}
         {% set title = title|slice(0, 15) ~ '...' %}
       {% endif %}
-      <p class="text-center mb-5"> {{ title|capitalize }}</p>
+      <p class="text-center mb-2"> {{ title|capitalize }}</p>
       {% set image_entity = item.content['#row']._entity.field_image %}
       {% if image_entity != null %}
         {% set image = file_url(image_entity.entity.uri.value) %}
@@ -58,9 +58,9 @@
         </a>
       {% endif %}
 
-      <div class="card-body views-view-responsive-grid__item-inner">
+      <div class="card-body views-view-responsive-grid__item-inner fmi-fixe">
 
-        <p class="price text-center">{{ item.content['#row']._entity.field_prix.value }} FCFA</p>
+        <p class="price text-center">{{ item.content['#row']._entity.field_prix.value|number_format(0, '.', ' ') }} FCFA</p>
         <a class="btn btn-inverse btn-primary btn-voir-plus fmi"
            href="/node/{{ item.content['#row']._entity.nid.value }}">
           Détails

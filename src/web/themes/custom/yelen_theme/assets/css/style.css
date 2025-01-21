@@ -166,6 +166,16 @@ END CLARO OVERRIDE
 
 }
 
+.home-title{
+  margin-left: 10px;
+}
+.internet{
+  height: 300px;
+}
+.internet ul{
+ padding-left: 0;
+}
+
 .texte-phone {
   text-decoration: none;
 }
@@ -553,6 +563,9 @@ a.hover-orange:hover {
 
 .card-yelen .card-body {
   height: 230px;
+}
+.card-yelen .fmi-fixe {
+  height: 130px;
 }
 
 .card-yelen .card-body .btn {

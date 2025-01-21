@@ -39,11 +39,12 @@
 ] %}
 
 <h2 class="orange-yelen-title">{{ view.storage.display('default')['display_options']['title'] }}</h2>
-
+{% set ociColor='#ff7900' %}
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
   {% for item in items %}
     <div class="card views-view-responsive-grid__item card-yelen internet">
-      <div style="background-color: #ff7900;width: 100%;height: 3px">&nbsp;</div>
+
+      <div style="background-color:{{ item.content['#row']._entity.field_couleur_entete.value[0]['color'] ?? ociColor }};width: 100%;height: 3px">&nbsp;</div>
       {% set title = item.content['#row']._entity.title.value %}
       {# if title|length > 25 %}
                 {% set title = title|slice(0, 15) ~ '...' %}

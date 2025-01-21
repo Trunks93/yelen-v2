@@ -45,17 +45,13 @@
 
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
   {% for item in items %}
-    {% set truncated_text = item.content['body']['#object'].body.value %}
-    {% if truncated_text|length >200 %}
-      {% set truncated_text = truncated_text|slice(0, 200) ~ '...'  %}
-    {% endif %}
     <div class="home views-view-responsive-grid__item" style="border: solid 2px #ececec">
       <div class="d-flex align-items-center header-homepage-block" style="background-color: #ececec">
         {{ item.content['field_image']}}
         <h4 class="home-title mb-0">{{ item.content['field_titre'] }}</h4>
       </div>
       <div class="home-body views-view-responsive-grid__item-inner p-2">
-        <p class="mb-1 description-simple">{{ truncated_text|raw }}</p>
+        <p class="mb-1 description-simple">{{ item.content['body']['#object'].body.value|raw }}</p>
         <div class="d-flex home-link">
           <span style="color:#ff7900;font-weight: bold;font-size:15px;padding-right:5px;">+</span>
           {{ item.content['field_lien'] }}

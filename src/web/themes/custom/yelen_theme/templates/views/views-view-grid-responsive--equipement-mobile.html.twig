@@ -84,7 +84,7 @@
 
               <div class="card-body views-view-responsive-grid__item-inner">
 
-                <p class="price text-center">{{ item.content['#row']._entity.field_prix.value }} FCFA</p>
+                <p class="price text-center">{{ item.content['#row']._entity.field_prix.value|number_format(0, '.', ' ') }} FCFA</p>
                 <a class="btn btn-inverse btn-primary btn-voir-plus fmi"
                    href="/node/{{ item.content['#row']._entity.nid.value }}">
                   Détails
@@ -118,7 +118,7 @@
 
               <div class="card-body views-view-responsive-grid__item-inner">
 
-                <p class="price text-center">{{ item.content['#row']._entity.field_prix.value }} FCFA</p>
+                <p class="price text-center">{{ item.content['#row']._entity.field_prix.value|number_format(0, '.', ' ') }} FCFA</p>
                 <a class="btn btn-inverse btn-primary btn-voir-plus fmi"
                    href="/node/{{ item.content['#row']._entity.nid.value }}">
                   Détails

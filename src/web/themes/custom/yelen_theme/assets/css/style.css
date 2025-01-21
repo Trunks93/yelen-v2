@@ -12,11 +12,10 @@ BOOSTRAP OVERRIDE
 }
 /*
 END BOOSTRAP OVERRIDE
-------------------------
+
  */
 
 /*
-------------------------
 OVERRIDE CLARO
  */
 :root{
@@ -32,9 +31,6 @@ OVERRIDE CLARO
 }
 /*
 END CLARO OVERRIDE
-
-=======
-/*
  */
 .content-header {
   background-color: #fff !important;

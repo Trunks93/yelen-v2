@@ -6,14 +6,14 @@
 ]
 %}
 {%
-  set titleClass = [
+  set titleClasses = [
   'orange-yelen-title',
   'yelen-page-title'
 ]
  %}
 <div{{ attributes.addClass(classes) }}>
   {% if label %}
-    <h3{{ title_attributes }}>{{ label }}</h3>
+    <h3{{ title_attributes.addClass(titleClasses) }}>{{ label }}</h3>
   {% endif %}
   {{ title_suffix }}
   {% block content %}

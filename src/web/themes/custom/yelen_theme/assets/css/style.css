@@ -575,7 +575,7 @@ a.hover-orange:hover {
 .card-yelen .card-body {
   height: 230px;
 }
-.card-yelen .fmi-fixe {
+.card-yelen .fmi-fixe{
   height: 130px;
 }
 .poll-view-form .messages-list{
@@ -624,6 +624,8 @@ a.hover-orange:hover {
       font-size: 20px;
       width: 100%;
       font-weight: bold;
+      line-height: 40px;
+      height: 100%;
     }
     .chiffre_title {
       text-transform: uppercase;

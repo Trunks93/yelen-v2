@@ -1,0 +1,19 @@
+{%
+  set classes = [
+  'block',
+  'block-' ~ configuration.provider|clean_class,
+  'block-' ~ plugin_id|clean_class,
+]
+%}
+{%
+  set titleClass = ['orange-yelen-title', 'yelen-page-title']
+ %}
+<div{{ attributes.addClass(classes) }}>
+  {% if label %}
+    <h3{{ title_attributes }}>{{ label }}</h3>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

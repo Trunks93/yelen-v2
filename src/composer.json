@@ -174,7 +174,6 @@
     "scripts": {
         "post-install-cmd": [
             "@drush:cache-clear",
-            "@drush:uninstall-content-moderation",
             "@drush:uninstall-workflows",
             "@drush:cache-clear"
         ],

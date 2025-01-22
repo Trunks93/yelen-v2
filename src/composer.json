@@ -173,8 +173,6 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@drush:cache-clear",
-            "@drush:uninstall-workflows",
             "@drush:cache-clear"
         ],
         "post-update-cmd": [
@@ -182,12 +180,6 @@
         ],
         "drush:cache-clear": [
             "php ./vendor/bin/drush cr"
-        ],
-        "drush:uninstall-content-moderation": [
-            "php ./vendor/bin/drush pmu -y content_moderation"
-        ],
-        "drush:uninstall-workflows": [
-            "php ./vendor/bin/drush pmu -y workflows"
         ],
         "drush:set-claro-as-admin-theme": [
             "php ./vendor/bin/drush config:set system.theme admin claro -y"

@@ -1,5 +1,6 @@
 {% set user_avatar = user_small_image|length == 0 ? '/' ~ directory ~ '/assets/images/user.png' : user_small_image %}
 <article{{ attributes.addClass('yelen-comment-wrapper') }}>
+ 
   <div class="comment-header">
     {% if user_avatar %}
       <div class="comment-avatar">

@@ -21,5 +21,5 @@ regions:
 
 libraries:
   - yelen_theme/global
-  - yelen_theme/slick
+  - yelen_theme/swiper
   - yelen_theme/fontawesome

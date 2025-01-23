@@ -65,7 +65,7 @@ END CLARO OVERRIDE
   margin-bottom: 15px;
 }
 
-.texte-phone {
+.text-decoration {
   text-decoration: none;
 }
 
@@ -1121,6 +1121,7 @@ a.hover-orange:hover {
     border-radius: 0;
   }
 }
+
 #faq-homepage{
   box-shadow: none;
   border: none;
@@ -1152,4 +1153,11 @@ a.hover-orange:hover {
     border-bottom: 1px solid #dee2e6;
     padding: 1rem 0;
   }
+}
+
+.me-1 img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

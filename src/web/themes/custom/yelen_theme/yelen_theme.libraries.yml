@@ -11,17 +11,26 @@ global:
       assets/css/style.css: {}
       assets/css/modal.css: {}
 
-slick:
+#slick:
+#  version: 1.x
+#  css:
+#    theme:
+#      assets/css/slick.css: {}
+#      assets/css/slick-theme.css: {}
+#      assets/css/app.css: {}
+#  js:
+    #assets/js/jquery-1.11.0.min.js: {}
+#    assets/js/jquery-migrate-1.2.1.min.js: {}
+#    assets/js/slick.min.js: {}
+#    assets/js/app.js: {}
+
+swiper:
   version: 1.x
   css:
     theme:
-      assets/css/slick.css: {}
-      assets/css/slick-theme.css: {}
-      assets/css/app.css: {}
+      assets/css/swiper-bundle.min.css: {}
   js:
-    #assets/js/jquery-1.11.0.min.js: {}
-    assets/js/jquery-migrate-1.2.1.min.js: {}
-    assets/js/slick.min.js: {}
+    assets/js/swiper-bundle.min.js: {}
     assets/js/app.js: {}
 
 

@@ -12,28 +12,25 @@ BOOSTRAP OVERRIDE
 }
 /*
 END BOOSTRAP OVERRIDE
-<<<<<<< HEAD
+
 
 
  */
 
 /*
-=======
+
 ------------------------
  */
 
 /*
 ------------------------
->>>>>>> develop
 OVERRIDE CLARO
  */
 :root{
   --color-absolutezero: var(--bs-primary);
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> develop
+
 .views-table{
   .views-field{
     .tablesort.tablesort--asc {
@@ -65,7 +62,7 @@ END CLARO OVERRIDE
   margin-bottom: 15px;
 }
 
-.texte-phone {
+.text-decoration {
   text-decoration: none;
 }
 
@@ -1121,6 +1118,7 @@ a.hover-orange:hover {
     border-radius: 0;
   }
 }
+
 #faq-homepage{
   box-shadow: none;
   border: none;
@@ -1227,3 +1225,35 @@ a.hover-orange:hover {
   color: #666;
 }
 /* CUSTOM FORUM COMMENT */
+
+/*popup video*/
+.ui-dialog-content{
+  width: 800px;
+  height: auto;
+}
+.ui-dialog-content .modal-media video{
+  width:100%;
+}
+/* swiper */
+.swiper {
+  width: 800px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 800px;
+  height: auto;
+  object-fit: cover;
+}

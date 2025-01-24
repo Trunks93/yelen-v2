@@ -1,13 +1,3 @@
-/*$(document).ready(function(){
-  $('.slicker-images').slick({
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2000,
-  });
-});
-*/
-
 let swiper = new Swiper(".mySwiper", {
   slidesPerView: 1,
   spaceBetween: 30,

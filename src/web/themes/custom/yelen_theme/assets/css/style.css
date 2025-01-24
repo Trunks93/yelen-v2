@@ -1138,10 +1138,34 @@ a.hover-orange:hover {
     padding: 1rem 0;
   }
 }
+/*popup video*/
+.ui-dialog-content{
+  width: 800px;
+  height: auto;
+}
+.ui-dialog-content .modal-media video{
+  width:100%;
+}
+/* swiper */
+.swiper {
+  width: 800px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-.me-1 img {
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 800px;
+  height: auto;
   object-fit: cover;
 }

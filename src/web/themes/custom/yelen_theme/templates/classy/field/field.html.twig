@@ -85,6 +85,7 @@
     {% set author = node.getOwner() %}
     {% set term = item.content['#entity'].description.value %}
     {% set nom_forum = item.content %}
+    {% set retire = (element['#object'].body.value) %}
 
 
 
@@ -102,7 +103,7 @@
 
         <div class="field-description pt-3"> 
           <p>{{ item.content['#entity'].description.value|striptags|raw }}</p> 
-          <!-- <p>{{ dump(element['#object']) }}</p> -->
+        
         </div>
 
     

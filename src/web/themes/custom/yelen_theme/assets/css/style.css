@@ -1156,7 +1156,7 @@ a.hover-orange:hover {
 
 
 
-/* CUSTOM FORUM */
+/* CUSTOM FORUM COMMENT */
 
 .forum-post {  
   margin-top: 30px;
@@ -1176,9 +1176,7 @@ a.hover-orange:hover {
   color: #ff7900 !important;
   text-decoration: none;
 }
-.group-discussion {
-  display: flex;
-}
+
 .post-header {
   display: flex;
   align-items: center;
@@ -1224,12 +1222,8 @@ a.hover-orange:hover {
   color: #000;
 }
 
-.post-meta {
-  font-size: 14px;
- color: #666;
-}
 .field-publication {
   font-size: 14px;
   color: #666;
 }
-/* CUSTOM FORUM */
+/* CUSTOM FORUM COMMENT */

@@ -1257,3 +1257,11 @@ a.hover-orange:hover {
   height: auto;
   object-fit: cover;
 }
+
+
+/* Display none button forum */
+#comment-form #edit-actions #edit-preview {
+  display: none;
+}
+
+/* Display none button forum */

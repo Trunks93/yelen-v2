@@ -79,13 +79,13 @@
       {% endif %}
       {% for item in items %}
 
-        {% if element['#object'] %}
+          {% if element['#object'] %}
           {% set node = element['#object'] %}
           {% set created_date = node.created.value|date('d/m/Y') %}
           {% set author = node.getOwner() %}
           {% set term = item.content['#entity'].description.value %}
           {% set nom_forum = item.content %}
-          {% set retire = (element['#object'].body.value) %}
+          {% set bodyValue = (element['#object'].body.value) %}
 
 
 
@@ -96,13 +96,12 @@
               </div>
               <div class="post-title col-lg-12">
                 <h2 class="fs-1">{{ element['#object'].title.value }}</h2>
-                <span class="field-publication">Publié par {{ author.getDisplayName() }} le {{ created_date }} dans le Forum </span>
-                <span><a class="field_nom_forum" href="/forum/{{ nom_forum["#url"].routeParameters.taxonomy_term }}">{{  nom_forum['#options'].entity.name.value|raw  }}</a></span>
+                <span class="field-publication">Publié par {{ author.getDisplayName() }} le {{ created_date }} dans le <span class="fw-bold">Forum</span> </span>
+                <span><a class="field_nom_forum fw-bold text-primary" href="/forum/{{ nom_forum["#url"].routeParameters.taxonomy_term }}">{{  nom_forum['#options'].entity.name.value|raw  }}</a></span>
               </div>
             </div>
-
             <div class="field-description pt-3">
-              <div>{{ item.content['#entity'].description.value|raw }}</div>
+              <div>{{ bodyValue|raw }}</div>
             </div>
 
           </div>

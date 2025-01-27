@@ -30,4 +30,8 @@ node_modules/
 src/.scannerwork
 
 # Gitlab CI
+<<<<<<< HEAD
+
+=======
+>>>>>>> develop
 .gitlab-ci.yml

@@ -57,22 +57,58 @@
   {% if multiple %}
     <div{{ attributes.addClass(classes, 'field__items') }}>
       {% for item in items %}
+
         <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
+
       {% endfor %}
     </div>
   {% else %}
     {% for item in items %}
+
       <div{{ attributes.addClass(classes, 'field__item') }}>{{ item.content }}</div>
+
     {% endfor %}
   {% endif %}
 {% else %}
   <div{{ attributes.addClass(classes) }}>
-    <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+
+    <!--<div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div> Titre Forums -->
     {% if multiple %}
     <div class="field__items">
+
       {% endif %}
       {% for item in items %}
-        <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
+
+        {% if element['#object'] %}
+          {% set node = element['#object'] %}
+          {% set created_date = node.created.value|date('d/m/Y') %}
+          {% set author = node.getOwner() %}
+          {% set term = item.content['#entity'].description.value %}
+          {% set nom_forum = item.content %}
+          {% set retire = (element['#object'].body.value) %}
+
+
+
+          <div class="forum-post">
+            <div class="d-flex justify-content-between align-items-start side-bloc pb-3">
+              <div class="field-icon">
+                <i class="fa-solid fa-comments icon-discussion"></i>
+              </div>
+              <div class="post-title col-lg-12">
+                <h2 class="fs-1">{{ element['#object'].title.value }}</h2>
+                <span class="field-publication">Publié par {{ author.getDisplayName() }} le {{ created_date }} dans le Forum </span>
+                <span><a class="field_nom_forum" href="/forum/{{ nom_forum["#url"].routeParameters.taxonomy_term }}">{{  nom_forum['#options'].entity.name.value|raw  }}</a></span>
+              </div>
+            </div>
+
+            <div class="field-description pt-3">
+              <div>{{ item.content['#entity'].description.value|raw }}</div>
+            </div>
+
+          </div>
+
+        {% endif %}
+
       {% endfor %}
       {% if multiple %}
     </div>

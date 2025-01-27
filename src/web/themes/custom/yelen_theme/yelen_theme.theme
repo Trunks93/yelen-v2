@@ -2,6 +2,10 @@
 
 use \Drupal\yelen_notification\Constante\Constante;
 
+/**
+ * Implements hook_preprocess_HOOK() for html.html.twig.
+ */
+
 function yelen_theme_preprocess_html(&$variables) {
   // Add node id to the body class.
   $node = \Drupal::routeMatch()->getParameter('node');
@@ -10,6 +14,13 @@ function yelen_theme_preprocess_html(&$variables) {
   if($route_name === 'view.messages_de_conversation.page_1') {
     $variables['attributes']['class'][] = 'page-messages-conversation';
   }
+
+
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $path_alias = ltrim($path_alias, '/');
+  $variables['attributes']['class'][] = 'page-'.\Drupal\Component\Utility\Html::cleanCssIdentifier($path_alias);
+
 
   // $variables['conversation_path'] = \Drupal::currentUser()->hasRole('administrator') ? '/yelen-chat/conversations' : '/yelen-chat/mes-conversations';
 }
@@ -287,5 +298,4 @@ function yelen_theme_preprocess_views_view_grid_responsive__equipement_fixe__pag
   $variables['categorie_fixe'] = _yelen_theme_get_taxonomy_terms('categorie_equipement_fixe');
   $variables['current_path']  = \Drupal::request()->getPathInfo();
 }
-
 

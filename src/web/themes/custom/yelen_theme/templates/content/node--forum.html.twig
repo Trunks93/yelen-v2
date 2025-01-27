@@ -121,9 +121,7 @@
 
     <div{{ content_attributes.addClass('node__content') }}>
  
-    {% set content = content|without('body') %}
-
-    {{ content }}
+    {{ content|without('body') }}
 
       {# content.field_image }}
       {{ content.body }}

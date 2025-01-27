@@ -92,9 +92,9 @@
 <article{{ attributes.addClass(classes) }}>
   {# title_prefix #}
   {% if content['body']['#object'] is defined and content['body']['#object'].type.value[0]['target_id'] != 'page' %}
-  
+
   {#  <h2{{ title_attributes }}>{{ label }}</h2> #}
-  
+
   {% endif %}
     {% if label and not page %}
     {#
@@ -108,28 +108,26 @@
     {% if display_submitted %}
       <footer class="node__meta">
       {#  {{ author_picture }} #}
-        
+
         <div{{ author_attributes.addClass('node__submitted') }}>
           {#  {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %} #}
 
           {{ metadata }}
-        
+
 
         </div>
       </footer>
     {% endif %}
 
     <div{{ content_attributes.addClass('node__content') }}>
- 
-    {% set content = content|without('body') %}
 
-    {{ content }}
+    {{ content|without('body') }}
 
       {# content.field_image }}
       {{ content.body }}
-      
 
-      
+
+
       {% if content['body']['#object'] is defined and content['body']['#object'].type.value[0]['target_id'] != 'page'  %}
         <hr>
       {% endif %}

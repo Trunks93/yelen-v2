@@ -97,12 +97,12 @@
               <div class="post-title col-lg-12">
                 <h2 class="fs-1">{{ element['#object'].title.value }}</h2>
                 <span class="field-publication">Publié par {{ author.getDisplayName() }} le {{ created_date }} dans le Forum </span>
-                <span><a class="field_nom_forum" href="/forum/{{ nom_forum["#url"].routeParameters.taxonomy_term }}">{{  nom_forum['#options'].entity.name.value|striptags|raw  }}</a></span>
+                <span><a class="field_nom_forum" href="/forum/{{ nom_forum["#url"].routeParameters.taxonomy_term }}">{{  nom_forum['#options'].entity.name.value|raw  }}</a></span>
               </div>
             </div>
 
             <div class="field-description pt-3">
-              <p>{{ item.content['#entity'].description.value|striptags|raw }}</p>
+              <div>{{ item.content['#entity'].description.value|raw }}</div>
             </div>
 
           </div>

@@ -21,6 +21,7 @@ vendor/
 sites/*/settings*.php
 sites/*/services*.yml
 sites/default/settings.local.php
+sites/default/default.settings.local.php
 
 # Ignore paths that contain user-generated content.
 sites/*/files

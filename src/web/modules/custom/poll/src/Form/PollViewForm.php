@@ -221,6 +221,14 @@ class PollViewForm extends FormBase implements BaseFormIdInterface {
     return $actions;
   }
 
+  public function render($vote){
+    if($vote>1){
+      return " (".$vote.' votes)';
+    }
+    return " (".$vote.' vote)';
+  }
+
+
   /**
    * Display a themed poll results.
    *
@@ -246,9 +254,9 @@ class PollViewForm extends FormBase implements BaseFormIdInterface {
     $poll_results = array();
     foreach ($poll->getVotes() as $pid => $vote) {
       $percentage = round($vote * 100 / max($total_votes, 1));
-      $display_votes = (!$block) ? ' (' . \Drupal::translation()
-          ->formatPlural($vote, '1 vote', '@count votes') . ')' : '';
-
+      /*$display_votes = (!$block) ? ' (' . \Drupal::translation()
+          ->formatPlural($vote, '1 vote', '@count votes') . ')' : '';*/
+      $display_votes = (!$block) ? $this->render($vote):'';
       $poll_results[] = array(
         '#theme' => 'poll_meter',
         '#choice' => $options[$pid],
@@ -260,6 +268,7 @@ class PollViewForm extends FormBase implements BaseFormIdInterface {
         '#attributes' => array('class' => array('bar')),
         '#poll' => $poll,
       );
+      dump($poll_results);
     }
 
     /** @var \Drupal\poll\PollVoteStorageInterface $vote_storage */

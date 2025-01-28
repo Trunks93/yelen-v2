@@ -161,7 +161,6 @@ function template_preprocess_poll_meter(&$variables) {
       // This function was initially designed for the <meter> tag, but due to
       // the lack of browser and styling support for it, we're currently using
       // its attributes as HTML5 data attributes.
-      dump($variables);
       $attributes['data-' . $key] = $variables[$key];
     }
   }

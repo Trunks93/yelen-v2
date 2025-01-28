@@ -12,6 +12,13 @@ BOOSTRAP OVERRIDE
 }
 /*
 END BOOSTRAP OVERRIDE
+
+
+
+ */
+
+/*
+
 ------------------------
  */
 
@@ -22,6 +29,8 @@ OVERRIDE CLARO
 :root{
   --color-absolutezero: var(--bs-primary);
 }
+
+
 .views-table{
   .views-field{
     .tablesort.tablesort--asc {
@@ -570,6 +579,10 @@ a.hover-orange:hover {
 
 .card-yelen .card-body {
   height: 230px;
+}
+
+.poll-view-form .messages-list{
+  display: none;
 }
 
 .card-yelen .fmi-fixe{
@@ -1138,6 +1151,83 @@ a.hover-orange:hover {
     padding: 1rem 0;
   }
 }
+
+
+
+/* CUSTOM FORUM COMMENT */
+
+.forum-post {
+  margin-top: 30px;
+  /* display: flex; */
+  .side-bloc {
+    /* padding-bottom:2rem;  */
+    border-bottom: 2px solid #b8b7b7;
+  }
+  .icon-discussion {
+    height: 50px;
+    font-size: 48px;
+    margin-top: -5px;
+    color: #ff7900;
+  }
+  .field_nom_forum {
+    color: #ff7900 !important;
+    text-decoration: none;
+  }
+
+  .post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    max-width: 800px;
+    padding: 0.5rem;
+  }
+  .field-description {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    /* max-width: 800px; */
+    padding: 0.5rem;
+  }
+  .field-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    max-width: 800px;
+    padding: 0.5rem;
+  }
+
+  .icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    border-radius: 50%;
+    font-size: 24px;
+  }
+
+  .post-title {
+    margin-left: 15px;
+  }
+
+  .post-title h1 {
+    margin: 0;
+    font-size: 20px;
+    color: #000;
+  }
+
+  .field-publication {
+    font-size: 14px;
+    color: #666;
+  }
+}
+
+
+/* CUSTOM FORUM COMMENT */
+
 /*popup video*/
 .ui-dialog-content{
   width: 800px;
@@ -1169,3 +1259,11 @@ a.hover-orange:hover {
   height: auto;
   object-fit: cover;
 }
+
+
+/* Display none button forum */
+#comment-form #edit-actions #edit-preview {
+  display: none;
+}
+
+/* Display none button forum */

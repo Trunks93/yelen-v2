@@ -63,7 +63,6 @@
         "drupal/paragraphs": "^1.17",
         "drupal/pathauto": "^1.13",
         "drupal/phpmailer_smtp": "^2.2",
-        "drupal/poll": "^1.6",
         "drupal/queue_mail": "^1.6",
         "drupal/quiz": "^7.0",
         "drupal/redirect_after_login": "^3.0",

@@ -6,12 +6,12 @@ $(document).ready(function(){
     autoplaySpeed: 2000,
   });
 
-  $('#faq-block').find(sub-category-link).on('check', function(e){
-    console.log('Test dsj')
-    $('.sub-category-link').find(orange-color-link).on('click', function(e){
-        console.log('Test')
-    })
-  })
+  $("#faq-block").find(".sub-category-link").on('change',function () {
+    if ($(this).is(":checked")) {
+        var url = $(this).closest(".form-check").find("a").attr("href");
+            window.location.href = url;     
+    }
+});
 
 });
 

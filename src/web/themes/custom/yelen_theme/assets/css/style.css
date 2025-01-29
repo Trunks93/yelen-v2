@@ -1266,4 +1266,16 @@ a.hover-orange:hover {
   display: none;
 }
 
-/* Display none button forum */
+
+/* Hide meta for block of register and author  */
+
+.page-node-add-forum #edit-advanced {
+  display: none;
+}
+
+/* Hide meta for block of register and author  */
+
+
+.page-forum .action-links {
+   padding: 0; 
+}

@@ -1,5 +1,5 @@
 {{ attach_library('yelen_faq/faq_yelen_librairies') }}
-
+<div id="faq-block">
 <div class="bloc-offre">
   <h2 class="orange-yelen-title">Foire aux Questions</h2>
 </div>
@@ -46,7 +46,7 @@
               {% for child in parent.children %}
                 <div class="orange-color-link ms-2 mb-2">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="faqSubCategory{{ loop.index + 1 }}" {{ content.sous_category and child.name == content.sous_category ? 'checked' : '' }}>
+                    <input class="sub-category-link form-check-input" type="checkbox" value="" id="faqSubCategory{{ loop.index + 1 }}" {{ content.sous_category and child.name == content.sous_category ? 'checked' : '' }}>
                     <label class="form-check-label" for="faqSubCategory{{ loop.index + 1 }}">
                       <a class="text-decoration-none{{ content.sous_category and child.name == content.sous_category ? ' text-primary' : '' }}"
                          href="{{ path('faq-page-criteria', {'category':parent.name ,'sousCategory':  child.name}) }}">
@@ -100,3 +100,4 @@
     </div>
   </div>
 {% endif %}
+</div>

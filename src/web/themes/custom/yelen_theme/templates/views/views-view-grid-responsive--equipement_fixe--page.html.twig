@@ -47,7 +47,7 @@
       {% if title|length > 25 %}
         {% set title = title|slice(0, 15) ~ '...' %}
       {% endif %}
-      <p class="text-center mb-2"> {{ title|capitalize }}</p>
+      <p class="text-center mb-3 mt-2"> {{ title|capitalize }}</p>
       {% set image_entity = item.content['#row']._entity.field_image %}
       {% if image_entity != null %}
         {% set image = file_url(image_entity.entity.uri.value) %}

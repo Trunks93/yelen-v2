@@ -1266,4 +1266,39 @@ a.hover-orange:hover {
   display: none;
 }
 
-/* Display none button forum */
+
+/* Hide meta for block of register and author  */
+
+.page-node-add-forum #edit-advanced {
+  display: none;
+}
+
+/* Hide meta for block of register and author  */
+
+
+.page-forum .action-links {
+   padding: 0; 
+}
+
+/* banniere */
+#block-yelen-theme-banniere1 img {
+  width: 100%;
+}
+/* banniere */
+
+/* Custom image of content  */
+.path-node #block-yelen-theme-content .node__content .field--name-field-image {
+  height: 400px;
+  overflow-y: hidden;
+}
+
+.path-node #block-yelen-theme-content .node__content .field--name-field-image img {
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+/* Custom image of content  */
+
+#block-yelen-theme-onglets .tabs-wrapper{
+  margin-bottom: 1.5rem;
+}

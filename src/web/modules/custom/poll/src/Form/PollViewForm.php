@@ -268,7 +268,6 @@ class PollViewForm extends FormBase implements BaseFormIdInterface {
         '#attributes' => array('class' => array('bar')),
         '#poll' => $poll,
       );
-      dump($poll_results);
     }
 
     /** @var \Drupal\poll\PollVoteStorageInterface $vote_storage */

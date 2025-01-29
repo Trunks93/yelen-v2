@@ -4,8 +4,8 @@ entity.evaluation_type.collection:
   parent: system.admin_structure
   route_name: entity.evaluation_type.collection
 
-entity.evaluation.collection:
-  title: 'Evaluations'
-  description: 'List of evaluations.'
-  route_name: entity.evaluation.collection
-  parent: system.admin_content
+#entity.evaluation.collection:
+#  title: 'Evaluations'
+#  description: 'List of evaluations.'
+#  route_name: entity.evaluation.collection
+#  parent: system.admin_content

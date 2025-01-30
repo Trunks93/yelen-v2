@@ -63,7 +63,7 @@
 
         {% if 'entity:node' in lien %}
           {%  set nodeId = lien|split('/')[1] %}
-          <a class="btn btn-inverse btn-primary btn-voir-plus" target="_blank" href="node/{{ nodeId }}">
+          <a class="btn btn-inverse btn-primary btn-voir-plus" href="node/{{ nodeId }}">
             Découvrir
           </a>
         {% else %}

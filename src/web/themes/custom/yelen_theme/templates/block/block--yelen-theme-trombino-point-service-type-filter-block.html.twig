@@ -33,16 +33,15 @@
       'block-' ~ plugin_id|clean_class,
     ]
     %}
-    <div class="block-filter-trombi">
-    <div{{ attributes.addClass(classes) }}>
-     
-      {% if label %}
+    <div class="block-filter-trombino-wrapper">
+      <div{{ attributes.addClass(classes) }}>
+
+        {% if label %}
         <h3{{ title_attributes }}>{{ label }}</h3>
-      {% endif %}
-      {{ title_suffix }}
-      {% block content %}
-        {{ content }}
-      {% endblock %}
+        {% endif %}
+        {{ title_suffix }}
+        {% block content %}
+          {{ content }}
+        {% endblock %}
       </div>
     </div>
-    

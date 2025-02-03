@@ -1307,7 +1307,7 @@ a.hover-orange:hover {
 /* Custom block for trombino */
 
 
-#block-yelen-theme-trombino-point-service-type-filter-block #edit-submit-trombino-point-service {
+#block-yelen-theme-trombino-point-service-type-filter-block input[type=submit] {
   display: none;
 }
 

@@ -1277,7 +1277,7 @@ a.hover-orange:hover {
 
 
 .page-forum .action-links {
-   padding: 0; 
+   padding: 0;
 }
 
 /* banniere */
@@ -1302,3 +1302,27 @@ a.hover-orange:hover {
 #block-yelen-theme-onglets .tabs-wrapper{
   margin-bottom: 1.5rem;
 }
+
+
+/* Custom block for trombino */
+
+
+#block-yelen-theme-trombino-point-service-type-filter-block input[type=submit] {
+  display: none;
+}
+
+#block-yelen-theme-trombino-point-service-type-filter-block {
+  padding: 0 ;
+  border-radius: 0;
+  display: block;
+  box-shadow: none;
+  border: none;
+  width: 33%;
+}
+
+#block-yelen-theme-trombino-point-service-type-filter-block label{
+  display: none;
+}
+
+/* Custom block for trombino */
+

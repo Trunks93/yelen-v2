@@ -177,7 +177,8 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@drush:cache-clear"
+            "@drush:cache-clear",
+            "@drush:uninstall-poll"
         ],
         "post-update-cmd": [
             "@drush:cache-clear"
@@ -190,6 +191,9 @@
         ],
         "drush:uninstall-gin-admin-theme": [
             "php ./vendor/bin/drush thun gin"
+        ],
+        "drush:uninstall-poll": [
+            "php ./vendor/bin/drush pmu -y poll"
         ],
         "drush:entity-update": [
             "php ./vendor/bin/drush entity:updates"

@@ -177,8 +177,6 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@drush:delete-poll-entities",
-            "@drush:uninstall-poll",
             "@drush:cache-clear"
         ],
         "post-update-cmd": [
@@ -192,13 +190,6 @@
         ],
         "drush:uninstall-gin-admin-theme": [
             "php ./vendor/bin/drush thun gin"
-        ],
-        "drush:uninstall-poll": [
-            "php ./vendor/bin/drush pmu -y poll"
-        ],
-        "drush:delete-poll-entities": [
-            "php ./vendor/bin/drush entity:delete poll",
-            "php ./vendor/bin/drush entity:delete poll_choice"
         ],
         "drush:entity-update": [
             "php ./vendor/bin/drush entity:updates"

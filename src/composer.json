@@ -85,6 +85,7 @@
         "drupal/twig_tweak": "^3.3",
         "drupal/video": "^3.0",
         "drupal/views_data_export": "^1.4",
+        "drupal/views_exposed_filter_blocks": "^1.4",
         "drupal/webform": "^6.2",
         "drupal/webform_quiz": "^2.1",
         "drupal/workbench_email": "^3.0",
@@ -173,7 +174,8 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@drush:cache-clear"
+            "@drush:cache-clear",
+            "@drush:uninstall-poll"
         ],
         "post-update-cmd": [
             "@drush:cache-clear"
@@ -186,6 +188,9 @@
         ],
         "drush:uninstall-gin-admin-theme": [
             "php ./vendor/bin/drush thun gin"
+        ],
+        "drush:uninstall-poll": [
+            "php ./vendor/bin/drush pmu -y poll"
         ],
         "drush:entity-update": [
             "php ./vendor/bin/drush entity:updates"

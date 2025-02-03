@@ -1302,3 +1302,27 @@ a.hover-orange:hover {
 #block-yelen-theme-onglets .tabs-wrapper{
   margin-bottom: 1.5rem;
 }
+
+
+/* Custom block for trombino */
+
+
+#block-yelen-theme-trombino-point-service-type-filter-block #edit-submit-trombino-point-service {
+  display: none;
+} 
+
+.block-filter-trombi #block-yelen-theme-trombino-point-service-type-filter-block {
+  padding: 0 ;
+  border-radius: none;
+  display: block;
+  box-shadow: none;
+  border: none;
+  width: 33%;
+}
+
+.block-filter-trombi #block-yelen-theme-trombino-point-service-type-filter-block label{
+  display: none;
+}
+
+/* Custom block for trombino */
+

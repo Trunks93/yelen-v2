@@ -174,8 +174,9 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@drush:cache-clear",
-            "@drush:uninstall-poll"
+            "@drush:delete-poll-entities",
+            "@drush:uninstall-poll",
+            "@drush:cache-clear"
         ],
         "post-update-cmd": [
             "@drush:cache-clear"
@@ -191,6 +192,9 @@
         ],
         "drush:uninstall-poll": [
             "php ./vendor/bin/drush pmu -y poll"
+        ],
+        "drush:delete-poll-entities": [
+            "php ./vendor/bin/drush entity:delete node --bundle=poll"
         ],
         "drush:entity-update": [
             "php ./vendor/bin/drush entity:updates"

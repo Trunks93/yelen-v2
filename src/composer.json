@@ -174,6 +174,7 @@
     },
     "scripts": {
         "post-install-cmd": [
+            "@composer:install",
             "@drush:cache-clear"
         ],
         "post-update-cmd": [
@@ -190,6 +191,9 @@
         ],
         "drush:entity-update": [
             "php ./vendor/bin/drush entity:updates"
+        ],
+        "composer:install": [
+            "composer install"
         ]
     },
     "require-dev": {

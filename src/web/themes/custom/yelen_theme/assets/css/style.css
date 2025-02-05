@@ -1326,3 +1326,10 @@ a.hover-orange:hover {
 
 /* Custom block for trombino */
 
+.page-user-login{
+  .ui-dialog{
+    .popup_btn{
+      justify-content: center;
+    }
+  }
+}

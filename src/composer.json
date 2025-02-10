@@ -59,6 +59,7 @@
         "drupal/matomo_reporting_api": "^3.0",
         "drupal/matomo_reports": "^1.6",
         "drupal/minifyhtml": "^2.0",
+        "drupal/node_export": "^1.2",
         "drupal/noreqnewpass": "^1.4",
         "drupal/paragraphs": "^1.17",
         "drupal/pathauto": "^1.13",

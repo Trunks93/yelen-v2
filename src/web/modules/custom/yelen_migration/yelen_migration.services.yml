@@ -1,0 +1,5 @@
+services:
+  yelen_migration.event_subscriber:
+    class: Drupal\yelen_migration\EventSubscriber\YelenMigrationFeedsSubscriber
+    tags:
+      - { name: event_subscriber }

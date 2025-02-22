@@ -1,0 +1,108 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Yelen Migration module.
+ */
+
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Entity\EntityStorageException;
+use Drupal\feeds\Entity\Feed;
+use Drupal\feeds\Plugin\Type\Processor\ProcessorInterface;
+use Drupal\node\NodeInterface;
+use Drupal\file\Entity\File;
+
+/**
+ * Implémente hook_feeds_presave() pour mettre à jour le statut de publication.
+ * @throws EntityStorageException
+ */
+
+/*
+function yelen_migration_entity_update(EntityInterface $entity): void {
+  // Vérifie si l'entité est un nœud et si c'est du type "actu"
+  $is_node_interface = $entity instanceof NodeInterface;
+  $is_feed_type_actualite = $entity->bundle() === 'feed_type_actualite';
+  \Drupal::logger('yelen_migration')->info("Entity Is Node Interface: {$is_node_interface} - Entity Is Feed Actu: {$is_feed_type_actualite}  - Entity Bundle {$entity->bundle()}");
+  \Drupal::logger('yelen_migration')->notice('L\'entité reçue est une instance de : @class', [
+    '@class' => get_class($entity),
+  ]);
+  if ($entity instanceof Feed && $entity->bundle() === 'feed_type_actualite') {
+    // Récupérer la valeur du champ de statut depuis le fichier CSV
+    $status_value = $entity->hasField('published_status') ? $entity->get('published_status')->value : '';
+    // Normaliser la valeur (gestion des formats texte et numérique)
+    $status_value = strtolower(trim($status_value));
+    if(strlen($status_value) > 0){
+      // Vérifier et appliquer le statut de publication
+      $is_published = ($status_value === '1' || $status_value === 'Oui') ? 1 : 0;
+
+      // $entity->set('status', $is_published);
+      // Récupérer tous les champs et leurs valeurs pour les logger
+      $fields_data = array_map(function ($field) {
+        return $field->getValue();
+      }, $entity->getFields());
+      // Logger les informations de l'importation
+      \Drupal::logger('yelen_migration')->info('Import Feeds - Node Actu ID: @nid, Status: @status, Fields: @fields', [
+        '@nid' => $entity->id() ?? '(new)',
+        '@status' => $is_published ? 'Publié' : 'Non publié',
+        '@fields' => json_encode($fields_data, JSON_PRETTY_PRINT),
+      ]);
+
+      $file_field_name = 'chemin_image_illustration';
+
+      // Récupérer le nom du fichier depuis le CSV
+      $file_name = $entity->get($file_field_name)->value ?? '';
+
+      if (!empty($file_name)) {
+        // Construire le chemin du fichier dans le dossier alpha_v1
+        $file_uri = 'public://yelen_v1/' . $file_name;
+
+        // Vérifier si le fichier existe déjà dans Drupal
+        $file = yelen_migration_get_existing_file($file_uri);
+
+        if ($file) {
+          // Attacher le fichier existant au champ
+          $entity->set($file_field_name, ['target_id' => $file->id()]);
+          \Drupal::logger('yelen_migration')->info('Fichier attaché : @file', ['@file' => $file_uri]);
+        } else {
+          \Drupal::logger('yelen_migration')->warning('Le fichier @file n’existe pas dans public://alpha_v1/', ['@file' => $file_uri]);
+        }
+      }
+    }
+
+  }
+}
+*/
+
+/**
+ * Vérifie si un fichier existe déjà dans Drupal et le retourne.
+ * @throws EntityStorageException
+ */
+function yelen_migration_get_existing_file(string $file_uri) {
+  // Vérifier si le fichier physique existe
+  if (!file_exists(\Drupal::service('file_system')->realpath($file_uri))) {
+    return NULL;
+  }
+
+  // Chercher un fichier déjà enregistré en base
+  try {
+    $files = \Drupal::entityTypeManager()
+      ->getStorage('file')
+      ->loadByProperties(['uri' => $file_uri]);
+  } catch (\Drupal\Component\Plugin\Exception\InvalidPluginDefinitionException|\Drupal\Component\Plugin\Exception\PluginNotFoundException $e) {
+    \Drupal::logger('yelen_migration')->error('Import File @file_uri does not exist: ' . $file_uri . 'Exception: ' . $e->getMessage());
+  }
+
+  if ($file = reset($files)) {
+    return $file;
+  }
+
+  // Si le fichier n'est pas enregistré, on l'ajoute à Drupal
+  $file = File::create([
+    'uri' => $file_uri,
+    'status' => FILE_STATUS_PERMANENT,
+  ]);
+  $file->save();
+
+  return File::load($file->id());
+}
+

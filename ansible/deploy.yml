@@ -37,8 +37,8 @@
       register: output
       ignore_errors: yes
 
-    - name: composer install
-      command: "sudo /usr/local/sbin/install-composer"
+    - name:  relance composer
+      command: "sudo /usr/local/sbin/composer-install"
       register: output
       ignore_errors: yes
 

@@ -117,7 +117,7 @@
       </div>
     {% endif %}
 
-    {% set mainLayout = page.sidebar ? 'col-9': 'col-12' %}
+    {% set mainLayout = page.sidebar ? 'col-lg-9 col-12': 'col-12' %}
 
     <div class="row">
       <div class="{{ mainLayout }}">
@@ -128,7 +128,7 @@
         </div>
       </div>
       {% if page.sidebar %}
-        <div class="col-3">
+        <div class="col-lg-3 col-12">
           {{ page.sidebar }}
         </div>
       {% endif %}

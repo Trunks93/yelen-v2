@@ -31,7 +31,11 @@ END BOOSTED OVERRIDE
 
 .yelen-search-result__list .search-result-item .media{
   margin-right: 1rem;
-  flex: 0 0 auto;
+}
+
+.yelen-search-result__list .search-result-item .text{
+  flex: 0 0 50%;
+  width: 50%;
 }
 
 .yelen-search-result__list .search-result-item .media img{
@@ -41,20 +45,22 @@ END BOOSTED OVERRIDE
 
 .yelen-search-result__list .search-result-item .action{
   margin-left: auto;
-  flex: 0 0 auto;
 }
 
 .yelen-search-result__list .search-result-item .card-title > a{
   text-decoration: none;
   color: #000;
+  font-size: 1.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  hyphens: none;
 }
 
 .yelen-search-result__list .search-result-item .card-body{
   background-color: transparent;
   color: inherit;
-}
-.yelen-search-result__list .search-result-item .card-title{
-  font-size: 1.25rem;
 }
 
 .yelen-search-result__list .search-result-item .text .short-description{
@@ -175,6 +181,7 @@ END BOOSTED OVERRIDE
 
     .form-type--search-api-autocomplete{
       flex: 0 0 80%;
+      width: 80%;
 
       .form-item__label{
         display: none;

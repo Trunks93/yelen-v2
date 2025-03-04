@@ -31,7 +31,7 @@
 
 {% if content.category or content.sous_category %}
   <div class="row pt-3">
-    <div class="col-3">
+    <div class="col-lg-3">
       {% if content.childOrdered is defined and content.childOrdered|length > 0 %}
         <div class="card">
           <div class="card-body">
@@ -65,7 +65,7 @@
         <p>Aucune catégorie disponible.</p>
       {% endif %}
     </div>
-    <div class="col-9">
+    <div class="col-lg-9 col-12">
       {% if content.faqs|length>0 %}
         <div class="accordion" id="faq-homepage">
           {% for faq in content.faqs %}

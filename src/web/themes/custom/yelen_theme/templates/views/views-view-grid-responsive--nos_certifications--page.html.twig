@@ -48,9 +48,7 @@
     {% set truncated_text = item.content['#row']._entity.body.summary|slice(0, 100) ~ '...' %}
     <div class="card views-view-responsive-grid__item card-yelen">
       {% set title = item.content['#row']._entity.title.value %}
-      {% if title|length > 16 %}
-        {% set title = title|slice(0, 16) ~ '...' %}
-      {% endif %}
+
       <div class="card-body views-view-responsive-grid__item-inner">
         <h2 class="card-title">
           <a href="/node/{{item.content['#row']._entity.nid.value }}">

@@ -56,9 +56,7 @@
         </a>
       {% endif %}
       {% set title = item.content['#row']._entity.title.value %}
-      {% if title|length > 16 %}
-        {% set title = title|slice(0, 16) ~ '...' %}
-      {% endif %}
+
       <div class="card-body views-view-responsive-grid__item-inner">
         <h2 class="card-title"> {{ title|capitalize }}</h2>
         <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>

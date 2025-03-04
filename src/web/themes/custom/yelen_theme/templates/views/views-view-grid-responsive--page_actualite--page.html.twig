@@ -55,9 +55,7 @@
       {% set height = image_entity.value[0]['height']  %}
 
       {% set title = item.content['#row']._entity.title.value %}
-      {% if title|length > 16 %}
-        {% set title = title|slice(0, 16) ~ '...' %}
-      {% endif %}
+
       <a href="/node/{{item.content['#row']._entity.nid.value }}">
         <img src="{{ image }}"/>
       </a>

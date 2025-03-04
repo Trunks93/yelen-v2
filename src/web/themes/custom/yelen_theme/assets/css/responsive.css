@@ -1,4 +1,5 @@
 @media screen and (max-width: 768px) {
+  --views-responsive-grid--column-count: 2;
   form#views-exposed-form-yelen-search-page-1{
     flex-direction: column;
     .form-type--search-api-autocomplete {
@@ -9,4 +10,8 @@
       width: 100%;
     }
   }
+}
+
+@media screen and (max-width: 480px) {
+  --views-responsive-grid--column-count: 1;
 }

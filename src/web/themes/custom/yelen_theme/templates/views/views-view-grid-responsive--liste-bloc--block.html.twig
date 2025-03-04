@@ -54,7 +54,7 @@
       {{ item.content['field_image'] }}
       <div class="card-body views-view-responsive-grid__item-inner">
         <h2 class="card-title">{{ item.content['field_titre'] }}</h2>
-        <p class="card-text fw-bold mb-4">{{ truncated_text }}</p>
+        <p class="card-text mb-4">{{ truncated_text }}</p>
         <a class="btn btn-inverse btn-primary btn-voir-plus" href="{{ item.content['field_lien']['#object'].field_lien.value[0]['uri'] }}">
           {{ item.content['field_lien']['#object'].field_lien.value[0]['title'] }}
         </a>

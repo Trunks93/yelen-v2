@@ -572,6 +572,20 @@ a.hover-orange:hover {
 }
 
 /* style node listing content type */
+.card-yelen {
+  .card-title{
+    font-size: 22px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .card-text{
+    font-weight: 500;
+  }
+}
 .card-yelen img {
   width: 350px;
   /*height: 200px*/

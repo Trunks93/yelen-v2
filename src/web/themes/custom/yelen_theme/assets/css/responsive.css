@@ -1,0 +1,12 @@
+@media screen and (max-width: 768px) {
+  form#views-exposed-form-yelen-search-page-1{
+    flex-direction: column;
+    .form-type--search-api-autocomplete {
+      flex: 0 0 auto;
+      width: 100%;
+    }
+    .form-actions.views-exposed-form__item {
+      width: 100%;
+    }
+  }
+}

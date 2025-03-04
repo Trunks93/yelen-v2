@@ -55,15 +55,13 @@
       {% set height = image_entity.value[0]['height']  %}
 
       {% set title = item.content['#row']._entity.title.value %}
-      {% if title|length > 16 %}
-        {% set title = title|slice(0, 16) ~ '...' %}
-      {% endif %}
+
       <a href="/node/{{item.content['#row']._entity.nid.value }}">
         <img src="{{ image }}"/>
       </a>
       <div class="card-body views-view-responsive-grid__item-inner">
         <h2 class="card-title">{{ title|capitalize }}</h2>
-        <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>
+        <p class="card-text mb-4">{{ truncated_text|raw }}</p>
         <a class="btn btn-inverse btn-primary btn-voir-plus" href="/node/{{item.content['#row']._entity.nid.value }}">
           Voir plus
         </a>

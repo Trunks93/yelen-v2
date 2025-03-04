@@ -118,11 +118,11 @@
       </div>
     {% endif %}
 
-    {% set mainLayout = page.sidebar or page.sidebar_left ? 'col-9': 'col-12' %}
+    {% set mainLayout = page.sidebar or page.sidebar_left ? 'col-lg-9 col-12': 'col-12' %}
 
     <div class="row">
       {% if page.sidebar_left %}
-        <div class="col-3">
+        <div class="col-lg-3 col-12">
           {{ page.sidebar_left }}
         </div>
       {% endif %}
@@ -130,7 +130,7 @@
         {{ page.content }}
       </div>
       {% if page.sidebar %}
-        <div class="col-3">
+        <div class="col-lg-3 col-12">
           {{ page.sidebar }}
         </div>
       {% endif %}

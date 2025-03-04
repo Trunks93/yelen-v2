@@ -55,7 +55,7 @@
             {{ title|capitalize }}
           </a>
         </h2>
-        <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>
+        <p class="card-text mb-4">{{ truncated_text|raw }}</p>
 
         {% set lien = item.content['#row']._entity.field_lien.value[0].uri %}
 

@@ -59,7 +59,7 @@
 
       <div class="card-body views-view-responsive-grid__item-inner">
         <h2 class="card-title"> {{ title|capitalize }}</h2>
-        <p class="card-text fw-bold mb-4">{{ truncated_text|raw }}</p>
+        <p class="card-text mb-4">{{ truncated_text|raw }}</p>
         {% set file = item.content['#row']._entity.field_document %}
         {% set fileValue = file_url(file.entity.uri.value) %}
         <a class="btn btn-inverse btn-primary btn-voir-plus" target="_blank" href="{{ fileValue }}">

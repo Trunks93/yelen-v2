@@ -47,19 +47,13 @@
   {% for item in items %}
     <div class="home views-view-responsive-grid__item" style="border: solid 2px #ececec">
       <div class=" header-homepage-block" style="background-color: #ececec">
-        {% set uri = item.content['field_lien']['#object'].field_lien.value[0]['uri'] %}
-        {% set node_id = uri|split('/')|last %}
-        {% if node_id != 'internal:#' %}
-       <a class="d-flex homelink-header align-items-center text-decoration-none" href="{{ path('entity.node.canonical', {'node': node_id}) }}">
+        {% set url = item.content['field_lien']['#object'].field_lien.get(0).getUrl().toString() %}
+
+       <a class="d-flex homelink-header align-items-center text-decoration-none" href="{{ url }}">
          {{ item.content['field_image']}}
          <h4 class="home-title mb-0">{{ item.content['field_titre'] }}</h4>
        </a>
-        {% else %}
-        <a class="d-flex homelink-header align-items-center text-decoration-none" href="">
-            {{ item.content['field_image']}}
-            <h4 class="home-title mb-0">{{ item.content['field_titre'] }}</h4>
-        </a>
-        {% endif %}
+
       </div>
       <div class="home-body views-view-responsive-grid__item-inner p-2">
         <p class="mb-1 description-simple">{{ item.content['body']['#object'].body.value|raw }}</p>

@@ -490,6 +490,10 @@ position: absolute;
   border: none;
 }
 
+.homelink-header:hover{
+  color: #ff7900;
+}
+
 
 .texte-phone {
   text-decoration: none;

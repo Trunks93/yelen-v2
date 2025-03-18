@@ -145,7 +145,8 @@ body{
     }
   }
 
-  form#views-exposed-form-trombino-point-service-page-1{
+  form#views-exposed-form-trombino-point-service-page-1,
+  form#views-exposed-form-trombino-point-service-text-search-block{
     display: flex;
     align-items: center;
     flex-wrap: wrap;
@@ -209,4 +210,9 @@ body{
       }
     }*/
   }
+}
+
+.search-api-autocomplete-search .ui-menu-item-wrapper.ui-state-active .search-api-autocomplete-suggestion {
+  color: #fff;
+  background: inherit !important;
 }

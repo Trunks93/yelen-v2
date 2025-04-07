@@ -15,8 +15,8 @@ entity.trombino_point_service.delete_form:
   route_name: entity.trombino_point_service.delete_form
   base_route: entity.trombino_point_service.canonical
   weight: 10
-entity.trombino_point_service.collection:
-  title: 'Trombino Point Service'
-  route_name: entity.trombino_point_service.collection
-  base_route: system.admin_content
-  weight: 10
+#entity.trombino_point_service.collection:
+#  title: 'Trombino Point Service'
+#  route_name: entity.trombino_point_service.collection
+#  base_route: system.admin_content
+#  weight: 10

@@ -192,7 +192,8 @@ build-php:
 .deploy:
   stage: deploy
   tags:
-    - oci-simswp-prod
+    # - oci-simswp-prod
+    - ansible
   image: fs0ci3ty/centos7-ansible-new
   #ansible/centos7-ansible
 

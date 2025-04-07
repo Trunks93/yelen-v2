@@ -49,6 +49,6 @@ fontawesome:
 ckeditor-local:
   version: 5.x
   js:
-    libraries/ckeditor5/ckeditor5/ckeditor.js: {}
+    libraries/ckeditor5/ckeditor5/ckeditor5.js: {}
 
 

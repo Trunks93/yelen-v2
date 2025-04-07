@@ -72,7 +72,7 @@ stages:
     #           cd ${SRC_DIR}
     #           rm -f package-lock.json
     #           ${NODEJS_PACKAGE_MANAGER} install
-    #           npm run lint --if-present
+  #           npm run lint --if-present
   #        fi
 
 #        if [[ -z $CUSTOM_MODULES_JS_DIR ]]; then exit 0; fi
@@ -192,9 +192,10 @@ build-php:
 .deploy:
   stage: deploy
   tags:
+    # - oci-simswp-prod
     - ansible
   image: fs0ci3ty/centos7-ansible-new
-    #ansible/centos7-ansible
+  #ansible/centos7-ansible
 
   script:
     - yum install gettext -y

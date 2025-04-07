@@ -71,7 +71,7 @@ stages:
     #        then
     #           cd ${SRC_DIR}
     #           rm -f package-lock.json
-    #           ${NODEJS_PACKAGE_MANAGER} install
+  #           ${NODEJS_PACKAGE_MANAGER} install
   #           npm run lint --if-present
   #        fi
 
@@ -192,8 +192,7 @@ build-php:
 .deploy:
   stage: deploy
   tags:
-    # - oci-simswp-prod
-    - ansible
+    - oci-simswp-prod
   image: fs0ci3ty/centos7-ansible-new
   #ansible/centos7-ansible
 

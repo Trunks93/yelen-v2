@@ -42,27 +42,38 @@
         <div class="carousel-item {% if loop.index == 1 %}active{% endif %}">
           <div class="row">
 
+            {% if row.content['field_titre']["#object"] != null and row.content['body']["#object"] != null %}
             <div class="col-md-6">
               <div class="promo-vacances p-4 ">
+                {% if row.content['field_titre']["#object"] !=null %}
                 <h2>{{ row.content['field_titre']["#object"].field_titre.value }}</h2>
-                {{ row.content['field_titre']["#object"].body.value|raw }}
-                <!--h3>Promo Vacances <br> EasyBox du <br> <span class="texte-orange"> 01 </span> au <span
-                    class="texte-orange">09 Août 2024</span></h3-->
-                <div>
-                  {% set uri = row.content['field_lien']["#object"].field_lien.value[0]['uri'] %}
-                  {% set linkTitle = row.content['field_lien']["#object"].field_lien.value[0]['title'] %}
-                  <a class="btn btn-primary bouton-infos" href="{{ uri }}">{{linkTitle}}</a>
+                {% endif %}
 
+                {% if row.content['body']["#object"] !=null %}
+                  {{ row.content['body']["#object"].body.value|raw }}
+                {% endif %}
+                <div>
+                  {% if row.content['field_lien']["#object"] != null %}
+                    {% set uri = row.content['field_lien']["#object"].field_lien.value[0]['uri'] %}
+
+                    {% set linkTitle = row.content['field_lien']["#object"].field_lien.value[0]['title'] %}
+                    <a class="btn btn-primary bouton-infos" href="{{ uri }}">{{ linkTitle }}</a>
+                  {% endif %}
                 </div>
               </div>
             </div>
             <div class="col-md-6 back-texte-carousel">
               <div class="p-4">
                 {{ row.content['field_image'] }}
-                <!--img src="https://placehold.co/600x400" class="img-fluid w-100 carousel-image" alt="Description de l'image"
-                     style="height: 400px; object-fit: cover; padding: 65px;"-->
               </div>
             </div>
+            {% else %}
+              <div class="col-md-12 back-texte-carousel">
+                <div class="p-4 image-full-caroussel">
+                  {{ row.content['field_image'] }}
+                </div>
+              </div>
+              {% endif %}
           </div>
         </div>
 

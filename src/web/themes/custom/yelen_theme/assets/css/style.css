@@ -1458,3 +1458,8 @@ a.hover-orange:hover {
 .views-exposed-form select.form-select {
   width: 49rem;
 }
+
+.image-full-caroussel img{
+  max-height: 325px;
+  object-fit: cover;
+}

@@ -1,7 +1,7 @@
-{# templates/components/title.html.twig #}
+{# templates/components/yelen-section-title.html.twig #}
 {% set tag = tag|default('h2') %}
 
-<div class="yelen-section-title position-relative d-inline-block text-wrap">
+<div class="yelen-section-title position-relative mb-3 text-wrap {{ class|default('') }}" {{ attributes|default('') }}>
   <{{ tag }} class="fw-bold m-0">
   {% block content %}{% endblock %}
 </{{ tag }}>

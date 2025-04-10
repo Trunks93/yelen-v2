@@ -18,12 +18,13 @@
  * @ingroup themeable
  */
 #}
-
+{% import '@yelen_theme/macros/yelen-section-title.twig' as title %}
 {% if title %}
   <h3>{{ title }}</h3>
 {% endif %}
 <div class="bloc-offre">
   <h2 class="orange-yelen-title">Applications</h2>
+  {{ title.render_title('Applications', 'h2') }}
 </div>
 <div class="row">
 

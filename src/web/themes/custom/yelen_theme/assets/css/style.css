@@ -49,6 +49,9 @@
 
 body{
   font-family: 'Helvetica Neue', Arial, sans-serif;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  hyphens: none;
 }
 
 /*
@@ -255,8 +258,16 @@ END CLARO OVERRIDE
   text-decoration: none;
 }
 
+.yelen-section-title .custom-underline {
+  height: 10px;
+  width: 70px;
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+}
 
-.orange-yelen-title {
+
+.orange-yelen-title{
   position: relative;
   padding-bottom: 1rem;
 

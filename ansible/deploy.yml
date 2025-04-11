@@ -27,6 +27,11 @@
 
     - name: Deploy App folder to htdocs
       command: "sudo /usr/local/sbin/apache-app-deploy -n {{ app_name }} -f {{ tmp_dir }}/{{ src_archive_file }}"
+    
+    - name: Install composer dependencies
+      command: "sudo /usr/local/bin/composer install --no-interaction"
+      args:
+        chdir: "/var/www/{{ app_name }}/htdocs/"
 
     - name: Execute after deploy script
       command: "sudo /usr/local/sbin/apache-app-deploy-after -n {{ app_name }}"

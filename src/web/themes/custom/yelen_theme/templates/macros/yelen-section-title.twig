@@ -1,0 +1,9 @@
+{% macro render(text, tag, title_attributes) %}
+  {% set tag = tag|default('h2') %}
+  <div class="yelen-section-title position-relative mb-3 text-wrap">
+    <{{ tag }} {{ title_attributes.addClass('fw-bold', 'm-0') }}>
+      {{ text|raw }}
+    </{{ tag }}>
+    <div class="custom-underline bg-primary mt-2"></div>
+  </div>
+{% endmacro %}

@@ -29,6 +29,11 @@
   <div class="row mb-2 mb-md-0">
     <div class="col-md-9 col-12">
       <h3 class="orange-yelen-title">{{ 'Résultats de recherche pour:' | t}} <strong class="text-primary">"{{ orange_trombino_service_term }}"</strong></h3>
+      {% embed '@yelen_theme/components/yelen-section-title.html.twig' with { tag: 'h3' } %}
+        {% block content %}
+          {{ 'Résultats de recherche pour:' | t }} <strong class="text-primary">"{{ orange_trombino_service_term }}"</strong>
+        {% endblock %}
+      {% endembed %}
     </div>
     {#
     <div class="col-md-3 col-12">

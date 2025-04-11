@@ -32,10 +32,10 @@
       command: "sudo /usr/local/sbin/apache-app-deploy-after -n {{ app_name }}"
       register: output
 
-  #  - name: composer install
-  #    command: "sudo /usr/local/sbin/install-composer"
-  #    register: output
-  #    ignore_errors: yes
+#    - name: composer install
+#      command: "sudo /usr/local/sbin/install-composer"
+#      register: output
+#     ignore_errors: yes
 
   #  - name:  relance composer
   #    command: "sudo /usr/local/sbin/composer-install"

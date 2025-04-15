@@ -6,6 +6,7 @@ global:
 
   css:
     layout:
+      assets/css/orange-helvetica.min.css: {}
       assets/css/boosted.min.css: {}
       assets/css/swiper.min.css : {}
       assets/css/style.css: {}

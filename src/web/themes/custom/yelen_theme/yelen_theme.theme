@@ -33,7 +33,7 @@ function yelen_theme_preprocess_views_view_unformatted(&$variables)
  */
 function yelen_theme_page_attachments_alter(array &$attachments)
 {
-  $attachments['#attached']['library'][] = 'yelen_theme/ckeditor-local';
+  // $attachments['#attached']['library'][] = 'yelen_theme/ckeditor-local';
   // Vérifiez si la page correspond à un certain chemin.
   if (\Drupal::routeMatch()->getRouteName() === 'user.login' || \Drupal::routeMatch()->getRouteName() ==='view.frontpage.page_1') {
     // Ajoutez la bibliothèque CSS.

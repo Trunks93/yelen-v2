@@ -29,7 +29,7 @@ final class EvaluationContentForm extends FormBase
   public function buildForm(array $form, FormStateInterface $form_state, $nodeId = NULL): array
   {
 
-    $form['evaluation'] = [
+   /* $form['evaluation'] = [
       '#type' => 'radios',
       '#title' => $this->t('Evaluez ce contenu'),
       '#options' => [
@@ -44,8 +44,7 @@ final class EvaluationContentForm extends FormBase
       '#suffix' => '</div>',
       '#default_value' => '1',
       '#required' => TRUE,
-
-    ];
+    ];*/
 
     // Section pour le commentaire
     $form['comment'] = [
@@ -114,14 +113,14 @@ final class EvaluationContentForm extends FormBase
     $evaluation =\Drupal::service('evaluation.service')->getEvaluationOfUser($userid,$nodeId);
     if(empty($evaluation)){
       $eval = Evaluation::create(['bundle'=>'simple','label'=>'#'.$title,
-        'evaluation'=>$note,
+        'evaluation'=>2,
         'field_contenu'=>$content,
         'utility'=>"none",
         'description'=>$description]);
       $eval->save();
     }else{
       $eval = current($evaluation);
-      $eval->set('evaluation',$note);
+      $eval->set('evaluation',2);
       $eval->set('description',$description);
       $eval->save();
     }

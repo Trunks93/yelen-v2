@@ -116,6 +116,8 @@
     {% endif %}
 
     <div{{ content_attributes.addClass('node__content') }}>
+      {{ content }}
+      {#
       {{ content.field_image }}
       {{ content.body }}
       {{ content.field_categorie_process_metier }}
@@ -137,6 +139,7 @@
       {{ content.field_direction}}
       {{ content.field_documents }}
       {{ content.field_document }}
+      #}
       {# content.field_image }}
       {% if content['body']['#object'] is defined and content['body']['#object'].type.value[0]['target_id'] != 'page'  %}
         <hr>

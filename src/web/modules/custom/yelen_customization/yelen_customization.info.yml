@@ -1,0 +1,5 @@
+name: 'Yelen Personnalisation'
+type: module
+description: 'Un module pour personnaliser la plateforme de façon générale. Cela va des fonctionnalités natives aux fonctionnalités rajoutées en passant par l&#039;interface utilisateur'
+package: Custom
+core_version_requirement: ^10 || ^11

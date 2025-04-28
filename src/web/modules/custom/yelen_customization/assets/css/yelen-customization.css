@@ -1,0 +1,5 @@
+@import "../../../../../themes/custom/yelen_theme/assets/css/orange-helvetica.min.css";
+body{
+  font-family: var(--bs-body-font-family), sans-serif;
+  font-synthesis: none;
+}

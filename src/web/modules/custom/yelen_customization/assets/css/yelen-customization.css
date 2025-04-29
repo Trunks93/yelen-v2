@@ -1,5 +1,8 @@
 @import "../../../../../themes/custom/yelen_theme/assets/css/orange-helvetica.min.css";
 body{
+  --bs-font-sans-serif:HelvNeueOrange/*rtl:insert:Arabic*/,"Helvetica Neue",Helvetica,"Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  --bs-font-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  --bs-body-font-family:var(--bs-font-sans-serif);
   font-family: var(--bs-body-font-family), sans-serif;
   font-synthesis: none;
 }

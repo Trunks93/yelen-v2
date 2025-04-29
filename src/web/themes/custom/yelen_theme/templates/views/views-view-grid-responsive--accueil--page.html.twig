@@ -43,6 +43,10 @@
 
 <h3 class="orange-yelen-title">{{view.storage.display('default')['display_options']['title']}}</h3>
 
+<div>
+
+</div>
+
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
   {% for item in items %}
     <div class="home views-view-responsive-grid__item" style="border: solid 2px #ececec">
@@ -54,7 +58,14 @@
        </a>
       </div>
       <div class="home-body views-view-responsive-grid__item-inner p-2">
-        <p class="mb-1 description-simple">{{ item.content['body']['#object'].body.value|raw }}</p>
+        <p class="mb-1 description-simple">
+          {% if item.content['field_liste_des_contenues']['#object'].field_liste_des_contenues.value != null %}
+            {{ drupal_view(item.content['field_liste_des_contenues']['#object'].field_liste_des_contenues.value,'block_1') }}
+            {% else %}
+              {{ item.content['body']['#object'].body.value|raw }}
+          {% endif %}
+
+        </p>
         <div class="d-flex home-link">
           <span style="color:#ff7900;font-weight: bold;font-size:15px;padding-right:5px;">+</span>
           {{ item.content['field_lien'] }}

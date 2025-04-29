@@ -1314,8 +1314,7 @@ a.hover-orange:hover {
 .swiper {
   width: 800px;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
 }
 
 .swiper-slide {

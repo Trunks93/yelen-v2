@@ -8,7 +8,7 @@ class Constante
 {
   const ADMINISTRATEUR = "admin";
   const UTILISATEUR = "user";
-  const UNAUTHORIZED_NODES = ['article', 'page', 'forum', 'sujet', 'a_la_une', 'popup'];
+  const UNAUTHORIZED_NODES = ['article', 'page', 'forum', 'sujet', 'a_la_une', 'popup','application'];
 
   const PUBLISHED = 'published';
   const DRAFT = 'draft';

@@ -1,0 +1,5 @@
+admin_styling:
+  version: 1.x
+  css:
+    theme:
+      assets/css/yelen-customization.css: {}

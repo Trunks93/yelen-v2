@@ -27,24 +27,20 @@
 
     - name: Deploy App folder to htdocs
       command: "sudo /usr/local/sbin/apache-app-deploy -n {{ app_name }} -f {{ tmp_dir }}/{{ src_archive_file }}"
-    
-    - name: Install composer dependencies
-      shell: |
-        sudo bash -c "export COMPOSER_ALLOW_SUPERUSER=1 && cd /var/www/{{ app_name }}/htdocs/ && /usr/local/bin/composer install --no-interaction --no-scripts"
 
     - name: Execute after deploy script
       command: "sudo /usr/local/sbin/apache-app-deploy-after -n {{ app_name }}"
       register: output
 
-#    - name: composer install
-#      command: "sudo /usr/local/sbin/install-composer"
-#      register: output
-#     ignore_errors: yes
+    - name: composer install
+      command: "sudo /usr/local/sbin/install-composer"
+      register: output
+      ignore_errors: yes
 
-  #  - name:  relance composer
-  #    command: "sudo /usr/local/sbin/composer-install"
-  #    register: output
-  #    ignore_errors: yes
+    - name:  relance composer
+      command: "sudo /usr/local/sbin/composer-install"
+      register: output
+      ignore_errors: yes
 
     - name: Cleanup
       file:

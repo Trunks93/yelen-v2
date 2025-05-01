@@ -156,7 +156,7 @@ build-php:
     - cd ${SRC_DIR}
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
     - composer self-update   $COMPOSER_VERSION
-    - php -d memory_limit=-1 /usr/bin/composer install --ignore-platform-reqs --no-dev --prefer-dist --no-interaction --no-scripts
+    - php -d memory_limit=-1 /usr/bin/composer install --ignore-platform-reqs --prefer-dist --no-scripts
     # - tar czf ../ansible/${SRC_ARCHIVE_FILE} --exclude='.env.*'  --exclude='.git' --exclude='node_modules' .
     - tar -acf vendor.tar.gz vendor
   artifacts:
@@ -192,7 +192,8 @@ build-php:
 .deploy:
   stage: deploy
   tags:
-    - oci-simswp-prod
+    # - oci-simswp-prod
+    - ansible
   image: fs0ci3ty/centos7-ansible-new
   #ansible/centos7-ansible
 

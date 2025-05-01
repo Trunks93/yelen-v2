@@ -157,7 +157,6 @@ build-php:
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
     - composer self-update   $COMPOSER_VERSION
     - php -d memory_limit=-1 /usr/bin/composer install --ignore-platform-reqs --prefer-dist --no-dev --optimize-autoloader --no-scripts
-    - grep RemoveCheckToStringNodeVisitor vendor/composer/autoload_classmap.php #A retirer. Juste pour le bug sur la dev
     # - tar czf ../ansible/${SRC_ARCHIVE_FILE} --exclude='.env.*'  --exclude='.git' --exclude='node_modules' .
     - tar -acf vendor.tar.gz vendor
   artifacts:

@@ -179,7 +179,6 @@
     "scripts": {
         "post-install-cmd": [
             "@drush:cache-clear",
-            "@drush:updatedb",
             "@drush:delete-vendor"
         ],
         "post-update-cmd": [

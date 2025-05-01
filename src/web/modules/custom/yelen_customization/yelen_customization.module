@@ -10,6 +10,6 @@
  */
 function yelen_customization_page_attachments(array &$attachments) {
   if (\Drupal::service('router.admin_context')->isAdminRoute()) {
-    $attachments['#attached']['library'][] = 'yelen_customization/admin_styling';
+    $attachments['#attached']['library'][] = 'yelen_customization/admin_assets';
   }
 }

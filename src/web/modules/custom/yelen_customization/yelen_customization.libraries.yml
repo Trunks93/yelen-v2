@@ -1,5 +1,9 @@
-admin_styling:
+admin_assets:
   version: 1.x
   css:
     theme:
       assets/css/yelen-customization.css: {}
+
+  js:
+    assets/js/yelen.js: {}
+

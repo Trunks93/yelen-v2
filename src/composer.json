@@ -178,8 +178,8 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "@drush:cache-clear",
-            "@drush:delete-vendor"
+            "@composer:dump-autoload",
+            "@drush:cache-clear"
         ],
         "post-update-cmd": [
             "@drush:cache-clear"
@@ -193,11 +193,8 @@
         "drush:uninstall-gin-admin-theme": [
             "php ./vendor/bin/drush thun gin"
         ],
-        "drush:updatedb": [
-            "php ./vendor/bin/drush updatedb -y"
-        ],
-        "drush:delete-vendor": [
-            "rm -rf ./vendor"
+        "composer:dump-autoload": [
+            "php ./composer dump-autoload -o"
         ],
         "drush:entity-update": [
             "php ./vendor/bin/drush entity:updates"

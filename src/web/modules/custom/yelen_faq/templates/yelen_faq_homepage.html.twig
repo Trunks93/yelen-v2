@@ -1,7 +1,8 @@
+{% import '@yelen_theme/macros/yelen-section-title.twig' as title %}
 {{ attach_library('yelen_faq/faq_yelen_librairies') }}
 <div id="faq-block">
 <div class="bloc-offre">
-  <h2 class="orange-yelen-title">Foire aux Questions</h2>
+  {{ title.render('Foire aux Questions', 'h2', title_attributes) }}
 </div>
 
 <h3 class="mb-2">Vos Questions sur les réseaux</h3>

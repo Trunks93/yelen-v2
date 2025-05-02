@@ -458,7 +458,9 @@ Bouton voir plus views
   color: black;
   background-color: white;
 }
-
+.link-title{
+  text-decoration: none;
+}
 .card-title {
   color: #ff7900;
   font-size: 30px;
@@ -1314,8 +1316,7 @@ a.hover-orange:hover {
 .swiper {
   width: 800px;
   height: auto;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
 }
 
 .swiper-slide {

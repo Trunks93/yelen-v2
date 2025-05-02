@@ -56,7 +56,9 @@
       {% set title = item.content['#row']._entity.title.value %}
 
       <div class="card-body views-view-responsive-grid__item-inner">
-        <h2 class="card-title"> {{ title|capitalize }}</h2>
+        <a class="link-title" href="/node/{{ item.content['#row']._entity.nid.value }}">
+          <h2 class="card-title">{{ title|capitalize }}</h2>
+        </a>
         <p class="card-text mb-4">{{ truncated_text|raw }}</p>
         <a class="btn btn-inverse btn-primary btn-voir-plus" href="/node/{{ item.content['#row']._entity.nid.value }}">
           Voir plus

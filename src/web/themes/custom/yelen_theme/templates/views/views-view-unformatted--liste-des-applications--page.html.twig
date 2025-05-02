@@ -35,10 +35,16 @@
   ]
   %}
 
+  {% set image_entity = row['content']['#row']._entity.field_image %}
   <div{{ row.attributes.addClass(row_classes) }}>
     <div class="row">
       <div class="bloc-img">
-        <img class="petite-icon img-fluid" src="/{{ directory }}/assets/images/internet-et-fibre-newAccueil.png"  alt="">
+        {% if image_entity.entity.uri != null %}
+          {% set image = file_url(image_entity.entity.uri.value) %}
+          <img class="petite-icon img-fluid" src="{{ image }}"  alt="">
+        {% else %}
+          <img class="petite-icon img-fluid" src="/{{ directory }}/assets/images/internet-et-fibre-newAccueil.png"  alt="">
+        {% endif %}
       </div>
       <div class="bloc-txt">
         <a href="{{ row['content']['#row']._entity.field_lien.value[0]['uri'] }}" target="_blank" class="text-decoration-none hover-orange">

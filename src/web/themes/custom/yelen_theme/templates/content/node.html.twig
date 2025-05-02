@@ -117,7 +117,7 @@
     {% endif %}
 
     <div{{ content_attributes.addClass('node__content') }}>
-      {{ content }}
+      {{ content |without('field_liste_de_diffusion') }}
       {#
       {{ content.field_image }}
       {{ content.body }}

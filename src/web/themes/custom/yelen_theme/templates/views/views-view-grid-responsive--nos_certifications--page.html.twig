@@ -50,11 +50,9 @@
       {% set title = item.content['#row']._entity.title.value %}
 
       <div class="card-body views-view-responsive-grid__item-inner">
-        <h2 class="card-title">
           <a href="/node/{{item.content['#row']._entity.nid.value }}" class="text-primary">
-            {{ title|capitalize }}
+             <h2 class="card-title">{{ title|capitalize }}</h2>
           </a>
-        </h2>
         <p class="card-text mb-4">{{ truncated_text|raw }}</p>
 
         {% set lien = item.content['#row']._entity.field_lien.value[0].uri %}

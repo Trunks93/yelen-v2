@@ -58,7 +58,9 @@
       {% set title = item.content['#row']._entity.title.value %}
 
       <div class="card-body views-view-responsive-grid__item-inner">
-        <h2 class="card-title"> {{ title|capitalize }}</h2>
+        <a class="link-title" target="_blank" href="{{ fileValue }}">
+          <h2 class="card-title"> {{ title|capitalize }}</h2>
+        </a>
         <p class="card-text mb-4">{{ truncated_text|raw }}</p>
         {% set file = item.content['#row']._entity.field_document %}
         {% set fileValue = file_url(file.entity.uri.value) %}

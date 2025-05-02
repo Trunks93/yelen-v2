@@ -458,7 +458,9 @@ Bouton voir plus views
   color: black;
   background-color: white;
 }
-
+.link-title{
+  text-decoration: none;
+}
 .card-title {
   color: #ff7900;
   font-size: 30px;

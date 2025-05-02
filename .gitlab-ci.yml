@@ -211,7 +211,7 @@ build-php:
     - tar czf ../ansible/${SRC_ARCHIVE_FILE} --exclude='.env.*' --exclude='.git' --exclude='node_modules' .
     - cd ../ansible
     - ansible-playbook deploy.yml -i inventory -u deploy -l  $ENV -e "app_name=${APP_NAME} src_archive_file=${SRC_ARCHIVE_FILE} bin_archive_file=${BIN_ARCHIVE_FILE}"
-    - chown -R apache:apache ${CI_PROJECT_DIR}/${SRC_DIR}
+    #- chown -R apache:apache ${CI_PROJECT_DIR}/${SRC_DIR}
 
 deploy-develop:
   extends: .deploy

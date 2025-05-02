@@ -650,6 +650,14 @@ a.hover-orange:hover {
   font-weight: normal !important;
 }
 
+.home-body a{
+  text-decoration: none;
+}
+
+.home-body a:hover{
+  color:#ff7900;
+}
+
 /* styling chiffre cle bloc */
 .view-id-hero_slider {
   margin-bottom: 0.3px

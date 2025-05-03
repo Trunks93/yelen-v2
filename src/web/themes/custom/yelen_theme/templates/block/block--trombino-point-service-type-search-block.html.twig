@@ -36,7 +36,7 @@
 <div class="block-trombino-region--type--filter-wrapper">
   <div{{ attributes.addClass(classes) }}>
     {% if label %}
-      <h3{{ title_attributes }}>{{ label }}</h3>
+      {{ title.render(label, 'h3', title_attributes) }}
     {% endif %}
     {{ title_suffix }}
     {% block content %}

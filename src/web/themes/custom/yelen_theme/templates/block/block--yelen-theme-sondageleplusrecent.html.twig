@@ -37,7 +37,7 @@
 <div{{ attributes.addClass(classes) }}>
   {{ title_prefix }}
   {% if label %}
-    <h3{{ title_attributes.addClass('orange-yelen-title') }}>Sondage</h3>
+    {{ title.render('Sondage', 'h3', title_attributes.addClass(titleClasses)) }}
   {% endif %}
   {{ title_suffix }}
   {% block content %}

@@ -1,3 +1,4 @@
+{% import '@yelen_theme/macros/yelen-section-title.twig' as title %}
 {#
 /**
  * @file
@@ -40,7 +41,7 @@
   </div>
   {{ title_prefix }}
   {% if label %}
-    <h2{{ title_attributes }}>{{ label }}</h2>
+    {{ title.render(label, 'h2', title_attributes) }}
   {% endif %}
   {{ title_suffix }}
   {% block content %}

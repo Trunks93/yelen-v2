@@ -1415,9 +1415,13 @@ a.hover-orange:hover {
 }
 
 .block-trombino-region--type--filter-wrapper form .views-exposed-form__item {
-  flex: 1 1 100%;
+  flex: 1 1 auto;
   min-width: 20rem;
   box-sizing: border-box;
+}
+.block-trombino-region--type--filter-wrapper form .views-exposed-form select.form-select,
+.block-trombino-region--type--filter-wrapper form .views-exposed-form input{
+  width: 100%;
 }
 
 @media (min-width: 37.5rem) { /* 600px */

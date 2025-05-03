@@ -182,7 +182,8 @@
             "COMPOSER_ALLOW_SUPERUSER=1 php -d memory_limit=-1 /usr/bin/composer install"
         ],
         "post-install-cmd": [
-            "@drush:cache-clear"
+            "@drush:cache-clear",
+            "@composer-install-cmd"
         ],
         "post-update-cmd": [
             "@drush:cache-clear"

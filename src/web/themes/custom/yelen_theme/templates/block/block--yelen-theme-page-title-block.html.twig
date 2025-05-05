@@ -11,11 +11,9 @@
 
  %}
 <div{{ attributes.addClass(classes) }}>
-  Before Title
+  {{ title_prefix }}
   {% if label %}
-    {#<h3{{ title_attributes.addClass(titleClasses) }}>{{ label }}</h3>#}
     {{ title.render(label, 'h3', title_attributes.addClass(titleClasses)) }}
-    Hello Title
   {% endif %}
   {{ title_suffix }}
   {% block content %}

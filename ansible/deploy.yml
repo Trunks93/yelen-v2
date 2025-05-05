@@ -31,6 +31,9 @@
     - name: Install composer dependencies
       shell: |
         sudo bash -c "export COMPOSER_ALLOW_SUPERUSER=1 && cd /var/www/{{ app_name }}/htdocs/ && /usr/local/bin/composer install --no-interaction --no-scripts"
+    
+    - name: Change ownership of htdocs directory to apache user
+      command: "sudo chown apache:apache -R /var/www/{{ app_name }}/htdocs/"
 
 #    - name: composer install
 #      command: "sudo /usr/local/sbin/composer-install"

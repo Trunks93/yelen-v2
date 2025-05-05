@@ -91,6 +91,7 @@
         "drupal/video": "^3.0",
         "drupal/views_data_export": "^1.4",
         "drupal/views_exposed_filter_blocks": "^1.4",
+        "drupal/views_year_filter": "^2.1",
         "drupal/webform": "^6.2",
         "drupal/webform_quiz": "^2.1",
         "drupal/workbench_email": "^3.0",

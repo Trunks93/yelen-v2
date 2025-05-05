@@ -3,6 +3,7 @@
 namespace Drupal\yelen_customization\Plugin\views\filter;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\Annotation\ViewsFilter;
 use Drupal\views\Plugin\views\filter\FilterPluginBase;
 
 /**
@@ -10,7 +11,7 @@ use Drupal\views\Plugin\views\filter\FilterPluginBase;
  *
  * @ViewsFilter("year_filter")
  */
-class YearFilter extends FilterPluginBase {
+final class YearFilter extends FilterPluginBase {
 
   /**
    * {@inheritdoc}

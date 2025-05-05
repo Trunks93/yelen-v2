@@ -157,7 +157,8 @@ body{
     bottom: 5%;
     gap: 5px;
     .form-item--search-api-fulltext.views-exposed-form__item,
-    .form-item--service-point.views-exposed-form__item{
+    .form-item--service-point.views-exposed-form__item,
+    .form-item--trombino-search-key.views-exposed-form__item{
       flex: 0 0 70%;
       margin: 0;
       align-self: stretch;

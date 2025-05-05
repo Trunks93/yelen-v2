@@ -650,6 +650,13 @@ a.hover-orange:hover {
   font-weight: normal !important;
 }
 
+.home-body a{
+  text-decoration: none;
+}
+
+.home-body a:hover{
+  color:#ff7900;
+}
 /* styling chiffre cle bloc */
 .view-id-hero_slider {
   margin-bottom: 0.3px
@@ -1401,7 +1408,28 @@ a.hover-orange:hover {
   display: none;
 }
 
-/* Custom block for trombino */
+.block-trombino-region--type--filter-wrapper form {
+  display: flex;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.block-trombino-region--type--filter-wrapper form .views-exposed-form__item {
+  flex: 1 1 auto;
+  min-width: 20rem;
+  box-sizing: border-box;
+}
+.block-trombino-region--type--filter-wrapper form .views-exposed-form select.form-select,
+.block-trombino-region--type--filter-wrapper form .views-exposed-form input{
+  width: 100%;
+}
+
+@media (min-width: 37.5rem) { /* 600px */
+  .block-trombino-region--type--filter-wrapper form .views-exposed-form__item {
+    flex: 1 1 calc(50% - 1rem);
+  }
+}
+/* End Custom block for trombino */
 
 .page-user-login {
   .ui-dialog {

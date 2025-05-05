@@ -91,6 +91,7 @@
         "drupal/video": "^3.0",
         "drupal/views_data_export": "^1.4",
         "drupal/views_exposed_filter_blocks": "^1.4",
+        "drupal/views_year_filter": "^2.1",
         "drupal/webform": "^6.2",
         "drupal/webform_quiz": "^2.1",
         "drupal/workbench_email": "^3.0",
@@ -178,12 +179,8 @@
         }
     },
     "scripts": {
-        "composer-install-cmd": [
-            "COMPOSER_ALLOW_SUPERUSER=1 php -d memory_limit=-1 /usr/bin/composer install"
-        ],
         "post-install-cmd": [
-            "@drush:cache-clear",
-            "@composer-install-cmd"
+            "@drush:cache-clear"
         ],
         "post-update-cmd": [
             "@drush:cache-clear"

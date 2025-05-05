@@ -13,3 +13,22 @@ function yelen_customization_page_attachments(array &$attachments) {
     $attachments['#attached']['library'][] = 'yelen_customization/admin_assets';
   }
 }
+
+
+/**
+ * Implements hook_views_data().
+ */
+function yelen_customization_views_data() {
+  $data = [];
+
+  $data['views']['year_filter'] = [
+    'title' => t('Filtre par année de création - Filtre personnalisé'),
+    'filter' => [
+      'title' => t('Filtre par année de création - Filtre personnalisé'),
+      'field' => 'created',
+      'id' => 'year_filter',
+    ],
+  ];
+
+  return $data;
+}

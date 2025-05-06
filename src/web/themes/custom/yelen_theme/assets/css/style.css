@@ -31,6 +31,7 @@ OVERRIDE CLARO
  */
 :root {
   --bs-primary: #ff7900;
+  --bs-primary-rgb: 255,121,0;
   --color-absolutezero: var(--bs-primary);
 }
 

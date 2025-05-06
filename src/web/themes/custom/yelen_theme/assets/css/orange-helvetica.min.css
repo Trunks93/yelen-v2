@@ -17,57 +17,52 @@
 /* YELEN HELVETICA CUSTOM FONTS */
 
 @font-face{
-  font-family: 'Helvetica 35 Thin', sans-serif;
+  font-family: 'Helvetica 35 Thin';
   font-style: normal;
   font-weight: 100;
-  src: url("../fonts/helvetica-neue/Helvetica 35 Thin.ttf") format("truetype");
-  font-display:swap
+  src: url("../fonts/helvetica-neue/Helvetica_35_Thin.ttf") format("truetype");
 }
 
 @font-face{
-  font-family: 'Helvetica 55 Roman', sans-serif;
+  font-family: 'Helvetica 55 Roman';
   font-style: normal;
   font-weight: 400;
-  src: url("../fonts/helvetica-neue/Helvetica 55 Roman.ttf") format("truetype");
-  font-display:swap
+  src: url("../fonts/helvetica-neue/Helvetica_55_Roman.ttf") format("truetype");
 }
 
 @font-face{
-  font-family: 'Helvetica 56 Italic', sans-serif;
+  font-family: 'Helvetica 56 Italic';
   font-style: italic;
   font-weight: 400;
-  src: url("../fonts/helvetica-neue/Helvetica 56 Italic.ttf") format("truetype");
-  font-display:swap
+  src: url("../fonts/helvetica-neue/Helvetica_56_Italic.ttf") format("truetype");
 }
 
 @font-face{
-  font-family: 'Helvetica 75 Bold', sans-serif;
+  font-family: 'Helvetica 75 Bold';
   font-style: normal;
   font-weight: 700;
-  src: url("../fonts/helvetica-neue/Helvetica 75 Bold.ttf") format("truetype");
-  font-display:swap
+  src: url("../fonts/helvetica-neue/Helvetica_75_Bold.ttf") format("truetype");
 }
 
 @font-face{
-  font-family: 'Helvetica 45 Light', sans-serif;
+  font-family: 'Helvetica 45 Light';
   font-style: normal;
   font-weight: 300;
-  src: url("../fonts/helvetica-neue/Helvetica 45 Light.ttf") format("truetype");
-  font-display:swap
+  src: url("../fonts/helvetica-neue/Helvetica_45_Light.ttf") format("truetype");
 }
 
 @font-face{
-  font-family: 'Helvetica 46 Light Italic', sans-serif;
+  font-family: 'Helvetica 46 Light Italic';
   font-style: italic;
   font-weight: 300;
-  src: url("../fonts/helvetica-neue/Helvetica 46 Light Italic.ttf") format("truetype");
-  font-display:swap
+  src:
+    url("../fonts/helvetica-neue/Helvetica 46 Light Italic.woff2") format("woff2");
+    url("../fonts/helvetica-neue/Helvetica_46_Light_Italic.ttf") format("truetype");
 }
 
 @font-face{
-  font-family: 'Helvetica 65 Medium', sans-serif;
+  font-family: 'Helvetica 65 Medium';
   font-style: normal;
   font-weight: 500;
-  src: url("../fonts/helvetica-neue/Helvetica 65 Medium.ttf") format("truetype");
-  font-display:swap
+  src: url("../fonts/helvetica-neue/Helvetica_65_Medium.ttf") format("truetype");
 }

@@ -30,6 +30,7 @@ END BOOSTRAP OVERRIDE
 OVERRIDE CLARO
  */
 :root {
+  --bs-primary: #ff7900;
   --color-absolutezero: var(--bs-primary);
 }
 
@@ -1408,20 +1409,30 @@ a.hover-orange:hover {
   display: none;
 }
 
-.block-trombino-region--type--filter-wrapper form {
+.block-trombino-region--type--filter-wrapper form,
+.block-filter-trombino-wrapper form{
   display: flex;
   max-width: 100%;
   flex-wrap: wrap;
 }
 
-.block-trombino-region--type--filter-wrapper form .views-exposed-form__item {
+.block-trombino-region--type--filter-wrapper form .views-exposed-form__item,
+.block-filter-trombino-wrapper form .views-exposed-form__item{
   flex: 1 1 auto;
   min-width: 20rem;
   box-sizing: border-box;
 }
+
 .block-trombino-region--type--filter-wrapper form .views-exposed-form select.form-select,
-.block-trombino-region--type--filter-wrapper form .views-exposed-form input{
+.block-trombino-region--type--filter-wrapper form .views-exposed-form input,
+.block-filter-trombino-wrapper form .views-exposed-form select.form-select,
+.block-filter-trombino-wrapper form .views-exposed-form input{
   width: 100%;
+}
+
+.block-filter-trombino-wrapper form label.form-item__label,
+.block-trombino-region--type--filter-wrapper form label.form-item__label{
+  display: block;
 }
 
 @media (min-width: 37.5rem) { /* 600px */

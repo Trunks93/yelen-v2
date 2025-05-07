@@ -1458,3 +1458,34 @@ a.hover-orange:hover {
   max-height: 325px;
   object-fit: cover;
 }
+/**
+styling page
+ */
+
+.label-orange{
+  background-color: var(--bs-primary);
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+
+.label-dark{
+  background-color: #000000;
+  padding: 15px;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 10px;
+  margin-top: 20px;
+  color:var(--bs-primary);
+}
+
+
+
+.icon-orange{
+  color: var(--bs-primary);
+  width: 25px;
+  height: auto;
+}

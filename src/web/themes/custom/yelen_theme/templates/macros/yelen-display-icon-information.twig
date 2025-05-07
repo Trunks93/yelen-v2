@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * VARIABLE AVAILABLE
+ * - field : il s'agit du champ complet (content.field_...) pour l'instant les champs pris en charge
+ * sont les champs Date et texte brut
+ * - iconeName: il s'agit de la class de l'icone au niveau de font Awesome (fa fa-calendar, fa fa-trash ...)
+ *
+ *
+ *
+ *
+ *
+ *
+ *
+ */
+#}
+{% macro render(field, iconName) %}
+  {{ dump(field) }}
+
+  <h3>{{ field['#title'] }}</h3>
+
+  <div class="d-flex align-center align-content-between">
+
+    <i class="{{ iconName }} icon-orange fa-xl" style="margin-right: 5px">&nbsp;</i>
+    {% if field['#field_type']=='string' %}
+
+      <span style="font-size: 18px">{{ field[0]['#context'].value }}</span>
+
+    {% elseif field['#field_type']=='datetime' %}
+
+      <span style="font-size: 18px">{{ field[0]['#text']}}</span>
+
+    {% elseif  field['#field_type']=='integer' %}
+      <span style="font-size: 18px">{{ field[0]['#markup']}}</span>
+    {% endif %}
+  </div>
+
+{% endmacro %}

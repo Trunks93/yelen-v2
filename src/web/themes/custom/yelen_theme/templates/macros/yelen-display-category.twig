@@ -1,0 +1,12 @@
+{% macro render(field,className) %}
+{% set classe = className|default('label-orange') %}
+  {% if field['#field_type'] == "entity_reference" %}
+    <div class="{{ classe }} d-inline-block">
+      {{ field[0]["#title"]|capitalize }}
+    </div>
+  {% else %}
+  <div class="{{ classe }} d-inline-block">
+      {{ field[0]["#context"].value|capitalize }}
+  </div>
+  {% endif %}
+{% endmacro %}

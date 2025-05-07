@@ -1,0 +1,9 @@
+{% macro render(link) %}
+
+  {% if link[0]["#title"] and link.0['#url'].toString() %}
+    <a class="btn btn-primary m-3" href="{{ link.0['#url'].toString() }}">
+      {{ link.0["#title"]|capitalize }}
+    </a>
+  {% endif %}
+
+{% endmacro %}

@@ -68,7 +68,7 @@ stages:
     #      - |
 
     #        if [[ -f ${SRC_DIR}/package.json ]]
-    #        then
+  #        then
   #           cd ${SRC_DIR}
   #           rm -f package-lock.json
   #           ${NODEJS_PACKAGE_MANAGER} install

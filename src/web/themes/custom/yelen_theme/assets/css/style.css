@@ -1502,13 +1502,13 @@ styling page
   height: 500px;
 }
 
-.field--name-field-listes-videos .field__items .field__item >.field--name-field-description{
+.field--name-field-listes-videos .field__item .field--name-field-description{
   margin-top: 10px;
   margin-bottom: 10px;
   &::after{
     content: '';
     display: block;
-    width: 100%;
+    width: 91%;
     border: dashed 1px var(--bs-primary);
     margin: 30px 0;
   }

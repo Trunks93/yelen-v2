@@ -1498,6 +1498,39 @@ styling page
 }
 
 .field--name-field-media-video-file video{
-  width: 1090px;
+  width: auto;
   height: 500px;
+}
+.listes-videos{
+
+}
+
+
+.field--name-field-autre-videos .field__items .field__item >.field--name-field-description{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  &::after{
+    content: '';
+    display: block;
+    width: 100%;
+    border: dashed 1px var(--bs-primary);
+    margin: 30px 0;
+  }
+}
+
+.swiper-pagination-bullet-active{
+  color: var(--bs-primary) !important;
+  background: var(--bs-primary) !important;
+}
+
+.swiper-button-next,.swiper-button-prev{
+  color: var(--bs-primary) !important;
+}
+
+.swiper-button-next:after,.swiper-button-prev:after{
+  color: var(--bs-primary) !important;
+}
+
+.swiper-button-next,.swiper-button-prev{
+  background-image: none !important;
 }

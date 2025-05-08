@@ -1501,12 +1501,8 @@ styling page
   width: auto;
   height: 500px;
 }
-.listes-videos{
 
-}
-
-
-.field--name-field-autre-videos .field__items .field__item >.field--name-field-description{
+.field--name-field-listes-videos .field__items .field__item >.field--name-field-description{
   margin-top: 10px;
   margin-bottom: 10px;
   &::after{

@@ -23,7 +23,7 @@
   {% if content %}
     {% set situation_geographique = content.situation_geographique ? content.situation_geographique[0]['#context']['value'] : 'N/A' %}
     {% set concept = content.concept ? content.concept[0]['#title'] : 'N/A' %}
-    {% set page_title = content.type[0]['#title'] ~ content.name[0]['#context']['value'] %}
+    {% set page_title = content.type[0]['#title'] ~ ' ' ~ content.name[0]['#context']['value'] %}
     <div class="row">
       <div class="{{ trombino_point_service_images|length > 0 ? 'col-md-6 col-12' : 'col-12' }}">
         {{ title.render(page_title, 'h2', title_attributes) }}

@@ -138,8 +138,9 @@
 
 
     {% if content.field_prix %}
+      {% set price_info = content.field_prix[0]['#markup']|split(' ') %}
       <div class="float-end texte-orange" style="margin-top: 20px; font-size: 18px;">
-        <b>{{ content.field_prix[0]['#markup'] }}</b>
+        <b>{{ price_info[0]|number_format(0, '.', ' ') }} {{ price_info[1] }}</b>
       </div>
     {% endif %}
 

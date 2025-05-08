@@ -1490,3 +1490,15 @@ styling page
   width: 25px;
   height: auto;
 }
+
+.field__label{
+  font-size: 25px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.field--name-field-media-video-file video{
+  width: 1090px;
+  height: 500px;
+}

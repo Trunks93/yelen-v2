@@ -107,8 +107,10 @@ class FaqService
         'nid' => $faq->id(),
         'title' => $faq->getTitle(),
         'reponse' => $faq->field_reponse->value,
+        'documents' => $faq->field_documents,
       ];
     }
+
 
     return $preparedFaqs;
   }

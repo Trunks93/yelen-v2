@@ -1498,7 +1498,7 @@ styling page
 }
 
 .field--name-field-media-video-file video{
-  width: auto;
+  width: 90%;
   height: 500px;
 }
 
@@ -1508,7 +1508,7 @@ styling page
   &::after{
     content: '';
     display: block;
-    width: 91%;
+    width: 90%;
     border: dashed 1px var(--bs-primary);
     margin: 30px 0;
   }

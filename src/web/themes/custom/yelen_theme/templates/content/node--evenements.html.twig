@@ -139,8 +139,8 @@
       {{ content.body }}
 
       {{ link.render(content.field_lien) }}
-
-      {{ content |without('field_liste_de_diffusion','field_image','field_type_evenements','field_date_de_debut','field_date_de_fin','field_lieu','body','field_lien',) }}
+      <br/>
+      {{ content | without('field_liste_de_diffusion','field_image','field_type_evenements','field_date_de_debut','field_date_de_fin','field_lieu','body','field_lien',) }}
 
 
       {# content.field_image }}

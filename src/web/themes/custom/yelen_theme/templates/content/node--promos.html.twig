@@ -121,38 +121,56 @@
 
   <div{{ content_attributes.addClass('node__content') }}>
     {{ content.field_image }}
-    {{ badge.render(content.field_type_de_promo,"label-orange") }}
-    {{ badge.render(content.field_domaine,"label-dark") }}
+    {{ badge.render(content.field_domaine,"label-orange") }}
 
     {{ content.body }}
 
+    <br>
     {% if content.field_nom_prenom_chef_de_produit and content.field_contact_chef_de_produit %}
-      <div class="mt-3">
-        <div class="row">
-          <div class="col-6">
-            {{ iconField.render(content.field_nom_prenom_chef_de_produit,'fa fa-user') }}
-          </div>
-          <div class="col-6">
-            {{ iconField.render(content.field_contact_chef_de_produit,'fa fa-phone-alt') }}
-          </div>
-        </div>
-      </div>
-    {% endif %}
-    {% if content.field_nom_prenom_du_chef_seconda and content.field_contact_chef_secondaire %}
       <div class="mt-3 mb-3">
         <div class="row">
-          <div class="col-6">
-            {{ iconField.render(content.field_nom_prenom_du_chef_seconda,'fa fa-user') }}
-          </div>
-          <div class="col-6">
-            {{ iconField.render(content.field_contact_chef_secondaire,'fa fa-phone-alt') }}
-          </div>
+          {% if content.field_nom_prenom_chef_de_produit['#theme'] is defined %}
+            <div class="col-6">
+              {{ iconField.render(content.field_nom_prenom_chef_de_produit,'fa fa-user') }}
+            </div>
+          {% endif %}
+          {% if content.field_contact_chef_de_produit['#theme'] is defined %}
+            <div class="col-6">
+              {{ iconField.render(content.field_contact_chef_de_produit,'fa fa-phone') }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    {% endif %}
+    {% if content.field_nom_prenom_du_chef_second and content.field_contact_chef_secondaire %}
+      <div class="mt-3 mb-3">
+        <div class="row">
+          {% if content.field_nom_prenom_du_chef_second['#theme'] is defined %}
+            <div class="col-6">
+              {{ iconField.render(content.field_nom_prenom_du_chef_second,'fa fa-user') }}
+            </div>
+          {% endif %}
+          {% if content.field_contact_chef_secondaire['#theme'] is defined %}
+            <div class="col-6">
+              {{ iconField.render(content.field_contact_chef_secondaire,'fa fa-phone') }}
+            </div>
+          {% endif %}
         </div>
       </div>
     {% endif %}
 
 
-    {{ content|without('field_liste_de_diffusion','field_type_de_promo','field_image','body','field_univers','field_type_offre','field_nom_prenom_chef_de_produit','field_contact_chef_de_produit','field_contact_chef_secondaire','field_nom_prenom_du_chef_seconda','field_domaine') }}
+    {{ content|without('field_liste_de_diffusion',
+      'field_image',
+      'body',
+      'field_univers',
+      'field_type_offre',
+      'field_nom_prenom_chef_de_produit',
+      'field_contact_chef_de_produit',
+      'field_contact_chef_secondaire',
+      'field_nom_prenom_du_chef_second',
+      'field_domaine'
+    ) }}
 
 
     {# content.field_image }}

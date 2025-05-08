@@ -118,24 +118,21 @@
       </div>
     </footer>
   {% endif %}
+
   {% set category =  content.field_categorie_argumentaire ??
     content.field_categorie ??
     content.field_categorie_certification ??
     content.field_categorie_culture_client ??
-    content.field_types_de_point_service
+    content.field_types_de_point_service ??
+    content.field_categorie_process_metier ??
+    content.field_categorie_faq
   %}
 
   <div{{ content_attributes.addClass('node__content') }}>
     {{ content.field_image }}
-    {% if category != null %}
-      {{ badge.render(category,"label-orange") }}
-    {% endif %}
-    {% if content.field_marque %}
-      {{ badge.render(content.field_marque,"label-dark") }}
-    {% endif %}
-    {% if content.field_categorie_faq %}
-      {{ badge.render(content.field_categorie_faq,"label-orange") }}
-    {% endif %}
+    {{ badge.render(category,"label-orange") }}
+    {{ badge.render(content.field_marque,"label-dark") }}
+
 
     {% if content.field_prix %}
       <div class="float-end texte-orange" style="margin-top: 20px; font-size: 18px;">
@@ -143,26 +140,31 @@
       </div>
     {% endif %}
 
+    <br>
+
     {{ content.body }}
+
+    <br>
 
     {% if content.field_lien %}
       {{ link.render(content.field_lien) }}
     {% endif %}
 
-
-
+    <br>
     {{ content | without('field_categorie_faq',
       'field_marque',
       'field_prix',
+      'field_categorie',
       'field_categorie_culture_client',
       'field_categorie_certification',
       'field_categorie_argumentaire',
-      'field_categorie',
+      'field_categorie_process_metier',
+      'field_types_de_point_service',
       'field_liste_de_diffusion',
       'field_image',
       'body',
       'field_lien',
-      'field_types_de_point_service'
+      'field_couleur_entete'
     ) }}
 
 

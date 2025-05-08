@@ -1,12 +1,30 @@
 {% macro render(field,className) %}
-{% set classe = className|default('label-orange') %}
-  {% if field['#field_type'] == "entity_reference" %}
-    <div class="{{ classe }} d-inline-block">
-      {{ field[0]["#title"]|capitalize }}
-    </div>
-  {% else %}
-  <div class="{{ classe }} d-inline-block">
-      {{ field[0]["#context"].value|capitalize }}
-  </div>
-  {% endif %}
+    {% if field['#theme'] is defined %}
+        {% set classe = className|default('label-orange') %}
+        {% if field['#is_multiple'] == false %}
+            {% if field['#field_type'] == "entity_reference" %}
+                <div class="{{ classe }} d-inline-block">
+                    {{ field[0]["#title"]|capitalize }}
+                </div>
+            {% else %}
+                <div class="{{ classe }} d-inline-block">
+                    {{ field[0]["#context"].value|capitalize }}
+                </div>
+            {% endif %}
+        {% else %}
+            {% for key, item in field %}
+                {% if not (key starts with '#') %}
+                    {% if field['#field_type'] == "entity_reference" %}
+                        <div class="{{ classe }} d-inline-block">
+                            {{ field[key]["#title"]|capitalize }}
+                        </div>
+                    {% else %}
+                        <div class="{{ classe }} d-inline-block">
+                            {{ field[key]["#context"].value|capitalize }}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endif %}
 {% endmacro %}

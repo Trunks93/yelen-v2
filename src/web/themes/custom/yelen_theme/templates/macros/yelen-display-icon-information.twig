@@ -15,24 +15,25 @@
  */
 #}
 {% macro render(field, iconName) %}
-  {{ dump(field) }}
 
-  <h3>{{ field['#title'] }}</h3>
+    {% if field['#theme'] is defined %}
+        <h3>{{ field['#title'] }}</h3>
 
-  <div class="d-flex align-center align-content-between">
+        <div class="d-flex align-center align-content-between">
 
-    <i class="{{ iconName }} icon-orange fa-xl" style="margin-right: 5px">&nbsp;</i>
-    {% if field['#field_type']=='string' %}
+            <i class="{{ iconName }} icon-orange fa-xl" style="margin-right: 5px">&nbsp;</i>
+            {% if field['#field_type']=='string' %}
 
-      <span style="font-size: 18px">{{ field[0]['#context'].value }}</span>
+                <span style="font-size: 18px">{{ field[0]['#context'].value }}</span>
 
-    {% elseif field['#field_type']=='datetime' %}
+            {% elseif field['#field_type']=='datetime' %}
 
-      <span style="font-size: 18px">{{ field[0]['#text']}}</span>
+                <span style="font-size: 18px">{{ field[0]['#text'] }}</span>
 
-    {% elseif  field['#field_type']=='integer' %}
-      <span style="font-size: 18px">{{ field[0]['#markup']}}</span>
+            {% elseif  field['#field_type']=='integer' %}
+                <span style="font-size: 18px">{{ field[0]['#markup'] }}</span>
+            {% endif %}
+        </div>
     {% endif %}
-  </div>
 
 {% endmacro %}

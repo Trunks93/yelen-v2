@@ -38,21 +38,17 @@
  */
 #}
 {{ attach_library('yelen_theme/slick') }}
-{%
-  set classes = [
+{% set classes = [
   'field',
   'field--name-' ~ field_name|clean_class,
   'field--type-' ~ field_type|clean_class,
   'field--label-' ~ label_display,
   label_display == 'inline' ? 'clearfix',
-]
-%}
-{%
-  set title_classes = [
+] %}
+{% set title_classes = [
   'field__label',
   label_display == 'visually_hidden' ? 'visually-hidden',
-]
-%}
+] %}
 
 {% if label_hidden %}
   {% if multiple %}
@@ -69,19 +65,20 @@
 {% else %}
   <div{{ attributes.addClass(classes) }}>
     <div{{ title_attributes.addClass(title_classes) }}>{{ label }}</div>
+
     {% if multiple %}
-    <div class="field__items swiper mySwiper d-flex">
-      {% endif %}
-      <div class="swiper-wrapper">
-        {% for item in items %}
-          <div{{ item.attributes.addClass('field__item swiper-slide') }}>{{ item.content }}</div>
-        {% endfor %}
+      <div class="field__items swiper mySwiper d-flex">
+        {# endif #}
+        <div class="swiper-wrapper">
+          {% for item in items %}
+            <div{{ item.attributes.addClass('field__item swiper-slide') }}>{{ item.content }}</div>
+          {% endfor %}
+        </div>
+        {# if multiple #}
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
       </div>
-      {% if multiple %}
-      <div class="swiper-button-next"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
-    </div>
     {% endif %}
   </div>
 {% endif %}

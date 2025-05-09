@@ -283,8 +283,12 @@ function yelen_theme_preprocess_views_view_grid_responsive__astuce_fmi(array &$v
   $variables['categorie'] = _yelen_theme_get_taxonomy_terms('categorie_astuce');
   $variables['current_path']  = \Drupal::request()->getPathInfo();
   $variables['astuces'] = [];
+
   foreach ($variables['items'] as $item){
-    $variables['astuces'][$item['content']['#row']->_entity->field_categorie->getValue()[0]['target_id']][] = $item;
+    if(count( $item['content']['#row']->_entity->field_categorie->getValue()) >0){
+      $param = $item['content']['#row']->_entity->field_categorie->getValue()[0]['target_id'];
+      $variables['astuces'][$param][] = $item;
+    }
   }
 }
 

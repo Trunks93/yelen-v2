@@ -1549,3 +1549,8 @@ styling page
   color:  var(--bs-primary) !important;
   background:  #f0d5ca;
 }
+
+
+.views-exposed-form__item .form-element--type-text{
+  width: 48rem;
+}

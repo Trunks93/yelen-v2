@@ -410,6 +410,15 @@ dans le HTML
   color: white;
 }
 
+.multi-color:hover{
+  background-color: #595959 !important;
+
+  .field a {
+    color: white !important;
+  }
+
+}
+
 .button--primary {
   background-color: #ff7900 !important;
 }
@@ -760,7 +769,7 @@ a.hover-orange:hover {
 
 .flash_info_information {
   display: block;
-  animation: defilement 30s linear infinite; /*Animation */
+  animation: defilement 45s linear infinite; /*Animation */
   width: 80%;
   align-content: center;
 }
@@ -1492,8 +1501,8 @@ styling page
 
 .field__label{
   font-size: 25px;
-  margin-bottom: 10px;
-  margin-top: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
   font-weight: bold;
 }
 
@@ -1512,6 +1521,10 @@ styling page
     border: dashed 1px var(--bs-primary);
     margin: 30px 0;
   }
+}
+.field--name-field-videos video{
+  width: 100%;
+  height: auto;
 }
 
 .swiper-pagination-bullet-active{

@@ -1502,13 +1502,13 @@ styling page
 .field__label{
   font-size: 25px;
   margin-bottom: 20px;
-  margin-top: 20px;
+  margin-top: 60px;
   font-weight: bold;
 }
 
 .field--name-field-media-video-file video{
   width: 90%;
-  height: 500px;
+  height: auto;
 }
 
 .field--name-field-listes-videos .field__item .field--name-field-description{
@@ -1542,4 +1542,9 @@ styling page
 
 .swiper-button-next,.swiper-button-prev{
   background-image: none !important;
+}
+
+.is-horizontal .tabs__link:hover {
+  color:  var(--bs-primary) !important;
+  background:  #f0d5ca;
 }

@@ -84,6 +84,7 @@
                 <div id="item{{ loop.index + 1 }}" class="accordion-collapse collapse{{ loop.first ? ' show' : '' }}">
                   <div class="accordion-body">
                     {{ faq.reponse|raw }}
+                    <br/>
                     {% if faq.documents|length > 0 %}
                       <a href="/node/{{ faq.nid }}" class="btn btn-primary"> Voir plus</a>
                     {% endif %}

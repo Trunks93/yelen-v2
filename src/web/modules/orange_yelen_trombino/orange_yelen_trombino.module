@@ -119,10 +119,17 @@ function orange_yelen_trombino_page_attachments_alter(&$page) {
  * Implements hook_page_attachments().
  */
 function orange_yelen_trombino_page_attachments(array &$attachments) {
-  $username = \Drupal::currentUser()->getAccountName();
-  $user_email = \Drupal::currentUser()->getEmail();
-  $attachments['#attached']['drupalSettings']['orange_yelen_trombino']['username'] = $username;
-  $attachments['#attached']['drupalSettings']['orange_yelen_trombino']['user_email'] = $user_email;
+  $current_uid = \Drupal::currentUser()->id();
+  if ($current_uid && $current_uid != 0) {
+    $account = \Drupal\user\Entity\User::load($current_uid);
+    if ($account) {
+      $username = $account->getAccountName();
+      $user_email = $account->getEmail();
+      $attachments['#attached']['drupalSettings']['orange_yelen_trombino']['username'] = $username;
+      $attachments['#attached']['drupalSettings']['orange_yelen_trombino']['user_email'] = $user_email;
+    }
+  }
+
 }
 
 /**

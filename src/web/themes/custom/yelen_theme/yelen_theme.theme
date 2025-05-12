@@ -76,10 +76,18 @@ function yelen_theme_preprocess_block(&$variables)
  */
 function yelen_theme_preprocess_page(&$variables)
 {
-  $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
-  $user_avatars = _yelen_get_user_avatar($user);
-  $variables['user_display_image'] = $user_avatars['user_display_image'];
-  $variables['user_small_image'] = $user_avatars['user_small_image'];
+  $current_uid = \Drupal::currentUser()->id();
+  $variables['user_displayname'] = 'N/A';
+  if ($current_uid && $current_uid != 0) {
+    $account = \Drupal\user\Entity\User::load($current_uid);
+    if ($account) {
+      $variables['user_displayname'] = $account->getDisplayName();
+      $user_avatars = _yelen_get_user_avatar($account);
+      $variables['user_display_image'] = $user_avatars['user_display_image'];
+      $variables['user_small_image'] = $user_avatars['user_small_image'];
+      $variables['#cache']['contexts'][] = 'user';
+    }
+  }
   $current_route = Drupal::routeMatch()->getRouteName();
   $variables['homepage_path'] = \Drupal::urlGenerator()->generateFromRoute('<front>');
   if (!in_array($current_route, ['user.reset', 'user.reset.login'])) {
@@ -125,6 +133,7 @@ function yelen_theme_preprocess_page(&$variables)
   }
 
   $variables['footer_menus'] = $menus;
+  $variables['#cache']['contexts'][] = 'user';
 
 }
 

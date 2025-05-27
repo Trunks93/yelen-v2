@@ -1,3 +1,4 @@
+{% import '@yelen_theme/macros/yelen-section-title.twig' as section_title %}
 {#
 /**
  * @file
@@ -37,9 +38,10 @@
   '--views-responsive-grid--cell-min-width:' ~ options.cell_min_width ~ 'px;',
   '--views-responsive-grid--layout-gap:' ~ options.grid_gutter ~ 'px;',
 ] %}
-
-<h2 class="orange-yelen-title">{{ view.storage.display('default')['display_options']['title'] }}</h2>
-
+{% set view_title = view.getTitle() ?? title %}
+{% if view_title %}
+  {{ section_title.render(view_title, 'h2') }}
+{% endif %}
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
   {% for item in items %}
     <div class="card views-view-responsive-grid__item card-yelen">

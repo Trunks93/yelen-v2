@@ -1,3 +1,4 @@
+{% import '@yelen_theme/macros/yelen-section-title.twig' as section_title %}
 {#
 /**
  * @file
@@ -18,8 +19,9 @@
  */
 #}
 
-{% if title %}
-  <h3 class="orange-yelen-title">{{ title }}</h3>
+{% set view_title = view.getTitle() ?? title %}
+{% if view_title %}
+  {{ section_title.render(view_title, 'h2') }}
 {% endif %}
 <ul class="list-group ms-0">
   {% for row in rows %}

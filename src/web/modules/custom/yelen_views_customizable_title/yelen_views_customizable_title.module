@@ -10,11 +10,30 @@ use Drupal\views\ViewExecutable;
 
 const CUSTOMIZABLE_VIEWS_LIST = [
   'process_metiers',
+  'trombino_point_service',
+  'liste_des_applications',
+  'nos_certifications',
+  'nos_evenements',
+  'nos_formations',
+  'nos_offres',
+  'argumentaires',
+  'note_de_direction',
+  'animation_agence_et_franchise',
   'liste_des_faq'
 ];
 const CUSTOMIZABLE_VIEWS_EXPOXED_FILTERS_LIST = [
   'field_categorie_process_metier_target_id',
-  'field_categorie_faq_target_id'
+  'field_categorie_faq_target_id',
+  'field_categorie_target_id',
+  'field_categorie_certification_target_id',
+  'field_categorie_formation_target_id',
+  'field_categorie_evenements_target_id',
+  'field_categorie_offres_target_id',
+  'field_categorie_applications_target_id',
+  'field_categorie_argumentaire_target_id',
+  'field_categorie_note_direction_target_id',
+  'field_types_de_point_service_target_id',
+  'type'
 ];
 
 /**
@@ -53,20 +72,14 @@ function yelen_views_customizable_title_views_pre_render(ViewExecutable $view): 
   $viewCurrentDisplay = $view->current_display;
   $viewFilters = $view->getExposedInput();
 
-  if(!empty($viewFilters) && in_array($viewId, CUSTOMIZABLE_VIEWS_LIST) && $viewCurrentDisplay === 'page_1') {
+  if(!empty($viewFilters) && in_array($viewId, CUSTOMIZABLE_VIEWS_LIST)) {
     $first_valid_filter = yelen_views_customizable_title_get_first_valid_filter($viewFilters);
-    dump($first_valid_filter);
     if($first_valid_filter){
       $tid = $first_valid_filter['value'];
       $term = Term::load($tid);
-      dump($tid);
-      dump($term);
       if($term){
         $termLabel = $term->label();
         $view->setTitle($termLabel);
-        dump($termLabel);
-
-        dump('Page title', $view->getTitle());
       }
     }
   }

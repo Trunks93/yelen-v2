@@ -1,4 +1,4 @@
-
+{% import '@yelen_theme/macros/yelen-section-title.twig' as section_title %}
 {#
 /**
  * @file
@@ -19,12 +19,10 @@
  */
 #}
 
-{% if title %}
-  <h3>{{ title }}</h3>
+{% set view_title = view.getTitle() ?? title ?? 'Applications' %}
+{% if view_title %}
+  {{ section_title.render(view_title, 'h2') }}
 {% endif %}
-<div class="bloc-offre">
-  <h2 class="orange-yelen-title">Applications</h2>
-</div>
 <div class="row">
 
 {% for row in rows %}

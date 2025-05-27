@@ -1,3 +1,4 @@
+{% import '@yelen_theme/macros/yelen-section-title.twig' as section_title %}
 {#
 /**
  * @file
@@ -38,7 +39,10 @@
   '--views-responsive-grid--layout-gap:' ~ options.grid_gutter ~ 'px;',
 ] %}
 
-<h2 class="orange-yelen-title">{{ view.storage.display('default')['display_options']['title'] }}</h2>
+{% set view_title = view.getTitle() ?? title %}
+{% if view_title %}
+  {{ section_title.render(view_title, 'h2') }}
+{% endif %}
 
 <ul role="tablist" aria-owns="nav-linkA nav-linkB nav-linkC nav-linkD" class="nav nav-underline mt-0" style="border-bottom: none">
   {% for categorie in categorie %}

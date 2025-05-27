@@ -23,6 +23,7 @@
 <h3 class="orange-yelen-title">Résultats de recherche pour: <strong class="text-primary">"{{ orange_yelen_search_term }}"</strong></h3>
 {% endif %}
 #}
+{% set view_title = view.getTitle() ?? title %}
 {% if orange_trombino_service_term %}
   <div class="row mb-2 mb-md-0">
     <div class="col-md-9 col-12">
@@ -40,8 +41,8 @@
       </button>
     </div> #}
   </div>
-{% elseif title %}
-  {{ title.render(section_title, 'h2') }}
+{% elseif view_title %}
+  {{ section_title.render(view_title, 'h2') }}
 {% endif %}
 <section class="trombino-service-point__list">
   {% for row in rows %}

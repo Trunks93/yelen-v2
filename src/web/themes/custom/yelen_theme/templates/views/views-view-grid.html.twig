@@ -1,4 +1,4 @@
-{% import '@yelen_theme/macros/yelen-section-title.twig' as title %}
+{% import '@yelen_theme/macros/yelen-section-title.twig' as section_title %}
 {#
 /**
  * @file
@@ -51,8 +51,10 @@
     ]
   %}
 {% endif %}
-<h2 class="orange-yelen-title">{{ view.storage.display('default')['display_options']['title'] }}</h2>
-
+{% set view_title = view.getTitle() ?? title %}
+{% if view_title %}
+  {{ section_title.render(view_title, 'h2') }}
+{% endif %}
 <div{{ attributes.addClass(classes) }}>
   {% if options.alignment == 'horizontal' %}
     {% for row in items %}

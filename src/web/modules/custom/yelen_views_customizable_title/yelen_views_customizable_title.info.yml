@@ -1,0 +1,7 @@
+name: 'Yelen Views Customizable Title'
+type: module
+description: 'Module pour personnaliser les titres des vues en fonction des filtres basés sur les termes de taxonomie'
+package: Custom
+core_version_requirement: ^10 || ^11
+dependencies:
+  - drupal:views

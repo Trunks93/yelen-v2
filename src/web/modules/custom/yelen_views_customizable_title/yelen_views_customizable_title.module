@@ -1,0 +1,68 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for Yelen Views Customizable Title module.
+ */
+
+use Drupal\taxonomy\Entity\Term;
+use Drupal\views\ViewExecutable;
+
+const CUSTOMIZABLE_VIEWS_LIST = [
+  'process_metiers',
+  'liste_des_faq'
+];
+const CUSTOMIZABLE_VIEWS_EXPOXED_FILTERS_LIST = [
+  'field_categorie_process_metier_target_id',
+  'field_categorie_faq_target_id'
+];
+
+/**
+ * Récupère le premier filtre exposé valide et présent dans la liste prédéfinie ci-dessus(CUSTOMIZABLE_VIEWS_EXPOXED_FILTERS_LIST).
+ *
+ * @param array $exposed_input
+ *
+ * @return array|null
+ *   Un tableau avec ['field' => 'nom_du_champ', 'value' => ID numérique du terme],
+ *   ou NULL si aucun champ/valeur valide trouvé.
+ */
+function yelen_views_customizable_title_get_first_valid_filter(array $exposed_input): ?array
+{
+  foreach ($exposed_input as $field_name => $value) {
+    if (in_array($field_name, CUSTOMIZABLE_VIEWS_EXPOXED_FILTERS_LIST, true) && !empty($value)) {
+      $values = is_array($value) ? $value : [$value];
+      $values = array_filter($values, fn($v) => is_numeric($v));
+      if (!empty($values)) {
+        return [
+          'field' => $field_name,
+          'value' => reset($values),
+        ];
+      }
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Implémente hook_views_pre_render().
+ */
+function yelen_views_customizable_title_views_pre_render(ViewExecutable $view): void
+{
+  $viewId = $view->id();
+  $viewCurrentDisplay = $view->current_display;
+  $viewFilters = $view->getExposedInput();
+
+  if(!empty($viewFilters) && in_array($viewId, CUSTOMIZABLE_VIEWS_LIST) && $viewCurrentDisplay === 'page_1') {
+    $first_valid_filter = yelen_views_customizable_title_get_first_valid_filter($viewFilters);
+
+    if($first_valid_filter){
+      $tid = $first_valid_filter['value'];
+      $term = Term::load($tid);
+      if($term){
+        $termLabel = $term->label();
+        $view->setTitle($termLabel);
+      }
+    }
+  }
+}

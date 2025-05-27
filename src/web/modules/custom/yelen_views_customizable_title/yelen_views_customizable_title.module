@@ -53,9 +53,13 @@ function yelen_views_customizable_title_views_pre_render(ViewExecutable $view): 
   $viewCurrentDisplay = $view->current_display;
   $viewFilters = $view->getExposedInput();
 
+  dump($viewId);
+  dump($viewCurrentDisplay);
+  dump($viewFilters);
+
   if(!empty($viewFilters) && in_array($viewId, CUSTOMIZABLE_VIEWS_LIST) && $viewCurrentDisplay === 'page_1') {
     $first_valid_filter = yelen_views_customizable_title_get_first_valid_filter($viewFilters);
-
+    dump($first_valid_filter);
     if($first_valid_filter){
       $tid = $first_valid_filter['value'];
       $term = Term::load($tid);

@@ -1,3 +1,4 @@
+{% import '@yelen_theme/macros/yelen-section-title.twig' as section_title %}
 {#
 /**
  * @file
@@ -17,9 +18,6 @@
  * @ingroup themeable
  */
 #}
-{% if title %}
-  <h3>{{ title }}</h3>
-{% endif %}
 {#
 {% if orange_yelen_search_term %}
 <h3 class="orange-yelen-title">Résultats de recherche pour: <strong class="text-primary">"{{ orange_yelen_search_term }}"</strong></h3>
@@ -42,6 +40,8 @@
       </button>
     </div> #}
   </div>
+{% elseif title %}
+  {{ title.render(section_title, 'h2') }}
 {% endif %}
 <section class="trombino-service-point__list">
   {% for row in rows %}

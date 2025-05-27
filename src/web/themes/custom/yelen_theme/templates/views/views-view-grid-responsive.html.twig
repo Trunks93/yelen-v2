@@ -1,3 +1,4 @@
+{% import '@yelen_theme/macros/yelen-section-title.twig' as section_title %}
 {#
 /**
  * @file
@@ -40,7 +41,9 @@
 ] %}
 
 <h2 class="orange-yelen-title">{{ view.storage.display('default')['display_options']['title'] }}</h2>
-
+{% if title %}
+{{ title.render(section_title, 'h2') }}
+{% endif %}
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
   {% for item in items %}
 

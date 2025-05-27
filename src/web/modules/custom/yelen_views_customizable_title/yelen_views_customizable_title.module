@@ -63,9 +63,12 @@ function yelen_views_customizable_title_views_pre_render(ViewExecutable $view): 
     if($first_valid_filter){
       $tid = $first_valid_filter['value'];
       $term = Term::load($tid);
+      dump($tid);
+      dump($term);
       if($term){
         $termLabel = $term->label();
         $view->setTitle($termLabel);
+        dump($termLabel);
       }
     }
   }

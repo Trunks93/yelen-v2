@@ -1563,3 +1563,7 @@ CACHER LES TITRE DES BLOCS POUR LA VUE ACCUEIL
 .view-accueil .views-view-responsive-grid__item .home-body .yelen-section-title {
   display: none;
 }
+
+.view-accueil .home-body .yelen-section-title {
+  display: none;
+}

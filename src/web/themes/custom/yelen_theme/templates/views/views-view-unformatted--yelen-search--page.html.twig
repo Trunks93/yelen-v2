@@ -25,9 +25,10 @@
   <div class="col-md-9 col-12">
     {% embed '@yelen_theme/components/yelen-section-title.html.twig' with { tag: 'h3' } %}
       {% block content %}
-        {{ 'Résultats de recherche pour:' | t }} <strong class="text-primary">"{{ orange_yelen_search_term }}"</strong>
+        {{ 'Résultats de recherche pour:' | t }}
       {% endblock %}
     {% endembed %}
+    <strong class="text-primary d-block fs-3 mb-2">"{{ orange_yelen_search_term }}"</strong>
   </div>
   <div class="col-md-3 col-12">
     <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#rateSearchModal">

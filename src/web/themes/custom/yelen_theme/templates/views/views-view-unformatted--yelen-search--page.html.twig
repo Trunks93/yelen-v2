@@ -23,11 +23,15 @@
 {% if orange_yelen_search_term %}
 <div class="row mb-2 mb-md-0">
   <div class="col-md-9 col-12">
-    <h3 class="orange-yelen-title">{{ 'Résultats de recherche pour:' | t}} <strong class="text-primary">"{{ orange_yelen_search_term }}"</strong></h3>
+    {% embed '@yelen_theme/components/yelen-section-title.html.twig' with { tag: 'h3' } %}
+      {% block content %}
+        {{ 'Résultats de recherche pour:' | t }} <strong class="text-primary">"{{ orange_yelen_search_term }}"</strong>
+      {% endblock %}
+    {% endembed %}
   </div>
   <div class="col-md-3 col-12">
     <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#rateSearchModal">
-      Evaluer la recherche
+      {{ 'Evaluer la recherche' | t }}
     </button>
   </div>
 </div>
@@ -78,7 +82,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title h5" id="rateSearchModalLabel">Evaluer la recherche effectuée</h1>
+          <h1 class="modal-title h5" id="rateSearchModalLabel">{{ 'Evaluer la recherche effectuée' | t }}</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Close"><span class="visually-hidden">Close</span></button>
         </div>
           <div class="modal-body">

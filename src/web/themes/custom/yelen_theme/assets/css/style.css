@@ -1554,3 +1554,12 @@ styling page
 .views-exposed-form__item .form-element--type-text{
   width: 48rem;
 }
+
+
+/**
+CACHER LES TITRE DES BLOCS POUR LA VUE ACCUEIL
+ */
+
+.view-accueil .views-view-responsive-grid__item .home-body .yelen-section-title {
+  display: none;
+}

@@ -85,12 +85,12 @@
 {% if node.in_preview and node.id != null %}
   <div class="p-1">
     <a class="btn btn-primary" href="{{ path('entity.node.edit_form',{'node':node.id,'uuid': node.uuid.value}) }}">
-      <i class="fa fa-arrow-left"> </i> Retour aux modifications</a>
+      <i class="fa fa-arrow-left"> </i> {{ 'Retour aux modifications' | t }}</a>
   </div>
 {% elseif node.in_preview %}
   <div class="p-1">
     <a class="btn btn-primary" href="javascript:void(0);" onclick="window.history.back();">
-      <i class="fa fa-arrow-left"> </i> Retour aux modifications</a>
+      <i class="fa fa-arrow-left"> </i> {{ 'Retour aux modifications' | t }}</a>
   </div>
 {% endif %}
 
@@ -100,8 +100,7 @@
 
   {% if node.type.value[0]['target_id'] != 'page' %}
     {{ title.render(label, 'h2', title_attributes) }}
-  {% endif %}
-  {% if label and not page %}
+  {% elseif label and not page %}
     {% embed '@yelen_theme/components/yelen-section-title.html.twig' with { tag: 'h2', attributes: title_attributes } %}
       {% block content %}
         <a href="{{ url }}" rel="bookmark">{{ label }}</a>

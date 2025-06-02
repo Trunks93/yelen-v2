@@ -1464,6 +1464,18 @@ a.hover-orange:hover {
   width: 49rem;
 }
 
+.page-yelen-chat-conversations .views-exposed-form select.form-select {
+  min-width: 20rem;
+}
+.page-yelen-chat-conversations .views-exposed-form fieldset {
+  margin-right: 1rem;
+}
+.page-yelen-chat-conversations .views-exposed-form fieldset .fieldset__wrapper {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
 .image-full-caroussel img{
   max-height: 325px;
   object-fit: cover;

@@ -87,7 +87,9 @@
                 {% set title = title|slice(0, 16) ~ '...' %}
               {% endif #}
               <div class="card-body views-view-responsive-grid__item-inner">
-                <h2 class="card-title"> {{ title|capitalize }}</h2>
+                <a class="link-title" href="/node/{{ item.content['#row']._entity.nid.value }}">
+          <h2 class="card-title"> {{ title|capitalize }}</h2>
+        </a>
                 <p class="card-text mb-4">{{ truncated_text|raw }}</p>
                 <a class="btn btn-inverse btn-primary btn-voir-plus"
                    href="/node/{{ item.content['#row']._entity.nid.value }}">
@@ -115,11 +117,13 @@
                 </a>
               {% endif %}
               {% set title = item.content['#row']._entity.title.value %}
-              {% if title|length > 16 %}
+              {# if title|length > 16 %}
                 {% set title = title|slice(0, 16) ~ '...' %}
-              {% endif %}
+              {% endif #}
               <div class="card-body views-view-responsive-grid__item-inner">
-                <h2 class="card-title"> {{ title|capitalize }}</h2>
+                <a class="link-title" href="/node/{{ item.content['#row']._entity.nid.value }}">
+          <h2 class="card-title"> {{ title|capitalize }}</h2>
+        </a>
                 <p class="card-text mb-4">{{ truncated_text|raw }}</p>
                 <a class="btn btn-inverse btn-primary btn-voir-plus"
                    href="/node/{{ item.content['#row']._entity.nid.value }}">

@@ -22,6 +22,7 @@ function yelen_matomo_page_attachments_alter(array &$attachments) {
       $js = <<<EOD
        _paq.push(['setCustomVariable',1,'Nom Utilisateur','$username','visit']);
        _paq.push(['setCustomVariable',2,'Adresse email','$user_email','visit']);
+       _paq.push(['setCustomVariable',3,'Nom complet','$fullname','visit']);
        _paq.push(['setCustomDimension',1, '$username']);
        _paq.push(['setCustomDimension', 2, '$user_email']);
        _paq.push(['setCustomDimension', 3, '$fullname']);

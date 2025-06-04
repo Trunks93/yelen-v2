@@ -67,7 +67,7 @@ stages:
     #   script:
     #      - |
 
-    #        if [[ -f ${SRC_DIR}/package.json ]]
+  #        if [[ -f ${SRC_DIR}/package.json ]]
   #        then
   #           cd ${SRC_DIR}
   #           rm -f package-lock.json

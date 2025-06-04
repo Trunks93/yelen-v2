@@ -11,14 +11,14 @@ src/web/sites/*/services*.yml
 src/web/sites/*/files
 src/web/sites/*/private
 src/web/sites/simpletest
-# src/web/modules/contrib/*
+src/web/modules/contrib/*
 
 # Ignore IntelliJ Files
 .idea
 
 #Gin Theme
 src/web/themes/contrib
-# src/web/modules/contrib
+src/web/modules/contrib
 src/web/modules/*/node_modules
 src/web/modules/**/node_modules
 

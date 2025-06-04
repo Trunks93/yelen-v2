@@ -18,6 +18,7 @@
         "composer/installers": "^2.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/admin_toolbar": "^3.5",
+        "drupal/authorization": "^1.0",
         "drupal/autologout": "^1.4",
         "drupal/better_exposed_filters": "^7.0",
         "drupal/big_pipe_sessionless": "^2.2",
@@ -42,6 +43,7 @@
         "drupal/devel_entity_updates": "^4.1",
         "drupal/elasticsearch_connector": "^7.0@alpha",
         "drupal/elogger": "^1.1",
+        "drupal/externalauth": "^2.0",
         "drupal/faq": "^1.2",
         "drupal/feeds": "^3.0",
         "drupal/feeds_tamper": "^2.0@beta",
@@ -54,7 +56,6 @@
         "drupal/gin_toolbar": "^2.0",
         "drupal/jquery_ui": "^1.7",
         "drupal/jquery_ui_checkboxradio": "^2.1",
-        "drupal/ldap": "^4.10",
         "drupal/login_history": "^2.0",
         "drupal/login_security": "^2.0",
         "drupal/login_tracker": "^2.0",
@@ -101,7 +102,8 @@
         "drupal/xls_views_data_export": "^3.0",
         "drush/drush": "^12.5",
         "nodespark/des-connector": "7.x-dev",
-        "predis/predis": "^2.2"
+        "predis/predis": "^2.2",
+        "symfony/ldap": "^5.4"
     },
     "conflict": {
         "drupal/drupal": "*",

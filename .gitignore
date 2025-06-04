@@ -33,3 +33,4 @@ src/.scannerwork
 .gitlab-ci.yml
 
 src/web/scripts
+ansible

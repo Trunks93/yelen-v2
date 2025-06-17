@@ -12,4 +12,11 @@ let swiper = new Swiper(".mySwiper", {
   },
 });
 
-
+console.log('---APP JS----')
+console.log('---APP JS - Document Title----', document.title)
+if (document.body.classList.contains('user-logged-in') && (document.title.includes('Access denied') || document.title.includes('Accès refusé'))) {
+  setTimeout(() => {
+    console.log('---403 PAGE RELOAD AFTER 500MS----')
+    location.reload();
+  }, 500);
+}

@@ -5,6 +5,8 @@
  * Primary module hooks for Yelen Personnalisation module.
  */
 
+use Drupal\Core\Render\Markup;
+
 /**
  * Implements hook_page_attachments().
  */
@@ -12,6 +14,29 @@ function yelen_customization_page_attachments(array &$attachments) {
   if (\Drupal::service('router.admin_context')->isAdminRoute()) {
     $attachments['#attached']['library'][] = 'yelen_customization/admin_assets';
   }
+
+  /*
+   * Chargement du fichier local Matomo
+   */
+
+  $script = <<<JS
+(function() {
+  var s = document.createElement('script');
+  s.type = 'text/javascript';
+  s.async = true;
+  s.src = location.origin + '/matomo/matomo.js';
+  document.head.appendChild(s);
+})();
+JS;
+
+  $attachments['#attached']['html_head'][] = [
+    [
+      '#tag' => 'script',
+      '#type' => 'html_tag',
+      '#value' => Markup::create($script),
+    ],
+    'custom_matomo_script',
+  ];
 }
 
 

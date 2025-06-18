@@ -123,8 +123,8 @@
       <div class="{{ mainLayout }}">
         <div class="text-center unauthorized">
           <h1>404</h1>
-          <p>La page que vous recherchez n'existe pas !</p>
-          <a href="{{ path('<front>') }}" class="btn btn-primary">Retourner à l'accueil</a>
+          <p>{{'La page que vous recherchez n\'existe pas !'|t}}</p>
+          <a href="{{ homepage_path }}" class="btn btn-primary">{{'Retourner à l\'accueil'|t}}</a>
         </div>
       </div>
       {% if page.sidebar %}

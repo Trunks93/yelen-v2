@@ -33,7 +33,7 @@ function orange_yelen_login_page_user_login_validate(&$form, $formState) {
    }
  }
 
-function orange_yelen_login_page_preprocess_html(&$variables): void {
+function orange_yelen_login_preprocess_html(&$variables): void {
   $route_name = \Drupal::routeMatch()->getRouteName();
   $route_path = \Drupal::request()->getPathInfo();
 

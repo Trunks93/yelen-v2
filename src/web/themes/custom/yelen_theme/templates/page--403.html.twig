@@ -40,6 +40,8 @@
  */
 #}
 
+{{ dump(page) }}
+{{ dump(homepage_path) }}
 <header data-bs-theme="dark">
   <nav class="navbar navbar-expand-lg" aria-label="Global navigation - Standard example">
     <div class="container-xxl">
@@ -123,8 +125,8 @@
       <div class="{{ mainLayout }}">
         <div class="text-center unauthorized">
           <h1>403</h1>
-          <p>Vous n'êtes pas autorisés à aller sur cette page</p>
-          <a href="{{ path('<front>') }}" class="btn btn-primary">Retourner à l'accueil</a>
+          <p>{{ 'Vous n\'êtes pas autorisés à aller sur cette page'|t}}</p>
+          <a href="{{ homepage_path }}" class="btn btn-primary">{{'Retourner à l\'accueil'|t}}</a>
         </div>
       </div>
       {% if page.sidebar %}

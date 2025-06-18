@@ -122,9 +122,9 @@
     <div class="row">
       <div class="{{ mainLayout }}">
         <div class="text-center unauthorized">
-          <h1>STOP</h1>
-          <p>Une erreur est survenue, veuillez retourner à l'accueil</p>
-          <a href="{{ path('<front>') }}" class="btn btn-primary">Retourner à l'accueil</a>
+          <h1>Désolé</h1>
+          <p>{{ 'Une erreur est survenue, veuillez retourner à l\'accueil'|t }}</p>
+          <a href="{{ homepage_path }}" class="btn btn-primary">{{ 'Retourner à l\'accueil'|t }}</a>
         </div>
       </div>
       {% if page.sidebar %}

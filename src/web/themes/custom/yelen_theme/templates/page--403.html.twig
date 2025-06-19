@@ -39,9 +39,6 @@
  * @see html.html.twig
  */
 #}
-
-{{ dump(page) }}
-{{ dump(homepage_path) }}
 <header data-bs-theme="dark">
   <nav class="navbar navbar-expand-lg" aria-label="Global navigation - Standard example">
     <div class="container-xxl">
@@ -91,7 +88,7 @@
   </nav>
 </header>
 {% set layout_hero = page.hero_sidebar ? 'col-8' :'col-12' %}
-<div class="container body">
+<div class="container body access-denied-page">
   <div class="content-header clearfix">
     {{ page.search_bar }}
     <div class="row">

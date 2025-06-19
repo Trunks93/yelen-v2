@@ -100,6 +100,8 @@ function yelen_theme_preprocess_page(&$variables)
       $user_roles = \Drupal::currentUser()->getRoles();
       if(is_array($login_redirection) && is_array($user_roles) && in_array($user_roles[count($user_roles) - 1], $login_redirection_keys)) {
         $variables['homepage_path'] = $login_redirection[$user_roles[count($user_roles) - 1]];
+      } else {
+        $variables['homepage_path'] = $login_redirection[array_keys($login_redirection)[0]] ?? '/';
       }
     }
   }

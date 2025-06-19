@@ -3,6 +3,7 @@ global:
     assets/js/popper.min.js: {}
     assets/js/boosted.min.js: {}
     assets/js/swiper.min.js : {}
+    assets/js/custom.js: {}
 
   css:
     layout:

@@ -39,6 +39,15 @@ JS;
   ];
 }
 
+/**
+ * Implements hook_preprocess_page().
+ */
+function yelen_customization_preprocess_page(array &$variables) {
+  $variables['#attached']['drupalSettings']['user'] = [
+    'isLoggedIn' => \Drupal::currentUser()->isAuthenticated()
+  ];
+}
+
 
 /**
  * Implements hook_views_data().

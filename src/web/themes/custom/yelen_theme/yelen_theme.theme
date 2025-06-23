@@ -90,18 +90,19 @@ function yelen_theme_preprocess_page(&$variables)
   }
 
   $moduleHandler = \Drupal::service('module_handler');
+  $front_url = \Drupal::urlGenerator()->generateFromRoute('<front>');
+  $variables['homepage_path'] = $front_url;
   if ($moduleHandler->moduleExists('redirect_after_login')) {
     $current_route = Drupal::routeMatch()->getRouteName();
-    $variables['homepage_path'] = \Drupal::urlGenerator()->generateFromRoute('<front>');
     if (!in_array($current_route, ['user.reset', 'user.reset.login'])) {
       $login_redirection_config = Drupal::config('redirect_after_login.settings');
       $login_redirection = $login_redirection_config->get('login_redirection');
       $login_redirection_keys = !is_null($login_redirection) ? array_keys($login_redirection) : [];
       $user_roles = \Drupal::currentUser()->getRoles();
       if(is_array($login_redirection) && is_array($user_roles) && in_array($user_roles[count($user_roles) - 1], $login_redirection_keys)) {
-        $variables['homepage_path'] = $login_redirection[$user_roles[count($user_roles) - 1]];
+        $variables['homepage_path'] = $login_redirection[$user_roles[count($user_roles) - 1]] ?? $front_url;
       } else {
-        $variables['homepage_path'] = $login_redirection[array_keys($login_redirection)[0]] ?? '/';
+        $variables['homepage_path'] = $login_redirection[array_keys($login_redirection)[0]] ?? $front_url;
       }
     }
   }
@@ -141,7 +142,6 @@ function yelen_theme_preprocess_page(&$variables)
 
   $variables['footer_menus'] = $menus;
   $variables['#cache']['contexts'][] = 'user';
-
 }
 
 /**

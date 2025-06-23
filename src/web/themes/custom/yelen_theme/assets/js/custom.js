@@ -10,10 +10,10 @@ if(isAccessDeniedPage && !isPageReloaded){
   document.title = "Chargement..."
   document.body.querySelector('.unauthorized').innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Chargement...</span></div>'
   setTimeout(() => {
-    console.log('----Page Reloaded after 50ms-----')
+    console.log('----Page Reloaded after 100ms-----')
     sessionStorage.setItem('isAccessDeniedPageReloaded', 'true')
     location.reload();
-  }, 50);
+  }, 100);
 }
 setTimeout(() => {
   sessionStorage.removeItem('isAccessDeniedPageReloaded')

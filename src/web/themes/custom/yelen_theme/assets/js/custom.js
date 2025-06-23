@@ -8,10 +8,10 @@
   const isAccessDeniedPage = accessDeniedPageClass && (document.title.includes('Access denied') || document.title.includes('Accès refusé'))
   if(isAccessDeniedPage && !isPageReloaded){
     setTimeout(() => {
-      console.log('----Page Reloaded after 500ms-----')
+      console.log('----Page Reloaded after 100ms-----')
       sessionStorage.setItem('isAccessDeniedPageReloaded', 'true')
       location.reload();
-    }, 500);
+    }, 100);
     setTimeout(() => {
       sessionStorage.removeItem('isAccessDeniedPageReloaded')
     }, 5000);

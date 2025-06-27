@@ -67,7 +67,9 @@ class BroadcastListSubscriber implements EventSubscriberInterface
         ->accessCheck(TRUE)
         ->condition('status', true)
         //->condition('mail', '%orange%', 'LIKE')
-        ->condition('mail','%yelen-oci.orange.ci%','NOT LIKE');
+        ->condition('mail','%yelen-oci.orange.ci%','NOT LIKE')
+        ->condition('mail','%gmail%','NOT LIKE')
+        ->condition('mail','%synelia%','NOT LIKE');
       if ($role == Constante::ADMINISTRATEUR) {
         $users->condition('roles', $role, 'NOT IN');
       }
